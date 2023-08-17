@@ -31,7 +31,7 @@ public class PlayerPhysics : MonoBehaviour
         {
             bc.isTrigger = false;
             bc.sharedMaterial = _material;
-            bc.size = new Vector2(0.8f, 1.6f);
+            bc.size = new Vector2(0.8f, 1.8f);
             bc.edgeRadius = 0.1f;
         }
     }
