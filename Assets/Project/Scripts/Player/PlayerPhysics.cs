@@ -7,6 +7,7 @@ public class PlayerPhysics : MonoBehaviour
 
     [Header("Properties")]
     [SerializeField, Min(0)] private float _gravityScale = 1f;
+    [SerializeField, Min(0)] private float _fallGravityScale = 1f;
     [field: SerializeField, Min(0)] public float FrictionAmount { get; private set;}
     [SerializeField] private PhysicsMaterial2D _material;
 
@@ -24,7 +25,6 @@ public class PlayerPhysics : MonoBehaviour
             Rigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
             Rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             Rigidbody.isKinematic = false;
-            Rigidbody.gravityScale = _gravityScale;
         }
 
         if (TryGetComponent(out BoxCollider2D bc))
@@ -34,5 +34,13 @@ public class PlayerPhysics : MonoBehaviour
             bc.size = new Vector2(0.8f, 1.8f);
             bc.edgeRadius = 0.1f;
         }
+    }
+
+    private void FixedUpdate() 
+    {
+        if (Rigidbody.velocity.y < 0)
+            Rigidbody.gravityScale = _fallGravityScale;
+        else
+            Rigidbody.gravityScale = _gravityScale;
     }
 }
