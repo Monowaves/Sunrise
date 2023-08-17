@@ -10,14 +10,15 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D _material;
 
     [field: Header("Components")]
-    [field: SerializeField] public Rigidbody2D Rigidbody { get; private set;}
+    [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
 
     private void Awake() => Singleton = this;
 
     private void OnValidate() 
     {
-        if (TryGetComponent(out Rigidbody2D Rigidbody))
+        if (TryGetComponent(out Rigidbody2D rb))
         {
+            Rigidbody = rb;
             Rigidbody.freezeRotation = true;
             Rigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
             Rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
