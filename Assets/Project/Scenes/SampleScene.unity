@@ -957,6 +957,7 @@ GameObject:
   - component: {fileID: 1136529544}
   - component: {fileID: 1136529547}
   - component: {fileID: 1136529546}
+  - component: {fileID: 1136529550}
   - component: {fileID: 1136529545}
   - component: {fileID: 1136529548}
   m_Layer: 0
@@ -994,8 +995,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0f80acf70e42b418e8994733248947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravity: 1
-  _material: {fileID: 0}
+  _gravityScale: 1
+  <FrictionAmount>k__BackingField: 0.23
+  _material: {fileID: 6200000, guid: f98348faf63af4748b619391e0041bb7, type: 2}
   <Rigidbody>k__BackingField: {fileID: 1136529546}
 --- !u!50 &1136529546
 Rigidbody2D:
@@ -1033,7 +1035,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1136529541}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f98348faf63af4748b619391e0041bb7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1081,11 +1083,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2995565a2b02e4b93c93bcd8474740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 9
-  _acceleration: 13
+  _speed: 11.5
+  _acceleration: 14.25
   _decceleration: 16
   _velocityPower: 0.96
-  _inputAxis: 0
+--- !u!114 &1136529550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136529541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 574b30634cafaaf43a9459b7dee56bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsMoving>k__BackingField: 0
+  <HorizontalAxis>k__BackingField: 0
 --- !u!1 &1209110243
 GameObject:
   m_ObjectHideFlags: 0

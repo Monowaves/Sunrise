@@ -6,7 +6,8 @@ public class PlayerPhysics : MonoBehaviour
     public static PlayerPhysics Singleton { get; private set; }
 
     [Header("Properties")]
-    [SerializeField] private float _gravity = 1f;
+    [SerializeField, Min(0)] private float _gravityScale = 1f;
+    [field: SerializeField, Min(0)] public float FrictionAmount { get; private set;}
     [SerializeField] private PhysicsMaterial2D _material;
 
     [field: Header("Components")]
@@ -23,7 +24,7 @@ public class PlayerPhysics : MonoBehaviour
             Rigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
             Rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             Rigidbody.isKinematic = false;
-            Rigidbody.gravityScale = _gravity;
+            Rigidbody.gravityScale = _gravityScale;
         }
 
         if (TryGetComponent(out BoxCollider2D bc))
