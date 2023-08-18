@@ -1176,10 +1176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3717102d6817e4494fb8a265df7542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallJumpUpForce: 16.25
-  _wallJumpForwardForce: 30.75
-  _wallSlidingSpeed: 0.5
-  _jumpCutMultiplier: 0.3
+  _wallJumpUpForce: 17.75
+  _wallJumpForwardForce: 35.75
+  _wallSlidingSpeed: 0.675
+  _jumpCutMultiplier: 0.15
   <IsJumping>k__BackingField: 0
 --- !u!1 &1209110243
 GameObject:
