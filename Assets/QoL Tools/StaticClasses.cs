@@ -106,6 +106,12 @@ namespace MonoWaves.QoL
 
         public static float WhatIsLower(float first, float second) => first < second ? first : second;
         public static int WhatIsLower(int first, int second) => first < second ? first : second;
+
+        public static float ClampMaximum(this float target, float value) => target > value ? value : target;
+        public static float ClampMaximum(this int target, int value) => target > value ? value : target;
+
+        public static float ClampMinimum(this float target, float value) => target < value ? value : target;
+        public static float ClampMinimum(this int target, int value) => target < value ? value : target;
     }
 
     public class Span
@@ -305,6 +311,7 @@ namespace MonoWaves.QoL
                 target.z < z ? z : target.z
             );
         }
+
         public static Vector3 ClampMaximum(this Vector3 target, Vector3 max)
         {
             return new Vector3
@@ -388,11 +395,6 @@ namespace MonoWaves.QoL
         public static bool Equals(this Vector3 target, float x, float y, float z)
         {
             return target.x == x && target.y == y && target.z == z;
-        }
-
-        public static float Map(this float value, float from1, float to1, float from2, float to2)
-        {
-            return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
         }
     }
 

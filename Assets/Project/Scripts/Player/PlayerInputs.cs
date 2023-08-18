@@ -11,6 +11,8 @@ public class PlayerInputs : MonoBehaviour
     [field: SerializeField, ReadOnly] public PlayerFacing Facing { get; private set; }
     [field: SerializeField, ReadOnly] public bool WantToJump { get; private set; }
     [field: SerializeField, ReadOnly] public bool JumpReleased { get; private set; }
+    [field: SerializeField, ReadOnly] public bool IsShifting { get; private set; }
+    [field: SerializeField, ReadOnly] public bool ShiftPressed { get; private set; }
 
     public bool BlockMoveInputs { get; set; }
 
@@ -21,10 +23,17 @@ public class PlayerInputs : MonoBehaviour
         HorizontalAxis = BlockMoveInputs ? 0 : Keyboard.AxisFrom(KeyCode.A, KeyCode.D);
 
         IsMoving = HorizontalAxis != 0;
-        Facing = HorizontalAxis == -1 ? PlayerFacing.Left : PlayerFacing.Right;
+        
+        if (HorizontalAxis < 0)
+            Facing = PlayerFacing.Left;
+        else if (HorizontalAxis > 0)
+            Facing = PlayerFacing.Right;     
 
         WantToJump = Keyboard.IsPressed(KeyCode.Space);
         JumpReleased = Keyboard.IsReleased(KeyCode.Space);
+
+        IsShifting = Keyboard.IsHolding(KeyCode.LeftShift);
+        ShiftPressed = Keyboard.IsPressed(KeyCode.LeftShift);
     }
 }
 
