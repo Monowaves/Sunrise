@@ -58,20 +58,19 @@ public class PlayerBase : MonoBehaviour
         {
             bc.isTrigger = false;
             bc.sharedMaterial = _material;
-            bc.size = new Vector2(0.8f, 1.8f);
-            bc.edgeRadius = 0.1f;
+            bc.size = new Vector2(1f, 2f);
+            bc.edgeRadius = 0f;
         }
     }
 
     private void Update() 
     {
-        Checking();
         Inputs();
+        Checking();
     }
 
     private void Checking()
     {
-        if (_groundChecker == null) throw new ArgumentException("Ground checker is null");
         Vector2 position = transform.position;
 
         IsTouchingGround = Physics2D.OverlapBox(position + _groundChecker.Offset, _groundChecker.Size, 0f, _groundChecker.Mask);

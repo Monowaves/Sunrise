@@ -229,6 +229,42 @@ namespace MonoWaves.QoL
             );
         }
 
+        public static Vector2 Multiply(this Vector2 target, Vector2 multiplier)
+        {
+            return new Vector2
+            (
+                target.x * multiplier.x,
+                target.y * multiplier.y
+            );
+        }
+
+        public static Vector2 Multiply(this Vector2 target, float x, float y)
+        {
+            return new Vector2
+            (
+                target.x * x,
+                target.y * y
+            );
+        }
+
+        public static Vector2 Divide(this Vector2 target, Vector2 divider)
+        {
+            return new Vector2
+            (
+                target.x / divider.x,
+                target.y / divider.y
+            );
+        }
+
+        public static Vector2 Divide(this Vector2 target, float x, float y)
+        {
+            return new Vector2
+            (
+                target.x / x,
+                target.y / y
+            );
+        }
+
         public static Vector2 ProjectOnPlane(Vector2 vector, Vector2 normal)
         {
             return Vector3.ProjectOnPlane(vector, normal);

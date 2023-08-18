@@ -42,12 +42,4 @@ public class PlayerRun : MonoBehaviour
             _rb.AddForce(_moveDirection * -applyAmount, ForceMode2D.Impulse);
         }
     }
-
-    private void OnDrawGizmos() 
-    {
-        Vector2 position = transform.position;
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(position + Vector2.down, position + Vector2.down + _moveDirection);
-    }
 }
