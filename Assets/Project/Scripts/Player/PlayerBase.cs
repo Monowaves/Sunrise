@@ -11,6 +11,7 @@ public class PlayerBase : MonoBehaviour
     [SerializeField, Min(0)] private float _gravityScale = 1f;
     [SerializeField, Min(0)] private float _fallGravityScale = 1f;
     [field: SerializeField, Min(0)] public float FrictionAmount { get; private set;}
+    [SerializeField, Min(0)] private float _maxSlopeAngle = 45f;
     [SerializeField] private PhysicsMaterial2D _material;
 
     [Header("Checkers")]
@@ -94,7 +95,12 @@ public class PlayerBase : MonoBehaviour
             _rightSlopeChecker.Mask
         );
 
-        SlopeNormal = Facing == PlayerFacing.Left ? leftHitInfo.normal : rightHitInfo.normal;
+        Vector2 targetNormal = Facing == PlayerFacing.Left ? leftHitInfo.normal : rightHitInfo.normal;
+
+        if (Vector2.Angle(Vector2.up, targetNormal).IsInRange(-_maxSlopeAngle, _maxSlopeAngle)) 
+            SlopeNormal = targetNormal;
+        else
+            SlopeNormal = Vector2.up;
     }
 
     private void Inputs()
