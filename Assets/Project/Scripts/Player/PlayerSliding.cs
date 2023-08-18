@@ -14,20 +14,20 @@ public class PlayerSliding : MonoBehaviour
     [field: SerializeField, ReadOnly] public float Momentum { get; private set; }
     [field: SerializeField, ReadOnly] public bool StartedSlidingOnGround { get; private set; }
 
-    private Rigidbody2D _rb => PlayerPhysics.Singleton.Rigidbody;
+    private Rigidbody2D _rb => PlayerBase.Singleton.Rigidbody;
 
     private void Update() 
     {
-        if (PlayerInputs.Singleton.ShiftPressed && PlayerChecker.Singleton.IsTouchingGround) StartedSlidingOnGround = true;
+        if (PlayerBase.Singleton.ShiftPressed && PlayerBase.Singleton.IsTouchingGround) StartedSlidingOnGround = true;
 
-        if (PlayerInputs.Singleton.IsShifting)
+        if (PlayerBase.Singleton.IsShifting)
         {
             if (StartedSlidingOnGround)
             {
                 IsSliding = true;
-                PlayerInputs.Singleton.BlockMoveInputs = true;
+                PlayerBase.Singleton.BlockMoveInputs = true;
     
-                float direction = PlayerInputs.Singleton.Facing == PlayerFacing.Left ? -1 : 1;
+                float direction = PlayerBase.Singleton.Facing == PlayerFacing.Left ? -1 : 1;
     
                 if (Momentum > _endMomentum) Momentum -= Time.deltaTime * _momentumLose;
     
@@ -38,7 +38,7 @@ public class PlayerSliding : MonoBehaviour
         {
             StartedSlidingOnGround = false;
             IsSliding = false;
-            PlayerInputs.Singleton.BlockMoveInputs = false;
+            PlayerBase.Singleton.BlockMoveInputs = false;
         }
 
         if (!IsSliding && Momentum < _startMomentum) Momentum += Time.deltaTime * _momentumGain;

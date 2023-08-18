@@ -12,34 +12,34 @@ public class PlayerWallJump : MonoBehaviour
     [field: Header("Info")]
     [field: SerializeField, ReadOnly] public bool IsJumping { get; private set; }
 
-    private Rigidbody2D _rb => PlayerPhysics.Singleton.Rigidbody;
+    private Rigidbody2D _rb => PlayerBase.Singleton.Rigidbody;
 
-    private bool _isTouchingWall => PlayerChecker.Singleton.IsTouchingLeftWall || PlayerChecker.Singleton.IsTouchingRightWall;
+    private bool _isTouchingWall => PlayerBase.Singleton.IsTouchingLeftWall || PlayerBase.Singleton.IsTouchingRightWall;
     private bool _isJumpRequested;
     private bool _wasOnWallLastFrame;
 
     private void Update() 
     {
-        if (PlayerInputs.Singleton.WantToJump) _isJumpRequested = true;
+        if (PlayerBase.Singleton.WantToJump) _isJumpRequested = true;
 
-        if (PlayerInputs.Singleton.JumpReleased) JumpCut();
+        if (PlayerBase.Singleton.JumpReleased) JumpCut();
 
         if (IsJumping && _rb.velocity.y < 0) IsJumping = false;
 
-        if (!PlayerChecker.Singleton.IsTouchingGround && _isTouchingWall)
+        if (!PlayerBase.Singleton.IsTouchingGround && _isTouchingWall)
         {
             if (_isJumpRequested)
             {
                 Jump();
-                PlayerInputs.Singleton.BlockMoveInputs = false;
+                PlayerBase.Singleton.BlockMoveInputs = false;
             }
             else
             {
                 _rb.velocity = new Vector2(_rb.velocity.x, -_wallSlidingSpeed * Time.deltaTime * 50);
-                PlayerInputs.Singleton.BlockMoveInputs = true;
+                PlayerBase.Singleton.BlockMoveInputs = true;
             }
         }
-        else if (PlayerChecker.Singleton.IsTouchingGround && _isTouchingWall)
+        else if (PlayerBase.Singleton.IsTouchingGround && _isTouchingWall)
         {
             if (_isJumpRequested)
                 Jump();
@@ -51,7 +51,7 @@ public class PlayerWallJump : MonoBehaviour
 
         if (!_isTouchingWall && _wasOnWallLastFrame)
         {
-            PlayerInputs.Singleton.BlockMoveInputs = false;
+            PlayerBase.Singleton.BlockMoveInputs = false;
         }
     }
 
@@ -62,7 +62,7 @@ public class PlayerWallJump : MonoBehaviour
 
     private void Jump()
     {
-        float direction = PlayerChecker.Singleton.IsTouchingLeftWall ? 1 : -1;
+        float direction = PlayerBase.Singleton.IsTouchingLeftWall ? 1 : -1;
 
         Vector2 upForce = Vector2.up * _wallJumpUpForce;
         Vector2 forwardForce = _wallJumpForwardForce * direction * Vector2.right;
@@ -76,7 +76,7 @@ public class PlayerWallJump : MonoBehaviour
     {
         if (IsJumping)
         {
-            float direction = PlayerChecker.Singleton.IsTouchingLeftWall ? 1 : -1;
+            float direction = PlayerBase.Singleton.IsTouchingLeftWall ? 1 : -1;
             _rb.AddForce((1 - _jumpCutMultiplier) * direction * _rb.velocity * Vector2.right, ForceMode2D.Impulse);
         }
     }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using MonoWaves.QoL;
 
 public class PlayerRun : MonoBehaviour
 {
@@ -9,31 +10,44 @@ public class PlayerRun : MonoBehaviour
     [SerializeField, Min(0)] private float _decceleration;
     [SerializeField, Range(0, 2)] private float _velocityPower;
 
-    private Rigidbody2D _rb => PlayerPhysics.Singleton.Rigidbody;
+    private Rigidbody2D _rb => PlayerBase.Singleton.Rigidbody;
+
+    private Vector2 _moveDirection;
 
     private void FixedUpdate()
     {
+        Vector2 defaultDirection = Vector2.right;
+        _moveDirection = PlayerBase.Singleton.IsSloped() ? ZVector2Math.ProjectOnPlane(defaultDirection, PlayerBase.Singleton.SlopeNormal) : defaultDirection;
+
         ApplyRun();
         ApplyFriction();
     }
 
     private void ApplyRun()
     {
-        float moveVector = PlayerInputs.Singleton.HorizontalAxis * _speed;
+        float moveVector = PlayerBase.Singleton.HorizontalAxis * _speed;
         float vectorDifference = moveVector - _rb.velocity.x;
-        float accelerationRate = PlayerInputs.Singleton.IsMoving ? _acceleration : _decceleration;
+        float accelerationRate = PlayerBase.Singleton.IsMoving ? _acceleration : _decceleration;
         float targetVector = Mathf.Pow(Mathf.Abs(vectorDifference) * accelerationRate, _velocityPower) * Math.Sign(vectorDifference);
 
-        _rb.AddForce(targetVector * Vector2.right);
+        _rb.AddForce(targetVector * _moveDirection);
     }
 
     private void ApplyFriction()
     {
-        if (PlayerChecker.Singleton.IsTouchingGround && PlayerInputs.Singleton.IsMoving)
+        if (PlayerBase.Singleton.IsTouchingGround && PlayerBase.Singleton.IsMoving)
         {
-            float applyAmount = Mathf.Min(Mathf.Abs(_rb.velocity.x), PlayerPhysics.Singleton.FrictionAmount);
+            float applyAmount = Mathf.Min(Mathf.Abs(_rb.velocity.x), PlayerBase.Singleton.FrictionAmount);
             applyAmount *= Mathf.Sign(_rb.velocity.x);
-            _rb.AddForce(Vector2.right * -applyAmount, ForceMode2D.Impulse);
+            _rb.AddForce(_moveDirection * -applyAmount, ForceMode2D.Impulse);
         }
+    }
+
+    private void OnDrawGizmos() 
+    {
+        Vector2 position = transform.position;
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(position + Vector2.down, position + Vector2.down + _moveDirection);
     }
 }

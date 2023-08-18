@@ -228,6 +228,11 @@ namespace MonoWaves.QoL
                 Mathf.FloorToInt(target.y)
             );
         }
+
+        public static Vector2 ProjectOnPlane(Vector2 vector, Vector2 normal)
+        {
+            return Vector3.ProjectOnPlane(vector, normal);
+        }
     }
 
     public static class ZVector3Math
