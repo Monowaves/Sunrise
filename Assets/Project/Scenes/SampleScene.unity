@@ -962,6 +962,7 @@ GameObject:
   - component: {fileID: 1136529545}
   - component: {fileID: 1136529548}
   - component: {fileID: 1136529552}
+  - component: {fileID: 1136529553}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -998,7 +999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gravityScale: 3
-  _fallGravityScale: 3.5
+  _fallGravityScale: 4
   <FrictionAmount>k__BackingField: 0.23
   _material: {fileID: 6200000, guid: f98348faf63af4748b619391e0041bb7, type: 2}
   <Rigidbody>k__BackingField: {fileID: 1136529546}
@@ -1102,9 +1103,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574b30634cafaaf43a9459b7dee56bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsMoving>k__BackingField: 0
   <HorizontalAxis>k__BackingField: 0
+  <IsMoving>k__BackingField: 0
+  <Facing>k__BackingField: 0
   <WantToJump>k__BackingField: 0
+  <JumpReleased>k__BackingField: 0
 --- !u!114 &1136529551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,8 +1126,24 @@ MonoBehaviour:
     <Mask>k__BackingField:
       serializedVersion: 2
       m_Bits: 1
-    <GizmosColor>k__BackingField: {r: 0, g: 0.7900574, b: 1, a: 1}
-  <IsGrounded>k__BackingField: 0
+    <GizmosColor>k__BackingField: {r: 1, g: 0, b: 0.11541796, a: 1}
+  _wallLeftChecker:
+    <Offset>k__BackingField: {x: -0.5, y: 0}
+    <Size>k__BackingField: {x: 0.1, y: 1.5}
+    <Mask>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 1
+    <GizmosColor>k__BackingField: {r: 0, g: 0.91298866, b: 1, a: 1}
+  _wallRightChecker:
+    <Offset>k__BackingField: {x: 0.5, y: 0}
+    <Size>k__BackingField: {x: 0.1, y: 1.5}
+    <Mask>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 1
+    <GizmosColor>k__BackingField: {r: 0, g: 0.9137255, b: 1, a: 1}
+  <IsTouchingGround>k__BackingField: 0
+  <IsTouchingLeftWall>k__BackingField: 0
+  <IsTouchingRightWall>k__BackingField: 0
 --- !u!114 &1136529552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,14 +1156,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60379086057ca8c40b63482deb75180b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 25.5
-  _jumpCutMultiplier: 0.4
+  _jumpForce: 23.25
+  _jumpCutMultiplier: 0.3
   _jumpBufferTime: 0.1
   _coyoteTime: 0.15
   <IsJumping>k__BackingField: 0
   <IsJumpReleased>k__BackingField: 1
   <LastGroundedTime>k__BackingField: 0.15
-  <LastJumpTime>k__BackingField: -1.3875525
+  <LastJumpTime>k__BackingField: -3.4281104
+--- !u!114 &1136529553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136529541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3717102d6817e4494fb8a265df7542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wallJumpUpForce: 16.25
+  _wallJumpForwardForce: 30.75
+  _wallSlidingSpeed: 0.5
+  _jumpCutMultiplier: 0.3
+  <IsJumping>k__BackingField: 0
 --- !u!1 &1209110243
 GameObject:
   m_ObjectHideFlags: 0

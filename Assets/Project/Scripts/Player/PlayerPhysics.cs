@@ -39,7 +39,7 @@ public class PlayerPhysics : MonoBehaviour
     private void FixedUpdate() 
     {
         if (Rigidbody.velocity.y < 0)
-            Rigidbody.gravityScale = _fallGravityScale;
+                Rigidbody.gravityScale = _fallGravityScale;
         else
             Rigidbody.gravityScale = _gravityScale;
     }

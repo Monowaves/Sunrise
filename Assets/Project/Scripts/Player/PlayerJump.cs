@@ -16,19 +16,16 @@ public class PlayerJump : MonoBehaviour
     [field: SerializeField, ReadOnly] public float LastJumpTime { get; private set; }
     
     private Rigidbody2D _rb => PlayerPhysics.Singleton.Rigidbody;
-    
-    private void Start() 
-    {
-        PlayerInputs.Singleton.OnJumpDown = OnJumpDown;
-        PlayerInputs.Singleton.OnJumpUp = OnJumpUp;
-    }
 
     private void Update() 
     {
         LastGroundedTime -= Time.deltaTime;
         LastJumpTime -= Time.deltaTime;
 
-        if (PlayerChecker.Singleton.IsGrounded)
+        if (PlayerInputs.Singleton.WantToJump) OnJumpDown();
+        if (PlayerInputs.Singleton.JumpReleased) OnJumpUp();
+
+        if (PlayerChecker.Singleton.IsTouchingGround)
         {
             LastGroundedTime = _coyoteTime;
         }

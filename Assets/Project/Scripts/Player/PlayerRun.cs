@@ -1,5 +1,4 @@
 using UnityEngine;
-using MonoWaves.QoL;
 using System;
 
 public class PlayerRun : MonoBehaviour
@@ -30,7 +29,7 @@ public class PlayerRun : MonoBehaviour
 
     private void ApplyFriction()
     {
-        if (PlayerInputs.Singleton.IsMoving)
+        if (PlayerChecker.Singleton.IsTouchingGround && PlayerInputs.Singleton.IsMoving)
         {
             float applyAmount = Mathf.Min(Mathf.Abs(_rb.velocity.x), PlayerPhysics.Singleton.FrictionAmount);
             applyAmount *= Mathf.Sign(_rb.velocity.x);

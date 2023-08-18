@@ -1,30 +1,35 @@
-using System;
 using MonoWaves.QoL;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerInputs : MonoBehaviour
 {
     public static PlayerInputs Singleton { get; private set; }
 
     [field: Header("Info")]
-    [field: SerializeField, ReadOnly] public bool IsMoving { get; private set; }
     [field: SerializeField, ReadOnly] public float HorizontalAxis { get; private set; }
+    [field: SerializeField, ReadOnly] public bool IsMoving { get; private set; }
+    [field: SerializeField, ReadOnly] public PlayerFacing Facing { get; private set; }
     [field: SerializeField, ReadOnly] public bool WantToJump { get; private set; }
+    [field: SerializeField, ReadOnly] public bool JumpReleased { get; private set; }
+
+    public bool BlockMoveInputs { get; set; }
 
     private void Awake() => Singleton = this;
-
-    public Action OnJumpDown { get; set; }
-    public Action OnJumpUp { get; set; }
     
     private void Update() 
     {
-        HorizontalAxis = Keyboard.AxisFrom(KeyCode.A, KeyCode.D);
+        HorizontalAxis = BlockMoveInputs ? 0 : Keyboard.AxisFrom(KeyCode.A, KeyCode.D);
+
         IsMoving = HorizontalAxis != 0;
+        Facing = HorizontalAxis == -1 ? PlayerFacing.Left : PlayerFacing.Right;
+
         WantToJump = Keyboard.IsPressed(KeyCode.Space);
-
-        if (WantToJump) OnJumpDown?.Invoke();
-
-        if (Keyboard.IsReleased(KeyCode.Space)) OnJumpUp?.Invoke();
+        JumpReleased = Keyboard.IsReleased(KeyCode.Space);
     }
+}
+
+public enum PlayerFacing
+{
+    Left,
+    Right
 }

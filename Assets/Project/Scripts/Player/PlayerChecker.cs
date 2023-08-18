@@ -8,9 +8,13 @@ public class PlayerChecker : MonoBehaviour
 
     [Header("Properties")]
     [SerializeField] private BoxChecker _groundChecker;
+    [SerializeField] private BoxChecker _wallLeftChecker;
+    [SerializeField] private BoxChecker _wallRightChecker;
 
     [field: Header("Info")]
-    [field: SerializeField, ReadOnly] public bool IsGrounded { get; private set; }
+    [field: SerializeField, ReadOnly] public bool IsTouchingGround { get; private set; }
+    [field: SerializeField, ReadOnly] public bool IsTouchingLeftWall { get; private set; }
+    [field: SerializeField, ReadOnly] public bool IsTouchingRightWall { get; private set; }
 
     private void Awake() => Singleton = this;
 
@@ -19,15 +23,24 @@ public class PlayerChecker : MonoBehaviour
         if (_groundChecker == null) throw new ArgumentException("Ground checker is null");
         Vector2 position = transform.position;
 
-        IsGrounded = Physics2D.OverlapBox(position + _groundChecker.Offset, _groundChecker.Size, 0f, _groundChecker.Mask);
+        IsTouchingGround = Physics2D.OverlapBox(position + _groundChecker.Offset, _groundChecker.Size, 0f, _groundChecker.Mask);
+
+        IsTouchingLeftWall = Physics2D.OverlapBox(position + _wallLeftChecker.Offset, _wallLeftChecker.Size, 0f, _wallLeftChecker.Mask);
+        IsTouchingRightWall = Physics2D.OverlapBox(position + _wallRightChecker.Offset, _wallRightChecker.Size, 0f, _wallRightChecker.Mask);
     }
 
     private void OnDrawGizmosSelected() 
     {
-        Gizmos.color = _groundChecker.GizmosColor;
         Vector2 position = transform.position;
 
+        Gizmos.color = _groundChecker.GizmosColor;
         Gizmos.DrawWireCube(position + _groundChecker.Offset, _groundChecker.Size);
+
+        Gizmos.color = _wallLeftChecker.GizmosColor;
+        Gizmos.DrawWireCube(position + _wallLeftChecker.Offset, _wallLeftChecker.Size);
+
+        Gizmos.color = _wallRightChecker.GizmosColor;
+        Gizmos.DrawWireCube(position + _wallRightChecker.Offset, _wallRightChecker.Size);
     }
 }
 
