@@ -13,8 +13,8 @@ public class PlayerInputs : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool JumpReleased { get; private set; }
     [field: SerializeField, ReadOnly] public bool IsShifting { get; private set; }
     [field: SerializeField, ReadOnly] public bool ShiftPressed { get; private set; }
-
-    public bool BlockMoveInputs { get; set; }
+    [field: SerializeField, ReadOnly] public bool CtrlPressed { get; private set; }
+    [field: SerializeField, ReadOnly] public bool BlockMoveInputs { get; set; }
 
     private void Awake() => Singleton = this;
     
@@ -34,6 +34,8 @@ public class PlayerInputs : MonoBehaviour
 
         IsShifting = Keyboard.IsHolding(KeyCode.LeftShift);
         ShiftPressed = Keyboard.IsPressed(KeyCode.LeftShift);
+
+        CtrlPressed = Keyboard.IsPressed(KeyCode.LeftControl);
     }
 }
 

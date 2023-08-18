@@ -12,25 +12,27 @@ public class PlayerWallJump : MonoBehaviour
     [field: Header("Info")]
     [field: SerializeField, ReadOnly] public bool IsJumping { get; private set; }
 
-
     private Rigidbody2D _rb => PlayerPhysics.Singleton.Rigidbody;
 
     private bool _isTouchingWall => PlayerChecker.Singleton.IsTouchingLeftWall || PlayerChecker.Singleton.IsTouchingRightWall;
     private bool _isJumpRequested;
-    
+    private bool _wasOnWallLastFrame;
 
     private void Update() 
     {
         if (PlayerInputs.Singleton.WantToJump) _isJumpRequested = true;
 
-        if (IsJumping && _rb.velocity.y < 0) IsJumping = false;
-
         if (PlayerInputs.Singleton.JumpReleased) JumpCut();
+
+        if (IsJumping && _rb.velocity.y < 0) IsJumping = false;
 
         if (!PlayerChecker.Singleton.IsTouchingGround && _isTouchingWall)
         {
             if (_isJumpRequested)
+            {
                 Jump();
+                PlayerInputs.Singleton.BlockMoveInputs = false;
+            }
             else
             {
                 _rb.velocity = new Vector2(_rb.velocity.x, -_wallSlidingSpeed * Time.deltaTime * 50);
@@ -44,9 +46,18 @@ public class PlayerWallJump : MonoBehaviour
         }
         else
         {
-            if (PlayerInputs.Singleton.BlockMoveInputs) PlayerInputs.Singleton.BlockMoveInputs = false;
             if (_isJumpRequested) _isJumpRequested = false;
         }
+
+        if (!_isTouchingWall && _wasOnWallLastFrame)
+        {
+            PlayerInputs.Singleton.BlockMoveInputs = false;
+        }
+    }
+
+    private void LateUpdate() 
+    {
+        _wasOnWallLastFrame = _isTouchingWall;
     }
 
     private void Jump()

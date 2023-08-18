@@ -14,7 +14,7 @@ public class PlayerSliding : MonoBehaviour
     [field: SerializeField, ReadOnly] public float Momentum { get; private set; }
     [field: SerializeField, ReadOnly] public bool StartedSlidingOnGround { get; private set; }
 
-    private Rigidbody2D _rb => PlayerPhysics.Singleton.Rigidbody; //test
+    private Rigidbody2D _rb => PlayerPhysics.Singleton.Rigidbody;
 
     private void Update() 
     {

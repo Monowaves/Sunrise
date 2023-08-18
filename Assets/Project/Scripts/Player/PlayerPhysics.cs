@@ -1,3 +1,4 @@
+using MonoWaves.QoL;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D))]
@@ -13,6 +14,9 @@ public class PlayerPhysics : MonoBehaviour
 
     [field: Header("Components")]
     [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
+
+    [field: Header("Info")]
+    [field: SerializeField, ReadOnly] public bool BlockGravity { get; set; }
 
     private void Awake() => Singleton = this;
 
@@ -38,9 +42,16 @@ public class PlayerPhysics : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        if (Rigidbody.velocity.y < 0)
+       if (BlockGravity)
+       {
+            Rigidbody.gravityScale = 0;
+       }
+       else
+       {
+            if (Rigidbody.velocity.y < 0)
                 Rigidbody.gravityScale = _fallGravityScale;
-        else
-            Rigidbody.gravityScale = _gravityScale;
+            else
+                Rigidbody.gravityScale = _gravityScale;
+       }
     }
 }
