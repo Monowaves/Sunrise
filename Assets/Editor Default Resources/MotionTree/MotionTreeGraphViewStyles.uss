@@ -1,0 +1,7 @@
+GridBackground
+{
+    --grid-background-color: var(--mott-colors-grid-light-grey-1);
+    --line-color: var(--mott-colors-grid-light-grey-2);
+    --thick-line-color: var(--mott-colors-grid-light-grey-3);
+    --spacing: var(--mott-metrics-grid-50);
+}

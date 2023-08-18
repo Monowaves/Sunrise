@@ -1,0 +1,31 @@
+:root
+{
+    /*GRID*/
+
+    --mott-colors-grid-light-grey-1: #2b2b2b;
+    --mott-colors-grid-light-grey-2: rgba(55, 55, 55, 0.4);
+    --mott-colors-grid-light-grey-3: rgba(57, 57, 57, 1);
+
+    --mott-metrics-grid-50: 50;
+
+    /*NODES*/
+
+    --mott-colors-node-window-background: #333333;
+    --mott-colors-node-dark-gray: #282828;
+
+    /*NODES FIELDS*/
+
+    --mott-colors-node-fields-hover-background: #3C3C3C;
+    --mott-colors-node-fields-hover-border-text: #D0D0D0;
+
+    --mott-colors-node-fields-focus-text: #FFFFFF;
+
+    /*NODES BUTTONS*/
+
+    --mott-colors-node-buttons-default: #505050;
+
+    --mott-colors-node-buttons-hover-background: #3C3C3C;
+    --mott-colors-node-buttons-hover-border-text: #D0D0D0;
+
+    --mott-colors-node-buttons-pressed-text: #FFFFFF;
+}

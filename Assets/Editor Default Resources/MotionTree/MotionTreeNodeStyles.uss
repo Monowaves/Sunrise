@@ -1,0 +1,140 @@
+.mott-node__extension-container
+{
+    background-color: var(--mott-colors-node-window-background);
+    border-color: var(--mott-colors-node-window-background);
+
+    padding: 12px;
+}
+
+.mott-node__main-container
+{
+    background-color: var(--mott-colors-node-window-background);
+    border-color: var(--mott-colors-node-window-background);
+
+    padding: 6px;
+}
+
+.mott-node_root-text
+{
+    align-self: center;
+    scale: 1.5;
+    margin-left: 12px;
+    -unity-font-style: bold;
+}
+
+.mott-node__input-container
+{
+    border-bottom-left-radius: 5px;
+}
+
+.mott-node__output-container
+{
+    border-bottom-right-radius: 5px;
+}
+
+.mott-node__title_container
+{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.mott-node__objectfield > .unity-object-field__input
+{
+    background-color: var(--mott-colors-node-dark-gray);
+    border-color: var(--mott-colors-node-dark-gray);
+
+    border-radius: 5px;
+    
+    padding: 6px;
+}
+
+.mott-node__objectfield > .unity-object-field__input:hover
+{
+    background-color: var(--mott-colors-node-fields-hover-background);
+    border-color: var(--mott-colors-node-fields-hover-border-text);
+    color: var(--mott-colors-node-fields-hover-border-text);
+}
+
+.mott-node__textfield > .unity-text-field__input
+{
+    background-color: var(--mott-colors-node-dark-gray);
+    border-color: var(--mott-colors-node-dark-gray);
+
+    border-radius: 5px;
+
+    min-width: 240px;
+    padding: 6px;
+}
+
+.mott-node__textfield > .unity-text-field__input:hover
+{
+    background-color: var(--mott-colors-node-fields-hover-background);
+    border-color: var(--mott-colors-node-fields-hover-border-text);
+    color: var(--mott-colors-node-fields-hover-border-text);
+}
+
+.mott-node__textfield > .unity-text-field__input:focus
+{
+    background-color: var(--mott-colors-node-dark-gray);
+    border-color: var(--mott-colors-node-dark-gray);
+    color: var(--mott-colors-node-fields-focus-text);
+}
+
+.mott-node__nodename-textfield > .unity-text-field__input
+{
+    flex-wrap: nowrap;
+
+    background-color: transparent;
+    border-color: transparent;
+
+    margin: 4px; 
+    padding: 4px;
+
+    min-width: 200px;
+    max-width: 1000px;
+
+    white-space: normal;
+}
+
+.mott-node__nodename-textfield > .unity-text-field__input:focus
+{
+    background-color: var(--mott-colors-node-dark-gray);
+    border-color: var(--mott-colors-node-dark-gray);
+}
+
+.mott-node__button
+{
+    background-color: var(--mott-colors-node-buttons-default);
+    border-color: var(--mott-colors-node-buttons-default);
+
+    border-radius: 5px;
+
+    padding: 6px;
+    margin: 6px;
+
+    max-height: 25px;
+}
+
+.mott-node__button:hover
+{
+    background-color: var(--mott-colors-node-buttons-hover-background);
+    border-color: var(--mott-colors-node-buttons-hover-border-text);
+    color: var(--mott-colors-node-buttons-hover-border-text);
+}
+
+.mott-node__button:active
+{
+    background-color: var(--mott-colors-node-dark-gray);
+    border-color: var(--mott-colors-node-dark-gray);
+    color: var(--mott-colors-node-buttons-pressed-text);
+}
+
+TextField
+{
+    margin-left: 0px;
+}
+
+.unity-toggle__text
+{
+    margin-left: 2px;
+}

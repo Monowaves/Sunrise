@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f86dca32b465a4fa65e09c16f94dcf, type: 3}
+  m_Name: PlayerMotionTreeGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: PlayerMotionTree
+  <Groups>k__BackingField: []
+  <MotionNodes>k__BackingField:
+  - <ID>k__BackingField: d3fc8f88-6e00-4586-bc86-9ea4d3da6d4c
+    <Name>k__BackingField: Idle
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 441, y: 100}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 7803308e668b5044e828bcceddf26a82, type: 2}
+    <NextNodeID>k__BackingField: 031916d2-630a-4588-b143-176bcb0b4e86
+  - <ID>k__BackingField: dca0a5cc-482e-4438-830c-cbfae3d6d2a5
+    <Name>k__BackingField: Run
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 441, y: -62}
+    <Motion>k__BackingField: {fileID: 11400000, guid: aa7a9d6d8acf5d746996744b5d22f0b0, type: 2}
+    <NextNodeID>k__BackingField: b36b7d21-ee92-4beb-890a-8d4e1c33efee
+  <BranchNodes>k__BackingField:
+  - <ID>k__BackingField: 6655a3b4-4195-43eb-bbb5-f12609146eb3
+    <Name>k__BackingField: InputCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 142, y: 11}
+    <Condition>k__BackingField: input != 0
+    <TrueNodeID>k__BackingField: dca0a5cc-482e-4438-830c-cbfae3d6d2a5
+    <FalseNodeID>k__BackingField: d3fc8f88-6e00-4586-bc86-9ea4d3da6d4c
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: b36b7d21-ee92-4beb-890a-8d4e1c33efee
+    <Name>k__BackingField: RunReturn
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 711, y: -62}
+  - <ID>k__BackingField: 031916d2-630a-4588-b143-176bcb0b4e86
+    <Name>k__BackingField: IdleReturn
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 711, y: 100}
+  <AllNodes>k__BackingField:
+  - <ID>k__BackingField: d3fc8f88-6e00-4586-bc86-9ea4d3da6d4c
+    <Name>k__BackingField: Idle
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 441, y: 100}
+  - <ID>k__BackingField: dca0a5cc-482e-4438-830c-cbfae3d6d2a5
+    <Name>k__BackingField: Run
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 441, y: -62}
+  - <ID>k__BackingField: 6655a3b4-4195-43eb-bbb5-f12609146eb3
+    <Name>k__BackingField: InputCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 142, y: 11}
+  - <ID>k__BackingField: b36b7d21-ee92-4beb-890a-8d4e1c33efee
+    <Name>k__BackingField: RunReturn
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 711, y: -62}
+  - <ID>k__BackingField: 031916d2-630a-4588-b143-176bcb0b4e86
+    <Name>k__BackingField: IdleReturn
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 711, y: 100}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Idle
+  - Run
+  - InputCheck
+  - RunReturn
+  - IdleReturn
+  <OldGroupedNodeNames>k__BackingField:
+    m_keys: []
+  <RootPosition>k__BackingField: {x: 3, y: 11}
+  <RootNextID>k__BackingField: 6655a3b4-4195-43eb-bbb5-f12609146eb3
+  <RootNext>k__BackingField: {fileID: 11400000, guid: 5493bb290d3c12044bda0a111cd04c60, type: 2}

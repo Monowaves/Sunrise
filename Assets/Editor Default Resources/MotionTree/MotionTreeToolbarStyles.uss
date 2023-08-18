@@ -1,0 +1,36 @@
+/*VISUAL ELEMENTS*/
+
+Toolbar
+{
+    background-color: var(--mott-colors-node-window-background);
+    height: 50px;
+}
+
+Button
+{
+    align-self: center;
+    
+    background-color: var(--mott-colors-node-buttons-default);
+    border-color: var(--mott-colors-node-buttons-default);
+
+    border-radius: 5px;
+
+    padding: 6px;
+    margin: 6px;
+
+    max-height: 25px;
+}
+
+Button:hover
+{
+    background-color: var(--mott-colors-node-buttons-hover-background);
+    border-color: var(--mott-colors-node-buttons-hover-border-text);
+    color: var(--mott-colors-node-buttons-hover-border-text);
+}
+
+Button:active
+{
+    background-color: var(--mott-colors-node-dark-gray);
+    border-color: var(--mott-colors-node-dark-gray);
+    color: var(--mott-colors-node-buttons-pressed-text);
+}

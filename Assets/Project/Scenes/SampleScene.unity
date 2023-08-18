@@ -1288,6 +1288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 948871702}
   - component: {fileID: 948871703}
+  - component: {fileID: 948871704}
   m_Layer: 3
   m_Name: PlayerVisual
   m_TagString: Untagged
@@ -1362,6 +1363,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &948871704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948871701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc65a4d205b6254a918920d644c8857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 948871703}
+  TargetMotionTree: {fileID: 11400000, guid: 67e9b843a3de7454f93965fff8533b4f, type: 2}
+  GlobalFramerate: 10
+  _globalFrameCounter: 0
+  Direction: {x: 0, y: 0}
+  VariantIndex: 0
 --- !u!1 &1056302285
 GameObject:
   m_ObjectHideFlags: 0

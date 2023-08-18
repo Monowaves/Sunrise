@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83cde0340a5518459821df4582ad333, type: 3}
+  m_Name: PlayerTree
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: PlayerTree
+  <MotionTreeGroups>k__BackingField:
+    m_keys: []
+  <UngroupedNodes>k__BackingField:
+  - {fileID: 11400000, guid: 9af8c58338f067e43873cdc05fe6f193, type: 2}
+  - {fileID: 11400000, guid: 9eaea2ada8942704bbe0008f1bcc5b9a, type: 2}
