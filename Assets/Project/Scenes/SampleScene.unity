@@ -1305,7 +1305,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1136529544}
@@ -1351,7 +1351,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -226027350, guid: 46730f110e1ead94782a4068d9dc2eb2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1884,7 +1884,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.075}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1895,7 +1895,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.9, y: 1.85}
   m_EdgeRadius: 0
 --- !u!114 &1136529548
 MonoBehaviour:
@@ -1999,30 +1999,31 @@ MonoBehaviour:
   _gravityScale: 3
   _fallGravityScale: 4
   <FrictionAmount>k__BackingField: 0.23
+  _maxSlopeAngle: 45
   _material: {fileID: 6200000, guid: f98348faf63af4748b619391e0041bb7, type: 2}
   _groundChecker:
     <Offset>k__BackingField: {x: 0, y: -1}
-    <Size>k__BackingField: {x: 0.925, y: 0.1}
+    <Size>k__BackingField: {x: 0.85, y: 0.1}
     <Mask>k__BackingField:
       serializedVersion: 2
       m_Bits: 1
     <GizmosColor>k__BackingField: {r: 1, g: 0, b: 0.11541796, a: 1}
   _wallLeftChecker:
-    <Offset>k__BackingField: {x: -0.5, y: 0}
+    <Offset>k__BackingField: {x: -0.45, y: 0}
     <Size>k__BackingField: {x: 0.1, y: 1.5}
     <Mask>k__BackingField:
       serializedVersion: 2
       m_Bits: 1
     <GizmosColor>k__BackingField: {r: 0, g: 0.91298866, b: 1, a: 1}
   _wallRightChecker:
-    <Offset>k__BackingField: {x: 0.5, y: 0}
+    <Offset>k__BackingField: {x: 0.45, y: 0}
     <Size>k__BackingField: {x: 0.1, y: 1.5}
     <Mask>k__BackingField:
       serializedVersion: 2
       m_Bits: 1
     <GizmosColor>k__BackingField: {r: 0, g: 0.9137255, b: 1, a: 1}
   _leftSlopeChecker:
-    Offset: {x: -0.5, y: -1}
+    Offset: {x: -0.45, y: -1}
     Direction: {x: 0, y: -1}
     Distance: 1.5
     Mask:
@@ -2030,7 +2031,7 @@ MonoBehaviour:
       m_Bits: 1
     Color: {r: 1, g: 0.5641355, b: 0, a: 1}
   _rightSlopeChecker:
-    Offset: {x: 0.5, y: -1}
+    Offset: {x: 0.45, y: -1}
     Direction: {x: 0, y: -1}
     Distance: 1.5
     Mask:

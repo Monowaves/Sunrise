@@ -59,7 +59,8 @@ public class PlayerBase : MonoBehaviour
         {
             bc.isTrigger = false;
             bc.sharedMaterial = _material;
-            bc.size = new Vector2(1f, 2f);
+            bc.offset = Vector2.up * -0.075f;
+            bc.size = new Vector2(0.9f, 1.85f);
             bc.edgeRadius = 0f;
         }
     }
