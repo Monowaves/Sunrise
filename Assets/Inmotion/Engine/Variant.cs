@@ -9,7 +9,7 @@ namespace InMotion
     {
         public MotionDirections Directions = MotionDirections.Simple;
 
-        public List<DirectionalSprite> FramesContainer = new( new DirectionalSprite[1] );
+        public List<DirectionalSprite> FramesContainer = new();
     }
 
     public enum MotionDirections

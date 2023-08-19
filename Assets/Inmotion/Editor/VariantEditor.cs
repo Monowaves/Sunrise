@@ -2,6 +2,9 @@ using UnityEditor;
 using UnityEngine;
 using InMotion;
 using InMotion.Utilities;
+using System.IO;
+using System.Collections.Generic;
+using System;
 
 [System.Serializable]
 [CustomEditor(typeof(Variant))]
@@ -31,7 +34,7 @@ public class VariantEditor : Editor
 
         EditorGUILayout.Space(10);
 
-        EditorGUI.DrawRect(new Rect(0, 57, inspectorWidth, _height), new Color32(45, 45, 45, 255));
+        EditorGUI.DrawRect(new Rect(0, 57.5f, inspectorWidth, _height), new Color32(45, 45, 45, 255));
         _height = 0;
         
         EditorGUILayout.LabelField("Frames: " + current.FramesContainer.Count);
@@ -48,6 +51,63 @@ public class VariantEditor : Editor
             MotionDirections.EightDirectional => 8,
             _ => 0
         };
+
+        if (current.FramesContainer.Count == 0)
+        {
+            if (GUILayout.Button("Load Sheet")) 
+            {
+                for (int fieldIdx = 0; fieldIdx < drawFields; fieldIdx++)
+                {
+                    string direction = DirectionUtility.DefineDirection(current.Directions, fieldIdx).Item1;
+                    string texturePath = EditorUtility.OpenFilePanel($"Select sprite sheet for {direction} direction", "", "png,jpg,jpeg");
+    
+                    if (!string.IsNullOrEmpty(texturePath))
+                    {
+                        string relativePath = texturePath[Application.dataPath.Length..];
+                        string assetPath = "Assets" + relativePath;
+    
+                        UnityEngine.Object[] loadedContent = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+    
+                        List<Sprite> sprites = new();
+                        foreach (var content in loadedContent)
+                        {
+                            if (AssetDatabase.IsSubAsset(content)) sprites.Add((Sprite)content);
+                        }
+
+                        sprites.Sort((first, second) => 
+                        {
+                            int firstNumber = Convert.ToInt32(first.name[^1]);
+                            int secondNumber = Convert.ToInt32(second.name[^1]);
+
+                            if (firstNumber > secondNumber) return 1;
+                            else if (firstNumber < secondNumber) return -1;
+                            else return 0;
+                        });
+
+                        for (int spriteIdx = 0; spriteIdx < sprites.Count; spriteIdx++)
+                        {
+                            if (current.FramesContainer.Count <= spriteIdx)
+                            {
+                                DirectionalSprite directionalSprite = new();
+                                directionalSprite.Sprites[fieldIdx] = sprites[spriteIdx];
+                                current.FramesContainer.Add(directionalSprite);
+                            }
+                            else
+                            {
+                                current.FramesContainer[spriteIdx].Sprites[fieldIdx] = sprites[spriteIdx];
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (GUILayout.Button("New Frame"))
+            {
+                current.FramesContainer.Add(new DirectionalSprite());
+            }
+
+            IncreaseHeight(EditorGUIUtility.singleLineHeight + 3);
+        }
 
         for (int frame = 0; frame < current.FramesContainer.Count; frame++)
         {
@@ -73,7 +133,7 @@ public class VariantEditor : Editor
                 DrawField(drawFields, frame, i);
             }
             EditorGUILayout.EndHorizontal();
-            IncreaseHeight(300 / drawFields);
+            IncreaseHeight(225 / drawFields);
 
             EditorGUILayout.BeginHorizontal();
             for (int i = 0; i < drawFields; i++)
@@ -89,21 +149,17 @@ public class VariantEditor : Editor
             IncreaseHeight(EditorGUIUtility.singleLineHeight);
 
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Insert"))
+            if (GUILayout.Button("Insert Frame"))
             {
                 current.FramesContainer.Insert(frame + 1, new DirectionalSprite());
             }
 
-            if (current.FramesContainer.Count > 1 && GUILayout.Button("Remove"))
+            if (GUILayout.Button("Remove Frame"))
             {
                 current.FramesContainer.RemoveAt(frame);
             }
             EditorGUILayout.EndHorizontal();
-
             IncreaseHeight(EditorGUIUtility.singleLineHeight);
-
-            EditorGUILayout.Space(5);
-            IncreaseHeight(5);
         }
 
         serializedObject.ApplyModifiedProperties();
@@ -113,7 +169,7 @@ public class VariantEditor : Editor
     {
         float inspectorWidth = EditorGUIUtility.currentViewWidth;
 
-        float fieldHeight = 300 / drawFields;
+        float fieldHeight = 225 / drawFields;
         float fieldWidth = inspectorWidth / drawFields - ((35 + drawFields * 2) / drawFields);
 
         GUI.color = Color.clear;
