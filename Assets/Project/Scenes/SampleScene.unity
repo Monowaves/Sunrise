@@ -899,6 +899,7 @@ GameObject:
   - component: {fileID: 948871702}
   - component: {fileID: 948871703}
   - component: {fileID: 948871704}
+  - component: {fileID: 948871705}
   m_Layer: 3
   m_Name: PlayerVisual
   m_TagString: Untagged
@@ -985,12 +986,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc65a4d205b6254a918920d644c8857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 948871703}
-  TargetMotionTree: {fileID: 11400000, guid: 67e9b843a3de7454f93965fff8533b4f, type: 2}
-  GlobalFramerate: 10
-  _globalFrameCounter: 0
-  Direction: {x: 0, y: 0}
-  VariantIndex: 0
+  <Target>k__BackingField: {fileID: 948871703}
+  <TargetMotionTree>k__BackingField: {fileID: 11400000, guid: 67e9b843a3de7454f93965fff8533b4f, type: 2}
+  <GlobalFramerate>k__BackingField: 10
+  <GlobalFrameCounter>k__BackingField: 0
+  <MotionFramerate>k__BackingField: 0
+  <Direction>k__BackingField: {x: 0, y: 0}
+  <VariantIndex>k__BackingField: 0
+--- !u!114 &948871705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948871701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bedec495b46fe641aacfbb715e3113d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _motionExecutor: {fileID: 948871704}
 --- !u!1 &1056302285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,8 +1293,8 @@ Transform:
   m_GameObject: {fileID: 1080914782}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 70.89, y: 0.47, z: 0}
-  m_LocalScale: {x: 16.69, y: -0.95593065, z: 1}
+  m_LocalPosition: {x: 73.06, y: -4.79, z: 0}
+  m_LocalScale: {x: 16.69, y: 16.69, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

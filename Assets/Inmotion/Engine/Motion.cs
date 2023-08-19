@@ -11,6 +11,6 @@ namespace InMotion
 
         [HideInInspector] public int Framerate = 20;
 
-        [HideInInspector] public List<Variant> Variants = new List<Variant>();
+        [HideInInspector] public List<Variant> Variants = new();
     }
 }

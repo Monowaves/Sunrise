@@ -15,7 +15,43 @@ MonoBehaviour:
   Directions: 0
   FramesContainer:
   - Sprites:
+    - {fileID: -226027350, guid: 46730f110e1ead94782a4068d9dc2eb2, type: 3}
     - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Sprites:
+    - {fileID: -411796293, guid: 46730f110e1ead94782a4068d9dc2eb2, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Sprites:
+    - {fileID: 537775239, guid: 46730f110e1ead94782a4068d9dc2eb2, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Sprites:
+    - {fileID: -1207772830, guid: 46730f110e1ead94782a4068d9dc2eb2, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Sprites:
+    - {fileID: 520784081, guid: 46730f110e1ead94782a4068d9dc2eb2, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}

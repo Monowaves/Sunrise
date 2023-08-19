@@ -12,9 +12,6 @@ public class MotionEditor : Editor
 
     private SerializedProperty _useCustomFramerate;
     private SerializedProperty _framerate;
-    private SerializedProperty _enableLooping;
-    private SerializedProperty _loopingMode;
-    private SerializedProperty _delay;
     private SerializedProperty _variants;
 
     private AnimBool _animUseCustomFramerate;
@@ -25,7 +22,6 @@ public class MotionEditor : Editor
 
         _useCustomFramerate = serializedObject.FindProperty("UseCustomFramerate");
         _framerate = serializedObject.FindProperty("Framerate");
-        _delay = serializedObject.FindProperty("Delay");
         _variants = serializedObject.FindProperty("Variants");
 
         _animUseCustomFramerate = new AnimBool(_useCustomFramerate.boolValue);

@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
 using InMotion.Utilities;
 
@@ -9,15 +8,16 @@ namespace InMotion.Tools.RuntimeScripts
 {
     public class MotionExecutor : MonoBehaviour
     {
-        [Header("Base Settings")]
-        public SpriteRenderer Target;
-        public MotionTree TargetMotionTree;
-        [Min(1)] public int GlobalFramerate = 10;
+        [field: Header("Base Settings")]
+        [field: SerializeField] public SpriteRenderer Target { get; private set;}
+        [field: SerializeField] public MotionTree TargetMotionTree { get; private set; }
+        [field: SerializeField, Min(1)] public int GlobalFramerate { get; private set; } = 10;
 
-        [Header("Info")]
-        [ShowOnly] [SerializeField] private int _globalFrameCounter;
-        [ReadOnly] public Vector2Int Direction;
-        [ReadOnly] public int VariantIndex;
+        [field: Header("Info")]
+        [field: SerializeField, ReadOnly] public int GlobalFrameCounter { get; private set; }
+        [field: SerializeField, ReadOnly] public int MotionFramerate { get; private set; }
+        [field: SerializeField, ReadOnly] public Vector2Int Direction { get; private set; }
+        [field: SerializeField, ReadOnly] public int VariantIndex { get; private set; }
 
         private float _updateFrametime;
 
@@ -29,19 +29,19 @@ namespace InMotion.Tools.RuntimeScripts
 
         private bool _breaked;
 
-        private int _localVariantIndex;
-
         public Action OnAnimationEnd;
         public Action OnAnimationStart;
         public Action OnAnimationFrame;
         
         private void OnValidate() 
         {
-            TryGetComponent(out Target);
+            if (TryGetComponent(out SpriteRenderer target)) Target = target;
         }
 
         private void Start() 
         {
+            if (!TargetMotionTree) throw new Exception("Target motion tree is null!");
+
             if (TargetMotionTree.SavedData != null)
             {
                 _saveDataExisting = true;
@@ -52,11 +52,7 @@ namespace InMotion.Tools.RuntimeScripts
 
         private void Update() 
         {
-            if (!_saveDataExisting)
-            {
-                Debug.LogWarning("There is nothing to execute in " + TargetMotionTree.name);
-                return;
-            }
+            if (!_saveDataExisting) throw new Exception("There is nothing to execute in " + TargetMotionTree.name);
 
             if (_breaked) { return; }
 
@@ -64,8 +60,8 @@ namespace InMotion.Tools.RuntimeScripts
 
             if (_updateFrametime <= 0)
             {
-                _globalFrameCounter++;
-                _updateFrametime = 1 / Convert.ToSingle(GlobalFramerate);
+                GlobalFrameCounter++;
+                _updateFrametime = 1 / Convert.ToSingle(MotionFramerate);
                 
                 OnFrameUpdate();
             }
@@ -74,8 +70,12 @@ namespace InMotion.Tools.RuntimeScripts
         public void SetMotion(Motion target)
         {
             _playThis = target;
-            _localVariantIndex = Mathf.Clamp(VariantIndex, 0, target.Variants.Count() - 1);
+
+            MotionFramerate = target.UseCustomFramerate ? target.Framerate : GlobalFramerate;
         }
+
+        public void SetDirection(Vector2Int direction) => Direction = direction;
+        public void SetVariant(int idx) => VariantIndex = idx;
 
         public void BreakAll()
         {
@@ -89,10 +89,7 @@ namespace InMotion.Tools.RuntimeScripts
             ProccesUpdate();
         }
 
-        private void ProccesStop()
-        {
-            _proccesing = false;
-        }
+        private void ProccesStop() => _proccesing = false;
 
         private void ProccesUpdate()
         {
@@ -123,10 +120,8 @@ namespace InMotion.Tools.RuntimeScripts
                 ProccesStop();
                 return;
             }
-            else if (_currentNode is BranchNodeScriptableObject)
+            else if (_currentNode is BranchNodeScriptableObject typedNode)
             {
-                BranchNodeScriptableObject typedNode = (BranchNodeScriptableObject)_currentNode;
-
                 if (Conditioner.StringToCondition(typedNode.Condition, TargetMotionTree.RegisteredParameters.ToArray()))
                 {
                     if (typedNode.True == null)
@@ -152,7 +147,7 @@ namespace InMotion.Tools.RuntimeScripts
             {
                 _currentNode = null;
             }
-            
+
             if (_proccesing)
             {
                 ProccesUpdate();
@@ -161,83 +156,31 @@ namespace InMotion.Tools.RuntimeScripts
 
         private void OnFrameUpdate()
         {
-            InvokeAction(OnAnimationFrame);
+            OnAnimationFrame?.Invoke();
 
             if (_playThis != null)
             {
-                List<DirectionalSprite> framesContainer = _playThis.Variants[_localVariantIndex].FramesContainer;
+                List<DirectionalSprite> framesContainer = _playThis.Variants[VariantIndex].FramesContainer;
                 int dirIdx = DirectionUtility.DefineDirectionIndex(Direction);
 
-                Target.sprite = framesContainer[_globalFrameCounter % _playThis.Variants[0].FramesContainer.Count].Sprites[dirIdx];
+                Target.sprite = framesContainer[GlobalFrameCounter % framesContainer.Count].Sprites[dirIdx];
 
                 if (Target.sprite == framesContainer.Last().Sprites[dirIdx])
                 {
-                    InvokeAction(OnAnimationEnd);
+                    OnAnimationEnd?.Invoke();
 
                     ProccesStart();
                 }
 
                 if (Target.sprite == framesContainer.First().Sprites[dirIdx])
                 {
-                    InvokeAction(OnAnimationStart);
+                    OnAnimationStart?.Invoke();
 
                     ProccesStart();
                 }
             }
         }
-
-        private void InvokeAction(Action target)
-        {
-            target?.Invoke();
-        }
     }
 }
 
-public class ShowOnlyAttribute : PropertyAttribute {}
 public class ReadOnlyAttribute : PropertyAttribute {}
-
-[CustomPropertyDrawer(typeof(ShowOnlyAttribute))]
-public class ShowOnlyDrawer : PropertyDrawer
-{
-    public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label)
-    {
-        string valueStr;
-
-        switch (prop.propertyType)
-        {
-            case SerializedPropertyType.Integer:
-                valueStr = prop.intValue.ToString();
-                break;
-            case SerializedPropertyType.Boolean:
-                valueStr = prop.boolValue.ToString();
-                break;
-            case SerializedPropertyType.Float:
-                valueStr = prop.floatValue.ToString("0.00000");
-                break;
-            case SerializedPropertyType.String:
-                valueStr = prop.stringValue;
-                break;
-            default:
-                valueStr = "(not supported)";
-                break;
-        }
-
-        EditorGUI.LabelField(position,label.text, valueStr);
-    }
-}
-
-[CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
-public class ReadOnlyDrawer : PropertyDrawer
-{
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        return EditorGUI.GetPropertyHeight(property, label, true);
-    }
-
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-    {
-        GUI.enabled = false;
-        EditorGUI.PropertyField(position, property, label, true);
-        GUI.enabled = true;
-    }
-}

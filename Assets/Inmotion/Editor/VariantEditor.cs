@@ -10,6 +10,7 @@ public class VariantEditor : Editor
     Variant current;
 
     private SerializedProperty _directions;
+    private SerializedProperty _frames;
     private float _height;
 
     private void OnEnable() 
@@ -17,6 +18,7 @@ public class VariantEditor : Editor
         current = (Variant)target;
 
         _directions = serializedObject.FindProperty("Directions");
+        _frames = serializedObject.FindProperty("FramesContainer");
     }
 
     public override void OnInspectorGUI() 
@@ -76,12 +78,12 @@ public class VariantEditor : Editor
             EditorGUILayout.BeginHorizontal();
             for (int i = 0; i < drawFields; i++)
             {
-                GetSpriteAt(frame, i) = (Sprite)EditorGUILayout.ObjectField
+                SetSpriteAt(frame, i, (Sprite)EditorGUILayout.ObjectField
                 (
                     obj: GetSpriteAt(frame, i), 
                     objType: typeof(Sprite), 
                     allowSceneObjects: true
-                );
+                ));
             }
             EditorGUILayout.EndHorizontal();
             IncreaseHeight(EditorGUIUtility.singleLineHeight);
@@ -115,7 +117,7 @@ public class VariantEditor : Editor
         float fieldWidth = inspectorWidth / drawFields - ((35 + drawFields * 2) / drawFields);
 
         GUI.color = Color.clear;
-        GetSpriteAt(frame, sprite) = (Sprite)EditorGUILayout.ObjectField
+        SetSpriteAt(frame, sprite, (Sprite)EditorGUILayout.ObjectField
         (
             obj: GetSpriteAt(frame, sprite), 
             objType: typeof(Sprite), 
@@ -125,7 +127,7 @@ public class VariantEditor : Editor
                 GUILayout.Width(fieldWidth), 
                 GUILayout.Height(fieldHeight),
             }
-        );
+        ));
         GUI.color = Color.white;
 
         Rect lastRect = GUILayoutUtility.GetLastRect();
@@ -149,9 +151,30 @@ public class VariantEditor : Editor
         }
     }
 
-    private ref Sprite GetSpriteAt(int frame, int field)
+    private Sprite GetSpriteAt(int frame, int field)
     {
-        return ref current.FramesContainer[frame].Sprites[field];
+        if (_frames.arraySize <= frame) return null;
+
+        SerializedProperty directionalSprite = _frames.GetArrayElementAtIndex(frame);
+
+        if (directionalSprite == null) return null;
+        
+        SerializedProperty sprites = directionalSprite.FindPropertyRelative("Sprites");
+
+        return sprites.GetArrayElementAtIndex(field).objectReferenceValue as Sprite;
+    }
+
+    private void SetSpriteAt(int frame, int field, Sprite value)
+    {
+        if (_frames.arraySize <= frame) return;
+
+        SerializedProperty directionalSprite = _frames.GetArrayElementAtIndex(frame);
+
+        if (directionalSprite == null) return;
+
+        SerializedProperty sprites = directionalSprite.FindPropertyRelative("Sprites");
+
+        sprites.GetArrayElementAtIndex(field).objectReferenceValue = value;
     }
 
     private void IncreaseHeight(float amount)

@@ -25,7 +25,7 @@ MonoBehaviour:
   <BranchNodes>k__BackingField: []
   <Nodes>k__BackingField:
   - <ID>k__BackingField: 0fd0feaf-fdcf-49fc-b31b-1a5e985cdcbd
-    <Name>k__BackingField: IdleReturn
+    <Name>k__BackingField: Return
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 404, y: 0}
@@ -36,14 +36,14 @@ MonoBehaviour:
     <Type>k__BackingField: 1
     <Position>k__BackingField: {x: 128, y: 0}
   - <ID>k__BackingField: 0fd0feaf-fdcf-49fc-b31b-1a5e985cdcbd
-    <Name>k__BackingField: IdleReturn
+    <Name>k__BackingField: Return
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 404, y: 0}
   <OldGroupNames>k__BackingField: []
   <OldUngroupedNodeNames>k__BackingField:
   - Idle
-  - IdleReturn
+  - Return
   <OldGroupedNodeNames>k__BackingField:
     m_keys: []
   <RootPosition>k__BackingField: {x: 0, y: 0}
