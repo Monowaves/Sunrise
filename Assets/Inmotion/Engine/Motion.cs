@@ -8,9 +8,8 @@ namespace InMotion
     public class Motion : ScriptableObject
     {
         [HideInInspector] public bool UseCustomFramerate = false;
-
         [HideInInspector] public int Framerate = 20;
-
+        [HideInInspector] public bool Looping = true;
         [HideInInspector] public List<Variant> Variants = new();
     }
 }

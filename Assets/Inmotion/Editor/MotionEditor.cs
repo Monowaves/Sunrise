@@ -13,6 +13,7 @@ public class MotionEditor : Editor
     private SerializedProperty _useCustomFramerate;
     private SerializedProperty _framerate;
     private SerializedProperty _variants;
+    private SerializedProperty _looping;
 
     private AnimBool _animUseCustomFramerate;
 
@@ -23,6 +24,7 @@ public class MotionEditor : Editor
         _useCustomFramerate = serializedObject.FindProperty("UseCustomFramerate");
         _framerate = serializedObject.FindProperty("Framerate");
         _variants = serializedObject.FindProperty("Variants");
+        _looping = serializedObject.FindProperty("Looping");
 
         _animUseCustomFramerate = new AnimBool(_useCustomFramerate.boolValue);
         _animUseCustomFramerate.valueChanged.AddListener(Repaint);
@@ -47,6 +49,8 @@ public class MotionEditor : Editor
         }
 
         EditorGUILayout.EndFadeGroup();
+
+        _looping.boolValue = EditorGUILayout.Toggle("Looping", _looping.boolValue);
         
         GUILayout.Space(10);
 

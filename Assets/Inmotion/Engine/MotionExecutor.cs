@@ -14,7 +14,7 @@ namespace InMotion.Tools.RuntimeScripts
         [field: SerializeField, Min(1)] public int GlobalFramerate { get; private set; } = 10;
 
         [field: Header("Info")]
-        [field: SerializeField, ReadOnly] public int GlobalFrameCounter { get; private set; }
+        [field: SerializeField, ReadOnly] public int MotionFrame { get; private set; }
         [field: SerializeField, ReadOnly] public int MotionFramerate { get; private set; }
         [field: SerializeField, ReadOnly] public Vector2Int Direction { get; private set; }
         [field: SerializeField, ReadOnly] public int VariantIndex { get; private set; }
@@ -32,6 +32,8 @@ namespace InMotion.Tools.RuntimeScripts
         public Action OnMotionEnd;
         public Action OnMotionStart;
         public Action OnMotionFrame;
+
+        private bool _isFinishedMotion;
         
         private void OnValidate() 
         {
@@ -60,7 +62,6 @@ namespace InMotion.Tools.RuntimeScripts
 
             if (_updateFrametime <= 0)
             {
-                GlobalFrameCounter++;
                 _updateFrametime = 1 / Convert.ToSingle(MotionFramerate);
                 
                 OnFrameUpdate();
@@ -78,7 +79,11 @@ namespace InMotion.Tools.RuntimeScripts
 
         public void SetMotion(Motion target)
         {
+            if (_playThis == target) return;
+
             _playThis = target;
+            _isFinishedMotion = false;
+            MotionFrame = 0;
 
             MotionFramerate = target.UseCustomFramerate ? target.Framerate : GlobalFramerate;
         }
@@ -104,7 +109,7 @@ namespace InMotion.Tools.RuntimeScripts
         private void ProccesStart()
         {
             if (_terminated) return;
-            
+
             _proccesing = true;
             ProccesUpdate();
         }
@@ -176,6 +181,8 @@ namespace InMotion.Tools.RuntimeScripts
 
         private void OnFrameUpdate()
         {
+            if (_isFinishedMotion) return;
+
             OnMotionFrame?.Invoke();
 
             if (_playThis != null)
@@ -183,20 +190,27 @@ namespace InMotion.Tools.RuntimeScripts
                 List<DirectionalSprite> framesContainer = _playThis.Variants[VariantIndex].FramesContainer;
                 int dirIdx = DirectionUtility.DefineDirectionIndex(Direction);
 
-                Target.sprite = framesContainer[GlobalFrameCounter % framesContainer.Count].Sprites[dirIdx];
-
-                if (Target.sprite == framesContainer.Last().Sprites[dirIdx])
-                {
-                    OnMotionEnd?.Invoke();
-
-                    ProccesStart();
-                }
+                Target.sprite = framesContainer[MotionFrame].Sprites[dirIdx];
 
                 if (Target.sprite == framesContainer.First().Sprites[dirIdx])
                 {
                     OnMotionStart?.Invoke();
 
                     ProccesStart();
+                }
+
+                if (Target.sprite == framesContainer.Last().Sprites[dirIdx])
+                {
+                    OnMotionEnd?.Invoke();
+
+                    if (!_playThis.Looping) _isFinishedMotion = true;
+                    MotionFrame = 0;
+
+                    ProccesStart();
+                }
+                else
+                {
+                    MotionFrame++;
                 }
             }
         }
