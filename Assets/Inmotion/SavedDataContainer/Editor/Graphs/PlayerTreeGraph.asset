@@ -15,37 +15,64 @@ MonoBehaviour:
   <FileName>k__BackingField: PlayerTree
   <Groups>k__BackingField: []
   <MotionNodes>k__BackingField:
-  - <ID>k__BackingField: 3513ba16-7a68-49e5-beb3-394241750a8a
+  - <ID>k__BackingField: fefe63c5-12d9-4619-a932-986e5a8e43fe
+    <Name>k__BackingField: Run
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 347, y: -103}
+    <Motion>k__BackingField: {fileID: 11400000, guid: d5ef7bc8d3ace9044bbe06f4bdc0a3ee, type: 2}
+    <NextNodeID>k__BackingField: 3eb31a6b-b1ca-4e14-9159-c331709e4143
+  - <ID>k__BackingField: 15fab6dd-6c89-4fa2-b912-35ab68b56a81
     <Name>k__BackingField: Idle
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: 128, y: 0}
+    <Position>k__BackingField: {x: 347, y: 59}
     <Motion>k__BackingField: {fileID: 11400000, guid: 89117f02e85514a4f9792104d3fe42b4, type: 2}
-    <NextNodeID>k__BackingField: 0fd0feaf-fdcf-49fc-b31b-1a5e985cdcbd
-  <BranchNodes>k__BackingField: []
+    <NextNodeID>k__BackingField: 3eb31a6b-b1ca-4e14-9159-c331709e4143
+  <BranchNodes>k__BackingField:
+  - <ID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
+    <Name>k__BackingField: RunCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 47, y: -30}
+    <Condition>k__BackingField: isMoving = true
+    <TrueNodeID>k__BackingField: fefe63c5-12d9-4619-a932-986e5a8e43fe
+    <FalseNodeID>k__BackingField: 15fab6dd-6c89-4fa2-b912-35ab68b56a81
   <Nodes>k__BackingField:
-  - <ID>k__BackingField: 0fd0feaf-fdcf-49fc-b31b-1a5e985cdcbd
-    <Name>k__BackingField: Return
+  - <ID>k__BackingField: 3eb31a6b-b1ca-4e14-9159-c331709e4143
+    <Name>k__BackingField: Sample Node
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
-    <Position>k__BackingField: {x: 404, y: 0}
+    <Position>k__BackingField: {x: 620, y: -1}
   <AllNodes>k__BackingField:
-  - <ID>k__BackingField: 3513ba16-7a68-49e5-beb3-394241750a8a
+  - <ID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
+    <Name>k__BackingField: RunCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 47, y: -30}
+  - <ID>k__BackingField: fefe63c5-12d9-4619-a932-986e5a8e43fe
+    <Name>k__BackingField: Run
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 347, y: -103}
+  - <ID>k__BackingField: 15fab6dd-6c89-4fa2-b912-35ab68b56a81
     <Name>k__BackingField: Idle
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: 128, y: 0}
-  - <ID>k__BackingField: 0fd0feaf-fdcf-49fc-b31b-1a5e985cdcbd
-    <Name>k__BackingField: Return
+    <Position>k__BackingField: {x: 347, y: 59}
+  - <ID>k__BackingField: 3eb31a6b-b1ca-4e14-9159-c331709e4143
+    <Name>k__BackingField: Sample Node
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
-    <Position>k__BackingField: {x: 404, y: 0}
+    <Position>k__BackingField: {x: 620, y: -1}
   <OldGroupNames>k__BackingField: []
   <OldUngroupedNodeNames>k__BackingField:
+  - RunCheck
+  - Run
   - Idle
-  - Return
+  - Sample Node
   <OldGroupedNodeNames>k__BackingField:
     m_keys: []
-  <RootPosition>k__BackingField: {x: 0, y: 0}
-  <RootNextID>k__BackingField: 3513ba16-7a68-49e5-beb3-394241750a8a
-  <RootNext>k__BackingField: {fileID: 11400000, guid: 9af8c58338f067e43873cdc05fe6f193, type: 2}
+  <RootPosition>k__BackingField: {x: -52, y: -30}
+  <RootNextID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
+  <RootNext>k__BackingField: {fileID: 11400000, guid: 4b4922b744f88fb4fb0d9763f44eb9db, type: 2}

@@ -27,11 +27,11 @@ namespace InMotion.Tools.RuntimeScripts
         private NodeScriptableObject _currentNode;
         private Motion _playThis;
 
-        private bool _breaked;
+        private bool _terminated;
 
-        public Action OnAnimationEnd;
-        public Action OnAnimationStart;
-        public Action OnAnimationFrame;
+        public Action OnMotionEnd;
+        public Action OnMotionStart;
+        public Action OnMotionFrame;
         
         private void OnValidate() 
         {
@@ -54,7 +54,7 @@ namespace InMotion.Tools.RuntimeScripts
         {
             if (!_saveDataExisting) throw new Exception("There is nothing to execute in " + TargetMotionTree.name);
 
-            if (_breaked) { return; }
+            if (_terminated) return;
 
             _updateFrametime -= Time.deltaTime;
 
@@ -64,6 +64,15 @@ namespace InMotion.Tools.RuntimeScripts
                 _updateFrametime = 1 / Convert.ToSingle(MotionFramerate);
                 
                 OnFrameUpdate();
+            }
+        }
+
+        public void SetParameter(string key, object value)
+        {
+            if (TargetMotionTree.Parameters[key] != value.ToString())
+            {
+                TargetMotionTree.Parameters[key] = value.ToString();
+                Restart();
             }
         }
 
@@ -77,14 +86,25 @@ namespace InMotion.Tools.RuntimeScripts
         public void SetDirection(Vector2Int direction) => Direction = direction;
         public void SetVariant(int idx) => VariantIndex = idx;
 
-        public void BreakAll()
+        public void Terminate()
         {
             ProccesStop();
-            _breaked = true;
+            _terminated = true;
+        }
+
+        public void Restart()
+        {
+            if (_terminated) return;
+            
+            ProccesStop();
+            _currentNode = null;
+            ProccesStart();
         }
 
         private void ProccesStart()
         {
+            if (_terminated) return;
+            
             _proccesing = true;
             ProccesUpdate();
         }
@@ -97,7 +117,7 @@ namespace InMotion.Tools.RuntimeScripts
             {
                 if (TargetMotionTree.SavedData.RootNext == null)
                 {
-                    BreakAll();
+                    Terminate();
                     return;
                 }
 
@@ -109,7 +129,7 @@ namespace InMotion.Tools.RuntimeScripts
 
                 if (typedNode.Next == null)
                 {
-                    BreakAll();
+                    Terminate();
                     return;
                 }
 
@@ -126,7 +146,7 @@ namespace InMotion.Tools.RuntimeScripts
                 {
                     if (typedNode.True == null)
                     {
-                        BreakAll();
+                        Terminate();
                         return;
                     }
 
@@ -136,7 +156,7 @@ namespace InMotion.Tools.RuntimeScripts
                 {
                     if (typedNode.False == null)
                     {
-                        BreakAll();
+                        Terminate();
                         return;
                     }
 
@@ -156,7 +176,7 @@ namespace InMotion.Tools.RuntimeScripts
 
         private void OnFrameUpdate()
         {
-            OnAnimationFrame?.Invoke();
+            OnMotionFrame?.Invoke();
 
             if (_playThis != null)
             {
@@ -167,14 +187,14 @@ namespace InMotion.Tools.RuntimeScripts
 
                 if (Target.sprite == framesContainer.Last().Sprites[dirIdx])
                 {
-                    OnAnimationEnd?.Invoke();
+                    OnMotionEnd?.Invoke();
 
                     ProccesStart();
                 }
 
                 if (Target.sprite == framesContainer.First().Sprites[dirIdx])
                 {
-                    OnAnimationStart?.Invoke();
+                    OnMotionStart?.Invoke();
 
                     ProccesStart();
                 }

@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67ec36c0d0d7d58428e747e96e0d550e, type: 3}
-  m_Name: PlayerTree
+  m_Script: {fileID: 11500000, guid: 3b5da25bcf69b134fb2cea05c7aea255, type: 3}
+  m_Name: Sample Node
   m_EditorClassIdentifier: 
-  <Parameters>k__BackingField:
-    m_keys:
-    - isMoving
-    m_values:
-    - true
-  SavedData: {fileID: 11400000, guid: bb69fc352d5cd674bad3271a08fc0361, type: 2}
+  <NodeName>k__BackingField: Sample Node
+  <NodeType>k__BackingField: 2

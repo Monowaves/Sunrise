@@ -43,7 +43,6 @@ public static class Conditioner
     public static bool StringToCondition(string condition, params (string name, object value)[] arguments)
     {
         string convertedString = condition.Replace("!=", "<>");
-
         convertedString = convertedString.Replace("==", "=");
 
         return convertedString.Compute<bool>(arguments);

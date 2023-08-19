@@ -10,13 +10,8 @@ namespace InMotion
     [CreateAssetMenu(menuName = "InMotion/Motion Tree")]
     public class MotionTree : ScriptableObject
     {
-        public MotionTreeParameter InspectorParameters;
+        [field: SerializeField] public MotionTreeParameters Parameters { get; private set; }
         public MotionTreeSaveData SavedData;
-
-        public void SetParameter(string key, string value)
-        {
-            InspectorParameters[key] = value;
-        }
 
         public List<(string, object)> RegisteredParameters
         {
@@ -25,15 +20,15 @@ namespace InMotion
 
         public List<string> RegisteredParametersNames
         {
-            get { return InspectorParameters.Keys.ToList(); }
+            get { return Parameters.Keys.ToList(); }
         }
 
         public List<object> RegisteredParametersValues
         {
-            get { return InspectorParameters.Values.Cast<object>().ToList(); }
+            get { return Parameters.Values.Cast<object>().ToList(); }
         }
     }
 
     [Serializable]
-    public class MotionTreeParameter : SerializableDictionary<string, string> {} //kiki
+    public class MotionTreeParameters : SerializableDictionary<string, string> {}
 }

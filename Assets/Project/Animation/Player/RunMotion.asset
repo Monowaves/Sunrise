@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b5da25bcf69b134fb2cea05c7aea255, type: 3}
-  m_Name: Return
+  m_Script: {fileID: 11500000, guid: 960b7ed1419c95b45b8de17bc871c40f, type: 3}
+  m_Name: RunMotion
   m_EditorClassIdentifier: 
-  <NodeName>k__BackingField: Return
-  <NodeType>k__BackingField: 2
+  UseCustomFramerate: 0
+  Framerate: 20
+  Variants:
+  - {fileID: 11400000, guid: 55675365e67f63e4ebbf69fbc813e046, type: 2}
