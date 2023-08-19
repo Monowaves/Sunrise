@@ -33,7 +33,7 @@ public class PlayerGroundSlam : MonoBehaviour
 
         while (!PlayerBase.Singleton.IsTouchingGround)
         {
-            _rb.velocity = _dashSpeed * 125 * Time.deltaTime * Vector2.down;
+            _rb.velocity = _dashSpeed * Vector2.down;
             yield return null;
         }
 
