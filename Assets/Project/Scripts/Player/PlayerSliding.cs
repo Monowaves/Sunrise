@@ -27,13 +27,7 @@ public class PlayerSliding : MonoBehaviour
                 IsSliding = true;
                 PlayerBase.Singleton.BlockMoveInputs = true;
     
-                float direction = PlayerBase.Singleton.Facing == PlayerFacing.Left ? -1 : 1;
-    
                 if (Momentum > _endMomentum) Momentum -= Time.deltaTime * _momentumLose;
-
-                Vector2 moveDirection = PlayerBase.Singleton.IsSloped() ? ZVector2Math.ProjectOnPlane(Vector2.right, PlayerBase.Singleton.SlopeNormal) : Vector2.right;
-    
-                _rb.AddForce(Mathf.Clamp(Momentum, _endMomentum, _startMomentum) * direction * moveDirection);
             }
         }
         else if (IsSliding)
@@ -44,5 +38,16 @@ public class PlayerSliding : MonoBehaviour
         }
 
         if (!IsSliding && Momentum < _startMomentum) Momentum += Time.deltaTime * _momentumGain;
+    }
+
+    private void FixedUpdate() 
+    {
+        if (IsSliding)
+        {
+            float direction = PlayerBase.Singleton.Facing == PlayerFacing.Left ? -1 : 1;
+            Vector2 moveDirection = PlayerBase.Singleton.IsSloped() ? ZVector2Math.ProjectOnPlane(Vector2.right, PlayerBase.Singleton.SlopeNormal) : Vector2.right;
+        
+            _rb.AddForce(Mathf.Clamp(Momentum, _endMomentum, _startMomentum) * 5 * direction * moveDirection);
+        }
     }
 }
