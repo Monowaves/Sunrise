@@ -26,23 +26,29 @@ public class PlayerWallJump : MonoBehaviour
 
         if (IsJumping && _rb.velocity.y < 0) IsJumping = false;
 
-        if (!PlayerBase.Singleton.IsTouchingGround && _isTouchingWall)
+        if (_isTouchingWall)
         {
-            if (_isJumpRequested)
+            if (!PlayerBase.Singleton.IsTouchingGround)
             {
-                Jump();
-                PlayerBase.Singleton.BlockMoveInputs = false;
+                if (_isJumpRequested)
+                {
+                    Jump();
+                    PlayerBase.Singleton.BlockMoveInputs = false;
+                }
+                else
+                {
+                    _rb.velocity = new Vector2(_rb.velocity.x, -_wallSlidingSpeed * Time.deltaTime * 50);
+                    PlayerBase.Singleton.BlockMoveInputs = true;
+                }
             }
             else
             {
-                _rb.velocity = new Vector2(_rb.velocity.x, -_wallSlidingSpeed * Time.deltaTime * 50);
-                PlayerBase.Singleton.BlockMoveInputs = true;
+                if (_isJumpRequested)
+                    Jump();
+                
+                if (PlayerBase.Singleton.BlockMoveInputs)
+                    PlayerBase.Singleton.BlockMoveInputs = false;
             }
-        }
-        else if (PlayerBase.Singleton.IsTouchingGround && _isTouchingWall)
-        {
-            if (_isJumpRequested)
-                Jump();
         }
         else
         {
@@ -53,10 +59,7 @@ public class PlayerWallJump : MonoBehaviour
         {
             PlayerBase.Singleton.BlockMoveInputs = false;
         }
-    }
 
-    private void LateUpdate() 
-    {
         _wasOnWallLastFrame = _isTouchingWall;
     }
 

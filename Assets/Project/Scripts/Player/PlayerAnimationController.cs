@@ -8,6 +8,6 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void Update() 
     {
-        
+        _motionExecutor.Target.flipX = PlayerBase.Singleton.Facing == PlayerFacing.Left;
     }
 }

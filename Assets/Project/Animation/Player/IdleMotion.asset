@@ -16,4 +16,3 @@ MonoBehaviour:
   Framerate: 10
   Variants:
   - {fileID: 11400000, guid: 8080c2f46173ae64b8ead3b6bddcad09, type: 2}
-  - {fileID: 11400000, guid: 1cd5f007b7761cf4cb54d9b5413edcca, type: 2}
