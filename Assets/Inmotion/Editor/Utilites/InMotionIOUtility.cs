@@ -31,7 +31,7 @@ namespace InMotion.Utilities
             _graphView = graphView;
             _graphFileName = graphName;
 
-            _containerFolderPath = $"Assets/Inmotion/SavedDataContainer/Runtime/MotionTrees/{_graphFileName}";
+            _containerFolderPath = $"Assets/InMotion/SavedDataContainer/Runtime/MotionTrees/{_graphFileName}";
 
             _groups = new List<MotionTreeGroup>();
             _nodes = new List<MotionTreeNode>();
@@ -49,7 +49,7 @@ namespace InMotion.Utilities
 
             GetElementsFromGraphView();
 
-            MotionTreeSaveData graphData = CreateAsset<MotionTreeSaveData>("Assets/Inmotion/SavedDataContainer/Editor/Graphs", $"{_graphFileName}Graph");
+            MotionTreeSaveData graphData = CreateAsset<MotionTreeSaveData>("Assets/InMotion/SavedDataContainer/Editor/Graphs", $"{_graphFileName}Graph");
             graphData.Initialize(_graphFileName);
 
             MotionTree motionTree = AssetDatabase.LoadAssetAtPath<MotionTree>(motionTreeFilePath);
@@ -70,7 +70,7 @@ namespace InMotion.Utilities
 
         public static void Load()
         {
-            MotionTreeSaveData graphData = LoadAsset<MotionTreeSaveData>("Assets/Inmotion/SavedDataContainer/Editor/Graphs", _graphFileName);
+            MotionTreeSaveData graphData = LoadAsset<MotionTreeSaveData>("Assets/InMotion/SavedDataContainer/Editor/Graphs", _graphFileName);
 
             if (graphData == null)
             {
@@ -88,8 +88,8 @@ namespace InMotion.Utilities
 
         public static void DestroySave(MotionTree item)
         {
-            RemoveAsset("Assets/Inmotion/SavedDataContainer/Editor/Graphs", item.name + "Graph");
-            RemoveFolder($"Assets/Inmotion/SavedDataContainer/Runtime/MotionTrees/{item.name}");
+            RemoveAsset("Assets/InMotion/SavedDataContainer/Editor/Graphs", item.name + "Graph");
+            RemoveFolder($"Assets/InMotion/SavedDataContainer/Runtime/MotionTrees/{item.name}");
 
             AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(item));
         }
@@ -654,13 +654,13 @@ namespace InMotion.Utilities
 
         private static void CreateStaticFolders()
         {
-            CreateFolder("Assets/Inmotion/SavedDataContainer", "Editor");
-            CreateFolder("Assets/Inmotion/SavedDataContainer", "Runtime");
+            CreateFolder("Assets/InMotion/SavedDataContainer", "Editor");
+            CreateFolder("Assets/InMotion/SavedDataContainer", "Runtime");
 
-            CreateFolder("Assets/Inmotion/SavedDataContainer/Editor", "Graphs");
-            CreateFolder("Assets/Inmotion/SavedDataContainer/Runtime", "MotionTrees");
+            CreateFolder("Assets/InMotion/SavedDataContainer/Editor", "Graphs");
+            CreateFolder("Assets/InMotion/SavedDataContainer/Runtime", "MotionTrees");
 
-            CreateFolder("Assets/Inmotion/SavedDataContainer/Runtime/MotionTrees", _graphFileName);
+            CreateFolder("Assets/InMotion/SavedDataContainer/Runtime/MotionTrees", _graphFileName);
             CreateFolder(_containerFolderPath, "Global");
             CreateFolder(_containerFolderPath, "Groups");
             CreateFolder($"{_containerFolderPath}/Global", "MotionTrees");

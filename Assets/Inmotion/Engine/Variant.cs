@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ namespace InMotion
     {
         public MotionDirections Directions = MotionDirections.Simple;
 
-        public List<DirectionalSprite> FramesContainer = new List<DirectionalSprite>();
+        public List<DirectionalSprite> FramesContainer = new( new DirectionalSprite[1] );
     }
 
     public enum MotionDirections

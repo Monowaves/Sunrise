@@ -1,5 +1,4 @@
 using System;
-using InMotion.SO;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
@@ -38,7 +37,7 @@ namespace InMotion.Tools.RuntimeScripts
         
         private void OnValidate() 
         {
-            TryGetComponent<SpriteRenderer>(out Target);
+            TryGetComponent(out Target);
         }
 
         private void Start() 
@@ -66,23 +65,16 @@ namespace InMotion.Tools.RuntimeScripts
             if (_updateFrametime <= 0)
             {
                 _globalFrameCounter++;
-                _updateFrametime = (1 / Convert.ToSingle(GlobalFramerate));
+                _updateFrametime = 1 / Convert.ToSingle(GlobalFramerate);
                 
                 OnFrameUpdate();
             }
         }
 
-        public void SetMotion(InMotion.Motion target)
+        public void SetMotion(Motion target)
         {
             _playThis = target;
             _localVariantIndex = Mathf.Clamp(VariantIndex, 0, target.Variants.Count() - 1);
-        }
-
-        public void ReturnProcces()
-        {
-            ProccesStop();
-            _currentNode = null;
-            ProccesStart();
         }
 
         public void BreakAll()
@@ -176,16 +168,16 @@ namespace InMotion.Tools.RuntimeScripts
                 List<DirectionalSprite> framesContainer = _playThis.Variants[_localVariantIndex].FramesContainer;
                 int dirIdx = DirectionUtility.DefineDirectionIndex(Direction);
 
-                Target.sprite = framesContainer[_globalFrameCounter % _playThis.Variants[0].FramesContainer.Count].sprites[dirIdx];
+                Target.sprite = framesContainer[_globalFrameCounter % _playThis.Variants[0].FramesContainer.Count].Sprites[dirIdx];
 
-                if (Target.sprite == framesContainer.Last().sprites[dirIdx])
+                if (Target.sprite == framesContainer.Last().Sprites[dirIdx])
                 {
                     InvokeAction(OnAnimationEnd);
 
                     ProccesStart();
                 }
 
-                if (Target.sprite == framesContainer.First().sprites[dirIdx])
+                if (Target.sprite == framesContainer.First().Sprites[dirIdx])
                 {
                     InvokeAction(OnAnimationStart);
 
@@ -196,10 +188,7 @@ namespace InMotion.Tools.RuntimeScripts
 
         private void InvokeAction(Action target)
         {
-            if (target != null)
-            {
-                target.Invoke();
-            }
+            target?.Invoke();
         }
     }
 }

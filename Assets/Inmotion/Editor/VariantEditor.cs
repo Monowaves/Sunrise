@@ -1,7 +1,6 @@
 using UnityEditor;
 using UnityEngine;
 using InMotion;
-using System.Collections.Generic;
 using InMotion.Utilities;
 
 [System.Serializable]
@@ -39,125 +38,120 @@ public class VariantEditor : Editor
         EditorGUILayout.Space(5);
         IncreaseHeight(5);
 
-        int drawFields = 0;
-
-        switch (current.Directions)
+        int drawFields = current.Directions switch
         {
-            case MotionDirections.Simple:
-                drawFields = 1;
-                break;
+            MotionDirections.Simple => 1,
+            MotionDirections.Platformer => 2,
+            MotionDirections.FourDirectional => 4,
+            MotionDirections.EightDirectional => 8,
+            _ => 0
+        };
 
-            case MotionDirections.Platformer:
-                drawFields = 2;
-                break;
-
-            case MotionDirections.FourDirectional:
-                drawFields = 4;
-                break;
-
-            case MotionDirections.EightDirectional:
-                drawFields = 8;
-                break;
-        }
-
-        for (int x = 0; x < current.FramesContainer.Count; x++)
+        for (int frame = 0; frame < current.FramesContainer.Count; frame++)
         {
-            EditorGUILayout.LabelField("Frame " + (x + 1));
+            EditorGUILayout.LabelField("Frame " + (frame + 1));
             IncreaseHeight(EditorGUIUtility.singleLineHeight);
 
-            if (current.FramesContainer[x].sprites.Count < drawFields)
-            {
-                int add = drawFields - current.FramesContainer[x].sprites.Count;
-
-                for (int a = 0; a < add; a++)
-                {
-                    current.FramesContainer[x].sprites.Add(null);
-                }
-            }
-
             EditorGUILayout.BeginHorizontal();
-
+            GUI.color = Color.grey;
             for (int i = 0; i < drawFields; i++)
             {
                 string directionName = DirectionUtility.DefineDirection((MotionDirections)_directions.enumValueIndex, i).Item1;
 
-                float width = (inspectorWidth / drawFields - ((35 + drawFields * 2) / drawFields));
+                float width = inspectorWidth / drawFields - ((35 + drawFields * 2) / drawFields);
                 EditorGUILayout.LabelField(directionName, new GUILayoutOption[]{ GUILayout.Width(width) });
             }
-
+            GUI.color = Color.white;
             EditorGUILayout.EndHorizontal();
-
             IncreaseHeight(EditorGUIUtility.singleLineHeight);
 
             EditorGUILayout.BeginHorizontal();
-
             for (int i = 0; i < drawFields; i++)
             {
-                Vector2Int direction = DirectionUtility.DefineDirection((MotionDirections)_directions.enumValueIndex, i).Item2;
-
-                float width = (inspectorWidth / drawFields - ((35 + drawFields * 2) / drawFields));
-                EditorGUILayout.LabelField($"x: {direction.x} y: {direction.y}", new GUILayoutOption[]{ GUILayout.Width(width) });
+                DrawField(drawFields, frame, i);
             }
-
             EditorGUILayout.EndHorizontal();
+            IncreaseHeight(300 / drawFields);
 
+            EditorGUILayout.BeginHorizontal();
+            for (int i = 0; i < drawFields; i++)
+            {
+                GetSpriteAt(frame, i) = (Sprite)EditorGUILayout.ObjectField
+                (
+                    obj: GetSpriteAt(frame, i), 
+                    objType: typeof(Sprite), 
+                    allowSceneObjects: true
+                );
+            }
+            EditorGUILayout.EndHorizontal();
             IncreaseHeight(EditorGUIUtility.singleLineHeight);
 
             EditorGUILayout.BeginHorizontal();
-
-            for (int i = 0; i < drawFields; i++)
+            if (GUILayout.Button("Insert"))
             {
-                float height = 400 / drawFields;
-                float width = inspectorWidth / drawFields - ((35 + drawFields * 2) / drawFields);
-                
-                GUI.color = Color.clear;
-                current.FramesContainer[x].sprites[i] = (Sprite)EditorGUILayout.ObjectField(current.FramesContainer[x].sprites[i], typeof(Sprite), true, new GUILayoutOption[]{ GUILayout.Width(width), GUILayout.Height(height)});
-                GUI.color = Color.white;
-
-                GUI.Button(GUILayoutUtility.GetLastRect(), "");
-                
-                if (current.FramesContainer[x].sprites[i] != null)
-                {
-                    Rect spriteRect = current.FramesContainer[x].sprites[i].rect;
-                    Texture2D tex = current.FramesContainer[x].sprites[i].texture;
-                    GUI.DrawTextureWithTexCoords(GUILayoutUtility.GetLastRect(), tex, new Rect(spriteRect.x / tex.width, spriteRect.y / tex.height, spriteRect.width/ tex.width, spriteRect.height / tex.height));
-                }
-
-                GUIStyle buttonStyle = new GUIStyle(GUI.skin.button)
-                {
-                    fontSize = 10,
-                    fontStyle = FontStyle.Bold,
-                    alignment = TextAnchor.LowerRight
-                };
-
-                GUI.Button(new Rect(GUILayoutUtility.GetLastRect().x + width - 45, GUILayoutUtility.GetLastRect().y + height - 15, 45, 15), "Select", buttonStyle);
+                current.FramesContainer.Insert(frame + 1, new DirectionalSprite());
             }
 
+            if (current.FramesContainer.Count > 1 && GUILayout.Button("Remove"))
+            {
+                current.FramesContainer.RemoveAt(frame);
+            }
             EditorGUILayout.EndHorizontal();
 
-            IncreaseHeight(400 / drawFields);
+            IncreaseHeight(EditorGUIUtility.singleLineHeight);
 
             EditorGUILayout.Space(5);
             IncreaseHeight(5);
         }
 
-        EditorGUILayout.BeginHorizontal();
-
-        if (GUILayout.Button("Create"))
-        {
-            current.FramesContainer.Add(new DirectionalSprite(new List<Sprite>()));
-        }
-
-        if (GUILayout.Button("Delete") && current.FramesContainer.Count > 0)
-        {
-            current.FramesContainer.RemoveAt(current.FramesContainer.Count - 1);
-        }
-
-        EditorGUILayout.EndHorizontal();
-
-        IncreaseHeight(EditorGUIUtility.singleLineHeight);
-
         serializedObject.ApplyModifiedProperties();
+    }
+
+    private void DrawField(int drawFields, int frame, int sprite)
+    {
+        float inspectorWidth = EditorGUIUtility.currentViewWidth;
+
+        float fieldHeight = 300 / drawFields;
+        float fieldWidth = inspectorWidth / drawFields - ((35 + drawFields * 2) / drawFields);
+
+        GUI.color = Color.clear;
+        GetSpriteAt(frame, sprite) = (Sprite)EditorGUILayout.ObjectField
+        (
+            obj: GetSpriteAt(frame, sprite), 
+            objType: typeof(Sprite), 
+            allowSceneObjects: true, 
+            options: new GUILayoutOption[] 
+            { 
+                GUILayout.Width(fieldWidth), 
+                GUILayout.Height(fieldHeight),
+            }
+        );
+        GUI.color = Color.white;
+
+        Rect lastRect = GUILayoutUtility.GetLastRect();
+
+        Sprite spriteInfo = GetSpriteAt(frame, sprite);
+        if (spriteInfo)
+        {
+            Vector2 spriteRatio = new(spriteInfo.rect.width / spriteInfo.rect.height, 1);
+
+            Texture2D texture = spriteInfo.texture;
+
+            float boundsWidth = spriteInfo.rect.width / texture.width;
+            float boundsHeight = spriteInfo.rect.height / texture.height;
+            float spriteX = spriteInfo.rect.x / texture.width;
+            float spriteY = spriteInfo.rect.y / texture.height;
+            float spriteWidth = fieldHeight * spriteRatio.x;
+            float spriteHeight = fieldHeight;
+
+            GUI.DrawTextureWithTexCoords(new Rect(lastRect.x + (fieldWidth / 2 - spriteWidth / 2), lastRect.y, spriteWidth, spriteHeight), texture, 
+            new Rect(spriteX, spriteY, boundsWidth, boundsHeight));
+        }
+    }
+
+    private ref Sprite GetSpriteAt(int frame, int field)
+    {
+        return ref current.FramesContainer[frame].Sprites[field];
     }
 
     private void IncreaseHeight(float amount)

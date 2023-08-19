@@ -13,4 +13,13 @@ MonoBehaviour:
   m_Name: IdleVariant
   m_EditorClassIdentifier: 
   Directions: 0
-  FramesContainer: []
+  FramesContainer:
+  - Sprites:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
