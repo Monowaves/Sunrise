@@ -35,11 +35,16 @@ public class PlayerJump : MonoBehaviour
             }
         }
 
-        if (IsJumping && _rb.velocity.y < 0)
+        if ( _rb.velocity.y < 0)
         {
-            IsJumping = false;
-            PlayerBase.Singleton.IsJumping = false;
-            PlayerBase.Singleton.IsFalling = true;
+            if (!PlayerBase.Singleton.IsFalling)
+                PlayerBase.Singleton.IsFalling = true;
+
+            if (IsJumping)
+            {
+                IsJumping = false;
+                PlayerBase.Singleton.IsJumping = false;
+            }
         }
 
         if (LastGroundedTime > 0 && LastJumpTime > 0 && !IsJumping)

@@ -29,11 +29,18 @@ MonoBehaviour:
     <Position>k__BackingField: {x: 347, y: 59}
     <Motion>k__BackingField: {fileID: 11400000, guid: 89117f02e85514a4f9792104d3fe42b4, type: 2}
     <NextNodeID>k__BackingField: 3eb31a6b-b1ca-4e14-9159-c331709e4143
+  - <ID>k__BackingField: 3f007376-4657-4e2b-bff3-0d3279b92e6b
+    <Name>k__BackingField: Sample Motion
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 47, y: -176}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 914f4c36bc9c6144683951d07472051f, type: 2}
+    <NextNodeID>k__BackingField: 189f2d61-7c82-4577-bfd1-03136aa98c51
   - <ID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
     <Name>k__BackingField: Jump
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: 47, y: -200}
+    <Position>k__BackingField: {x: -252, y: -261}
     <Motion>k__BackingField: {fileID: 11400000, guid: 48b7c0a9ff80b584e8cfb24d1ceafbc4, type: 2}
     <NextNodeID>k__BackingField: 14d819a8-2baa-4559-86a3-4cbeb5a74061
   <BranchNodes>k__BackingField:
@@ -49,9 +56,17 @@ MonoBehaviour:
     <Name>k__BackingField: JumpCheck
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -253, y: -54}
+    <Position>k__BackingField: {x: -552, y: -126}
     <Condition>k__BackingField: isJumping = true
     <TrueNodeID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
+    <FalseNodeID>k__BackingField: fca86245-7dc2-4b3a-b1b7-a46aa329fc52
+  - <ID>k__BackingField: fca86245-7dc2-4b3a-b1b7-a46aa329fc52
+    <Name>k__BackingField: FallCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -252, y: -103}
+    <Condition>k__BackingField: isFalling = true
+    <TrueNodeID>k__BackingField: 3f007376-4657-4e2b-bff3-0d3279b92e6b
     <FalseNodeID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
   <Nodes>k__BackingField:
   - <ID>k__BackingField: 3eb31a6b-b1ca-4e14-9159-c331709e4143
@@ -63,7 +78,12 @@ MonoBehaviour:
     <Name>k__BackingField: JumpReturn
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
-    <Position>k__BackingField: {x: 347, y: -200}
+    <Position>k__BackingField: {x: 23, y: -293}
+  - <ID>k__BackingField: 189f2d61-7c82-4577-bfd1-03136aa98c51
+    <Name>k__BackingField: FallReturn
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 321, y: -204}
   <AllNodes>k__BackingField:
   - <ID>k__BackingField: fefe63c5-12d9-4619-a932-986e5a8e43fe
     <Name>k__BackingField: Run
@@ -75,42 +95,60 @@ MonoBehaviour:
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
     <Position>k__BackingField: {x: 347, y: 59}
-  - <ID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
-    <Name>k__BackingField: Jump
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: 47, y: -200}
   - <ID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
     <Name>k__BackingField: RunCheck
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 47, y: -30}
-  - <ID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
-    <Name>k__BackingField: JumpCheck
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -253, y: -54}
   - <ID>k__BackingField: 3eb31a6b-b1ca-4e14-9159-c331709e4143
     <Name>k__BackingField: Return
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 620, y: -1}
+  - <ID>k__BackingField: 3f007376-4657-4e2b-bff3-0d3279b92e6b
+    <Name>k__BackingField: Sample Motion
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 47, y: -176}
+  - <ID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
+    <Name>k__BackingField: JumpCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -552, y: -126}
+  - <ID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
+    <Name>k__BackingField: Jump
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -252, y: -261}
+  - <ID>k__BackingField: fca86245-7dc2-4b3a-b1b7-a46aa329fc52
+    <Name>k__BackingField: FallCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -252, y: -103}
   - <ID>k__BackingField: 14d819a8-2baa-4559-86a3-4cbeb5a74061
     <Name>k__BackingField: JumpReturn
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
-    <Position>k__BackingField: {x: 347, y: -200}
+    <Position>k__BackingField: {x: 23, y: -293}
+  - <ID>k__BackingField: 189f2d61-7c82-4577-bfd1-03136aa98c51
+    <Name>k__BackingField: FallReturn
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 321, y: -204}
   <OldGroupNames>k__BackingField: []
   <OldUngroupedNodeNames>k__BackingField:
   - Run
   - Idle
-  - Jump
   - RunCheck
-  - JumpCheck
   - Return
+  - Sample Motion
+  - JumpCheck
+  - Jump
+  - FallCheck
   - JumpReturn
+  - FallReturn
   <OldGroupedNodeNames>k__BackingField:
     m_keys: []
-  <RootPosition>k__BackingField: {x: -352, y: -54}
+  <RootPosition>k__BackingField: {x: -651, y: -126}
   <RootNextID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
   <RootNext>k__BackingField: {fileID: 11400000, guid: 696a91f6caca380468d6b23d2f3acf2e, type: 2}

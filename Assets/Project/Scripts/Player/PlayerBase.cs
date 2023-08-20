@@ -31,6 +31,7 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool IsTouchingLeftWall { get; private set; }
     [field: SerializeField, ReadOnly] public bool IsTouchingRightWall { get; private set; }
     [field: SerializeField, ReadOnly] public Vector2 SlopeNormal { get; set; }
+    [field: SerializeField, ReadOnly] public int WallDirection { get; private set; }
 
     [field: SerializeField, ReadOnly] public float HorizontalAxis { get; private set; }
     [field: SerializeField, ReadOnly] public bool IsMoving { get; private set; }
@@ -45,6 +46,7 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool IsRunning { get; set; }
     [field: SerializeField, ReadOnly] public bool IsFalling { get; set; }
     [field: SerializeField, ReadOnly] public bool IsJumping { get; set; }
+    [field: SerializeField, ReadOnly] public bool IsWallSliding { get; set; }
 
     private void Awake() => Singleton = this;
 
@@ -83,6 +85,10 @@ public class PlayerBase : MonoBehaviour
 
         IsTouchingLeftWall = Physics2D.OverlapBox(position + _wallLeftChecker.Offset, _wallLeftChecker.Size, 0f, _wallLeftChecker.Mask);
         IsTouchingRightWall = Physics2D.OverlapBox(position + _wallRightChecker.Offset, _wallRightChecker.Size, 0f, _wallRightChecker.Mask);
+
+        if (IsTouchingLeftWall) WallDirection = -1;
+        else if (IsTouchingRightWall) WallDirection = 1;
+        else WallDirection = 0;
 
         RaycastHit2D leftHitInfo = Physics2D.Raycast
         (

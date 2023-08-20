@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ab108208f119fb469f0355b45c7d40a, type: 3}
-  m_Name: JumpVariant
+  m_Name: FallVariant
   m_EditorClassIdentifier: 
   Directions: 0
   FramesContainer:
   - Sprites:
-    - {fileID: -116848266, guid: 9fc34beb92a8b814dbd020279be0a4c4, type: 3}
+    - {fileID: -1262683040, guid: 2a81d8785ed248648b224e36adc3a470, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -24,25 +24,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
   - Sprites:
-    - {fileID: 1319335100, guid: 9fc34beb92a8b814dbd020279be0a4c4, type: 3}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - Sprites:
-    - {fileID: 83013670, guid: 9fc34beb92a8b814dbd020279be0a4c4, type: 3}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - Sprites:
-    - {fileID: -8384771, guid: 9fc34beb92a8b814dbd020279be0a4c4, type: 3}
+    - {fileID: -211793452, guid: 2a81d8785ed248648b224e36adc3a470, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}

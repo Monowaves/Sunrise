@@ -6,19 +6,15 @@ public class PlayerSprite : MonoBehaviour
     public static PlayerSprite Singleton { get; private set;}
     [SerializeField] private MotionExecutor _motionExecutor;
 
-    private void Awake() 
-    {
-        _motionExecutor.OnMotionFrame = MotionUpdate;
-    }
-
     private void Update() 
     {
         _motionExecutor.SetParameter("isRunning", PlayerBase.Singleton.IsRunning);
         _motionExecutor.SetParameter("isJumping", PlayerBase.Singleton.IsJumping);
-    }
+        _motionExecutor.SetParameter("isFalling", PlayerBase.Singleton.IsFalling);
 
-    private void MotionUpdate()
-    {
-        _motionExecutor.Target.flipX = PlayerBase.Singleton.Facing == PlayerFacing.Left;
+        if (PlayerBase.Singleton.IsWallSliding) 
+            _motionExecutor.Target.flipX = PlayerBase.Singleton.IsTouchingRightWall;
+        else
+            _motionExecutor.Target.flipX = PlayerBase.Singleton.Facing == PlayerFacing.Left;
     }
 }

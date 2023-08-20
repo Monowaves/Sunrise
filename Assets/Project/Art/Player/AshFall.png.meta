@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9fc34beb92a8b814dbd020279be0a4c4
+guid: 2a81d8785ed248648b224e36adc3a470
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AshJump_0
+      name: AshFall_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c271be887eff2b042ae6a992feece176
-      internalID: -116848266
+      spriteID: 33dae759ad5c82b49a77b7be02c05c99
+      internalID: -1262683040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AshJump_1
+      name: AshFall_1
       rect:
         serializedVersion: 2
         x: 14
@@ -145,50 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 509a6d1b4962c994c94f0c145d0f17d9
-      internalID: 1319335100
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AshJump_2
-      rect:
-        serializedVersion: 2
-        x: 28
-        y: 0
-        width: 14
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 79c38d0a690c6e149a41b6ea6dba2fd4
-      internalID: 83013670
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AshJump_3
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 0
-        width: 14
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a8d32d7b834899a458410dbb67ae153e
-      internalID: -8384771
+      spriteID: 57fd4b8ac385aa4418347650c129a27c
+      internalID: -211793452
       vertices: []
       indices: 
       edges: []
@@ -204,10 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AshJump_0: -116848266
-      AshJump_1: 1319335100
-      AshJump_2: 83013670
-      AshJump_3: -8384771
+      AshFall_0: -1262683040
+      AshFall_1: -211793452
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

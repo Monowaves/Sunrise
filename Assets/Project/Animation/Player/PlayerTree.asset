@@ -18,7 +18,7 @@ MonoBehaviour:
     - isJumping
     - isFalling
     m_values:
-    - false
-    - false
+    - False
+    - False
     - false
   SavedData: {fileID: 11400000, guid: bb69fc352d5cd674bad3271a08fc0361, type: 2}

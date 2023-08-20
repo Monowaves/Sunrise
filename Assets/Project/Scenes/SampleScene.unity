@@ -971,7 +971,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &948871704
@@ -1558,6 +1558,7 @@ MonoBehaviour:
   <IsTouchingLeftWall>k__BackingField: 0
   <IsTouchingRightWall>k__BackingField: 0
   <SlopeNormal>k__BackingField: {x: 0, y: 0}
+  <WallDirection>k__BackingField: 0
   <HorizontalAxis>k__BackingField: 0
   <IsMoving>k__BackingField: 0
   <Facing>k__BackingField: 0
@@ -1567,6 +1568,10 @@ MonoBehaviour:
   <ShiftPressed>k__BackingField: 0
   <CtrlPressed>k__BackingField: 0
   <BlockMoveInputs>k__BackingField: 0
+  <IsRunning>k__BackingField: 0
+  <IsFalling>k__BackingField: 0
+  <IsJumping>k__BackingField: 0
+  <IsWallSliding>k__BackingField: 0
 --- !u!1 &1136823007
 GameObject:
   m_ObjectHideFlags: 0
