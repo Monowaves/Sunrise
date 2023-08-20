@@ -8,19 +8,25 @@ public class PlayerWallJump : MonoBehaviour
     [SerializeField, Min(0)] private float _wallJumpForwardForce;
     [SerializeField, Min(0)] private float _wallSlidingSpeed;
     [SerializeField, Min(0)] private float _jumpCutMultiplier;
+    [SerializeField, Min(0)] private float _jumpBufferTime;
 
     [field: Header("Info")]
     [field: SerializeField, ReadOnly] public bool IsJumping { get; private set; }
+    [field: SerializeField, ReadOnly] public float LastJumpTime { get; private set; }
 
     private Rigidbody2D _rb => PlayerBase.Singleton.Rigidbody;
 
     private bool _isTouchingWall => PlayerBase.Singleton.IsTouchingLeftWall || PlayerBase.Singleton.IsTouchingRightWall;
-    private bool _isJumpRequested;
     private bool _wasOnWallLastFrame;
 
     private void Update() 
     {
-        if (PlayerBase.Singleton.WantToJump) _isJumpRequested = true;
+        LastJumpTime -= Time.deltaTime;
+
+        if (PlayerBase.Singleton.WantToJump) 
+        {
+            LastJumpTime = _jumpBufferTime;
+        }
 
         if (PlayerBase.Singleton.JumpReleased) JumpCut();
 
@@ -34,7 +40,7 @@ public class PlayerWallJump : MonoBehaviour
         {
             if (!PlayerBase.Singleton.IsTouchingGround)
             {
-                if (_isJumpRequested)
+                if (LastJumpTime > 0)
                 {
                     PlayerBase.Singleton.IsWallSliding = false;
 
@@ -51,7 +57,7 @@ public class PlayerWallJump : MonoBehaviour
             }
             else
             {
-                if (_isJumpRequested)
+                if (LastJumpTime > 0)
                     Jump();
                 
                 if (PlayerBase.Singleton.BlockMoveInputs)
@@ -61,7 +67,6 @@ public class PlayerWallJump : MonoBehaviour
         else
         {
             if (PlayerBase.Singleton.IsWallSliding) PlayerBase.Singleton.IsWallSliding = false;
-            if (_isJumpRequested) _isJumpRequested = false;
         }
 
         if (!_isTouchingWall && _wasOnWallLastFrame)
