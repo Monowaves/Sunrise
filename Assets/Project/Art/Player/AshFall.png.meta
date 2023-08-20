@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33dae759ad5c82b49a77b7be02c05c99
-      internalID: -1262683040
+      spriteID: 41cde494194d66a4080c142304e50d5f
+      internalID: 1878920349
       vertices: []
       indices: 
       edges: []
@@ -145,8 +145,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57fd4b8ac385aa4418347650c129a27c
-      internalID: -211793452
+      spriteID: d645aa4ebda9de543ab3a4c3a0a744b9
+      internalID: -586938625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AshFall_2
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 0
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e025097cdcd45040b2faaf211015f14
+      internalID: 503327864
       vertices: []
       indices: 
       edges: []
@@ -162,8 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AshFall_0: -1262683040
-      AshFall_1: -211793452
+      AshFall_0: 1878920349
+      AshFall_1: -586938625
+      AshFall_2: 503327864
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

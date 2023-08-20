@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UseCustomFramerate: 0
   Framerate: 20
-  Looping: 0
+  Looping: 1
   Variants:
   - {fileID: 11400000, guid: 26a3b204c66d87643a63f115ca724983, type: 2}

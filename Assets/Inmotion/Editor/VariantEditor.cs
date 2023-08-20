@@ -162,6 +162,59 @@ public class VariantEditor : Editor
             IncreaseHeight(EditorGUIUtility.singleLineHeight);
         }
 
+        if (current.FramesContainer.Count > 0)
+        {
+            if (GUILayout.Button("Reload Sheet")) 
+            {
+                current.FramesContainer.Clear();
+                for (int fieldIdx = 0; fieldIdx < drawFields; fieldIdx++)
+                {
+                    string direction = DirectionUtility.DefineDirection(current.Directions, fieldIdx).Item1;
+                    string texturePath = EditorUtility.OpenFilePanel($"Select sprite sheet for {direction} direction", "", "png,jpg,jpeg");
+    
+                    if (!string.IsNullOrEmpty(texturePath))
+                    {
+                        string relativePath = texturePath[Application.dataPath.Length..];
+                        string assetPath = "Assets" + relativePath;
+    
+                        UnityEngine.Object[] loadedContent = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+    
+                        List<Sprite> sprites = new();
+                        foreach (var content in loadedContent)
+                        {
+                            if (AssetDatabase.IsSubAsset(content)) sprites.Add((Sprite)content);
+                        }
+
+                        sprites.Sort((first, second) => 
+                        {
+                            int firstNumber = Convert.ToInt32(first.name[^1]);
+                            int secondNumber = Convert.ToInt32(second.name[^1]);
+
+                            if (firstNumber > secondNumber) return 1;
+                            else if (firstNumber < secondNumber) return -1;
+                            else return 0;
+                        });
+
+                        for (int spriteIdx = 0; spriteIdx < sprites.Count; spriteIdx++)
+                        {
+                            if (current.FramesContainer.Count <= spriteIdx)
+                            {
+                                DirectionalSprite directionalSprite = new();
+                                directionalSprite.Sprites[fieldIdx] = sprites[spriteIdx];
+                                current.FramesContainer.Add(directionalSprite);
+                            }
+                            else
+                            {
+                                current.FramesContainer[spriteIdx].Sprites[fieldIdx] = sprites[spriteIdx];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        IncreaseHeight(EditorGUIUtility.singleLineHeight);
+
         serializedObject.ApplyModifiedProperties();
     }
 

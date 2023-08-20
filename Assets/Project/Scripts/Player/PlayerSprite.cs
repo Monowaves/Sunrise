@@ -15,11 +15,13 @@ public class PlayerSprite : MonoBehaviour
             _motionExecutor.Target.flipX = PlayerBase.Singleton.IsTouchingRightWall;
         else
             _motionExecutor.Target.flipX = PlayerBase.Singleton.Facing == PlayerFacing.Left;
+    }
 
+    private void Update() 
+    {
+        _motionExecutor.SetParameter("isWallSliding", PlayerBase.Singleton.IsWallSliding);
         _motionExecutor.SetParameter("isRunning", PlayerBase.Singleton.IsRunning);
         _motionExecutor.SetParameter("isJumping", PlayerBase.Singleton.IsJumping);
         _motionExecutor.SetParameter("isFalling", PlayerBase.Singleton.IsFalling);
-        _motionExecutor.SetParameter("isWallSliding", PlayerBase.Singleton.IsWallSliding);
-        _motionExecutor.SetParameter("isWallJumping", PlayerBase.Singleton.IsWallJumping);
     }
 }

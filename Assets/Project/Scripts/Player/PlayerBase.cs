@@ -46,7 +46,6 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool IsRunning { get; set; }
     [field: SerializeField, ReadOnly] public bool IsFalling { get; set; }
     [field: SerializeField, ReadOnly] public bool IsJumping { get; set; }
-    [field: SerializeField, ReadOnly] public bool IsWallJumping { get; set; }
     [field: SerializeField, ReadOnly] public bool IsWallSliding { get; set; }
 
     private void Awake() => Singleton = this;

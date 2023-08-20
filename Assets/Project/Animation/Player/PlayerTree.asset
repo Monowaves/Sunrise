@@ -18,11 +18,9 @@ MonoBehaviour:
     - isJumping
     - isFalling
     - isWallSliding
-    - isWallJumping
     m_values:
     - False
     - False
-    - False
-    - False
-    - False
+    - True
+    - True
   SavedData: {fileID: 11400000, guid: bb69fc352d5cd674bad3271a08fc0361, type: 2}

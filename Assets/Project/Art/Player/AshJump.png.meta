@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c271be887eff2b042ae6a992feece176
-      internalID: -116848266
+      spriteID: 5f2dbab42ba30694d9ee6b07943467e2
+      internalID: 889717371
       vertices: []
       indices: 
       edges: []
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 509a6d1b4962c994c94f0c145d0f17d9
-      internalID: 1319335100
+      spriteID: 4333e0a042ace734d82b2835396e462d
+      internalID: 1904200634
       vertices: []
       indices: 
       edges: []
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79c38d0a690c6e149a41b6ea6dba2fd4
-      internalID: 83013670
+      spriteID: d380ac665b305fb4fa56ea2d1198afc0
+      internalID: -1845130522
       vertices: []
       indices: 
       edges: []
@@ -187,8 +187,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8d32d7b834899a458410dbb67ae153e
-      internalID: -8384771
+      spriteID: 83d996fa59f5846418781a54b1e892c8
+      internalID: 1751329235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AshJump_4
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba487c670e51c264bbbb767ad76d7132
+      internalID: 1478504741
       vertices: []
       indices: 
       edges: []
@@ -204,10 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AshJump_0: -116848266
-      AshJump_1: 1319335100
-      AshJump_2: 83013670
-      AshJump_3: -8384771
+      AshJump_0: 889717371
+      AshJump_1: 1904200634
+      AshJump_2: -1845130522
+      AshJump_3: 1751329235
+      AshJump_4: 1478504741
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

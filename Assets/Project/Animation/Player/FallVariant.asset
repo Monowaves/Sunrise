@@ -15,7 +15,7 @@ MonoBehaviour:
   Directions: 0
   FramesContainer:
   - Sprites:
-    - {fileID: -1262683040, guid: 2a81d8785ed248648b224e36adc3a470, type: 3}
+    - {fileID: 1878920349, guid: 2a81d8785ed248648b224e36adc3a470, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -24,7 +24,16 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
   - Sprites:
-    - {fileID: -211793452, guid: 2a81d8785ed248648b224e36adc3a470, type: 3}
+    - {fileID: -586938625, guid: 2a81d8785ed248648b224e36adc3a470, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Sprites:
+    - {fileID: 503327864, guid: 2a81d8785ed248648b224e36adc3a470, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
