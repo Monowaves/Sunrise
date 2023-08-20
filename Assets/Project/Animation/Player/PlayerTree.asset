@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Parameters>k__BackingField:
     m_keys:
-    - isMoving
+    - isRunning
+    - isJumping
+    - isFalling
     m_values:
-    - true
+    - false
+    - false
+    - false
   SavedData: {fileID: 11400000, guid: bb69fc352d5cd674bad3271a08fc0361, type: 2}

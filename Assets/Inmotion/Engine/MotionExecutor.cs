@@ -188,6 +188,10 @@ namespace InMotion.Tools.RuntimeScripts
             if (_playThis != null)
             {
                 List<DirectionalSprite> framesContainer = _playThis.Variants[VariantIndex].FramesContainer;
+                
+                if (framesContainer[MotionFrame].Sprites.Length == 0)
+                    throw new Exception($"Variant with index {VariantIndex} in motion {_playThis.name} does not contain any frames!");
+
                 int dirIdx = DirectionUtility.DefineDirectionIndex(Direction);
 
                 Target.sprite = framesContainer[MotionFrame].Sprites[dirIdx];

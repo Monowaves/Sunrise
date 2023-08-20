@@ -28,11 +28,18 @@ public class PlayerJump : MonoBehaviour
         if (PlayerBase.Singleton.IsTouchingGround)
         {
             LastGroundedTime = _coyoteTime;
+
+            if (PlayerBase.Singleton.IsFalling)
+            {
+                PlayerBase.Singleton.IsFalling = false;
+            }
         }
 
         if (IsJumping && _rb.velocity.y < 0)
         {
             IsJumping = false;
+            PlayerBase.Singleton.IsJumping = false;
+            PlayerBase.Singleton.IsFalling = true;
         }
 
         if (LastGroundedTime > 0 && LastJumpTime > 0 && !IsJumping)
@@ -51,6 +58,8 @@ public class PlayerJump : MonoBehaviour
 
         IsJumping = true;
         IsJumpReleased = false;
+
+        PlayerBase.Singleton.IsJumping = true;
     }
 
     private void OnJumpDown()

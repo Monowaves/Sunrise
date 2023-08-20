@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7e092d426fa4ed43975183c166b7476, type: 3}
-  m_Name: Idle
+  m_Name: Jump
   m_EditorClassIdentifier: 
-  <NodeName>k__BackingField: Idle
+  <NodeName>k__BackingField: Jump
   <NodeType>k__BackingField: 1
-  <TargetMotion>k__BackingField: {fileID: 11400000, guid: 89117f02e85514a4f9792104d3fe42b4, type: 2}
-  <Next>k__BackingField: {fileID: 11400000, guid: 715668dc3195ed241ade7963815241fd, type: 2}
+  <TargetMotion>k__BackingField: {fileID: 11400000, guid: 48b7c0a9ff80b584e8cfb24d1ceafbc4, type: 2}
+  <Next>k__BackingField: {fileID: 11400000, guid: 61e29999ec4896447a6bd89d4cf5e9ea, type: 2}

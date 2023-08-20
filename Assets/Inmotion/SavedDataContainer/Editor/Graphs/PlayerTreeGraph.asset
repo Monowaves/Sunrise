@@ -29,27 +29,42 @@ MonoBehaviour:
     <Position>k__BackingField: {x: 347, y: 59}
     <Motion>k__BackingField: {fileID: 11400000, guid: 89117f02e85514a4f9792104d3fe42b4, type: 2}
     <NextNodeID>k__BackingField: 3eb31a6b-b1ca-4e14-9159-c331709e4143
+  - <ID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
+    <Name>k__BackingField: Jump
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 47, y: -200}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 48b7c0a9ff80b584e8cfb24d1ceafbc4, type: 2}
+    <NextNodeID>k__BackingField: 14d819a8-2baa-4559-86a3-4cbeb5a74061
   <BranchNodes>k__BackingField:
   - <ID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
     <Name>k__BackingField: RunCheck
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: 47, y: -30}
-    <Condition>k__BackingField: isMoving = true
+    <Condition>k__BackingField: isRunning = true
     <TrueNodeID>k__BackingField: fefe63c5-12d9-4619-a932-986e5a8e43fe
     <FalseNodeID>k__BackingField: 15fab6dd-6c89-4fa2-b912-35ab68b56a81
+  - <ID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
+    <Name>k__BackingField: JumpCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -253, y: -54}
+    <Condition>k__BackingField: isJumping = true
+    <TrueNodeID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
+    <FalseNodeID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
   <Nodes>k__BackingField:
   - <ID>k__BackingField: 3eb31a6b-b1ca-4e14-9159-c331709e4143
-    <Name>k__BackingField: Sample Node
+    <Name>k__BackingField: Return
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 620, y: -1}
-  <AllNodes>k__BackingField:
-  - <ID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
-    <Name>k__BackingField: RunCheck
+  - <ID>k__BackingField: 14d819a8-2baa-4559-86a3-4cbeb5a74061
+    <Name>k__BackingField: JumpReturn
     <GroupID>k__BackingField: 
-    <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: 47, y: -30}
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 347, y: -200}
+  <AllNodes>k__BackingField:
   - <ID>k__BackingField: fefe63c5-12d9-4619-a932-986e5a8e43fe
     <Name>k__BackingField: Run
     <GroupID>k__BackingField: 
@@ -60,19 +75,42 @@ MonoBehaviour:
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
     <Position>k__BackingField: {x: 347, y: 59}
+  - <ID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
+    <Name>k__BackingField: Jump
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 47, y: -200}
+  - <ID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
+    <Name>k__BackingField: RunCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 47, y: -30}
+  - <ID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
+    <Name>k__BackingField: JumpCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -253, y: -54}
   - <ID>k__BackingField: 3eb31a6b-b1ca-4e14-9159-c331709e4143
-    <Name>k__BackingField: Sample Node
+    <Name>k__BackingField: Return
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: 620, y: -1}
+  - <ID>k__BackingField: 14d819a8-2baa-4559-86a3-4cbeb5a74061
+    <Name>k__BackingField: JumpReturn
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 347, y: -200}
   <OldGroupNames>k__BackingField: []
   <OldUngroupedNodeNames>k__BackingField:
-  - RunCheck
   - Run
   - Idle
-  - Sample Node
+  - Jump
+  - RunCheck
+  - JumpCheck
+  - Return
+  - JumpReturn
   <OldGroupedNodeNames>k__BackingField:
     m_keys: []
-  <RootPosition>k__BackingField: {x: -52, y: -30}
-  <RootNextID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
-  <RootNext>k__BackingField: {fileID: 11400000, guid: 4b4922b744f88fb4fb0d9763f44eb9db, type: 2}
+  <RootPosition>k__BackingField: {x: -352, y: -54}
+  <RootNextID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
+  <RootNext>k__BackingField: {fileID: 11400000, guid: 696a91f6caca380468d6b23d2f3acf2e, type: 2}

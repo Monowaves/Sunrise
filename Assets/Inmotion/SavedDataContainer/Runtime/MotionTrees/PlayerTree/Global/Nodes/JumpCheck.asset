@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2966b94c894f5414ebdc2d97552a6649, type: 3}
-  m_Name: RunCheck
+  m_Name: JumpCheck
   m_EditorClassIdentifier: 
-  <NodeName>k__BackingField: RunCheck
+  <NodeName>k__BackingField: JumpCheck
   <NodeType>k__BackingField: 0
-  <Condition>k__BackingField: isRunning = true
-  <True>k__BackingField: {fileID: 11400000, guid: 313059d2ed579ac459932c4681f66636, type: 2}
-  <False>k__BackingField: {fileID: 11400000, guid: 9af8c58338f067e43873cdc05fe6f193, type: 2}
+  <Condition>k__BackingField: isJumping = true
+  <True>k__BackingField: {fileID: 11400000, guid: 32eba2db73e0f6746aa372a337dd419d, type: 2}
+  <False>k__BackingField: {fileID: 11400000, guid: 4b4922b744f88fb4fb0d9763f44eb9db, type: 2}

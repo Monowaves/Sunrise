@@ -42,6 +42,10 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool CtrlPressed { get; private set; }
     [field: SerializeField, ReadOnly] public bool BlockMoveInputs { get; set; }
 
+    [field: SerializeField, ReadOnly] public bool IsRunning { get; set; }
+    [field: SerializeField, ReadOnly] public bool IsFalling { get; set; }
+    [field: SerializeField, ReadOnly] public bool IsJumping { get; set; }
+
     private void Awake() => Singleton = this;
 
     private void OnValidate() 
@@ -202,4 +206,3 @@ public enum PlayerFacing
     Left,
     Right
 }
-

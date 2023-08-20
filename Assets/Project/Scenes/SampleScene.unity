@@ -989,7 +989,7 @@ MonoBehaviour:
   <Target>k__BackingField: {fileID: 948871703}
   <TargetMotionTree>k__BackingField: {fileID: 11400000, guid: 67e9b843a3de7454f93965fff8533b4f, type: 2}
   <GlobalFramerate>k__BackingField: 10
-  <GlobalFrameCounter>k__BackingField: 0
+  <MotionFrame>k__BackingField: 0
   <MotionFramerate>k__BackingField: 0
   <Direction>k__BackingField: {x: 0, y: 0}
   <VariantIndex>k__BackingField: 0

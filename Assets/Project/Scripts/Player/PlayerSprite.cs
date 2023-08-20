@@ -1,8 +1,9 @@
 using InMotion.Tools.RuntimeScripts;
 using UnityEngine;
 
-public class PlayerAnimationController : MonoBehaviour
+public class PlayerSprite : MonoBehaviour
 {
+    public static PlayerSprite Singleton { get; private set;}
     [SerializeField] private MotionExecutor _motionExecutor;
 
     private void Awake() 
@@ -12,7 +13,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void Update() 
     {
-        _motionExecutor.SetParameter("isMoving", PlayerBase.Singleton.IsMoving);
+        _motionExecutor.SetParameter("isRunning", PlayerBase.Singleton.IsRunning);
+        _motionExecutor.SetParameter("isJumping", PlayerBase.Singleton.IsJumping);
     }
 
     private void MotionUpdate()

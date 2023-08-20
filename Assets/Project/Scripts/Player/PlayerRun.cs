@@ -14,6 +14,11 @@ public class PlayerRun : MonoBehaviour
 
     private Vector2 _moveDirection;
 
+    private void Update()
+    {
+        PlayerBase.Singleton.IsRunning = PlayerBase.Singleton.IsTouchingGround && PlayerBase.Singleton.IsMoving;
+    }
+
     private void FixedUpdate()
     {
         Vector2 defaultDirection = Vector2.right;
