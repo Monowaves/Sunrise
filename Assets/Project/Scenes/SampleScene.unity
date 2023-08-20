@@ -5226,7 +5226,7 @@ GameObject:
   - component: {fileID: 1296564050}
   - component: {fileID: 1296564049}
   - component: {fileID: 1296564048}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6680,7 +6680,7 @@ GameObject:
   - component: {fileID: 1791393826}
   - component: {fileID: 1791393825}
   - component: {fileID: 1791393824}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
