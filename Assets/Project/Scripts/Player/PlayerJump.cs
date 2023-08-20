@@ -37,7 +37,7 @@ public class PlayerJump : MonoBehaviour
 
         if ( _rb.velocity.y < 0)
         {
-            if (!PlayerBase.Singleton.IsFalling)
+            if (!PlayerBase.Singleton.IsTouchingGround && !PlayerBase.Singleton.IsFalling)
                 PlayerBase.Singleton.IsFalling = true;
 
             if (IsJumping)

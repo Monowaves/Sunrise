@@ -1,4 +1,3 @@
-using MonoWaves.QoL;
 using UnityEngine;
 
 public class PlayerWallJump : MonoBehaviour

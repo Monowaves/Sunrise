@@ -17,8 +17,10 @@ MonoBehaviour:
     - isRunning
     - isJumping
     - isFalling
+    - isWallSliding
     m_values:
     - False
     - False
-    - false
+    - False
+    - False
   SavedData: {fileID: 11400000, guid: bb69fc352d5cd674bad3271a08fc0361, type: 2}

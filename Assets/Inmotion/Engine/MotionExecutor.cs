@@ -181,9 +181,9 @@ namespace InMotion.Tools.RuntimeScripts
 
         private void OnFrameUpdate()
         {
-            if (_isFinishedMotion) return;
-
             OnMotionFrame?.Invoke();
+
+            if (_isFinishedMotion) return;
 
             if (_playThis != null)
             {
