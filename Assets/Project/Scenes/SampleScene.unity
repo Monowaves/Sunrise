@@ -4583,6 +4583,7 @@ MonoBehaviour:
   <IsRunning>k__BackingField: 0
   <IsFalling>k__BackingField: 0
   <IsJumping>k__BackingField: 0
+  <IsWallJumping>k__BackingField: 0
   <IsWallSliding>k__BackingField: 0
 --- !u!1 &1137761585
 GameObject:

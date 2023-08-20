@@ -20,5 +20,6 @@ public class PlayerSprite : MonoBehaviour
         _motionExecutor.SetParameter("isJumping", PlayerBase.Singleton.IsJumping);
         _motionExecutor.SetParameter("isFalling", PlayerBase.Singleton.IsFalling);
         _motionExecutor.SetParameter("isWallSliding", PlayerBase.Singleton.IsWallSliding);
+        _motionExecutor.SetParameter("isWallJumping", PlayerBase.Singleton.IsWallJumping);
     }
 }

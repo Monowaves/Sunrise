@@ -18,7 +18,9 @@ MonoBehaviour:
     - isJumping
     - isFalling
     - isWallSliding
+    - isWallJumping
     m_values:
+    - False
     - False
     - False
     - False

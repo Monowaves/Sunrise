@@ -32,7 +32,7 @@ public class PlayerWallJump : MonoBehaviour
         if (IsJumping && _rb.velocity.y < 0) 
         {
             IsJumping = false;
-            PlayerBase.Singleton.IsJumping = false;
+            PlayerBase.Singleton.IsWallJumping = false;
         }
 
         if (_isTouchingWall)
@@ -84,7 +84,7 @@ public class PlayerWallJump : MonoBehaviour
         _rb.velocity = upForce + forwardForce;
 
         IsJumping = true;
-        PlayerBase.Singleton.IsJumping = true;
+        PlayerBase.Singleton.IsWallJumping = true;
     }
 
     private void JumpCut()
