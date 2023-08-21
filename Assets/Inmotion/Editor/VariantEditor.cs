@@ -2,11 +2,10 @@ using UnityEditor;
 using UnityEngine;
 using InMotion;
 using InMotion.Utilities;
-using System.IO;
 using System.Collections.Generic;
 using System;
 
-[System.Serializable]
+[Serializable]
 [CustomEditor(typeof(Variant))]
 public class VariantEditor : Editor
 {
@@ -15,6 +14,7 @@ public class VariantEditor : Editor
     private SerializedProperty _directions;
     private SerializedProperty _frames;
     private float _height;
+    private Texture2D _frameBackground;
 
     private void OnEnable() 
     {
@@ -22,6 +22,8 @@ public class VariantEditor : Editor
 
         _directions = serializedObject.FindProperty("Directions");
         _frames = serializedObject.FindProperty("FramesContainer");
+
+        _frameBackground = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/InMotion/Images/FrameBackground.png");
     }
 
     public override void OnInspectorGUI() 
@@ -52,61 +54,30 @@ public class VariantEditor : Editor
             _ => 0
         };
 
-        if (current.FramesContainer.Count == 0)
+        if (GUILayout.Button("Load Sheet")) 
         {
-            if (GUILayout.Button("Load Sheet")) 
+            LoadSheet(drawFields);
+        }
+        IncreaseHeight((EditorGUIUtility.singleLineHeight + 3) / 2);
+
+        if (current.FramesContainer.Count > 0)
+        {
+            if (GUILayout.Button("Clear All")) 
             {
-                for (int fieldIdx = 0; fieldIdx < drawFields; fieldIdx++)
-                {
-                    string direction = DirectionUtility.DefineDirection(current.Directions, fieldIdx).Item1;
-                    string texturePath = EditorUtility.OpenFilePanel($"Select sprite sheet for {direction} direction", "", "png,jpg,jpeg");
-    
-                    if (!string.IsNullOrEmpty(texturePath))
-                    {
-                        string relativePath = texturePath[Application.dataPath.Length..];
-                        string assetPath = "Assets" + relativePath;
-    
-                        UnityEngine.Object[] loadedContent = AssetDatabase.LoadAllAssetsAtPath(assetPath);
-    
-                        List<Sprite> sprites = new();
-                        foreach (var content in loadedContent)
-                        {
-                            if (AssetDatabase.IsSubAsset(content)) sprites.Add((Sprite)content);
-                        }
-
-                        sprites.Sort((first, second) => 
-                        {
-                            int firstNumber = Convert.ToInt32(first.name[^1]);
-                            int secondNumber = Convert.ToInt32(second.name[^1]);
-
-                            if (firstNumber > secondNumber) return 1;
-                            else if (firstNumber < secondNumber) return -1;
-                            else return 0;
-                        });
-
-                        for (int spriteIdx = 0; spriteIdx < sprites.Count; spriteIdx++)
-                        {
-                            if (current.FramesContainer.Count <= spriteIdx)
-                            {
-                                DirectionalSprite directionalSprite = new();
-                                directionalSprite.Sprites[fieldIdx] = sprites[spriteIdx];
-                                current.FramesContainer.Add(directionalSprite);
-                            }
-                            else
-                            {
-                                current.FramesContainer[spriteIdx].Sprites[fieldIdx] = sprites[spriteIdx];
-                            }
-                        }
-                    }
-                }
+                ClearAll();
             }
 
+            IncreaseHeight((EditorGUIUtility.singleLineHeight + 3) / 2);
+        }
+
+        if (current.FramesContainer.Count == 0)
+        {
             if (GUILayout.Button("New Frame"))
             {
                 current.FramesContainer.Add(new DirectionalSprite());
             }
 
-            IncreaseHeight(EditorGUIUtility.singleLineHeight + 3);
+            IncreaseHeight((EditorGUIUtility.singleLineHeight + 3) / 2);
         }
 
         for (int frame = 0; frame < current.FramesContainer.Count; frame++)
@@ -119,9 +90,8 @@ public class VariantEditor : Editor
             for (int i = 0; i < drawFields; i++)
             {
                 string directionName = DirectionUtility.DefineDirection((MotionDirections)_directions.enumValueIndex, i).Item1;
-
-                float width = inspectorWidth / drawFields - ((35 + drawFields * 2) / drawFields);
-                EditorGUILayout.LabelField(directionName, new GUILayoutOption[]{ GUILayout.Width(width) });
+                
+                EditorGUILayout.LabelField(directionName, new GUILayoutOption[]{ GUILayout.MinWidth(50f) });
             }
             GUI.color = Color.white;
             EditorGUILayout.EndHorizontal();
@@ -162,68 +132,73 @@ public class VariantEditor : Editor
             IncreaseHeight(EditorGUIUtility.singleLineHeight);
         }
 
-        if (current.FramesContainer.Count > 0)
-        {
-            if (GUILayout.Button("Reload Sheet")) 
-            {
-                current.FramesContainer.Clear();
-                for (int fieldIdx = 0; fieldIdx < drawFields; fieldIdx++)
-                {
-                    string direction = DirectionUtility.DefineDirection(current.Directions, fieldIdx).Item1;
-                    string texturePath = EditorUtility.OpenFilePanel($"Select sprite sheet for {direction} direction", "", "png,jpg,jpeg");
-    
-                    if (!string.IsNullOrEmpty(texturePath))
-                    {
-                        string relativePath = texturePath[Application.dataPath.Length..];
-                        string assetPath = "Assets" + relativePath;
-    
-                        UnityEngine.Object[] loadedContent = AssetDatabase.LoadAllAssetsAtPath(assetPath);
-    
-                        List<Sprite> sprites = new();
-                        foreach (var content in loadedContent)
-                        {
-                            if (AssetDatabase.IsSubAsset(content)) sprites.Add((Sprite)content);
-                        }
-
-                        sprites.Sort((first, second) => 
-                        {
-                            int firstNumber = Convert.ToInt32(first.name[^1]);
-                            int secondNumber = Convert.ToInt32(second.name[^1]);
-
-                            if (firstNumber > secondNumber) return 1;
-                            else if (firstNumber < secondNumber) return -1;
-                            else return 0;
-                        });
-
-                        for (int spriteIdx = 0; spriteIdx < sprites.Count; spriteIdx++)
-                        {
-                            if (current.FramesContainer.Count <= spriteIdx)
-                            {
-                                DirectionalSprite directionalSprite = new();
-                                directionalSprite.Sprites[fieldIdx] = sprites[spriteIdx];
-                                current.FramesContainer.Add(directionalSprite);
-                            }
-                            else
-                            {
-                                current.FramesContainer[spriteIdx].Sprites[fieldIdx] = sprites[spriteIdx];
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        IncreaseHeight(EditorGUIUtility.singleLineHeight);
-
         serializedObject.ApplyModifiedProperties();
     }
 
+    private void LoadSheet(int drawFields)
+    {
+        bool isCleared = false;
+
+        List<DirectionalSprite> output = new();
+        for (int fieldIdx = 0; fieldIdx < drawFields; fieldIdx++)
+        {
+            string direction = DirectionUtility.DefineDirection(current.Directions, fieldIdx).Item1;
+
+            string texturePath = EditorUtility.OpenFilePanel($"Select sprite sheet for {direction} direction", "", "png,jpg,jpeg");
+
+            if (!string.IsNullOrEmpty(texturePath))
+            {
+                string relativePath = texturePath[Application.dataPath.Length..];
+                string assetPath = "Assets" + relativePath;
+
+                UnityEngine.Object[] loadedContent = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+
+                List<Sprite> sprites = new();
+                foreach (var content in loadedContent)
+                {
+                    if (AssetDatabase.IsSubAsset(content)) sprites.Add((Sprite)content);
+                }
+
+                sprites.Sort((first, second) =>
+                {
+                    int firstNumber = Convert.ToInt32(first.name[^1]);
+                    int secondNumber = Convert.ToInt32(second.name[^1]);
+
+                    if (firstNumber > secondNumber) return 1;
+                    else if (firstNumber < secondNumber) return -1;
+                    else return 0;
+                });
+
+                for (int spriteIdx = 0; spriteIdx < sprites.Count; spriteIdx++)
+                {
+                    if (output.Count <= spriteIdx)
+                    {
+                        DirectionalSprite directionalSprite = new();
+                        directionalSprite.Sprites[fieldIdx] = sprites[spriteIdx];
+                        output.Add(directionalSprite);
+                    }
+                    else
+                    {
+                        output[spriteIdx].Sprites[fieldIdx] = sprites[spriteIdx];
+                    }
+                }
+            }
+            else return;
+        }
+
+        if (!isCleared)
+        {
+            ClearAll();
+            isCleared = true;
+        }
+        current.FramesContainer = output;
+    }
+
+    private void ClearAll() => current.FramesContainer.Clear();
+
     private void DrawField(int drawFields, int frame, int sprite)
     {
-        float inspectorWidth = EditorGUIUtility.currentViewWidth;
-
         float fieldHeight = 225 / drawFields;
-        float fieldWidth = inspectorWidth / drawFields - ((35 + drawFields * 2) / drawFields);
 
         GUI.color = Color.clear;
         SetSpriteAt(frame, sprite, (Sprite)EditorGUILayout.ObjectField
@@ -233,13 +208,14 @@ public class VariantEditor : Editor
             allowSceneObjects: true, 
             options: new GUILayoutOption[] 
             { 
-                GUILayout.Width(fieldWidth), 
                 GUILayout.Height(fieldHeight),
             }
         ));
         GUI.color = Color.white;
 
         Rect lastRect = GUILayoutUtility.GetLastRect();
+
+        EditorGUI.DrawTextureTransparent(lastRect, _frameBackground);
 
         Sprite spriteInfo = GetSpriteAt(frame, sprite);
         if (spriteInfo)
@@ -255,7 +231,7 @@ public class VariantEditor : Editor
             float spriteWidth = fieldHeight * spriteRatio.x;
             float spriteHeight = fieldHeight;
 
-            GUI.DrawTextureWithTexCoords(new Rect(lastRect.x + (fieldWidth / 2 - spriteWidth / 2), lastRect.y, spriteWidth, spriteHeight), texture, 
+            GUI.DrawTextureWithTexCoords(new Rect(lastRect.center.x - spriteWidth / 2, lastRect.y, spriteWidth, spriteHeight), texture, 
             new Rect(spriteX, spriteY, boundsWidth, boundsHeight));
         }
     }
