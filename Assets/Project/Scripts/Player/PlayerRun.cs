@@ -47,4 +47,9 @@ public class PlayerRun : MonoBehaviour
             _rb.AddForce(_moveDirection * -applyAmount, ForceMode2D.Impulse);
         }
     }
+
+    public void PlayFootstep()
+    {
+        Debug.Log("Footstep");
+    }
 }

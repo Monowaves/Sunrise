@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Directions: 0
   FramesContainer:
-  - Sprites:
+  - Callback: Footstep
+    Sprites:
     - {fileID: 1018040390, guid: 9b86f9e7f2ab502469216453d53a7e15, type: 3}
     - {fileID: 0}
     - {fileID: 0}
@@ -23,7 +24,8 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  - Sprites:
+  - Callback: 
+    Sprites:
     - {fileID: 603584754, guid: 9b86f9e7f2ab502469216453d53a7e15, type: 3}
     - {fileID: 0}
     - {fileID: 0}
@@ -32,7 +34,8 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  - Sprites:
+  - Callback: 
+    Sprites:
     - {fileID: -1101167615, guid: 9b86f9e7f2ab502469216453d53a7e15, type: 3}
     - {fileID: 0}
     - {fileID: 0}
@@ -41,7 +44,8 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  - Sprites:
+  - Callback: 
+    Sprites:
     - {fileID: 1490081351, guid: 9b86f9e7f2ab502469216453d53a7e15, type: 3}
     - {fileID: 0}
     - {fileID: 0}
@@ -50,7 +54,8 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  - Sprites:
+  - Callback: Footstep
+    Sprites:
     - {fileID: 704081948, guid: 9b86f9e7f2ab502469216453d53a7e15, type: 3}
     - {fileID: 0}
     - {fileID: 0}
@@ -59,7 +64,8 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  - Sprites:
+  - Callback: 
+    Sprites:
     - {fileID: 1983291820, guid: 9b86f9e7f2ab502469216453d53a7e15, type: 3}
     - {fileID: 0}
     - {fileID: 0}
@@ -68,7 +74,8 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  - Sprites:
+  - Callback: 
+    Sprites:
     - {fileID: -1070818558, guid: 9b86f9e7f2ab502469216453d53a7e15, type: 3}
     - {fileID: 0}
     - {fileID: 0}
@@ -77,7 +84,8 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  - Sprites:
+  - Callback: 
+    Sprites:
     - {fileID: 295402741, guid: 9b86f9e7f2ab502469216453d53a7e15, type: 3}
     - {fileID: 0}
     - {fileID: 0}

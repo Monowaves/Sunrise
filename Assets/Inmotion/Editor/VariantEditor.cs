@@ -54,6 +54,9 @@ public class VariantEditor : Editor
             _ => 0
         };
 
+        EditorGUILayout.Space(12);
+        IncreaseHeight(12);
+
         if (GUILayout.Button("Load Sheet")) 
         {
             LoadSheet(drawFields);
@@ -74,11 +77,14 @@ public class VariantEditor : Editor
         {
             if (GUILayout.Button("New Frame"))
             {
-                current.FramesContainer.Add(new DirectionalSprite());
+                current.FramesContainer.Add(new Frame());
             }
 
             IncreaseHeight((EditorGUIUtility.singleLineHeight + 3) / 2);
         }
+
+        EditorGUILayout.Space(6);
+        IncreaseHeight(6);
 
         for (int frame = 0; frame < current.FramesContainer.Count; frame++)
         {
@@ -103,7 +109,7 @@ public class VariantEditor : Editor
                 DrawField(drawFields, frame, i);
             }
             EditorGUILayout.EndHorizontal();
-            IncreaseHeight(225 / drawFields);
+            IncreaseHeight(225 / drawFields + 10);
 
             EditorGUILayout.BeginHorizontal();
             for (int i = 0; i < drawFields; i++)
@@ -119,9 +125,18 @@ public class VariantEditor : Editor
             IncreaseHeight(EditorGUIUtility.singleLineHeight);
 
             EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Callback:", new GUILayoutOption[] { GUILayout.MaxWidth(100) });
+            SetCallbackAt(frame, EditorGUILayout.TextField(GetCallbackAt(frame)));
+            EditorGUILayout.EndHorizontal();
+            IncreaseHeight(EditorGUIUtility.singleLineHeight);
+
+            EditorGUILayout.Space(5);
+            IncreaseHeight(5);
+
+            EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Insert Frame"))
             {
-                current.FramesContainer.Insert(frame + 1, new DirectionalSprite());
+                current.FramesContainer.Insert(frame + 1, new Frame());
             }
 
             if (GUILayout.Button("Remove Frame"))
@@ -139,7 +154,7 @@ public class VariantEditor : Editor
     {
         bool isCleared = false;
 
-        List<DirectionalSprite> output = new();
+        List<Frame> output = new();
         for (int fieldIdx = 0; fieldIdx < drawFields; fieldIdx++)
         {
             string direction = DirectionUtility.DefineDirection(current.Directions, fieldIdx).Item1;
@@ -173,7 +188,7 @@ public class VariantEditor : Editor
                 {
                     if (output.Count <= spriteIdx)
                     {
-                        DirectionalSprite directionalSprite = new();
+                        Frame directionalSprite = new();
                         directionalSprite.Sprites[fieldIdx] = sprites[spriteIdx];
                         output.Add(directionalSprite);
                     }
@@ -240,11 +255,11 @@ public class VariantEditor : Editor
     {
         if (_frames.arraySize <= frame) return null;
 
-        SerializedProperty directionalSprite = _frames.GetArrayElementAtIndex(frame);
+        SerializedProperty frameProperty = _frames.GetArrayElementAtIndex(frame);
 
-        if (directionalSprite == null) return null;
+        if (frameProperty == null) return null;
         
-        SerializedProperty sprites = directionalSprite.FindPropertyRelative("Sprites");
+        SerializedProperty sprites = frameProperty.FindPropertyRelative("Sprites");
 
         return sprites.GetArrayElementAtIndex(field).objectReferenceValue as Sprite;
     }
@@ -253,13 +268,39 @@ public class VariantEditor : Editor
     {
         if (_frames.arraySize <= frame) return;
 
-        SerializedProperty directionalSprite = _frames.GetArrayElementAtIndex(frame);
+        SerializedProperty frameProperty = _frames.GetArrayElementAtIndex(frame);
 
-        if (directionalSprite == null) return;
+        if (frameProperty == null) return;
 
-        SerializedProperty sprites = directionalSprite.FindPropertyRelative("Sprites");
+        SerializedProperty sprites = frameProperty.FindPropertyRelative("Sprites");
 
         sprites.GetArrayElementAtIndex(field).objectReferenceValue = value;
+    }
+
+    private string GetCallbackAt(int frame)
+    {
+        if (_frames.arraySize <= frame) return null;
+
+        SerializedProperty frameProperty = _frames.GetArrayElementAtIndex(frame);
+
+        if (frameProperty == null) return null;
+        
+        SerializedProperty callback = frameProperty.FindPropertyRelative("Callback");
+
+        return callback.stringValue;
+    }
+
+    private void SetCallbackAt(int frame, string value)
+    {
+        if (_frames.arraySize <= frame) return;
+
+        SerializedProperty frameProperty = _frames.GetArrayElementAtIndex(frame);
+
+        if (frameProperty == null) return;
+
+        SerializedProperty callback = frameProperty.FindPropertyRelative("Callback");
+
+        callback.stringValue = value;
     }
 
     private void IncreaseHeight(float amount)

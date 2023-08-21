@@ -3,15 +3,19 @@ using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
 using InMotion.Utilities;
+using UnityEngine.Events;
 
 namespace InMotion.Tools.RuntimeScripts
 {
     public class MotionExecutor : MonoBehaviour
     {
-        [field: Header("Base Settings")]
+        [field: Header("Properties")]
         [field: SerializeField] public SpriteRenderer Target { get; private set;}
         [field: SerializeField] public MotionTree TargetMotionTree { get; private set; }
         [field: SerializeField, Min(1)] public int GlobalFramerate { get; private set; } = 10;
+
+        [field: Header("Callbacks")]
+        [field: SerializeField] public List<CallbackExecutor> Callbacks { get; private set; } = new();
 
         [field: Header("Info")]
         [field: SerializeField, ReadOnly] public int MotionFrame { get; private set; }
@@ -187,7 +191,7 @@ namespace InMotion.Tools.RuntimeScripts
 
             if (_playThis != null)
             {
-                List<DirectionalSprite> framesContainer = _playThis.Variants[VariantIndex].FramesContainer;
+                List<Frame> framesContainer = _playThis.Variants[VariantIndex].FramesContainer;
                 
                 if (framesContainer[MotionFrame].Sprites.Length == 0)
                     throw new Exception($"Variant with index {VariantIndex} in motion {_playThis.name} does not contain any frames!");
@@ -216,9 +220,26 @@ namespace InMotion.Tools.RuntimeScripts
                 {
                     MotionFrame++;
                 }
+
+                if (!string.IsNullOrEmpty(framesContainer[MotionFrame].Callback))
+                {
+                    int callbackExecutorIndex = Callbacks.FindIndex(callbackExecutor => callbackExecutor.Callback == framesContainer[MotionFrame].Callback);
+
+                    if (callbackExecutorIndex != -1)
+                    {
+                        Callbacks[callbackExecutorIndex].Action.Invoke();
+                    }
+                }
             }
         }
     }
 }
 
 public class ReadOnlyAttribute : PropertyAttribute {}
+
+[Serializable]
+public class CallbackExecutor
+{
+    public string Callback;
+    public UnityEvent Action = new();
+}
