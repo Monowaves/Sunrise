@@ -544,6 +544,24 @@ namespace MonoWaves.QoL
 
             if (!options.Loop) Object.Destroy(source, clip.length);
         }
+
+        public static void Play(IEnumerable<AudioClip> clips, AudioOptions options)
+        {
+            AudioClip clip = clips.GetRandomValue();
+
+            GameObject source = new(clip.name);
+            AudioSource audioSource = source.AddComponent<AudioSource>();
+
+            audioSource.clip = clip;
+
+            audioSource.volume = options.Volume;
+            audioSource.pitch = options.Pitch;
+            audioSource.loop = options.Loop;
+
+            audioSource.Play();
+
+            if (!options.Loop) Object.Destroy(source, clip.length);
+        }
     }
 
     public class AudioOptions

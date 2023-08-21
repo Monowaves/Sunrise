@@ -1947,6 +1947,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2106,6 +2107,29 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!164 &519420034
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: -1000
+  m_RoomHF: -270
+  m_DecayTime: 1.49
+  m_DecayHFRatio: 0.86
+  m_ReflectionsLevel: -1204
+  m_ReverbLevel: -4
+  m_ReverbDelay: 0.011
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 15
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -4582,7 +4606,12 @@ MonoBehaviour:
       m_Bits: 1
     Color: {r: 1, g: 0.5641355, b: 0, a: 1}
   <Rigidbody>k__BackingField: {fileID: 1136529546}
-  <Footstep>k__BackingField: {fileID: 8300000, guid: 8744cf6478365fd418e736a7d1c58d48, type: 3}
+  <Footsteps>k__BackingField:
+  - {fileID: 8300000, guid: bc0a2855bac55c24eae59988dd9e328c, type: 3}
+  - {fileID: 8300000, guid: 655296cc6b7116d4c815388ec58326fb, type: 3}
+  - {fileID: 8300000, guid: aa3374c9b399757479f886ec0d5aa5ea, type: 3}
+  - {fileID: 8300000, guid: 278adc348ff65944e92043dbf55ce707, type: 3}
+  - {fileID: 8300000, guid: bcd0e1e4beb7e6c469f6c241156705e4, type: 3}
   <BlockGravity>k__BackingField: 0
   <IsTouchingGround>k__BackingField: 0
   <IsTouchingLeftWall>k__BackingField: 0

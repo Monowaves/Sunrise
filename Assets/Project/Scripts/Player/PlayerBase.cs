@@ -25,7 +25,7 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
 
     [field: Header("Audio")]
-    [field: SerializeField] public AudioClip Footstep { get; private set; }
+    [field: SerializeField] public AudioClip[] Footsteps { get; private set; }
 
     [field: Header("Info")]
     [field: SerializeField, ReadOnly] public bool BlockGravity { get; set; }
