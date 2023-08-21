@@ -526,6 +526,32 @@ namespace MonoWaves.QoL
             return false;
         }
     }
+
+    public static class AudioSystem
+    {
+        public static void Play(AudioClip clip, AudioOptions options)
+        {
+            GameObject source = new(clip.name);
+            AudioSource audioSource = source.AddComponent<AudioSource>();
+
+            audioSource.clip = clip;
+
+            audioSource.volume = options.Volume;
+            audioSource.pitch = options.Pitch;
+            audioSource.loop = options.Loop;
+
+            audioSource.Play();
+
+            if (!options.Loop) Object.Destroy(source, clip.length);
+        }
+    }
+
+    public class AudioOptions
+    {
+        public float Volume = 1f;
+        public float Pitch = 1f;
+        public bool Loop = false;
+    }
 }
 
 public enum MouseCode

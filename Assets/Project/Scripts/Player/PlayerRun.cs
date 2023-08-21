@@ -50,6 +50,6 @@ public class PlayerRun : MonoBehaviour
 
     public void PlayFootstep()
     {
-        Debug.Log("Footstep");
+        AudioSystem.Play(PlayerBase.Singleton.Footstep, new());
     }
 }

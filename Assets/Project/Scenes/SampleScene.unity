@@ -4582,6 +4582,7 @@ MonoBehaviour:
       m_Bits: 1
     Color: {r: 1, g: 0.5641355, b: 0, a: 1}
   <Rigidbody>k__BackingField: {fileID: 1136529546}
+  <Footstep>k__BackingField: {fileID: 8300000, guid: 8744cf6478365fd418e736a7d1c58d48, type: 3}
   <BlockGravity>k__BackingField: 0
   <IsTouchingGround>k__BackingField: 0
   <IsTouchingLeftWall>k__BackingField: 0

@@ -193,12 +193,22 @@ namespace InMotion.Tools.RuntimeScripts
             {
                 List<Frame> framesContainer = _playThis.Variants[VariantIndex].FramesContainer;
                 
-                if (framesContainer[MotionFrame].Sprites.Length == 0)
+                if (framesContainer.Count == 0)
                     throw new Exception($"Variant with index {VariantIndex} in motion {_playThis.name} does not contain any frames!");
 
                 int dirIdx = DirectionUtility.DefineDirectionIndex(Direction);
 
                 Target.sprite = framesContainer[MotionFrame].Sprites[dirIdx];
+
+                if (!string.IsNullOrEmpty(framesContainer[MotionFrame].Callback))
+                {
+                    int callbackExecutorIndex = Callbacks.FindIndex(callbackExecutor => callbackExecutor.Callback == framesContainer[MotionFrame].Callback);
+
+                    if (callbackExecutorIndex != -1)
+                    {
+                        Callbacks[callbackExecutorIndex].Action.Invoke();
+                    }
+                }
 
                 if (Target.sprite == framesContainer.First().Sprites[dirIdx])
                 {
@@ -219,16 +229,6 @@ namespace InMotion.Tools.RuntimeScripts
                 else
                 {
                     MotionFrame++;
-                }
-
-                if (!string.IsNullOrEmpty(framesContainer[MotionFrame].Callback))
-                {
-                    int callbackExecutorIndex = Callbacks.FindIndex(callbackExecutor => callbackExecutor.Callback == framesContainer[MotionFrame].Callback);
-
-                    if (callbackExecutorIndex != -1)
-                    {
-                        Callbacks[callbackExecutorIndex].Action.Invoke();
-                    }
                 }
             }
         }
