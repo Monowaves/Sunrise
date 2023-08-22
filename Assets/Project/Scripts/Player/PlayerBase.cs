@@ -228,7 +228,7 @@ public class PlayerBase : MonoBehaviour
             yield return null;
         }
         
-        yield return new WaitUntil(() => IsTouchingGround);
+        yield return new WaitUntil(() => IsTouchingGround || IsTouchingLeftWall || IsTouchingRightWall);
 
         BlockAllInputs = false;
     }
