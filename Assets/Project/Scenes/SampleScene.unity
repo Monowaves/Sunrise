@@ -2422,7 +2422,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000f957d87ecbc3cc3d051178f2
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -3620,8 +3620,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2128107513
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1878920349, guid: 2a81d8785ed248648b224e36adc3a470, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4814,6 +4814,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 64
     <GizmosColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  _slamEffect: {fileID: 157749718575219723, guid: 9ff40c6795b2a424b8b7a21385ff42d4, type: 3}
   <IsDashing>k__BackingField: 0
 --- !u!114 &1136529556
 MonoBehaviour:
