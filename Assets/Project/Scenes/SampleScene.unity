@@ -3394,7 +3394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Target>k__BackingField: {fileID: 948871703}
   <TargetMotionTree>k__BackingField: {fileID: 11400000, guid: 67e9b843a3de7454f93965fff8533b4f, type: 2}
-  <GlobalFramerate>k__BackingField: 15
+  <GlobalFramerate>k__BackingField: 10
   <Callbacks>k__BackingField:
   - Callback: Footstep
     Action:

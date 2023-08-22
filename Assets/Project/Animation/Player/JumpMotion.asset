@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960b7ed1419c95b45b8de17bc871c40f, type: 3}
   m_Name: JumpMotion
   m_EditorClassIdentifier: 
-  UseCustomFramerate: 0
-  Framerate: 20
+  UseCustomFramerate: 1
+  Framerate: 12
   Looping: 0
   Variants:
   - {fileID: 11400000, guid: 79f41f6b6b9e62146bac265e14a1b835, type: 2}
