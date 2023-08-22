@@ -16,6 +16,14 @@ public class EnemyBase : MonoBehaviour
     [field: SerializeField] public Vector2 TriggerZone { get; private set; } = new Vector2(25f, 12f);
     [field: SerializeField] public float StartHealth { get; private set; } = 75f;
     [field: SerializeField] public float ContactDamage { get; private set; } = 5f;
+    
+    [field: Header("Audio")]
+    [field: SerializeField] public AudioClip HitSound { get; private set; }
+    [field: SerializeField] public AudioClip DeathSound { get; private set; }
+
+    [field: Header("Particles")]
+    [field: SerializeField] public GameObject HitEffect { get; private set; }
+    [field: SerializeField] public GameObject DeathEffect { get; private set; }
 
     protected virtual IEnumerator EnemyBehaviour() => null;
     protected virtual void OnUpdate() { }
@@ -41,8 +49,8 @@ public class EnemyBase : MonoBehaviour
 
         Vector2 position = transform.position;
 
-        IsTouchingGround = Physics2D.OverlapBox(position + Vector2.down * (HitboxSize.y / 2), new Vector2(HitboxSize.x - 0.1f, 0.15f), 0f, LayerExtensions.MapLayerMask());
-        IsTriggered = Physics2D.OverlapBox(position, TriggerZone, 0f, LayerExtensions.PlayerLayerMask());
+        IsTouchingGround = Physics2D.OverlapBox(position + Vector2.down * (HitboxSize.y / 2), new Vector2(HitboxSize.x - 0.1f, 0.15f), 0f, ZLayerExtensions.MapLayerMask());
+        IsTriggered = Physics2D.OverlapBox(position, TriggerZone, 0f, ZLayerExtensions.PlayerLayerMask());
         
         SpriteRenderer.flipX = GetFlipX();
     }
@@ -111,8 +119,11 @@ public class EnemyBase : MonoBehaviour
     public void Hit(float damage)
     {
         float clampedDamage = damage.ClampMinimum(0f);
-
         Health -= clampedDamage;
+
+        if (HitSound) HitSound.Play(AudioOptions.HalfVolumeWithVariation);
+        if (HitEffect) HitEffect.Spawn(transform.position);
+
         OnHealthChanged();
     }
 
@@ -128,6 +139,9 @@ public class EnemyBase : MonoBehaviour
     {
         if (Health <= 0)
         {
+            if (DeathSound) DeathSound.Play(AudioOptions.HalfVolumeWithVariation);
+            if (DeathEffect) DeathEffect.Spawn(transform.position);
+
             Destroy(gameObject);
         }
     }

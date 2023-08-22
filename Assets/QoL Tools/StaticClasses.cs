@@ -527,9 +527,27 @@ namespace MonoWaves.QoL
         }
     }
 
+    public static class ZGameObjectExtensions
+    {
+        public static GameObject Spawn(this GameObject gameObject, Vector3 position)
+        {
+            return Object.Instantiate(gameObject, position, Quaternion.identity);
+        }
+
+        public static GameObject Spawn(this GameObject gameObject, Vector3 position, Quaternion rotation)
+        {
+            return Object.Instantiate(gameObject, position, rotation);
+        }
+
+        public static GameObject Spawn(this GameObject gameObject, Transform parent)
+        {
+            return Object.Instantiate(gameObject, parent);
+        }
+    }
+
     public static class AudioSystem
     {
-        public static void Play(AudioClip clip, AudioOptions options)
+        public static void Play(this AudioClip clip, AudioOptions options)
         {
             GameObject source = new(clip.name);
             AudioSource audioSource = source.AddComponent<AudioSource>();
@@ -571,20 +589,20 @@ namespace MonoWaves.QoL
         public bool Loop = false;
 
         public static AudioOptions Default = new();
-        
+
         public static AudioOptions HalfVolume => new() { Volume = 0.5f };
         public static AudioOptions WithVariation => new() { Pitch = UnityEngine.Random.Range(0.9f, 1.1f) };
         public static AudioOptions HalfVolumeWithVariation => new() { Volume = 0.5f, Pitch = UnityEngine.Random.Range(0.9f, 1.1f) };
     }
 
-    public static class LayerExtensions
+    public static class ZLayerExtensions
     {
         public static int PlayerLayerMask() => LayerMask.GetMask(Const.PLAYER);
         public static int EnemyLayerMask() => LayerMask.GetMask(Const.ENEMY);
         public static int MapLayerMask() => LayerMask.GetMask(Const.MAP);
     }
 
-    public static class Collision2DExtensions
+    public static class ZCollision2DExtensions
     {
         public static bool TryGetComponent<T>(this Collision2D collision, out T component) where T : Component
         {

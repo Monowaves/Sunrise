@@ -58,6 +58,6 @@ public class PlayerRun : MonoBehaviour
             transform.position.y - PlayerBase.Singleton.BoxCollider.size.y / 2
         );
 
-        Instantiate(PlayerBase.Singleton.FootstepDust, position, Quaternion.Euler(0, PlayerBase.Singleton.Facing == PlayerFacing.Left ? 180 : 0, 0));
+        PlayerBase.Singleton.FootstepDust.Spawn(position, Quaternion.Euler(0, PlayerBase.Singleton.Facing == PlayerFacing.Left ? 180 : 0, 0));
     }
 }
