@@ -569,6 +569,12 @@ namespace MonoWaves.QoL
         public float Volume = 1f;
         public float Pitch = 1f;
         public bool Loop = false;
+
+        public static AudioOptions Default = new();
+        
+        public static AudioOptions HalfVolume => new() { Volume = 0.5f };
+        public static AudioOptions WithVariation => new() { Pitch = UnityEngine.Random.Range(0.9f, 1.1f) };
+        public static AudioOptions HalfVolumeWithVariation => new() { Volume = 0.5f, Pitch = UnityEngine.Random.Range(0.9f, 1.1f) };
     }
 
     public static class LayerExtensions

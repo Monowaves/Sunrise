@@ -50,6 +50,6 @@ public class PlayerRun : MonoBehaviour
 
     public void PlayFootstep()
     {
-        AudioSystem.Play(PlayerBase.Singleton.Footsteps, new() { Volume = 0.56f, Pitch = UnityEngine.Random.Range(0.9f, 1.1f) });
+        AudioSystem.Play(PlayerBase.Singleton.Footsteps, AudioOptions.HalfVolumeWithVariation);
     }
 }

@@ -64,6 +64,8 @@ public class PlayerJump : MonoBehaviour
         IsJumping = true;
         IsJumpReleased = false;
 
+        AudioSystem.Play(PlayerBase.Singleton.JumpSounds, AudioOptions.HalfVolumeWithVariation);
+
         PlayerBase.Singleton.IsJumping = true;
     }
 
