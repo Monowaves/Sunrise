@@ -29,6 +29,7 @@ public class PlayerBase : MonoBehaviour
 
     [field: Header("Audio")]
     [field: SerializeField] public AudioClip[] Footsteps { get; private set; }
+    [field: SerializeField] public AudioClip[] LandingSounds { get; private set; }
     [field: SerializeField] public AudioClip JumpSound { get; private set; }
     [field: SerializeField] public AudioClip GroundSlamSound { get; private set; }
 

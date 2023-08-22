@@ -32,6 +32,7 @@ public class PlayerJump : MonoBehaviour
             if (PlayerBase.Singleton.IsFalling)
             {
                 PlayerBase.Singleton.IsFalling = false;
+                AudioSystem.Play(PlayerBase.Singleton.LandingSounds, AudioOptions.HalfVolumeWithVariation);
             }
         }
 

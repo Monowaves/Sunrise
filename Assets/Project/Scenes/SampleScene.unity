@@ -5954,6 +5954,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aa3374c9b399757479f886ec0d5aa5ea, type: 3}
   - {fileID: 8300000, guid: 278adc348ff65944e92043dbf55ce707, type: 3}
   - {fileID: 8300000, guid: bcd0e1e4beb7e6c469f6c241156705e4, type: 3}
+  <LandingSounds>k__BackingField:
+  - {fileID: 8300000, guid: ea3157b2e95cca44d821af1b94c92497, type: 3}
+  - {fileID: 8300000, guid: d9ab03972b181e840b88d30a3a0bc145, type: 3}
   <JumpSound>k__BackingField: {fileID: 8300000, guid: 3fc1fec96e66d56409b2176e914b8d3e, type: 3}
   <GroundSlamSound>k__BackingField: {fileID: 8300000, guid: e4981a4ede087cf41bde1ee00f27da6e, type: 3}
   <FootstepDust>k__BackingField: {fileID: 7756309084100531237, guid: 99c0baa20f6550e4192a2f50fcafaf17, type: 3}
