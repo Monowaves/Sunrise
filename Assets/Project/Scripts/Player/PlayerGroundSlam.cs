@@ -1,5 +1,4 @@
 using System.Collections;
-using MonoWaves.QoL;
 using UnityEngine;
 
 public class PlayerGroundSlam : MonoBehaviour
@@ -7,6 +6,8 @@ public class PlayerGroundSlam : MonoBehaviour
     [Header("Properties")]
     [SerializeField, Min(0)] private float _airTime = 0.5f;
     [SerializeField, Min(0)] private float _dashSpeed;
+    [SerializeField, Min(0)] private float _slamDamage;
+    [SerializeField] private BoxChecker _slamChecker;
 
     [field: Header("Info")]
     [field: SerializeField, ReadOnly] public bool IsDashing { get; private set;}
@@ -37,8 +38,27 @@ public class PlayerGroundSlam : MonoBehaviour
             yield return null;
         }
 
+        Vector2 position = transform.position;
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(position + _slamChecker.Offset, _slamChecker.Size, 0f, _slamChecker.Mask); 
+
+        foreach (var other in colliders)
+        {
+            if (other.TryGetComponent(out EnemyBase enemy))
+            {
+                enemy.Hit(_slamDamage);
+            }
+        }
+
         IsDashing = false;
         PlayerBase.Singleton.BlockMoveInputs = false;
         PlayerBase.Singleton.BlockGravity = false;
+    }
+
+    private void OnDrawGizmos() 
+    {
+        Vector2 position = transform.position;
+
+        Gizmos.color = _slamChecker.GizmosColor;
+        Gizmos.DrawWireCube(position + _slamChecker.Offset, _slamChecker.Size);
     }
 }

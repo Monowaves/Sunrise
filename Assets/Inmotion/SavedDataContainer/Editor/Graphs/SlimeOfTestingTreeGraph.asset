@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f86dca32b465a4fa65e09c16f94dcf, type: 3}
+  m_Name: SlimeOfTestingTreeGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: SlimeOfTestingTree
+  <Groups>k__BackingField: []
+  <MotionNodes>k__BackingField:
+  - <ID>k__BackingField: 489a8f93-d688-495e-8eeb-8a6f0e4b6013
+    <Name>k__BackingField: Jump
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 403, y: -73}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 8467a3533c1b1594189469e777e1e840, type: 2}
+    <NextNodeID>k__BackingField: 34f3e29c-49d7-48c1-b54b-a87e2e41102d
+  - <ID>k__BackingField: 0e0e2397-e48c-495f-95ad-d26743910800
+    <Name>k__BackingField: Idle
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 403, y: 89}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 2e190fe8269051641a84727b71071392, type: 2}
+    <NextNodeID>k__BackingField: 34f3e29c-49d7-48c1-b54b-a87e2e41102d
+  <BranchNodes>k__BackingField:
+  - <ID>k__BackingField: a52eaad0-56d2-48c8-9502-928a598f1230
+    <Name>k__BackingField: JumpCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 99, y: 0}
+    <Condition>k__BackingField: isJumping = true
+    <TrueNodeID>k__BackingField: 489a8f93-d688-495e-8eeb-8a6f0e4b6013
+    <FalseNodeID>k__BackingField: 0e0e2397-e48c-495f-95ad-d26743910800
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 34f3e29c-49d7-48c1-b54b-a87e2e41102d
+    <Name>k__BackingField: Return
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 678, y: 15}
+  <AllNodes>k__BackingField:
+  - <ID>k__BackingField: a52eaad0-56d2-48c8-9502-928a598f1230
+    <Name>k__BackingField: JumpCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 99, y: 0}
+  - <ID>k__BackingField: 489a8f93-d688-495e-8eeb-8a6f0e4b6013
+    <Name>k__BackingField: Jump
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 403, y: -73}
+  - <ID>k__BackingField: 0e0e2397-e48c-495f-95ad-d26743910800
+    <Name>k__BackingField: Idle
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 403, y: 89}
+  - <ID>k__BackingField: 34f3e29c-49d7-48c1-b54b-a87e2e41102d
+    <Name>k__BackingField: Return
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 678, y: 15}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - JumpCheck
+  - Jump
+  - Idle
+  - Return
+  <OldGroupedNodeNames>k__BackingField:
+    m_keys: []
+  <RootPosition>k__BackingField: {x: 0, y: 0}
+  <RootNextID>k__BackingField: a52eaad0-56d2-48c8-9502-928a598f1230
+  <RootNext>k__BackingField: {fileID: 11400000, guid: e49b4ee261b5b824aa8fd5c17cf2ba5c, type: 2}

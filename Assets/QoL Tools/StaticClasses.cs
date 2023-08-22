@@ -570,6 +570,26 @@ namespace MonoWaves.QoL
         public float Pitch = 1f;
         public bool Loop = false;
     }
+
+    public static class LayerExtensions
+    {
+        public static int PlayerLayerMask() => LayerMask.GetMask(Const.PLAYER);
+        public static int EnemyLayerMask() => LayerMask.GetMask(Const.ENEMY);
+        public static int MapLayerMask() => LayerMask.GetMask(Const.MAP);
+    }
+
+    public static class Collision2DExtensions
+    {
+        public static bool TryGetComponent<T>(this Collision2D collision, out T component) where T : Component
+        {
+            return collision.transform.TryGetComponent(out component);
+        }
+
+        public static T GetComponent<T>(this Collision2D collision) where T : Component
+        {
+            return (T)collision.transform.GetComponent(typeof(T));
+        }
+    }
 }
 
 public enum MouseCode

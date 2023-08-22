@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using MonoWaves.QoL;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class PlayerBase : MonoBehaviour
     [Header("Physics")]
     [SerializeField, Min(0)] private float _gravityScale = 1f;
     [SerializeField, Min(0)] private float _fallGravityScale = 1f;
+    [SerializeField, Min(0)] private Vector2 _knockbackForce;
     [field: SerializeField, Min(0)] public float FrictionAmount { get; private set;}
     [SerializeField, Min(0)] private float _maxSlopeAngle = 45f;
     [SerializeField] private PhysicsMaterial2D _material;
@@ -45,6 +47,7 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool ShiftPressed { get; private set; }
     [field: SerializeField, ReadOnly] public bool CtrlPressed { get; private set; }
     [field: SerializeField, ReadOnly] public bool BlockMoveInputs { get; set; }
+    [field: SerializeField, ReadOnly] public bool BlockAllInputs { get; set; }
 
     [field: SerializeField, ReadOnly] public bool IsRunning { get; set; }
     [field: SerializeField, ReadOnly] public bool IsFalling { get; set; }
@@ -119,6 +122,19 @@ public class PlayerBase : MonoBehaviour
 
     private void Inputs()
     {
+        if (BlockAllInputs)
+        {
+            HorizontalAxis = 0;
+            IsMoving = false;
+            WantToJump = false;
+            JumpReleased = false;
+            IsShifting = false;
+            ShiftPressed = false;
+            CtrlPressed = false;
+
+            return;
+        }
+
         HorizontalAxis = BlockMoveInputs ? 0 : Keyboard.AxisFrom(KeyCode.A, KeyCode.D);
 
         IsMoving = HorizontalAxis != 0;
@@ -188,6 +204,33 @@ public class PlayerBase : MonoBehaviour
 
         Gizmos.color = _rightSlopeChecker.Color;
         Gizmos.DrawLine(position + _rightSlopeChecker.Offset, _rightSlopeChecker.Direction * _rightSlopeChecker.Distance + position + _rightSlopeChecker.Offset);
+    }
+
+    public void Knockback(float direction)
+    {
+        StartCoroutine(nameof(CO_Knockback), direction);
+    }
+
+    private IEnumerator CO_Knockback(float direction)
+    {
+        BlockAllInputs = true;
+        Rigidbody.velocity = Vector2.zero;
+
+        Rigidbody.AddForce(Vector2.up * _knockbackForce.y, ForceMode2D.Impulse);
+
+        float remain = 1f;
+        while (remain > 0)
+        {
+            remain -= Time.deltaTime * 3;
+
+            Rigidbody.AddForce(new Vector2(_knockbackForce.x * direction, 0) * remain, ForceMode2D.Impulse);
+
+            yield return null;
+        }
+        
+        yield return new WaitUntil(() => IsTouchingGround);
+
+        BlockAllInputs = false;
     }
 }
 
