@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public static PlayerHealth Singleton { get; private set; }
+
     [Header("Properties")]
     [SerializeField] private TMP_Text _healthText;
     [SerializeField] private float _startHealth = 100f;
@@ -19,6 +21,8 @@ public class PlayerHealth : MonoBehaviour
         Health = _startHealth;
         StopInvincible();
         OnHealthChanged();
+
+        Singleton = this;
     }
 
     public void Hit(float damage)
@@ -51,13 +55,13 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void StartInvincible()
+    public void StartInvincible()
     {
         Invincible = true;
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer(Const.PLAYER), LayerMask.NameToLayer(Const.ENEMY));
     }
 
-    private void StopInvincible()
+    public void StopInvincible()
     {
         Invincible = false;
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer(Const.PLAYER), LayerMask.NameToLayer(Const.ENEMY), false);

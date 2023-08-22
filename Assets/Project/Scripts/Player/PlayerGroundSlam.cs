@@ -28,6 +28,7 @@ public class PlayerGroundSlam : MonoBehaviour
         IsDashing = true;
         PlayerBase.Singleton.BlockMoveInputs = true;
         PlayerBase.Singleton.BlockGravity = true;
+        PlayerHealth.Singleton.StartInvincible();
 
         _rb.velocity = Vector2.zero;
 
@@ -55,6 +56,7 @@ public class PlayerGroundSlam : MonoBehaviour
         IsDashing = false;
         PlayerBase.Singleton.BlockMoveInputs = false;
         PlayerBase.Singleton.BlockGravity = false;
+        PlayerHealth.Singleton.StopInvincible();
     }
 
     private void OnDrawGizmos() 
