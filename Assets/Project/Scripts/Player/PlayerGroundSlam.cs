@@ -52,6 +52,7 @@ public class PlayerGroundSlam : MonoBehaviour
         }
 
         Instantiate(_slamEffect, transform.position + Vector3.down, Quaternion.identity);
+        PlayerCamera.Singleton.Shake(1f);
 
         IsDashing = false;
         PlayerBase.Singleton.BlockMoveInputs = false;
