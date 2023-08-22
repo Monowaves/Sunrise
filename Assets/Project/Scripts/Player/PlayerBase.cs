@@ -28,6 +28,7 @@ public class PlayerBase : MonoBehaviour
 
     [field: Header("Audio")]
     [field: SerializeField] public AudioClip[] Footsteps { get; private set; }
+    [field: SerializeField] public AudioClip[] GroundSlamSounds { get; private set; }
 
     [field: Header("Info")]
     [field: SerializeField, ReadOnly] public bool BlockGravity { get; set; }

@@ -1,5 +1,7 @@
 using System.Collections;
+using MonoWaves.QoL;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerGroundSlam : MonoBehaviour
 {
@@ -53,6 +55,7 @@ public class PlayerGroundSlam : MonoBehaviour
 
         Instantiate(_slamEffect, transform.position + Vector3.down, Quaternion.identity);
         PlayerCamera.Singleton.Shake(1f);
+        AudioSystem.Play(PlayerBase.Singleton.GroundSlamSounds, new AudioOptions() { Volume = 0.4f, Pitch = Random.Range(0.9f, 1.1f) });
 
         IsDashing = false;
         PlayerBase.Singleton.BlockMoveInputs = false;
