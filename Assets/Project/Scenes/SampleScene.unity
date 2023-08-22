@@ -3421,7 +3421,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1136529548}
           m_TargetAssemblyTypeName: PlayerRun, Assembly-CSharp
-          m_MethodName: PlayFootstep
+          m_MethodName: Footstep
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4589,7 +4589,6 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 64
     <GizmosColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-  _slamEffect: {fileID: 157749718575219723, guid: 9ff40c6795b2a424b8b7a21385ff42d4, type: 3}
   <IsDashing>k__BackingField: 0
 --- !u!114 &1136529556
 MonoBehaviour:
@@ -4647,6 +4646,7 @@ MonoBehaviour:
       m_Bits: 128
     Color: {r: 1, g: 0.5641355, b: 0, a: 1}
   <Rigidbody>k__BackingField: {fileID: 1136529546}
+  <BoxCollider>k__BackingField: {fileID: 1136529547}
   <Footsteps>k__BackingField:
   - {fileID: 8300000, guid: bc0a2855bac55c24eae59988dd9e328c, type: 3}
   - {fileID: 8300000, guid: 655296cc6b7116d4c815388ec58326fb, type: 3}
@@ -4657,6 +4657,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3fc1fec96e66d56409b2176e914b8d3e, type: 3}
   <GroundSlamSounds>k__BackingField:
   - {fileID: 8300000, guid: e4981a4ede087cf41bde1ee00f27da6e, type: 3}
+  <FootstepDust>k__BackingField: {fileID: 7756309084100531237, guid: 99c0baa20f6550e4192a2f50fcafaf17, type: 3}
+  <SlamEffect>k__BackingField: {fileID: 157749718575219723, guid: 9ff40c6795b2a424b8b7a21385ff42d4, type: 3}
   <BlockGravity>k__BackingField: 0
   <IsTouchingGround>k__BackingField: 0
   <IsTouchingLeftWall>k__BackingField: 0

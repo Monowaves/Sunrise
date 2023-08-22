@@ -25,11 +25,16 @@ public class PlayerBase : MonoBehaviour
 
     [field: Header("Components")]
     [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
+    [field: SerializeField] public BoxCollider2D BoxCollider { get; private set; }
 
     [field: Header("Audio")]
     [field: SerializeField] public AudioClip[] Footsteps { get; private set; }
     [field: SerializeField] public AudioClip[] JumpSounds { get; private set; }
     [field: SerializeField] public AudioClip[] GroundSlamSounds { get; private set; }
+
+    [field: Header("Particles")]
+    [field: SerializeField] public GameObject FootstepDust { get; private set; }
+    [field: SerializeField] public GameObject SlamEffect { get; private set; }
 
     [field: Header("Info")]
     [field: SerializeField, ReadOnly] public bool BlockGravity { get; set; }
@@ -71,11 +76,12 @@ public class PlayerBase : MonoBehaviour
 
         if (TryGetComponent(out BoxCollider2D bc))
         {
-            bc.isTrigger = false;
-            bc.sharedMaterial = _material;
-            bc.offset = Vector2.up * -0.075f;
-            bc.size = new Vector2(0.9f, 1.85f);
-            bc.edgeRadius = 0f;
+            BoxCollider = bc;
+            BoxCollider.isTrigger = false;
+            BoxCollider.sharedMaterial = _material;
+            BoxCollider.offset = Vector2.up * -0.075f;
+            BoxCollider.size = new Vector2(0.9f, 1.85f);
+            BoxCollider.edgeRadius = 0f;
         }
     }
 

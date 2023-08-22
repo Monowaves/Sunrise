@@ -10,7 +10,6 @@ public class PlayerGroundSlam : MonoBehaviour
     [SerializeField, Min(0)] private float _dashSpeed;
     [SerializeField, Min(0)] private float _slamDamage;
     [SerializeField] private BoxChecker _slamChecker;
-    [SerializeField] private GameObject _slamEffect;
 
     [field: Header("Info")]
     [field: SerializeField, ReadOnly] public bool IsDashing { get; private set;}
@@ -53,7 +52,7 @@ public class PlayerGroundSlam : MonoBehaviour
             }
         }
 
-        Instantiate(_slamEffect, transform.position + Vector3.down, Quaternion.identity);
+        Instantiate(PlayerBase.Singleton.SlamEffect, transform.position + Vector3.down, Quaternion.identity);
         PlayerCamera.Singleton.Shake(1f);
         AudioSystem.Play(PlayerBase.Singleton.GroundSlamSounds, AudioOptions.HalfVolumeWithVariation);
 

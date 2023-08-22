@@ -48,8 +48,16 @@ public class PlayerRun : MonoBehaviour
         }
     }
 
-    public void PlayFootstep()
+    public void Footstep()
     {
         AudioSystem.Play(PlayerBase.Singleton.Footsteps, AudioOptions.HalfVolumeWithVariation);
+
+        Vector3 position = new Vector2
+        (
+            transform.position.x,
+            transform.position.y - PlayerBase.Singleton.BoxCollider.size.y / 2
+        );
+
+        Instantiate(PlayerBase.Singleton.FootstepDust, position, Quaternion.Euler(0, PlayerBase.Singleton.Facing == PlayerFacing.Left ? 180 : 0, 0));
     }
 }
