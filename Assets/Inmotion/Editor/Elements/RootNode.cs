@@ -1,9 +1,10 @@
-using InMotion.Utilities;
+using InMotion.EditorOnly.Utilities;
+using InMotion.EditorOnly.Windows;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace InMotion.GraphElements
+namespace InMotion.EditorOnly.GraphElements
 {
     public class RootNode : Node
     {

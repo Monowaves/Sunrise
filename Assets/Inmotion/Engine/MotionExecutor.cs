@@ -4,20 +4,19 @@ using UnityEngine;
 using System.Collections.Generic;
 using InMotion.Utilities;
 using UnityEngine.Events;
+using InMotion.SO;
 
-namespace InMotion.Tools.RuntimeScripts
+namespace InMotion.Engine
 {
     public class MotionExecutor : MonoBehaviour
     {
-        [field: Header("Properties")]
-        [field: SerializeField] public SpriteRenderer Target { get; private set;}
-        [field: SerializeField] public MotionTree TargetMotionTree { get; private set; }
-        [field: SerializeField, Min(1)] public int GlobalFramerate { get; private set; } = 10;
+        public MotionTree MotionTree;
+        
+        public SpriteRenderer Target;
+        public int Framerate = 10;
 
-        [field: Header("Callbacks")]
-        [field: SerializeField] public List<CallbackExecutor> Callbacks { get; private set; } = new();
+        public Callbacks Callbacks = new();
 
-        [field: Header("Info")]
         [field: SerializeField, ReadOnly] public int MotionFrame { get; private set; }
         [field: SerializeField, ReadOnly] public int MotionFramerate { get; private set; }
         [field: SerializeField, ReadOnly] public Vector2Int Direction { get; private set; }
@@ -46,9 +45,9 @@ namespace InMotion.Tools.RuntimeScripts
 
         private void Start() 
         {
-            if (!TargetMotionTree) throw new Exception("Target motion tree is null!");
+            if (!MotionTree) throw new Exception("Target motion tree is null!");
 
-            if (TargetMotionTree.SavedData != null)
+            if (MotionTree.SavedData != null)
             {
                 _saveDataExisting = true;
 
@@ -58,7 +57,7 @@ namespace InMotion.Tools.RuntimeScripts
 
         private void Update() 
         {
-            if (!_saveDataExisting) throw new Exception("There is nothing to execute in " + TargetMotionTree.name);
+            if (!_saveDataExisting) throw new Exception("There is nothing to execute in " + MotionTree.name);
 
             if (_terminated) return;
 
@@ -74,9 +73,9 @@ namespace InMotion.Tools.RuntimeScripts
 
         public void SetParameter(string key, object value)
         {
-            if (TargetMotionTree.Parameters[key] != value.ToString())
+            if (MotionTree.Parameters[key] != value.ToString())
             {
-                TargetMotionTree.Parameters[key] = value.ToString();
+                MotionTree.Parameters[key] = value.ToString();
                 Restart();
             }
         }
@@ -89,7 +88,7 @@ namespace InMotion.Tools.RuntimeScripts
             _isFinishedMotion = false;
             MotionFrame = 0;
 
-            MotionFramerate = target.UseCustomFramerate ? target.Framerate : GlobalFramerate;
+            MotionFramerate = target.UseCustomFramerate ? target.Framerate : Framerate;
         }
 
         public void SetDirection(Vector2Int direction) => Direction = direction;
@@ -124,13 +123,13 @@ namespace InMotion.Tools.RuntimeScripts
         {
             if (_currentNode == null)
             {
-                if (TargetMotionTree.SavedData.RootNext == null)
+                if (MotionTree.SavedData.RootNext == null)
                 {
                     Terminate();
                     return;
                 }
 
-                _currentNode = TargetMotionTree.SavedData.RootNext;
+                _currentNode = MotionTree.SavedData.RootNext;
             }
             else if (_currentNode is MotionNodeScriptableObject)
             {
@@ -151,7 +150,7 @@ namespace InMotion.Tools.RuntimeScripts
             }
             else if (_currentNode is BranchNodeScriptableObject typedNode)
             {
-                if (Conditioner.StringToCondition(typedNode.Condition, TargetMotionTree.RegisteredParameters.ToArray()))
+                if (Conditioner.StringToCondition(typedNode.Condition, MotionTree.RegisteredParameters.ToArray()))
                 {
                     if (typedNode.True == null)
                     {
@@ -200,14 +199,11 @@ namespace InMotion.Tools.RuntimeScripts
 
                 Target.sprite = framesContainer[MotionFrame].Sprites[dirIdx];
 
-                if (!string.IsNullOrEmpty(framesContainer[MotionFrame].Callback))
+                string callback = framesContainer[MotionFrame].Callback;
+                if (!string.IsNullOrEmpty(callback))
                 {
-                    int callbackExecutorIndex = Callbacks.FindIndex(callbackExecutor => callbackExecutor.Callback == framesContainer[MotionFrame].Callback);
-
-                    if (callbackExecutorIndex != -1)
-                    {
-                        Callbacks[callbackExecutorIndex].Action.Invoke();
-                    }
+                    if (Callbacks.ContainsKey(callback))
+                        Callbacks[callback].Invoke();
                 }
 
                 if (Target.sprite == framesContainer.First().Sprites[dirIdx])

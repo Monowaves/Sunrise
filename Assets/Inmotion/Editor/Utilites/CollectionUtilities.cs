@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace InMotion.Utilities
+namespace InMotion.EditorOnly.Utilities
 {
     public static class CollectionUtility
     {

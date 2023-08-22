@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace InMotion.Data.Error
+namespace InMotion.EditorOnly.Data.Error
 {
     public class InMotionErrorData
     {

@@ -1,9 +1,11 @@
+using InMotion.EditorOnly.Utilities;
+using InMotion.EditorOnly.Windows;
+using InMotion.Utilities;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
-using InMotion.Utilities;
 
-namespace InMotion.GraphElements
+namespace InMotion.EditorOnly.GraphElements
 {
     public class BranchNode : MotionTreeNode
     {

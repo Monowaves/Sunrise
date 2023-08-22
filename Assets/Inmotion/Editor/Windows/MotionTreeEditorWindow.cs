@@ -3,10 +3,11 @@ using UnityEngine.UIElements;
 using UnityEditor.Callbacks;
 using System;
 using UnityEngine;
-using InMotion.Utilities;
 using UnityEditor.UIElements;
+using InMotion.EditorOnly.Utilities;
+using InMotion.Engine;
 
-namespace InMotion
+namespace InMotion.EditorOnly.Windows
 {
     public class MotionTreeEditorWindow : EditorWindow
     {

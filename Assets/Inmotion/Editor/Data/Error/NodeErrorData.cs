@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using InMotion.GraphElements;
-using UnityEditor.Experimental.GraphView;
+using InMotion.EditorOnly.GraphElements;
 
-namespace InMotion.Data.Error
+namespace InMotion.EditorOnly.Data.Error
 {
     public class NodeErrorData
     {

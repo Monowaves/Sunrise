@@ -1,15 +1,18 @@
 using InMotion.Enumerations;
 using UnityEngine;
 
-[System.Serializable]
-public class NodeScriptableObject : ScriptableObject
+namespace InMotion.SO
 {
-    [field: SerializeField] public string NodeName { get; set; }
-    [field: SerializeField] public InMotionType NodeType { get; set; }
-
-    public void Initialize(string nodeName, InMotionType type)
+    [System.Serializable]
+    public class NodeScriptableObject : ScriptableObject
     {
-        NodeName = nodeName;
-        NodeType = type;
+        [field: SerializeField] public string NodeName { get; set; }
+        [field: SerializeField] public InMotionType NodeType { get; set; }
+    
+        public void Initialize(string nodeName, InMotionType type)
+        {
+            NodeName = nodeName;
+            NodeType = type;
+        }
     }
 }

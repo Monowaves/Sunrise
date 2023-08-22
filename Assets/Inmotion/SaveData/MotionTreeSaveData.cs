@@ -47,7 +47,7 @@ namespace InMotion.Data.Save
     [Serializable]
     public class MotionNodeSaveData : MotionTreeNodeSaveData
     {
-        [field: SerializeField] public Motion Motion { get; set; } 
+        [field: SerializeField] public Engine.Motion Motion { get; set; } 
         [field: SerializeField] public string NextNodeID { get; set; } 
     }
 

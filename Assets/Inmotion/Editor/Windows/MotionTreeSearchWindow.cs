@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using InMotion.Enumerations;
-using InMotion.GraphElements;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-namespace InMotion
+namespace InMotion.EditorOnly.Windows
 {
     public class MotionTreeSearchWindow : ScriptableObject, ISearchWindowProvider
     {

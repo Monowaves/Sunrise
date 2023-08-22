@@ -1,15 +1,16 @@
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
-using InMotion.Utilities;
+using InMotion.EditorOnly.Utilities;
+using InMotion.EditorOnly.Windows;
 
-namespace InMotion.GraphElements
+namespace InMotion.EditorOnly.GraphElements
 {
     public class MotionNode : MotionTreeNode
     {
         public Port NextPort { get; set; }
 
-        public Motion TargetMotion { get; set; }
+        public Engine.Motion TargetMotion { get; set; }
         
         private ObjectField _targetMotion;
 
@@ -28,7 +29,7 @@ namespace InMotion.GraphElements
             outputContainer.Add(NextPort);
 
             _targetMotion = InMotionElementUtility.InsertObjectField(typeof(Motion), "Target Motion", TargetMotion, onValueChanged =>
-                TargetMotion = (Motion)_targetMotion.value
+                TargetMotion = (Engine.Motion)_targetMotion.value
             );
 
             extensionContainer.Add(_targetMotion);

@@ -2,10 +2,11 @@ using InMotion.Enumerations;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
-using InMotion.Utilities;
 using System;
+using InMotion.EditorOnly.Utilities;
+using InMotion.EditorOnly.Windows;
 
-namespace InMotion.GraphElements
+namespace InMotion.EditorOnly.GraphElements
 {
     public class MotionTreeNode : Node
     {

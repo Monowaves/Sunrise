@@ -1,8 +1,11 @@
 using UnityEngine;
 
-[System.Serializable]
-public class Frame
+namespace InMotion.Engine
 {
-    public string Callback;
-    public Sprite[] Sprites = new Sprite[8];
+    [System.Serializable]
+    public class Frame
+    {
+        public string Callback;
+        public Sprite[] Sprites = new Sprite[8];
+    }
 }

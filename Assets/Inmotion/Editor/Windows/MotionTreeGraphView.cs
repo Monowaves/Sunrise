@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using InMotion.Enumerations;
-using InMotion.GraphElements;
+using InMotion.EditorOnly.GraphElements;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
-using InMotion.Data.Error;
+using InMotion.EditorOnly.Data.Error;
 using System.Linq;
 
-namespace InMotion
+namespace InMotion.EditorOnly.Windows
 {
     public class MotionTreeGraphView : GraphView
     {
@@ -542,6 +542,11 @@ namespace InMotion
             _groupedNodes.Clear();
 
             RepeatedNamesAmount = 0;
+        }
+
+        internal void RemoveGroupedNode(MotionTreeNode motionTreeNode, MotionTreeGroup group)
+        {
+            throw new NotImplementedException();
         }
     }
 }

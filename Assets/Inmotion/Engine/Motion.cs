@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace InMotion
+namespace InMotion.Engine
 {   
     [System.Serializable]
     [CreateAssetMenu(menuName = "InMotion/Motion")]

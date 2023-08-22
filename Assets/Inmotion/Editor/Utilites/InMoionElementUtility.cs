@@ -3,7 +3,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace InMotion.Utilities
+namespace InMotion.EditorOnly.Utilities
 {
     public static class InMotionElementUtility
     {

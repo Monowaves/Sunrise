@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using InMotion.Data.Save;
 
-namespace InMotion
+namespace InMotion.Engine
 {
     [Serializable]
     [CreateAssetMenu(menuName = "InMotion/Motion Tree")]
