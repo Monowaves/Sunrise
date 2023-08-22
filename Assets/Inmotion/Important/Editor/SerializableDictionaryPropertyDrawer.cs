@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Reflection;
 using System;
+using UnityEngine.Events;
 
 [CustomPropertyDrawer(typeof(SerializableDictionaryBase), true)]
 #if NET_4_6 || NET_STANDARD_2_0
@@ -264,11 +265,11 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		float valuePropertyHeight = EditorGUI.GetPropertyHeight(valueProperty);
 		var valuePosition = linePosition;
 		valuePosition.height = valuePropertyHeight;
-		valuePosition.xMin += labelWidth;
-		EditorGUIUtility.labelWidth = valuePosition.width * labelWidthRelative;
-		EditorGUI.indentLevel--;
-		EditorGUI.PropertyField(valuePosition, valueProperty, TempContent(valueLabel), true);
-		EditorGUI.indentLevel++;
+        valuePosition.xMin += labelWidth;
+        EditorGUIUtility.labelWidth = valuePosition.width * labelWidthRelative;
+        EditorGUI.indentLevel--;
+        EditorGUI.PropertyField(valuePosition, valueProperty, TempContent(valueLabel), true);
+        EditorGUI.indentLevel++;
 
 		EditorGUIUtility.labelWidth = labelWidth;
 
@@ -283,12 +284,13 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		var keyPosition = linePosition;
 		keyPosition.height = keyPropertyHeight;
 		keyPosition.width = labelWidth - IndentWidth;
-		EditorGUI.PropertyField(keyPosition, keyProperty, GUIContent.none, true);
 
 		float valuePropertyHeight = EditorGUI.GetPropertyHeight(valueProperty);
-		var valuePosition = linePosition;
-		valuePosition.height = valuePropertyHeight;
-		EditorGUI.PropertyField(valuePosition, valueProperty, GUIContent.none, true);
+        float valuePropertyWidth = EditorGUIUtility.currentViewWidth - keyPosition.width - IndentWidth * 3.5f;
+		var valuePosition = new Rect(EditorGUIUtility.currentViewWidth - valuePropertyWidth - IndentWidth * 1.5f, linePosition.y, valuePropertyWidth, valuePropertyHeight);
+
+        EditorGUI.PropertyField(valuePosition, valueProperty, GUIContent.none, true);
+        EditorGUI.PropertyField(keyPosition, keyProperty, GUIContent.none, true);
 
 		EditorGUIUtility.labelWidth = labelWidth;
 

@@ -253,7 +253,9 @@ public class SerializableDictionary<TKey, TValue, TValueStorage> : SerializableD
 
 	protected override void SetValue(TValueStorage[] storage, int i, TValue value)
 	{
-		storage[i] = new TValueStorage();
-		storage[i].data = value;
-	}
+        storage[i] = new TValueStorage
+        {
+            data = value
+        };
+    }
 }

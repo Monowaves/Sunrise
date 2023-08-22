@@ -15,6 +15,8 @@ namespace InMotion.EditorOnly.Drawers
         private SerializedProperty _target;
         private SerializedProperty _framerate;
         private SerializedProperty _callbacks;
+
+        private string _newCallbackName;
         
         private void OnEnable() 
         {
@@ -59,20 +61,7 @@ namespace InMotion.EditorOnly.Drawers
     
         private void DrawCallbacks()
         {
-            foreach (var callback in _current.Callbacks)
-            {
-                EditorGUILayout.TextField(callback.Key);
-            }
-    
-            if (GUILayout.Button("Add"))
-            {
-                _current.Callbacks.Add("new callback", new UnityEvent());
-            }
-    
-            if (GUILayout.Button("Remove"))
-            {
-                _current.Callbacks.Remove(_current.Callbacks.Last().Key);
-            }
+            EditorGUILayout.PropertyField(_callbacks, EditorStyles.boldFont);
         }
     }
 }

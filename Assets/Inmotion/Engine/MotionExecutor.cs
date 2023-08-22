@@ -15,12 +15,12 @@ namespace InMotion.Engine
         public SpriteRenderer Target;
         public int Framerate = 10;
 
-        public Callbacks Callbacks = new();
+        public SerializableDictionary<string, UnityEvent> Callbacks = new();
 
-        [field: SerializeField, ReadOnly] public int MotionFrame { get; private set; }
-        [field: SerializeField, ReadOnly] public int MotionFramerate { get; private set; }
-        [field: SerializeField, ReadOnly] public Vector2Int Direction { get; private set; }
-        [field: SerializeField, ReadOnly] public int VariantIndex { get; private set; }
+        public int MotionFrame { get; private set; }
+        public int MotionFramerate { get; private set; }
+        public Vector2Int Direction { get; private set; }
+        public int VariantIndex { get; private set; }
 
         private float _updateFrametime;
 
@@ -230,8 +230,6 @@ namespace InMotion.Engine
         }
     }
 }
-
-public class ReadOnlyAttribute : PropertyAttribute {}
 
 [Serializable]
 public class CallbackExecutor

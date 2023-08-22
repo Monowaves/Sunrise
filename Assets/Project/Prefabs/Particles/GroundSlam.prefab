@@ -19654,10 +19654,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc65a4d205b6254a918920d644c8857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Target>k__BackingField: {fileID: 7112877875627575776}
-  <TargetMotionTree>k__BackingField: {fileID: 11400000, guid: dbe3d9b1bcd99f546b417e9e36ac391d, type: 2}
-  <GlobalFramerate>k__BackingField: 30
-  <Callbacks>k__BackingField: []
+  MotionTree: {fileID: 11400000, guid: dbe3d9b1bcd99f546b417e9e36ac391d, type: 2}
+  Target: {fileID: 7112877875627575776}
+  Framerate: 30
+  Callbacks:
+    m_keys: []
+    m_values: []
   <MotionFrame>k__BackingField: 0
   <MotionFramerate>k__BackingField: 0
   <Direction>k__BackingField: {x: 0, y: 0}
