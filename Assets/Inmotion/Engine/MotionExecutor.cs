@@ -15,7 +15,7 @@ namespace InMotion.Engine
         public SpriteRenderer Target;
         public int Framerate = 10;
 
-        public SerializableDictionary<string, UnityEvent> Callbacks = new();
+        public InMotionDictionary<string, UnityEvent> Callbacks = new();
 
         public int MotionFrame { get; private set; }
         public int MotionFramerate { get; private set; }

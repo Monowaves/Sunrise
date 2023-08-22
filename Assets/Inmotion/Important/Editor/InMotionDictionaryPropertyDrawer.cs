@@ -1,16 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Reflection;
 using System;
-using UnityEngine.Events;
 
-[CustomPropertyDrawer(typeof(SerializableDictionaryBase), true)]
+[CustomPropertyDrawer(typeof(InMotionDictionaryBase), true)]
 #if NET_4_6 || NET_STANDARD_2_0
 [CustomPropertyDrawer(typeof(SerializableHashSetBase), true)]
 #endif
-public class SerializableDictionaryPropertyDrawer : PropertyDrawer
+public class InMotionDictionaryPropertyDrawer : PropertyDrawer
 {
 	const string KeysFieldName = "m_keys";
 	const string ValuesFieldName = "m_values";
@@ -381,7 +379,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 
 	static Dictionary<SerializedPropertyType, PropertyInfo> s_serializedPropertyValueAccessorsDict;
 
-	static SerializableDictionaryPropertyDrawer()
+	static InMotionDictionaryPropertyDrawer()
 	{
 		Dictionary<SerializedPropertyType, string> serializedPropertyValueAccessorsNameDict = new Dictionary<SerializedPropertyType, string>() {
 			{ SerializedPropertyType.Integer, "intValue" },
@@ -593,8 +591,8 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 	}
 }
 
-[CustomPropertyDrawer(typeof(SerializableDictionaryBase.Storage), true)]
-public class SerializableDictionaryStoragePropertyDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(InMotionDictionaryBase.Storage), true)]
+public class InMotionDictionaryStoragePropertyDrawer : PropertyDrawer
 {
 	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 	{

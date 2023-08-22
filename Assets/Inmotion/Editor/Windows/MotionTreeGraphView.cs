@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using InMotion.EditorOnly.Data.Error;
 using System.Linq;
+using InMotion.Utilities;
 
 namespace InMotion.EditorOnly.Windows
 {
@@ -19,9 +20,9 @@ namespace InMotion.EditorOnly.Windows
         private MotionTreeSearchWindow _searchWindow;
         public MotionTreeEditorWindow MotionTreeWindow;
 
-        private SerializableDictionary<string, NodeErrorData> _ungroupedNodes;
-        private SerializableDictionary<Group, SerializableDictionary<string, NodeErrorData>> _groupedNodes;
-        private SerializableDictionary<string, GroupErrorData> _groups;
+        private InMotionDictionary<string, NodeErrorData> _ungroupedNodes;
+        private InMotionDictionary<Group, InMotionDictionary<string, NodeErrorData>> _groupedNodes;
+        private InMotionDictionary<string, GroupErrorData> _groups;
 
         private int _repeatedNamesAmount;
 
@@ -51,9 +52,9 @@ namespace InMotion.EditorOnly.Windows
             MotionTreeWindow = window;
             CurrentAssetPath = current;
 
-            _ungroupedNodes = new SerializableDictionary<string, NodeErrorData>();
-            _groupedNodes = new SerializableDictionary<Group, SerializableDictionary<string, NodeErrorData>>();
-            _groups = new SerializableDictionary<string, GroupErrorData>();
+            _ungroupedNodes = new InMotionDictionary<string, NodeErrorData>();
+            _groupedNodes = new InMotionDictionary<Group, InMotionDictionary<string, NodeErrorData>>();
+            _groups = new InMotionDictionary<string, GroupErrorData>();
 
             AddManipulators();
             AddGridBackground();
@@ -440,10 +441,10 @@ namespace InMotion.EditorOnly.Windows
 
             if (!_groupedNodes.ContainsKey(group))
             {
-                _groupedNodes.Add(group, new SerializableDictionary<string, NodeErrorData>());
+                _groupedNodes.Add(group, new InMotionDictionary<string, NodeErrorData>());
             }
 
-            SerializableDictionary<string, NodeErrorData> currGroupedNodes = _groupedNodes[group];
+            InMotionDictionary<string, NodeErrorData> currGroupedNodes = _groupedNodes[group];
 
             if (!currGroupedNodes.ContainsKey(nodeName))
             {

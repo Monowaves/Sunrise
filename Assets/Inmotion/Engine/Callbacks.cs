@@ -7,7 +7,7 @@ using UnityEngine.Events;
 namespace InMotion.Engine
 {
     [Serializable]
-    public class Callbacks : SerializableDictionary<string, UnityEvent>, ISerializationCallbackReceiver
+    public class Callbacks : InMotionDictionary<string, UnityEvent>, ISerializationCallbackReceiver
     {
         [SerializeField]
         public List<string> CallbacksKeys = new();

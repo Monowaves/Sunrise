@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using System;
 using InMotion.EditorOnly.Utilities;
 using InMotion.EditorOnly.Windows;
+using InMotion.Utilities;
 
 namespace InMotion.EditorOnly.GraphElements
 {

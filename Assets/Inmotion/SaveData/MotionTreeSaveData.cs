@@ -16,7 +16,7 @@ namespace InMotion.Data.Save
         [field: SerializeField] public List<MotionTreeNodeSaveData> AllNodes { get; set; }
         [field: SerializeField] public List<string> OldGroupNames { get; set; }
         [field: SerializeField] public List<string> OldUngroupedNodeNames { get; set; }
-        [field: SerializeField] public SerializableDictionary<string, List<string>> OldGroupedNodeNames { get; set; }
+        [field: SerializeField] public InMotionDictionary<string, List<string>> OldGroupedNodeNames { get; set; }
         [field: SerializeField] public Vector2 RootPosition { get; set; }
         [field: SerializeField] public string RootNextID { get; set; }
         [field: SerializeField] public NodeScriptableObject RootNext { get; set; }

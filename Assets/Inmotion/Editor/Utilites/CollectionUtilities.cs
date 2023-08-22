@@ -4,7 +4,7 @@ namespace InMotion.EditorOnly.Utilities
 {
     public static class CollectionUtility
     {
-        public static void AddItem<K, V>(this SerializableDictionary<K, List<V>> dictionary, K key, V value)
+        public static void AddItem<K, V>(this InMotionDictionary<K, List<V>> dictionary, K key, V value)
         {
             if (dictionary.ContainsKey(key))
             {

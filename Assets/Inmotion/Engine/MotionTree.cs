@@ -30,5 +30,5 @@ namespace InMotion.Engine
     }
 
     [Serializable]
-    public class MotionTreeParameters : SerializableDictionary<string, string> {}
+    public class MotionTreeParameters : InMotionDictionary<string, string> {}
 }

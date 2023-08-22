@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 
-public abstract class SerializableDictionaryBase
+public abstract class InMotionDictionaryBase
 {
 	public abstract class Storage {}
 
@@ -17,7 +17,7 @@ public abstract class SerializableDictionaryBase
 }
 
 [Serializable]
-public abstract class SerializableDictionaryBase<TKey, TValue, TValueStorage> : SerializableDictionaryBase, IDictionary<TKey, TValue>, IDictionary, ISerializationCallbackReceiver, IDeserializationCallback, ISerializable
+public abstract class InMotionDictionaryBase<TKey, TValue, TValueStorage> : InMotionDictionaryBase, IDictionary<TKey, TValue>, IDictionary, ISerializationCallbackReceiver, IDeserializationCallback, ISerializable
 {
 	Dictionary<TKey, TValue> m_dict;
 	[SerializeField]
@@ -25,12 +25,12 @@ public abstract class SerializableDictionaryBase<TKey, TValue, TValueStorage> : 
 	[SerializeField]
 	TValueStorage[] m_values;
 
-	public SerializableDictionaryBase()
+	public InMotionDictionaryBase()
 	{
 		m_dict = new Dictionary<TKey, TValue>();
 	}
 
-	public SerializableDictionaryBase(IDictionary<TKey, TValue> dict)
+	public InMotionDictionaryBase(IDictionary<TKey, TValue> dict)
 	{	
 		m_dict = new Dictionary<TKey, TValue>(dict);
 	}
@@ -200,7 +200,7 @@ public abstract class SerializableDictionaryBase<TKey, TValue, TValueStorage> : 
 
 	#region ISerializable
 
-	protected SerializableDictionaryBase(SerializationInfo info, StreamingContext context) 
+	protected InMotionDictionaryBase(SerializationInfo info, StreamingContext context) 
 	{
 		m_dict = new Dictionary<TKey, TValue>(info, context);
 	}
@@ -213,20 +213,20 @@ public abstract class SerializableDictionaryBase<TKey, TValue, TValueStorage> : 
 	#endregion
 }
 
-public static class SerializableDictionary
+public static class InMotionDictionary
 {
-	public class Storage<T> : SerializableDictionaryBase.Storage
+	public class Storage<T> : InMotionDictionaryBase.Storage
 	{
 		public T data;
 	}
 }
 
 [Serializable]
-public class SerializableDictionary<TKey, TValue> : SerializableDictionaryBase<TKey, TValue, TValue>
+public class InMotionDictionary<TKey, TValue> : InMotionDictionaryBase<TKey, TValue, TValue>
 {
-	public SerializableDictionary() {}
-	public SerializableDictionary(IDictionary<TKey, TValue> dict) : base(dict) {}
-	protected SerializableDictionary(SerializationInfo info, StreamingContext context) : base(info, context) {}
+	public InMotionDictionary() {}
+	public InMotionDictionary(IDictionary<TKey, TValue> dict) : base(dict) {}
+	protected InMotionDictionary(SerializationInfo info, StreamingContext context) : base(info, context) {}
 
 	protected override TValue GetValue(TValue[] storage, int i)
 	{
@@ -240,11 +240,11 @@ public class SerializableDictionary<TKey, TValue> : SerializableDictionaryBase<T
 }
 
 [Serializable]
-public class SerializableDictionary<TKey, TValue, TValueStorage> : SerializableDictionaryBase<TKey, TValue, TValueStorage> where TValueStorage : SerializableDictionary.Storage<TValue>, new()
+public class InMotionDictionary<TKey, TValue, TValueStorage> : InMotionDictionaryBase<TKey, TValue, TValueStorage> where TValueStorage : InMotionDictionary.Storage<TValue>, new()
 {
-	public SerializableDictionary() {}
-	public SerializableDictionary(IDictionary<TKey, TValue> dict) : base(dict) {}
-	protected SerializableDictionary(SerializationInfo info, StreamingContext context) : base(info, context) {}
+	public InMotionDictionary() {}
+	public InMotionDictionary(IDictionary<TKey, TValue> dict) : base(dict) {}
+	protected InMotionDictionary(SerializationInfo info, StreamingContext context) : base(info, context) {}
 
 	protected override TValue GetValue(TValueStorage[] storage, int i)
 	{

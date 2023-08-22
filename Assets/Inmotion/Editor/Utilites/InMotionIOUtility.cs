@@ -245,7 +245,7 @@ namespace InMotion.EditorOnly.Utilities
 
         private static void SaveNodes(MotionTreeSaveData graphData, NodeContainerScriptableObject nodeContainerScriptableObject)
         {
-            SerializableDictionary<string, List<string>> groupedNodesNames = new SerializableDictionary<string, List<string>>();
+            InMotionDictionary<string, List<string>> groupedNodesNames = new InMotionDictionary<string, List<string>>();
             List<string> ungroupedNodeNames = new List<string>();
             
             foreach (MotionTreeNode node in _nodes)
@@ -326,7 +326,7 @@ namespace InMotion.EditorOnly.Utilities
             }
         }
 
-        private static void UpdateOldGroupedNodes(SerializableDictionary<string, List<string>> currentGroupedNodesNames, MotionTreeSaveData graphData)
+        private static void UpdateOldGroupedNodes(InMotionDictionary<string, List<string>> currentGroupedNodesNames, MotionTreeSaveData graphData)
         {
             if (graphData.OldGroupedNodeNames != null && graphData.OldGroupedNodeNames.Count != 0)
             {
@@ -346,7 +346,7 @@ namespace InMotion.EditorOnly.Utilities
                 }
             }
 
-            graphData.OldGroupedNodeNames = new SerializableDictionary<string, List<string>>(currentGroupedNodesNames);
+            graphData.OldGroupedNodeNames = new InMotionDictionary<string, List<string>>(currentGroupedNodesNames);
         }
 
         private static void UpdateOldUngroupedNodes(List<string> currentUngroupedNodeNames, MotionTreeSaveData graphData)
