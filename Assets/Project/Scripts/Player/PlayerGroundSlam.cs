@@ -57,6 +57,8 @@ public class PlayerGroundSlam : MonoBehaviour
         IsDashing = false;
         PlayerBase.Singleton.BlockMoveInputs = false;
         PlayerBase.Singleton.BlockGravity = false;
+
+        yield return new WaitForSeconds(0.3f);
         PlayerHealth.Singleton.StopInvincible();
     }
 
