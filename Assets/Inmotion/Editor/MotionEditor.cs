@@ -1,11 +1,12 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEditor.AnimatedValues;
+using InMotion.Engine;
 
 namespace InMotion.EditorOnly.Drawers
 {
     [System.Serializable]
-    [CustomEditor(typeof(Motion))]
+    [CustomEditor(typeof(Engine.Motion))]
     public class MotionEditor : Editor
     {
         private SerializedProperty _useCustomFramerate;

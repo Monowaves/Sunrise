@@ -27,19 +27,26 @@ public class PlayerGroundSlam : MonoBehaviour
     private IEnumerator GroundSlam()
     {
         IsDashing = true;
-        PlayerBase.Singleton.BlockMoveInputs = true;
+        PlayerBase.Singleton.BlockAllInputs = true;
         PlayerBase.Singleton.BlockGravity = true;
         PlayerHealth.Singleton.StartInvincible();
 
-        _rb.velocity = Vector2.zero;
+        PlayerBase.Singleton.IsGroundSlamPrepare = true;
 
+        _rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(_airTime);
+
+        PlayerBase.Singleton.IsGroundSlamPrepare = false;
+        PlayerBase.Singleton.IsGroundSlamDash = true;
 
         while (!PlayerBase.Singleton.IsTouchingGround)
         {
             _rb.velocity = _dashSpeed * Vector2.down;
             yield return null;
         }
+
+        PlayerBase.Singleton.IsGroundSlamDash = false;
+        PlayerBase.Singleton.IsGroundStandUp = true;
 
         Vector2 position = transform.position;
         Collider2D[] colliders = Physics2D.OverlapBoxAll(position + _slamChecker.Offset, _slamChecker.Size, 0f, _slamChecker.Mask); 
@@ -57,10 +64,14 @@ public class PlayerGroundSlam : MonoBehaviour
         PlayerBase.Singleton.GroundSlamSound.Play(AudioOptions.HalfVolumeWithVariation);
 
         IsDashing = false;
-        PlayerBase.Singleton.BlockMoveInputs = false;
         PlayerBase.Singleton.BlockGravity = false;
 
         yield return new WaitForSeconds(0.3f);
+
+        PlayerBase.Singleton.BlockAllInputs = false;
+        PlayerBase.Singleton.IsGroundStandUp = false;
+
+        yield return new WaitForSeconds(0.5f);
         PlayerHealth.Singleton.StopInvincible();
     }
 

@@ -4,6 +4,7 @@ using InMotion.Engine;
 using InMotion.Utilities;
 using System.Collections.Generic;
 using System;
+using System.IO;
 
 namespace InMotion.EditorOnly.Drawers
 {
@@ -308,6 +309,37 @@ namespace InMotion.EditorOnly.Drawers
         private void IncreaseHeight(float amount)
         {
             _height += amount + 2;
+        }
+
+        [MenuItem("Assets/Create/InMotion/Motion Based on Selection", false, 0)]
+        public static void CreateYourScriptableObject()
+        {
+            if (Selection.activeObject is Variant)
+            {
+                Engine.Motion newObject = CreateInstance<Engine.Motion>();
+
+                string origin = AssetDatabase.GetAssetPath(Selection.activeObject);
+                string directory = Path.GetDirectoryName(origin);
+                string variantName = Path.GetFileName(origin);
+                string motionName = variantName.Replace("Variant", "Motion");
+                string fullPath = $"{directory}/{motionName}";
+
+                Variant current = Selection.activeObject as Variant;
+                newObject.Variants.Add(current);
+
+                if (!string.IsNullOrEmpty(fullPath))
+                {
+                    AssetDatabase.CreateAsset(newObject, fullPath);
+                    AssetDatabase.SaveAssets();
+                    AssetDatabase.Refresh();
+
+                    Selection.activeObject = newObject;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Selected object isn't a Variant");
+            }
         }
     }
 }

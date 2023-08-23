@@ -18,9 +18,15 @@ MonoBehaviour:
     - isJumping
     - isFalling
     - isWallSliding
+    - isGSPrepare
+    - isGSDash
+    - isGSStandUp
     m_values:
     - False
     - False
+    - True
+    - True
+    - True
     - True
     - True
   SavedData: {fileID: 11400000, guid: bb69fc352d5cd674bad3271a08fc0361, type: 2}

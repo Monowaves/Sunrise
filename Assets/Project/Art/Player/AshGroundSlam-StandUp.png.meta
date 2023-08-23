@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fbac8449e1ef7954c8da7a09caf60336
+guid: be5bcffff56f166418f6e10356708aca
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -110,12 +110,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AshGroundSlamStart_0
+      name: AshGroundSlam-StandUp_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 27
         height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,19 +124,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba8670588631d71428021ccd73d94894
-      internalID: -1125701518
+      spriteID: d9902c073e44fe249bfe4f27066c6354
+      internalID: -429694833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AshGroundSlamStart_1
+      name: AshGroundSlam-StandUp_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 27
         y: 0
-        width: 32
+        width: 27
         height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,19 +145,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a248130c39075a040bd52ef569439d50
-      internalID: -1594701953
+      spriteID: 4fda42cfe71422c48af03b4394d8ad79
+      internalID: 1153229307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AshGroundSlamStart_2
+      name: AshGroundSlam-StandUp_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 54
         y: 0
-        width: 32
+        width: 27
         height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,92 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4b63dfd6e347664d8ee4753fcc2ea1d
-      internalID: -1441626378
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AshGroundSlamStart_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c6f2e955bfa3e644ab0e474a91c4133f
-      internalID: 667403764
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AshGroundSlamStart_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5577d9fef921de4b93d8e6e05b95dba
-      internalID: -367511472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AshGroundSlamStart_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5b92c7c2de1588444b30045400a83bbe
-      internalID: 1014669368
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AshGroundSlamStart_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 76ad22af3d676c74f8a2e8ef4b232a50
-      internalID: 216686639
+      spriteID: d7c1aeaa65d50414da1f3291c6d750bd
+      internalID: 1964936186
       vertices: []
       indices: 
       edges: []
@@ -267,13 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AshGroundSlamStart_0: -1125701518
-      AshGroundSlamStart_1: -1594701953
-      AshGroundSlamStart_2: -1441626378
-      AshGroundSlamStart_3: 667403764
-      AshGroundSlamStart_4: -367511472
-      AshGroundSlamStart_5: 1014669368
-      AshGroundSlamStart_6: 216686639
+      AshGroundSlam-StandUp_0: -429694833
+      AshGroundSlam-StandUp_1: 1153229307
+      AshGroundSlam-StandUp_2: 1964936186
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

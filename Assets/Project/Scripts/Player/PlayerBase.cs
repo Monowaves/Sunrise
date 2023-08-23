@@ -61,6 +61,9 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool IsFalling { get; set; }
     [field: SerializeField, ReadOnly] public bool IsJumping { get; set; }
     [field: SerializeField, ReadOnly] public bool IsWallSliding { get; set; }
+    [field: SerializeField, ReadOnly] public bool IsGroundSlamPrepare { get; set; }
+    [field: SerializeField, ReadOnly] public bool IsGroundSlamDash { get; set; }
+    [field: SerializeField, ReadOnly] public bool IsGroundStandUp { get; set; }
 
     private void Awake() => Singleton = this;
 
