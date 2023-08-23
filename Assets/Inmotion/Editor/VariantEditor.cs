@@ -18,6 +18,8 @@ namespace InMotion.EditorOnly.Drawers
         private SerializedProperty _frames;
         private float _height;
         private Texture2D _frameBackground;
+
+        private bool _isLoadingSheet;
     
         private void OnEnable() 
         {
@@ -31,6 +33,8 @@ namespace InMotion.EditorOnly.Drawers
     
         public override void OnInspectorGUI() 
         {
+            if (_isLoadingSheet) return;
+
             serializedObject.Update();
     
             float inspectorWidth = EditorGUIUtility.currentViewWidth;
@@ -155,8 +159,8 @@ namespace InMotion.EditorOnly.Drawers
     
         private void LoadSheet(int drawFields)
         {
-            bool isCleared = false;
-    
+            _isLoadingSheet = true;
+
             List<Frame> output = new();
             for (int fieldIdx = 0; fieldIdx < drawFields; fieldIdx++)
             {
@@ -203,16 +207,13 @@ namespace InMotion.EditorOnly.Drawers
                 }
                 else return;
             }
-    
-            if (!isCleared)
-            {
-                ClearAll();
-                isCleared = true;
-            }
-            current.FramesContainer = output;
+
+            SetFramesContainer(output);
+
+            _isLoadingSheet = false;
         }
     
-        private void ClearAll() => current.FramesContainer.Clear();
+        private void ClearAll() => _frames.ClearArray();
     
         private void DrawField(int drawFields, int frame, int sprite)
         {
@@ -263,6 +264,8 @@ namespace InMotion.EditorOnly.Drawers
             if (frameProperty == null) return null;
             
             SerializedProperty sprites = frameProperty.FindPropertyRelative("Sprites");
+
+            if (sprites.arraySize <= field) return null;
     
             return sprites.GetArrayElementAtIndex(field).objectReferenceValue as Sprite;
         }
@@ -276,8 +279,28 @@ namespace InMotion.EditorOnly.Drawers
             if (frameProperty == null) return;
     
             SerializedProperty sprites = frameProperty.FindPropertyRelative("Sprites");
+
+            if (sprites.arraySize <= field) return;
     
             sprites.GetArrayElementAtIndex(field).objectReferenceValue = value;
+        }
+
+        private void SetFramesContainer(List<Frame> newValue)
+        {
+            _frames.ClearArray();
+
+            for (int i = 0; i < newValue.Count; i++)
+            {
+                _frames.InsertArrayElementAtIndex(i);
+
+                SerializedProperty fields = _frames.GetArrayElementAtIndex(i).FindPropertyRelative("Sprites");
+
+                for (int field = 0; field < newValue[i].Sprites.Length; field++)
+                {
+                    fields.InsertArrayElementAtIndex(field);
+                    fields.GetArrayElementAtIndex(field).objectReferenceValue = newValue[i].Sprites[field];
+                }
+            }
         }
     
         private string GetCallbackAt(int frame)

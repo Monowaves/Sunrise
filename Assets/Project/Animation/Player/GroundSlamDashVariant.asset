@@ -13,4 +13,92 @@ MonoBehaviour:
   m_Name: GroundSlamDashVariant
   m_EditorClassIdentifier: 
   Directions: 0
-  FramesContainer: []
+  FramesContainer:
+  - Callback: 
+    Sprites:
+    - {fileID: -608068891, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: -1757030739, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: -608068891, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: 1711074431, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: -1757030739, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: -608068891, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: 1048251865, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 1711074431, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: -1757030739, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: -608068891, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
