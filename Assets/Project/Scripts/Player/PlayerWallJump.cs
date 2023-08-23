@@ -62,6 +62,8 @@ public class PlayerWallJump : MonoBehaviour
                 
                 if (PlayerBase.Singleton.BlockMoveInputs)
                     PlayerBase.Singleton.BlockMoveInputs = false;
+
+                if (PlayerBase.Singleton.IsWallSliding) PlayerBase.Singleton.IsWallSliding = false;
             }
         }
         else
