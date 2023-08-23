@@ -13,4 +13,54 @@ MonoBehaviour:
   m_Name: GroundSlamStandUpVariant
   m_EditorClassIdentifier: 
   Directions: 0
-  FramesContainer: []
+  FramesContainer:
+  - Callback: 
+    Sprites:
+    - {fileID: 1487740030, guid: be5bcffff56f166418f6e10356708aca, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: 1129613830, guid: be5bcffff56f166418f6e10356708aca, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: -1284215117, guid: be5bcffff56f166418f6e10356708aca, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: -1010108954, guid: be5bcffff56f166418f6e10356708aca, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: 161580962, guid: be5bcffff56f166418f6e10356708aca, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}

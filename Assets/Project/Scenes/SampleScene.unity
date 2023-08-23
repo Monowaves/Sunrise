@@ -5981,6 +5981,9 @@ MonoBehaviour:
   <IsFalling>k__BackingField: 0
   <IsJumping>k__BackingField: 0
   <IsWallSliding>k__BackingField: 0
+  <IsGroundSlamPrepare>k__BackingField: 0
+  <IsGroundSlamDash>k__BackingField: 0
+  <IsGroundStandUp>k__BackingField: 0
 --- !u!114 &1136529557
 MonoBehaviour:
   m_ObjectHideFlags: 0
