@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960b7ed1419c95b45b8de17bc871c40f, type: 3}
   m_Name: GroundSlamStandUpMotion
   m_EditorClassIdentifier: 
-  UseCustomFramerate: 0
-  Framerate: 20
+  UseCustomFramerate: 1
+  Framerate: 17
   Looping: 0
   Variants:
   - {fileID: 11400000, guid: 3b82b2f6507a74a4f92052a68f6887d3, type: 2}

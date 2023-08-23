@@ -29,7 +29,8 @@ namespace InMotion.EditorOnly.Windows
             if (isMotionTree)
             {
                 MotionTreeEditorWindow window = GetWindow<MotionTreeEditorWindow>();
-                window.titleContent = new GUIContent(item.name);
+
+                window.titleContent = new GUIContent(item.name, EditorGUIUtility.IconContent("MotionTreeIcon").image as Texture2D);
                 window.CurrentMotionTree = (MotionTree)item;
                 window.CurrentMotionTreePath = GetFullpathFromMotionTree((MotionTree)item).assetPath;
                 window.CurrentMotionTreeName = GetFullpathFromMotionTree((MotionTree)item).assetName;

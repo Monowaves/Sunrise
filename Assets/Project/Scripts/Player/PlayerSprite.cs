@@ -23,5 +23,9 @@ public class PlayerSprite : MonoBehaviour
         _motionExecutor.SetParameter("isRunning", PlayerBase.Singleton.IsRunning);
         _motionExecutor.SetParameter("isJumping", PlayerBase.Singleton.IsJumping);
         _motionExecutor.SetParameter("isFalling", PlayerBase.Singleton.IsFalling);
+
+        _motionExecutor.SetParameter("isGSPrepare", PlayerBase.Singleton.IsGroundSlamPrepare);
+        _motionExecutor.SetParameter("isGSDash", PlayerBase.Singleton.IsGroundSlamDash);
+        _motionExecutor.SetParameter("isGSStandUp", PlayerBase.Singleton.IsGroundStandUp);
     }
 }

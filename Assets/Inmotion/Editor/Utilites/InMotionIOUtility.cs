@@ -68,6 +68,8 @@ namespace InMotion.EditorOnly.Utilities
             SaveAsset(nodeContainerScriptableObject);
             SaveConnectionsToSO(graphData);
             SaveRoot(graphData);
+
+            Debug.Log($"Motion Tree {_graphFileName} saved successfully!");
         }
 
         public static void Load()

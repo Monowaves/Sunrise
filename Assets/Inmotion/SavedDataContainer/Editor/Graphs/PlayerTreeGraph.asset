@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: PlayerTreeGraph
   m_EditorClassIdentifier: 
   <FileName>k__BackingField: PlayerTree
-  <Groups>k__BackingField: []
+  <Groups>k__BackingField:
+  - <ID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Name>k__BackingField: GroundSlam
+    <Position>k__BackingField: {x: -2354, y: -569}
   <MotionNodes>k__BackingField:
   - <ID>k__BackingField: 3f007376-4657-4e2b-bff3-0d3279b92e6b
     <Name>k__BackingField: Fall
@@ -50,6 +53,27 @@ MonoBehaviour:
     <Position>k__BackingField: {x: -836, y: -358}
     <Motion>k__BackingField: {fileID: 11400000, guid: 48b7c0a9ff80b584e8cfb24d1ceafbc4, type: 2}
     <NextNodeID>k__BackingField: 14d819a8-2baa-4559-86a3-4cbeb5a74061
+  - <ID>k__BackingField: 4c25795a-d348-428a-9156-ab342b822c5b
+    <Name>k__BackingField: GroundSlamStandUp
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -1431, y: -370}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 313c8f6c01506244ca150d62d7f1ed79, type: 2}
+    <NextNodeID>k__BackingField: 2221f35a-32da-4d71-918e-2445bc2d520b
+  - <ID>k__BackingField: b0a517da-dce4-4fc0-8d12-3c7c4be3b845
+    <Name>k__BackingField: GroundSlamPrepare
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -2029, y: -510}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 8058b2c097e3fa64ea38ce5e5ff9eae4, type: 2}
+    <NextNodeID>k__BackingField: 2221f35a-32da-4d71-918e-2445bc2d520b
+  - <ID>k__BackingField: 644b47ac-34c3-45c9-9d1d-86eddd2f95f0
+    <Name>k__BackingField: GroundSlamDash
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -1730, y: -421}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 0687ed126d900834b8d2ae5127b00a7e, type: 2}
+    <NextNodeID>k__BackingField: 2221f35a-32da-4d71-918e-2445bc2d520b
   <BranchNodes>k__BackingField:
   - <ID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
     <Name>k__BackingField: RunCheck
@@ -77,12 +101,36 @@ MonoBehaviour:
     <FalseNodeID>k__BackingField: fca86245-7dc2-4b3a-b1b7-a46aa329fc52
   - <ID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
     <Name>k__BackingField: JumpCheck
-    <GroupID>k__BackingField: 
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
     <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -1135, y: -314}
+    <Position>k__BackingField: {x: -1431, y: -224}
     <Condition>k__BackingField: isJumping = true
     <TrueNodeID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
     <FalseNodeID>k__BackingField: 422203c5-b03c-4d9a-bb29-d6e72db6cfff
+  - <ID>k__BackingField: e5139cf2-2ef1-4a28-b897-a2ad1c84ada1
+    <Name>k__BackingField: GroundSlamStandUpCheck
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -1730, y: -275}
+    <Condition>k__BackingField: isGSStandUp = true
+    <TrueNodeID>k__BackingField: 4c25795a-d348-428a-9156-ab342b822c5b
+    <FalseNodeID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
+  - <ID>k__BackingField: d9a1242e-0002-47f0-9f97-5a4d34ee5be8
+    <Name>k__BackingField: GroundSlamDashCheck
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -2029, y: -348}
+    <Condition>k__BackingField: isGSDash = true
+    <TrueNodeID>k__BackingField: 644b47ac-34c3-45c9-9d1d-86eddd2f95f0
+    <FalseNodeID>k__BackingField: e5139cf2-2ef1-4a28-b897-a2ad1c84ada1
+  - <ID>k__BackingField: 9a4b8b45-9c12-49e3-938b-0a853fb43bb3
+    <Name>k__BackingField: GroundSlamPrepareCheck
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -2329, y: -437}
+    <Condition>k__BackingField: isGSPrepare = true
+    <TrueNodeID>k__BackingField: b0a517da-dce4-4fc0-8d12-3c7c4be3b845
+    <FalseNodeID>k__BackingField: d9a1242e-0002-47f0-9f97-5a4d34ee5be8
   <Nodes>k__BackingField:
   - <ID>k__BackingField: 189f2d61-7c82-4577-bfd1-03136aa98c51
     <Name>k__BackingField: FallReturn
@@ -104,6 +152,11 @@ MonoBehaviour:
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: -574, y: -358}
+  - <ID>k__BackingField: 2221f35a-32da-4d71-918e-2445bc2d520b
+    <Name>k__BackingField: GroundSlamReturn
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: -1126, y: -510}
   <AllNodes>k__BackingField:
   - <ID>k__BackingField: 3f007376-4657-4e2b-bff3-0d3279b92e6b
     <Name>k__BackingField: Fall
@@ -125,6 +178,26 @@ MonoBehaviour:
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
     <Position>k__BackingField: {x: -536, y: -262}
+  - <ID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
+    <Name>k__BackingField: Jump
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -836, y: -358}
+  - <ID>k__BackingField: 4c25795a-d348-428a-9156-ab342b822c5b
+    <Name>k__BackingField: GroundSlamStandUp
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -1431, y: -370}
+  - <ID>k__BackingField: b0a517da-dce4-4fc0-8d12-3c7c4be3b845
+    <Name>k__BackingField: GroundSlamPrepare
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -2029, y: -510}
+  - <ID>k__BackingField: 644b47ac-34c3-45c9-9d1d-86eddd2f95f0
+    <Name>k__BackingField: GroundSlamDash
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -1730, y: -421}
   - <ID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
     <Name>k__BackingField: RunCheck
     <GroupID>k__BackingField: 
@@ -140,6 +213,26 @@ MonoBehaviour:
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: -835, y: -201}
+  - <ID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
+    <Name>k__BackingField: JumpCheck
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -1431, y: -224}
+  - <ID>k__BackingField: e5139cf2-2ef1-4a28-b897-a2ad1c84ada1
+    <Name>k__BackingField: GroundSlamStandUpCheck
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -1730, y: -275}
+  - <ID>k__BackingField: d9a1242e-0002-47f0-9f97-5a4d34ee5be8
+    <Name>k__BackingField: GroundSlamDashCheck
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -2029, y: -348}
+  - <ID>k__BackingField: 9a4b8b45-9c12-49e3-938b-0a853fb43bb3
+    <Name>k__BackingField: GroundSlamPrepareCheck
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -2329, y: -437}
   - <ID>k__BackingField: 189f2d61-7c82-4577-bfd1-03136aa98c51
     <Name>k__BackingField: FallReturn
     <GroupID>k__BackingField: 
@@ -155,38 +248,34 @@ MonoBehaviour:
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: -262, y: -314}
-  - <ID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
-    <Name>k__BackingField: JumpCheck
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -1135, y: -314}
   - <ID>k__BackingField: 14d819a8-2baa-4559-86a3-4cbeb5a74061
     <Name>k__BackingField: JumpReturn
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
     <Position>k__BackingField: {x: -574, y: -358}
-  - <ID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
-    <Name>k__BackingField: Jump
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -836, y: -358}
-  <OldGroupNames>k__BackingField: []
+  - <ID>k__BackingField: 2221f35a-32da-4d71-918e-2445bc2d520b
+    <Name>k__BackingField: GroundSlamReturn
+    <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: -1126, y: -510}
+  <OldGroupNames>k__BackingField:
+  - GroundSlam
   <OldUngroupedNodeNames>k__BackingField:
   - Fall
   - Run
   - Idle
   - WallSlide
+  - Jump
   - RunCheck
   - FallCheck
   - WallSlideCheck
   - FallReturn
   - Return
   - WallSlideReturn
-  - JumpCheck
   - JumpReturn
-  - Jump
   <OldGroupedNodeNames>k__BackingField:
-    m_keys: []
-  <RootPosition>k__BackingField: {x: -1234, y: -314}
-  <RootNextID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
-  <RootNext>k__BackingField: {fileID: 11400000, guid: 696a91f6caca380468d6b23d2f3acf2e, type: 2}
+    m_keys:
+    - GroundSlam
+  <RootPosition>k__BackingField: {x: -2465, y: -437}
+  <RootNextID>k__BackingField: 9a4b8b45-9c12-49e3-938b-0a853fb43bb3
+  <RootNext>k__BackingField: {fileID: 11400000, guid: 79d7aa6208197554c8a27746d6c997d9, type: 2}

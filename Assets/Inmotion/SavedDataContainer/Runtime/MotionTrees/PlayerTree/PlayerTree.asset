@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <FileName>k__BackingField: PlayerTree
   <MotionTreeGroups>k__BackingField:
-    m_keys: []
+    m_keys:
+    - {fileID: 11400000, guid: 4f777a5b75c530e489de50cd69b02411, type: 2}
   <UngroupedNodes>k__BackingField:
   - {fileID: 11400000, guid: 05ffa7da4a2e7d24dab8b59de451434f, type: 2}
   - {fileID: 11400000, guid: 313059d2ed579ac459932c4681f66636, type: 2}
   - {fileID: 11400000, guid: 9af8c58338f067e43873cdc05fe6f193, type: 2}
   - {fileID: 11400000, guid: e72d944b63c402e4e92d2cf277512523, type: 2}
+  - {fileID: 11400000, guid: 32eba2db73e0f6746aa372a337dd419d, type: 2}
   - {fileID: 11400000, guid: 4b4922b744f88fb4fb0d9763f44eb9db, type: 2}
   - {fileID: 11400000, guid: f3300ecc49de890469dd68ecfa94cef0, type: 2}
   - {fileID: 11400000, guid: 574e4314d5bf7724f9f67b2a782464cf, type: 2}
   - {fileID: 11400000, guid: 0370edd45d72b114c85936e21cefb0c1, type: 2}
   - {fileID: 11400000, guid: 715668dc3195ed241ade7963815241fd, type: 2}
   - {fileID: 11400000, guid: d307d56a2aa792b478afbf5e52bfd10f, type: 2}
-  - {fileID: 11400000, guid: 696a91f6caca380468d6b23d2f3acf2e, type: 2}
   - {fileID: 11400000, guid: 61e29999ec4896447a6bd89d4cf5e9ea, type: 2}
-  - {fileID: 11400000, guid: 32eba2db73e0f6746aa372a337dd419d, type: 2}

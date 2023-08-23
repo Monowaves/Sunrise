@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2966b94c894f5414ebdc2d97552a6649, type: 3}
+  m_Name: GroundSlamStandUpCheck
+  m_EditorClassIdentifier: 
+  <NodeName>k__BackingField: GroundSlamStandUpCheck
+  <NodeType>k__BackingField: 0
+  <Condition>k__BackingField: isGSStandUp = true
+  <True>k__BackingField: {fileID: 11400000, guid: e280a3f9a5db95e49ab378729cf6ce11, type: 2}
+  <False>k__BackingField: {fileID: 11400000, guid: c5e600af97508054aa21af4a54916d6d, type: 2}
