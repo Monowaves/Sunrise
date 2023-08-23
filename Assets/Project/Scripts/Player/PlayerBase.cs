@@ -235,12 +235,12 @@ public class PlayerBase : MonoBehaviour
         {
             remain -= Time.deltaTime * 3;
 
-            Rigidbody.AddForce(new Vector2(_knockbackForce.x * direction, 0) * remain, ForceMode2D.Impulse);
+            Rigidbody.AddForce(new Vector2(_knockbackForce.x * direction, 0) * remain * Time.deltaTime * 60f, ForceMode2D.Impulse);
 
             yield return null;
         }
         
-        yield return new WaitUntil(() => IsTouchingGround || IsTouchingLeftWall || IsTouchingRightWall);
+        yield return new WaitForSecondsRealtime(0.05f);
 
         BlockAllInputs = false;
     }

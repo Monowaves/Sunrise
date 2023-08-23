@@ -5905,7 +5905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gravityScale: 3
   _fallGravityScale: 4
-  _knockbackForce: {x: 10, y: 10}
+  _knockbackForce: {x: 10, y: 13}
   <FrictionAmount>k__BackingField: 0.23
   _maxSlopeAngle: 45
   _material: {fileID: 6200000, guid: f98348faf63af4748b619391e0041bb7, type: 2}
@@ -5997,8 +5997,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthText: {fileID: 1762606634}
-  _startHealth: 100
+  _startHealth: 10000
   _invincibleTime: 1
+  _slowDownMinimum: 0.08
+  _slowDownTime: 0.075
+  _slowDownReduce: 17
+  _slowDownGain: 25
   <Health>k__BackingField: 0
   <Invincible>k__BackingField: 0
 --- !u!1 &1137761585

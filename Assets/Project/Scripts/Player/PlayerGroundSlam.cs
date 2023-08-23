@@ -60,7 +60,7 @@ public class PlayerGroundSlam : MonoBehaviour
         }
 
         PlayerBase.Singleton.SlamEffect.Spawn(transform.position + Vector3.down, Quaternion.identity);
-        PlayerCamera.Singleton.Shake(1f);
+        PlayerCamera.Singleton.Shake(1.25f);
         PlayerBase.Singleton.GroundSlamSound.Play(AudioOptions.HalfVolumeWithVariation);
 
         IsDashing = false;

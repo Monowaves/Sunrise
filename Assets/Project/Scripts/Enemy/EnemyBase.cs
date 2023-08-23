@@ -109,10 +109,7 @@ public class EnemyBase : MonoBehaviour
     {
         if (other.TryGetComponent(out PlayerHealth player))
         {
-            float direction = (player.transform.position - transform.position).x < 0 ? -1 : 1;
-
-            player.Hit(ContactDamage);
-            PlayerBase.Singleton.Knockback(direction);
+            player.Hit(ContactDamage, transform.position);
         }
     }
 
