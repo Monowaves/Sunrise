@@ -698,7 +698,7 @@ namespace MonoWaves.QoL
 
     public static class LineSystem
     {
-        public static LineRenderer Draw2D((Vector2 point, Color color) start, (Vector2 point, Color color) end, float width)
+        public static LineRenderer Draw2D((Vector2 point, Color color) start, (Vector2 point, Color color) end, float width, Material material)
         {
             GameObject source = new("2D Line");
             LineRenderer lineRenderer = source.AddComponent<LineRenderer>();
@@ -707,12 +707,12 @@ namespace MonoWaves.QoL
             lineRenderer.startColor = start.color;
             lineRenderer.endColor = end.color;
             lineRenderer.widthMultiplier = width;
-            lineRenderer.material = GraphicsSettings.defaultRenderPipeline.defaultLineMaterial;
+            lineRenderer.material = material;
 
             return lineRenderer;
         }
 
-        public static FadingLine DrawFading2D((Vector2 point, Color color) start, (Vector2 point, Color color) end, float width)
+        public static FadingLine DrawFading2D((Vector2 point, Color color) start, (Vector2 point, Color color) end, float width, Material material)
         {
             GameObject source = new("2D Line");
             LineRenderer lineRenderer = source.AddComponent<LineRenderer>();
@@ -721,7 +721,7 @@ namespace MonoWaves.QoL
             lineRenderer.startColor = start.color;
             lineRenderer.endColor = end.color;
             lineRenderer.widthMultiplier = width;
-            lineRenderer.material = GraphicsSettings.defaultRenderPipeline.defaultLineMaterial;
+            lineRenderer.material = material;
 
             return source.AddComponent<FadingLine>();
         }

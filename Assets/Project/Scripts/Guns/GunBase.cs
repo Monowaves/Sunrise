@@ -11,6 +11,8 @@ public class GunBase : MonoBehaviour
 
     private Transform _shootPoint;
 
+    private Material _lineMaterial;
+
     [field: Header("Info")]
     [field: SerializeField, ReadOnly] public bool IsCountdown { get; private set; }
     [field: SerializeField, ReadOnly] public bool IsReloading { get; private set; }
@@ -18,6 +20,8 @@ public class GunBase : MonoBehaviour
 
     private void Start() 
     {
+        _lineMaterial = Resources.Load<Material>("Materials/GunShotLine");
+
         _sr = GetComponent<SpriteRenderer>();
         _holder = transform.parent;
 
@@ -89,7 +93,7 @@ public class GunBase : MonoBehaviour
         (Vector2, Color) start = (startPoint, new Color32(255, 239, 127, 255));
         (Vector2, Color) end = (endPoint, new Color32(255, 62, 0, 0));
 
-        FadingLine newLine = LineSystem.DrawFading2D(start, end, 0.1f);
+        FadingLine newLine = LineSystem.DrawFading2D(start, end, 0.1f, _lineMaterial);
         newLine.Fade(0.2f);
     }
 

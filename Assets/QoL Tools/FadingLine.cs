@@ -32,5 +32,7 @@ public class FadingLine : MonoBehaviour
 
             yield return null;
         }
+
+        Destroy(gameObject);
     }
 }
