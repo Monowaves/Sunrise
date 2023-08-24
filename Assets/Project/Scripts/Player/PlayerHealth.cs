@@ -20,13 +20,12 @@ public class PlayerHealth : MonoBehaviour
     [field: Header("Info")]
     [field: SerializeField, ReadOnly] public float Health { get; private set; }
     [field: SerializeField, ReadOnly] public bool Invincible { get; private set; }
-    
-    private float _tagretHealthValue;
 
     private void Awake() 
     {
         Singleton = this;
 
+        _healthBar.minValue = 0;
         _healthBar.maxValue = _startHealth;
         
         Health = _startHealth;
@@ -36,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update() 
     {
-        _healthBar.value = Mathf.Lerp(_healthBar.value, _tagretHealthValue, Time.deltaTime * 10);
+        _healthBar.value = Mathf.Lerp(_healthBar.value, Health, Time.deltaTime * 10);
     }
 
     public void Hit(float damage, Vector3 source)
@@ -99,7 +98,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnHealthChanged()
     {
-        _tagretHealthValue = Health;
         if (Health <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

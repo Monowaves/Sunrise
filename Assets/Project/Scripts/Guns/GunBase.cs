@@ -28,6 +28,8 @@ public class GunBase : MonoBehaviour
         _shootPoint = new GameObject("Shoot Point").transform;
         _shootPoint.SetParent(transform);
         _shootPoint.localPosition = Settings.ShootPoint;
+
+        GunPreview.Singleton.SetPreview(Settings.Sprite);
         
         if (DefaultValues == (0, 0))
         {

@@ -1,7 +1,6 @@
 using System.Collections;
 using MonoWaves.QoL;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class PlayerGroundSlam : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class PlayerGroundSlam : MonoBehaviour
     [SerializeField, Min(0)] private float _airTime = 0.5f;
     [SerializeField, Min(0)] private float _dashSpeed;
     [SerializeField, Min(0)] private float _slamDamage;
+    [SerializeField, Min(0)] private float _blazeConsume;
     [SerializeField] private BoxChecker _slamChecker;
 
     [field: Header("Info")]
@@ -26,6 +26,8 @@ public class PlayerGroundSlam : MonoBehaviour
 
     private IEnumerator GroundSlam()
     {
+        if (!PlayerBlaze.Singleton.CanConsume(_blazeConsume)) yield break;
+
         IsDashing = true;
         PlayerBase.Singleton.BlockAllInputs = true;
         PlayerBase.Singleton.BlockGravity = true;
@@ -35,6 +37,8 @@ public class PlayerGroundSlam : MonoBehaviour
 
         _rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(_airTime);
+
+        PlayerBlaze.Singleton.Consume(_blazeConsume);
 
         PlayerBase.Singleton.IsGroundSlamPrepare = false;
         PlayerBase.Singleton.IsGroundSlamDash = true;
@@ -60,7 +64,7 @@ public class PlayerGroundSlam : MonoBehaviour
         }
 
         PlayerBase.Singleton.SlamEffect.Spawn(transform.position + Vector3.down, Quaternion.identity);
-        PlayerCamera.Singleton.Shake(1.25f);
+        PlayerCamera.Singleton.Shake(1.75f);
         PlayerBase.Singleton.GroundSlamSound.Play(AudioOptions.HalfVolumeWithVariation);
 
         IsDashing = false;
