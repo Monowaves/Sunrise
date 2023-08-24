@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2a710c909a479914f86be7d439976afc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - <Sprite>k__BackingField: {instanceID: 0}
+  - <ShootSound>k__BackingField: {fileID: 8300000, guid: dc3b54aa3838fa243ab75b7c0c9767b0, type: 3}
+  - <EmptySound>k__BackingField: {fileID: 8300000, guid: 69753f9f636193c4185673db57139f09, type: 3}
+  - <ReloadSound>k__BackingField: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -47,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator HitEffects()
     {
-        PlayerCamera.Singleton.Shake(0.6f);
+        PlayerCamera.Singleton.Shake(0.85f);
 
         float remaining = 1f;
         while (remaining > _slowDownMinimum)

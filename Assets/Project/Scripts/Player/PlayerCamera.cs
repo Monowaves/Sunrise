@@ -5,13 +5,17 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     public static PlayerCamera Singleton { get; private set;}
+    public static Camera Camera { get; private set; }
 
     [SerializeField] private CinemachineVirtualCamera _vcam;
+    [SerializeField] private Camera _camera;
     private CinemachineBasicMultiChannelPerlin _noiser;
 
     private void Awake() 
     {
         Singleton = this;
+        Camera = _camera;
+        
         _noiser = _vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 

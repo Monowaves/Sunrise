@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Rendering;
+using System.Collections;
 
 namespace MonoWaves.QoL
 {
@@ -20,6 +22,38 @@ namespace MonoWaves.QoL
         public static T GetRandomValue<T>(this IEnumerable<T> collection)
         {
             return collection.ElementAt(UnityEngine.Random.Range(0, collection.Count()));
+        }
+
+        public static T GetNext<T>(this IEnumerable<T> collection, int current)
+        {
+            return current == collection.Count() - 1 ? collection.First() : collection.ElementAt(current + 1);
+        }
+
+        public static T GetNext<T>(this IEnumerable<T> collection, T current)
+        {
+            return current.Equals(collection.Last()) ? collection.First() : collection.ElementAt(collection.IndexOf(current) + 1);
+        }
+
+        public static T GetPrevious<T>(this IEnumerable<T> collection, int current)
+        {
+            return current == 0 ? collection.Last() : collection.ElementAt(current - 1);
+        }
+
+        public static T GetPrevious<T>(this IEnumerable<T> collection, T current)
+        {
+            return current.Equals(collection.First()) ? collection.Last() : collection.ElementAt(collection.IndexOf(current) - 1);
+        }
+
+        public static int IndexOf<T>(this IEnumerable<T> source, T value)
+        {
+            int index = 0;
+            var comparer = EqualityComparer<T>.Default;
+            foreach (T item in source)
+            {
+                if (comparer.Equals(item, value)) return index;
+                index++;
+            }
+            return -1;
         }
     }
 
@@ -155,11 +189,13 @@ namespace MonoWaves.QoL
 
     public static class ZVector2
     {
+        public static Vector3 ToVector3(this Vector2 target) => new(target.x, target.y, 0);
         public static Vector2 ToVector2(this Vector2Int target) => new(target.x, target.y);
     }
 
     public static class ZVector3
     {
+        public static Vector2 ToVector2(this Vector3 target) => new(target.x, target.y);
         public static Vector3 ToVector3(this Vector3Int target) => new(target.x, target.y, target.z);
     }
 
@@ -190,6 +226,51 @@ namespace MonoWaves.QoL
             (
                 Mathf.Abs(target.x),
                 Mathf.Abs(target.y)
+            );
+        }
+
+        public static Vector2 Clamp(this Vector2 target, Vector2 min, Vector2 max)
+        {
+            return new Vector2
+            (
+                Mathf.Clamp(target.x, min.x, max.x),
+                Mathf.Clamp(target.y, min.y, max.y)
+            );
+        }
+
+        public static Vector2 ClampMinimum(this Vector2 target, Vector2 min)
+        {
+            return new Vector2
+            (
+                target.x < min.x ? min.x : target.x,
+                target.y < min.y ? min.y : target.y
+            );
+        }
+
+        public static Vector2 ClampMinimum(this Vector2 target, float x, float y)
+        {
+            return new Vector2
+            (
+                target.x < x ? x : target.x,
+                target.y < y ? y : target.y
+            );
+        }
+
+        public static Vector2 ClampMaximum(this Vector2 target, Vector2 max)
+        {
+            return new Vector2
+            (
+                target.x > max.x ? max.x : target.x,
+                target.y > max.y ? max.y : target.y
+            );
+        }
+
+        public static Vector3 ClampMaximum(this Vector3 target, float x, float y)
+        {
+            return new Vector2
+            (
+                target.x > x ? x : target.x,
+                target.y > y ? y : target.y
             );
         }
 
@@ -269,6 +350,16 @@ namespace MonoWaves.QoL
         {
             return Vector3.ProjectOnPlane(vector, normal);
         }
+
+        public static Vector2 RandomInCone(this Vector2 dir, float openingAngle) 
+        {
+            float targetAngle = openingAngle * Mathf.Deg2Rad;
+            Vector2 deviation = UnityEngine.Random.insideUnitSphere;
+            dir = dir.normalized;
+            deviation -= Vector3.Dot(deviation, dir) * dir;
+
+            return (dir * Mathf.Cos(targetAngle) + deviation * Mathf.Sin(targetAngle)).normalized;
+	    }
     }
 
     public static class ZVector3Math
@@ -437,6 +528,16 @@ namespace MonoWaves.QoL
         {
             return target.x == x && target.y == y && target.z == z;
         }
+
+        public static Vector3 RandomInCone(this Vector3 dir, float openingAngle) 
+        {
+            float targetAngle = openingAngle * Mathf.Deg2Rad;
+            Vector3 deviation = UnityEngine.Random.insideUnitSphere;
+            dir = dir.normalized;
+            deviation -= Vector3.Dot(deviation, dir) * dir;
+
+            return (dir * Mathf.Cos(targetAngle) + deviation * Mathf.Sin(targetAngle)).normalized;
+	    }
     }
 
     public static class Const
@@ -593,6 +694,37 @@ namespace MonoWaves.QoL
         public static AudioOptions HalfVolume => new() { Volume = 0.5f };
         public static AudioOptions WithVariation => new() { Pitch = UnityEngine.Random.Range(0.9f, 1.1f) };
         public static AudioOptions HalfVolumeWithVariation => new() { Volume = 0.5f, Pitch = UnityEngine.Random.Range(0.9f, 1.1f) };
+    }
+
+    public static class LineSystem
+    {
+        public static LineRenderer Draw2D((Vector2 point, Color color) start, (Vector2 point, Color color) end, float width)
+        {
+            GameObject source = new("2D Line");
+            LineRenderer lineRenderer = source.AddComponent<LineRenderer>();
+
+            lineRenderer.SetPositions(new Vector3[] { start.point, end.point });
+            lineRenderer.startColor = start.color;
+            lineRenderer.endColor = end.color;
+            lineRenderer.widthMultiplier = width;
+            lineRenderer.material = GraphicsSettings.defaultRenderPipeline.defaultLineMaterial;
+
+            return lineRenderer;
+        }
+
+        public static FadingLine DrawFading2D((Vector2 point, Color color) start, (Vector2 point, Color color) end, float width)
+        {
+            GameObject source = new("2D Line");
+            LineRenderer lineRenderer = source.AddComponent<LineRenderer>();
+
+            lineRenderer.SetPositions(new Vector3[] { start.point, end.point });
+            lineRenderer.startColor = start.color;
+            lineRenderer.endColor = end.color;
+            lineRenderer.widthMultiplier = width;
+            lineRenderer.material = GraphicsSettings.defaultRenderPipeline.defaultLineMaterial;
+
+            return source.AddComponent<FadingLine>();
+        }
     }
 
     public static class ZLayerExtensions
