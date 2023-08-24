@@ -4,6 +4,7 @@ using UnityEngine;
 public class GunBase : MonoBehaviour
 {
     public GunBaseSettings Settings;
+    public (int ammo, float value) DefaultValues;
 
     private Transform _holder;
     private SpriteRenderer _sr;
@@ -23,8 +24,15 @@ public class GunBase : MonoBehaviour
         _shootPoint = new GameObject("Shoot Point").transform;
         _shootPoint.SetParent(transform);
         _shootPoint.localPosition = Settings.ShootPoint;
+        
+        if (DefaultValues == (0, 0))
+        {
+            Reload();
+            return;
+        }
 
-        Reload();
+        RemainingAmmo = DefaultValues.ammo;
+        AmmoBar.Singleton.SetMaxAmmo(Settings.MaxAmmo, DefaultValues.value);
     }
 
     private void Update() 
@@ -52,11 +60,10 @@ public class GunBase : MonoBehaviour
 
                 ShootEffects();
 
-                if (RemainingAmmo > 0)
-                {
-                    RemainingAmmo--;
-                }
-                else
+                RemainingAmmo--;
+                AmmoBar.Singleton.SetAmmoCount(RemainingAmmo);
+
+                if (RemainingAmmo == 0)
                 {
                     Settings.ReloadSound.Play(AudioOptions.HalfVolume);
                     IsReloading = true;
@@ -91,6 +98,8 @@ public class GunBase : MonoBehaviour
     private void Reload()
     {
         RemainingAmmo = Settings.MaxAmmo;
+        AmmoBar.Singleton.SetMaxAmmo(Settings.MaxAmmo);
+
         IsReloading = false;
     }
 }

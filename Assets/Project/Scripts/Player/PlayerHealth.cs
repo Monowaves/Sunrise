@@ -1,15 +1,15 @@
 using System.Collections;
 using MonoWaves.QoL;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth Singleton { get; private set; }
 
     [Header("Properties")]
-    [SerializeField] private TMP_Text _healthText;
+    [SerializeField] private Slider _healthBar;
     [SerializeField] private float _startHealth = 100f;
     [SerializeField] private float _invincibleTime = 0.5f;
     [SerializeField] private float _slowDownMinimum = 0.1f;
@@ -20,14 +20,23 @@ public class PlayerHealth : MonoBehaviour
     [field: Header("Info")]
     [field: SerializeField, ReadOnly] public float Health { get; private set; }
     [field: SerializeField, ReadOnly] public bool Invincible { get; private set; }
+    
+    private float _tagretHealthValue;
 
     private void Awake() 
     {
+        Singleton = this;
+
+        _healthBar.maxValue = _startHealth;
+        
         Health = _startHealth;
         StopInvincible();
         OnHealthChanged();
+    }
 
-        Singleton = this;
+    private void Update() 
+    {
+        _healthBar.value = Mathf.Lerp(_healthBar.value, _tagretHealthValue, Time.deltaTime * 10);
     }
 
     public void Hit(float damage, Vector3 source)
@@ -90,7 +99,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnHealthChanged()
     {
-        _healthText.text = $"Health: {Health}";
+        _tagretHealthValue = Health;
         if (Health <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
