@@ -3,7 +3,16 @@ guid: 1cd1dae000a9a154f9bcf3e5376aab87
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - <Rigidbody>k__BackingField: {instanceID: 0}
+  - <Collider>k__BackingField: {instanceID: 0}
+  - <SpriteRenderer>k__BackingField: {instanceID: 0}
+  - <MotionExecutor>k__BackingField: {instanceID: 0}
+  - <HitSound>k__BackingField: {instanceID: 0}
+  - <DeathSound>k__BackingField: {instanceID: 0}
+  - <HitEffect>k__BackingField: {instanceID: 0}
+  - <DeathEffect>k__BackingField: {instanceID: 0}
+  - <HealthShard>k__BackingField: {fileID: 7527119182457633663, guid: 756c18048dd872443a185b418d20e88e, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

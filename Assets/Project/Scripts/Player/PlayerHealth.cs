@@ -100,7 +100,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (Health <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene("Menu");
         }
     }
 

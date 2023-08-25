@@ -25,6 +25,9 @@ public class EnemyBase : MonoBehaviour
     [field: SerializeField] public GameObject HitEffect { get; private set; }
     [field: SerializeField] public GameObject DeathEffect { get; private set; }
 
+    [field: Header("Objects")]
+    [field: SerializeField] public GameObject HealthShard { get; private set; }
+
     protected virtual IEnumerator EnemyBehaviour() => null;
     protected virtual void OnUpdate() { }
 
@@ -138,6 +141,8 @@ public class EnemyBase : MonoBehaviour
         {
             if (DeathSound) DeathSound.Play(AudioOptions.HalfVolumeWithVariation);
             if (DeathEffect) DeathEffect.Spawn(transform.position);
+
+            if (ZRandom.Chance(10)) Instantiate(HealthShard, transform.position, Quaternion.identity);
 
             Destroy(gameObject);
         }

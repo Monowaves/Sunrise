@@ -13,8 +13,8 @@ TagManager:
   - UI
   - Enemy
   - Map
-  - 
-  - 
+  - PlayerPickupable
+  - EnemyPickupable
   - 
   - 
   - 

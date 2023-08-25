@@ -118,6 +118,19 @@ namespace MonoWaves.QoL
     public class PerlinNoise2DSettings : Noise2DSettings {}
     public class PerlinNoise1DSettings : Noise1DSettings {}
 
+    public static class ZRandom
+    {
+        public static bool Chance(int chance)
+        {
+            return UnityEngine.Random.Range(0, 100) <= chance;
+        }
+
+        public static int Range(int minimum, int maximum)
+        {
+            return UnityEngine.Random.Range(minimum, maximum);
+        }
+    }
+
     public static class ZMath
     {
         public static float Remap(this float value, Span from, Span to) 
