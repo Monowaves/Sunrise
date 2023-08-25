@@ -38,6 +38,8 @@ public class PlayerSliding : MonoBehaviour
         }
 
         if (!IsSliding && Momentum < _startMomentum) Momentum += Time.deltaTime * _momentumGain;
+
+        PlayerBase.Singleton.IsSliding = IsSliding;
     }
 
     private void FixedUpdate() 

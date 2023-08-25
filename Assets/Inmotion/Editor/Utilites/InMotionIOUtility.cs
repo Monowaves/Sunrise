@@ -147,7 +147,7 @@ namespace InMotion.EditorOnly.Utilities
 
         private static void LoadRoot(MotionTreeSaveData graphData)
         {
-            if (graphData.RootNextID != String.Empty)
+            if (graphData.RootNextID != string.Empty)
             {
                 _graphView.InsertRoot(graphData.RootPosition, _loadedNodes[graphData.RootNextID]);
 
@@ -162,7 +162,6 @@ namespace InMotion.EditorOnly.Utilities
             node.Draw();
 
             _graphView.AddElement(node);
-
             _loadedNodes.Add(node.ID, node);
 
             if (string.IsNullOrEmpty(nodeData.GroupID))
@@ -187,6 +186,7 @@ namespace InMotion.EditorOnly.Utilities
 
                 MotionNode typedNode = (MotionNode)node;
                 typedNode.TargetMotion = nodeData.Motion;
+                typedNode.Transition = nodeData.Transition;
 
                 LoadNode(node, nodeData);
             }
@@ -450,6 +450,7 @@ namespace InMotion.EditorOnly.Utilities
                 node.NodeType
             );
             nodeSO.TargetMotion = node.TargetMotion;
+            nodeSO.Transition = node.Transition;
 
             SaveAsset(nodeSO);
             SaveNode(node, nodeSO);
@@ -479,7 +480,8 @@ namespace InMotion.EditorOnly.Utilities
                     GroupID = node.Group?.ID,
                     Type = node.NodeType,
                     Position = node.GetPosition().position,
-                    Motion = typedNode.TargetMotion
+                    Motion = typedNode.TargetMotion,
+                    Transition = typedNode.Transition
                 };
 
                 if (typedNode.NextPort.connections.Count() > 0)

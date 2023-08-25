@@ -38,6 +38,23 @@
     border-top-right-radius: 5px;
 }
 
+.mott-node__toggle > .unity-toggle__input
+{
+    background-color: var(--mott-colors-node-dark-gray);
+    border-color: var(--mott-colors-node-dark-gray);
+
+    border-radius: 5px;
+    
+    padding: 6px;
+}
+
+.mott-node__toggle > .unity-toggle__input:hover
+{
+    background-color: var(--mott-colors-node-fields-hover-background);
+    border-color: var(--mott-colors-node-fields-hover-border-text);
+    color: var(--mott-colors-node-fields-hover-border-text);
+}
+
 .mott-node__objectfield > .unity-object-field__input
 {
     background-color: var(--mott-colors-node-dark-gray);

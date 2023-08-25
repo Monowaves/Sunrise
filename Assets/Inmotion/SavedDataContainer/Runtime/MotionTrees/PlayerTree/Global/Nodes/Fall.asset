@@ -15,4 +15,5 @@ MonoBehaviour:
   <NodeName>k__BackingField: Fall
   <NodeType>k__BackingField: 1
   <TargetMotion>k__BackingField: {fileID: 11400000, guid: 914f4c36bc9c6144683951d07472051f, type: 2}
-  <Next>k__BackingField: {fileID: 11400000, guid: 0370edd45d72b114c85936e21cefb0c1, type: 2}
+  <Transition>k__BackingField: 0
+  <Next>k__BackingField: {fileID: 11400000, guid: 715668dc3195ed241ade7963815241fd, type: 2}
