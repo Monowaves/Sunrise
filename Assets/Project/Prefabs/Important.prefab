@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &798445843900920950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 562183725845416429}
+  - component: {fileID: 1408789545356028643}
+  m_Layer: 0
+  m_Name: HitVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &562183725845416429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798445843900920950}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7323893295984731942}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1408789545356028643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798445843900920950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: 5c7e07d5c5736004391763e6fa627dd0, type: 2}
 --- !u!1 &935901523793770475
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +172,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _vcam: {fileID: 8591335378647614477}
   _camera: {fileID: 2583981283992065120}
+  _lowPassFilter: {fileID: 237610816710677684}
+  _hitVolume: {fileID: 1408789545356028643}
+  _lowPassActivated: 1360
+  _lowPassDeactivated: 22000
+  _lowPassGain: 23
+  _lowPassReduce: 2.5
+  _hitVolumeGain: 25
+  _hitVolumeReduce: 5
 --- !u!1 &1734632035013338554
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +627,7 @@ Transform:
   - {fileID: 7057469746122314136}
   - {fileID: 3330579434228394158}
   - {fileID: 4853390393288851970}
+  - {fileID: 562183725845416429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &807827135753298912
@@ -1241,6 +1299,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d9ab03972b181e840b88d30a3a0bc145, type: 3}
   <JumpSound>k__BackingField: {fileID: 8300000, guid: 3fc1fec96e66d56409b2176e914b8d3e, type: 3}
   <GroundSlamSound>k__BackingField: {fileID: 8300000, guid: e4981a4ede087cf41bde1ee00f27da6e, type: 3}
+  <DamageSound>k__BackingField: {fileID: 8300000, guid: 395ba093a3e1bf94e80defe672c21b1a, type: 3}
   <FootstepDust>k__BackingField: {fileID: 7756309084100531237, guid: 99c0baa20f6550e4192a2f50fcafaf17, type: 3}
   <SlamEffect>k__BackingField: {fileID: 157749718575219723, guid: 9ff40c6795b2a424b8b7a21385ff42d4, type: 3}
   <BlockGravity>k__BackingField: 0
@@ -1929,6 +1988,7 @@ GameObject:
   - component: {fileID: 6861218216137590735}
   - component: {fileID: 6859379827707480130}
   - component: {fileID: 4118438475782993261}
+  - component: {fileID: 237610816710677684}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2033,7 +2093,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2111,6 +2171,31 @@ AudioReverbFilter:
   m_LFReference: 250
   m_ReflectionsDelay: 0
   m_ReverbPreset: 15
+--- !u!169 &237610816710677684
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529307125224655576}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8604657069947778962
 GameObject:
   m_ObjectHideFlags: 0

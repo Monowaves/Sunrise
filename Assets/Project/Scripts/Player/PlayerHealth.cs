@@ -55,7 +55,11 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator HitEffects()
     {
+        PlayerBase.Singleton.DamageSound.Play(AudioOptions.HalfVolume);
+
         PlayerCamera.Singleton.Shake(0.85f);
+        PlayerCamera.Singleton.LowPass(0.2f);
+        PlayerCamera.Singleton.HitVolume(0.2f);
 
         float remaining = 1f;
         while (remaining > _slowDownMinimum)

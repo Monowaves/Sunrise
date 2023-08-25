@@ -32,6 +32,7 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField] public AudioClip[] LandingSounds { get; private set; }
     [field: SerializeField] public AudioClip JumpSound { get; private set; }
     [field: SerializeField] public AudioClip GroundSlamSound { get; private set; }
+    [field: SerializeField] public AudioClip DamageSound { get; private set; }
 
     [field: Header("Particles")]
     [field: SerializeField] public GameObject FootstepDust { get; private set; }
