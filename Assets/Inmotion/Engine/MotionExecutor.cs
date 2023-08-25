@@ -50,8 +50,6 @@ namespace InMotion.Engine
             if (MotionTree.SavedData != null)
             {
                 _saveDataExisting = true;
-
-                ProccesStart();
             }
         }
 
@@ -60,6 +58,8 @@ namespace InMotion.Engine
             if (!_saveDataExisting) throw new Exception("There is nothing to execute in " + MotionTree.name);
 
             if (_terminated) return;
+
+            SetMotion(FindMotion(MotionTree.SavedData.RootNext));
 
             _updateFrametime -= Time.deltaTime;
 
@@ -76,13 +76,12 @@ namespace InMotion.Engine
             if (MotionTree.Parameters[key] != value.ToString())
             {
                 MotionTree.Parameters[key] = value.ToString();
-                Restart();
             }
         }
 
         public void SetMotion(Motion target)
         {
-            if (_playThis == target) return;
+            if (_playThis == target || !target) return;
 
             _playThis = target;
             _isFinishedMotion = false;
@@ -91,95 +90,46 @@ namespace InMotion.Engine
             MotionFramerate = target.UseCustomFramerate ? target.Framerate : Framerate;
         }
 
-        public void SetDirection(Vector2Int direction) => Direction = direction;
-        public void SetVariant(int idx) => VariantIndex = idx;
-
-        public void Terminate()
+        private Motion FindMotion(NodeScriptableObject from)
         {
-            ProccesStop();
-            _terminated = true;
-        }
+            if (_terminated) return null;
 
-        public void Restart()
-        {
-            if (_terminated) return;
-            
-            ProccesStop();
-            _currentNode = null;
-            ProccesStart();
-        }
+            Queue<NodeScriptableObject> nodesQueue = new();
+            nodesQueue.Enqueue(from);
 
-        private void ProccesStart()
-        {
-            if (_terminated) return;
-
-            _proccesing = true;
-            ProccesUpdate();
-        }
-
-        private void ProccesStop() => _proccesing = false;
-
-        private void ProccesUpdate()
-        {
-            if (_currentNode == null)
+            if (from == null)
             {
-                if (MotionTree.SavedData.RootNext == null)
-                {
-                    Terminate();
-                    return;
-                }
-
-                _currentNode = MotionTree.SavedData.RootNext;
+                _terminated = true;
+                return null;
             }
-            else if (_currentNode is MotionNodeScriptableObject)
+
+            while (nodesQueue.Count > 0)
             {
-                MotionNodeScriptableObject typedNode = (MotionNodeScriptableObject)_currentNode;
+                NodeScriptableObject current = nodesQueue.Dequeue();
 
-                if (typedNode.Next == null)
+                if (current == null)
                 {
-                    Terminate();
-                    return;
+                    _terminated = true;
+                    return null;
                 }
-
-                SetMotion(typedNode.TargetMotion);
-
-                _currentNode = typedNode.Next;
-
-                ProccesStop();
-                return;
-            }
-            else if (_currentNode is BranchNodeScriptableObject typedNode)
-            {
-                if (Conditioner.StringToCondition(typedNode.Condition, MotionTree.RegisteredParameters.ToArray()))
+                
+                if (current is MotionNodeScriptableObject motionNode)
                 {
-                    if (typedNode.True == null)
-                    {
-                        Terminate();
-                        return;
-                    }
-
-                    _currentNode = typedNode.True;
+                    if (_playThis != motionNode.TargetMotion)
+                        return motionNode.TargetMotion;
+                    else
+                        nodesQueue.Enqueue(motionNode.Next);
                 }
-                else
+                else if (current is BranchNodeScriptableObject branchNode)
                 {
-                    if (typedNode.False == null)
-                    {
-                        Terminate();
-                        return;
-                    }
-
-                    _currentNode = typedNode.False;
+                    if (Conditioner.StringToCondition(branchNode.Condition, MotionTree.RegisteredParameters.ToArray()))
+                        nodesQueue.Enqueue(branchNode.True);
+                    else
+                        nodesQueue.Enqueue(branchNode.False);
                 }
             }
-            else
-            {
-                _currentNode = null;
-            }
 
-            if (_proccesing)
-            {
-                ProccesUpdate();
-            }
+            return null;
         }
 
         private void OnFrameUpdate()
@@ -209,8 +159,6 @@ namespace InMotion.Engine
                 if (Target.sprite == framesContainer.First().Sprites[dirIdx])
                 {
                     OnMotionStart?.Invoke();
-
-                    ProccesStart();
                 }
 
                 if (Target.sprite == framesContainer.Last().Sprites[dirIdx])
@@ -219,8 +167,6 @@ namespace InMotion.Engine
 
                     if (!_playThis.Looping) _isFinishedMotion = true;
                     MotionFrame = 0;
-
-                    ProccesStart();
                 }
                 else
                 {
