@@ -7,26 +7,6 @@ namespace InMotion.EditorOnly.Utilities
 {
     public static class InMotionElementUtility
     {
-        public static Toggle InsertToggle(bool value, string label,
-                                        EventCallback<ChangeEvent<bool>> onValueChanged = null,
-                                        string styleClass = "mott-node__toggle")
-        {
-            Toggle inserting = new()
-            {
-                value = value,
-                label = label
-            };
-
-            if (onValueChanged != null)
-            {
-                inserting.RegisterValueChangedCallback(onValueChanged);
-            }
-
-            inserting.AddToClassList(styleClass);
-
-            return inserting;
-        }
-
         public static TextField InsertTextField(string value = "",
                                                 EventCallback<ChangeEvent<string>> onValueChanged = null,
                                                 string styleClass = "mott-node__textfield")

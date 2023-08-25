@@ -12,7 +12,6 @@ namespace InMotion.EditorOnly.GraphElements
         public Port NextPort { get; set; }
 
         public Engine.Motion TargetMotion { get; set; }
-        public bool Transition { get; set; }
         
         private ObjectField _targetMotion;
         private Toggle _transition;
@@ -35,11 +34,6 @@ namespace InMotion.EditorOnly.GraphElements
                 TargetMotion = (Engine.Motion)_targetMotion.value
             );
             extensionContainer.Add(_targetMotion);
-
-            _transition = InMotionElementUtility.InsertToggle(Transition, "Transition", onValueChanged =>
-                Transition = _transition.value
-            );
-            extensionContainer.Add(_transition);
 
             RefreshExpandedState();
         }

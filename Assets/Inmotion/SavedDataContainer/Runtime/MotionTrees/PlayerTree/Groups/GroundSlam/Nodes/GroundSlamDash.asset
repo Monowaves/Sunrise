@@ -15,5 +15,4 @@ MonoBehaviour:
   <NodeName>k__BackingField: GroundSlamDash
   <NodeType>k__BackingField: 1
   <TargetMotion>k__BackingField: {fileID: 11400000, guid: 0687ed126d900834b8d2ae5127b00a7e, type: 2}
-  <Transition>k__BackingField: 0
   <Next>k__BackingField: {fileID: 11400000, guid: 21e004a90360e5844af31b1b7eab011d, type: 2}

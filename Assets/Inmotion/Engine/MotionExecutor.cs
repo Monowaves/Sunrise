@@ -37,6 +37,8 @@ namespace InMotion.Engine
         public Action OnMotionFrame;
 
         private bool _isFinishedMotion;
+
+        private bool HasMotion => _playThis;
         
         private void OnValidate() 
         {
@@ -67,27 +69,9 @@ namespace InMotion.Engine
             {
                 _updateFrametime = 1 / Convert.ToSingle(MotionFramerate);
                 
+                OnMotionFrame?.Invoke();
                 OnFrameUpdate();
             }
-        }
-
-        public void SetParameter(string key, object value)
-        {
-            if (MotionTree.Parameters[key] != value.ToString())
-            {
-                MotionTree.Parameters[key] = value.ToString();
-            }
-        }
-
-        public void SetMotion(Motion target)
-        {
-            if (_playThis == target || !target) return;
-
-            _playThis = target;
-            _isFinishedMotion = false;
-            MotionFrame = 0;
-
-            MotionFramerate = target.UseCustomFramerate ? target.Framerate : Framerate;
         }
 
         private Motion FindMotion(NodeScriptableObject from)
@@ -134,11 +118,9 @@ namespace InMotion.Engine
 
         private void OnFrameUpdate()
         {
-            OnMotionFrame?.Invoke();
-
             if (_isFinishedMotion) return;
 
-            if (_playThis != null)
+            if (HasMotion)
             {
                 List<Frame> framesContainer = _playThis.Variants[VariantIndex].FramesContainer;
                 
@@ -168,18 +150,25 @@ namespace InMotion.Engine
                     if (!_playThis.Looping) _isFinishedMotion = true;
                     MotionFrame = 0;
                 }
-                else
-                {
-                    MotionFrame++;
-                }
+                else MotionFrame++;
             }
         }
-    }
-}
 
-[Serializable]
-public class CallbackExecutor
-{
-    public string Callback;
-    public UnityEvent Action = new();
+        public void SetParameter(string key, object value)
+        {
+            if (MotionTree.Parameters[key] != value.ToString()) 
+                MotionTree.Parameters[key] = value.ToString();
+        }
+
+        public void SetMotion(Motion target)
+        {
+            if (_playThis == target || !target) return;
+
+            _playThis = target;
+            _isFinishedMotion = false;
+            MotionFrame = 0;
+
+            MotionFramerate = target.UseCustomFramerate ? target.Framerate : Framerate;
+        }
+    }
 }

@@ -15,5 +15,4 @@ MonoBehaviour:
   <NodeName>k__BackingField: SlidingStart
   <NodeType>k__BackingField: 1
   <TargetMotion>k__BackingField: {fileID: 11400000, guid: b52e670a9ee0bc54f95cfb6505e0f710, type: 2}
-  <Transition>k__BackingField: 1
   <Next>k__BackingField: {fileID: 11400000, guid: 919717ec14505f34d9a159ae2e0f91d9, type: 2}

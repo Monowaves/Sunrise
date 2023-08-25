@@ -186,7 +186,6 @@ namespace InMotion.EditorOnly.Utilities
 
                 MotionNode typedNode = (MotionNode)node;
                 typedNode.TargetMotion = nodeData.Motion;
-                typedNode.Transition = nodeData.Transition;
 
                 LoadNode(node, nodeData);
             }
@@ -450,7 +449,6 @@ namespace InMotion.EditorOnly.Utilities
                 node.NodeType
             );
             nodeSO.TargetMotion = node.TargetMotion;
-            nodeSO.Transition = node.Transition;
 
             SaveAsset(nodeSO);
             SaveNode(node, nodeSO);
@@ -480,8 +478,7 @@ namespace InMotion.EditorOnly.Utilities
                     GroupID = node.Group?.ID,
                     Type = node.NodeType,
                     Position = node.GetPosition().position,
-                    Motion = typedNode.TargetMotion,
-                    Transition = typedNode.Transition
+                    Motion = typedNode.TargetMotion
                 };
 
                 if (typedNode.NextPort.connections.Count() > 0)
