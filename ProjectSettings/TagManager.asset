@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Map
+    uniqueID: 2153403949
+    locked: 0
   - name: ParticlesBack
     uniqueID: 2128107513
     locked: 0
