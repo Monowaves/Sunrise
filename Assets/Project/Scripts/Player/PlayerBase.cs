@@ -55,8 +55,6 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool IsShifting { get; private set; }
     [field: SerializeField, ReadOnly] public bool ShiftPressed { get; private set; }
     [field: SerializeField, ReadOnly] public bool CtrlPressed { get; private set; }
-    [field: SerializeField, ReadOnly] public bool BlockMoveInputs { get; set; }
-    [field: SerializeField, ReadOnly] public bool BlockAllInputs { get; set; }
 
     [field: SerializeField, ReadOnly] public bool IsRunning { get; set; }
     [field: SerializeField, ReadOnly] public bool IsFalling { get; set; }
@@ -66,6 +64,10 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool IsGroundSlamDash { get; set; }
     [field: SerializeField, ReadOnly] public bool IsGroundStandUp { get; set; }
     [field: SerializeField, ReadOnly] public bool IsSliding { get; set; }
+
+    [field: SerializeField, ReadOnly] public bool BlockMoveInputs { get; set; }
+    [field: SerializeField, ReadOnly] public bool BlockJumpInputs { get; set; }
+    [field: SerializeField, ReadOnly] public bool BlockAllInputs { get; set; }
 
     public bool IsTouchingWall => IsTouchingLeftWall || IsTouchingRightWall;
 
@@ -160,8 +162,16 @@ public class PlayerBase : MonoBehaviour
         else if (HorizontalAxis > 0)
             Facing = PlayerFacing.Right;   
 
-        WantToJump = Keyboard.IsPressed(KeyCode.Space);
-        JumpReleased = Keyboard.IsReleased(KeyCode.Space);
+        if (BlockJumpInputs)
+        {
+            WantToJump = false;
+            JumpReleased = false;
+        }
+        else
+        {
+            WantToJump = Keyboard.IsPressed(KeyCode.Space);
+            JumpReleased = Keyboard.IsReleased(KeyCode.Space);
+        }
 
         IsShifting = Keyboard.IsHolding(KeyCode.LeftShift);
         ShiftPressed = Keyboard.IsPressed(KeyCode.LeftShift);
@@ -230,7 +240,7 @@ public class PlayerBase : MonoBehaviour
     private IEnumerator CO_Knockback(float direction)
     {
         if ((direction == 1 && IsTouchingRightWall) || (direction == -1 && IsTouchingLeftWall)) yield break;
-        
+
         BlockAllInputs = true;
         Rigidbody.velocity = Vector2.zero;
 

@@ -29,7 +29,9 @@ public class PlayerSliding : MonoBehaviour
             if (StartedSlidingOnGround)
             {
                 IsSliding = true;
+
                 PlayerBase.Singleton.BlockMoveInputs = true;
+                PlayerBase.Singleton.BlockJumpInputs = true;
     
                 if (Momentum > _endMomentum) Momentum -= Time.deltaTime * _momentumLose;
             }
@@ -55,7 +57,9 @@ public class PlayerSliding : MonoBehaviour
 
         StartedSlidingOnGround = false;
         IsSliding = false;
+
         PlayerBase.Singleton.BlockMoveInputs = false;
+        PlayerBase.Singleton.BlockJumpInputs = false;
     }
 
     private void FixedUpdate() 
