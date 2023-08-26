@@ -7,7 +7,7 @@ using InMotion.Data.Save;
 namespace InMotion.Engine
 {
     [Serializable]
-    [CreateAssetMenu(menuName = "InMotion/Motion Tree")]
+    [CreateAssetMenu(fileName = "New Tree", menuName = "InMotion/Motion Tree", order = 404)]
     public class MotionTree : ScriptableObject
     {
         [field: SerializeField] public MotionTreeParameters Parameters { get; private set; }

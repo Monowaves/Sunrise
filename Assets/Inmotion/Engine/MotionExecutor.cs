@@ -153,7 +153,7 @@ namespace InMotion.Engine
         public void InvokeParameter(string key, object first, object after)
         {
             if (_invoked.ContainsKey(key)) return;
-            
+
             SetParameter(key, first);
             _invoked.Add(key, after);
         }

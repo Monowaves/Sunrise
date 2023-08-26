@@ -4,7 +4,7 @@ using UnityEngine;
 namespace InMotion.Engine
 {
     [System.Serializable]
-    [CreateAssetMenu(menuName = "InMotion/Variant")]
+    [CreateAssetMenu(fileName = "New Variant", menuName = "InMotion/Variant", order = 402)]
     public class Variant : ScriptableObject
     {
         public MotionDirections Directions = MotionDirections.Simple;

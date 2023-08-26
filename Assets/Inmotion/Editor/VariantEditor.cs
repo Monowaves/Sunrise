@@ -5,6 +5,7 @@ using InMotion.Utilities;
 using System.Collections.Generic;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace InMotion.EditorOnly.Drawers
 {
@@ -173,23 +174,7 @@ namespace InMotion.EditorOnly.Drawers
                     string relativePath = texturePath[Application.dataPath.Length..];
                     string assetPath = "Assets" + relativePath;
     
-                    UnityEngine.Object[] loadedContent = AssetDatabase.LoadAllAssetsAtPath(assetPath);
-    
-                    List<Sprite> sprites = new();
-                    foreach (var content in loadedContent)
-                    {
-                        if (AssetDatabase.IsSubAsset(content)) sprites.Add((Sprite)content);
-                    }
-    
-                    sprites.Sort((first, second) =>
-                    {
-                        int firstNumber = Convert.ToInt32(first.name[^1]);
-                        int secondNumber = Convert.ToInt32(second.name[^1]);
-    
-                        if (firstNumber > secondNumber) return 1;
-                        else if (firstNumber < secondNumber) return -1;
-                        else return 0;
-                    });
+                    List<Sprite> sprites = GetSpriteAssetsAt(assetPath);
     
                     for (int spriteIdx = 0; spriteIdx < sprites.Count; spriteIdx++)
                     {
@@ -334,35 +319,64 @@ namespace InMotion.EditorOnly.Drawers
             _height += amount + 2;
         }
 
-        [MenuItem("Assets/Create/InMotion/Motion Based on Selection", false, 0)]
-        public static void CreateYourScriptableObject()
+        [MenuItem("Assets/Create/InMotion/Variant (From Sprites)", false, 400)]
+        public static void VariantFromSpritesCreation()
         {
-            if (Selection.activeObject is Variant)
+            string origin = AssetDatabase.GetAssetPath(Selection.activeObject);
+            string directory = Path.GetDirectoryName(origin);
+            string variantName = Path.GetFileNameWithoutExtension(origin) + "Variant";
+            string fullPath = $"{directory}/{variantName}.asset";
+
+            if (!string.IsNullOrEmpty(fullPath))
             {
-                Engine.Motion newObject = CreateInstance<Engine.Motion>();
+                Variant newObject = CreateInstance<Variant>();
 
-                string origin = AssetDatabase.GetAssetPath(Selection.activeObject);
-                string directory = Path.GetDirectoryName(origin);
-                string variantName = Path.GetFileName(origin);
-                string motionName = variantName.Replace("Variant", "Motion");
-                string fullPath = $"{directory}/{motionName}";
-
-                Variant current = Selection.activeObject as Variant;
-                newObject.Variants.Add(current);
-
-                if (!string.IsNullOrEmpty(fullPath))
+                List<Frame> frames = new();
+                foreach (var sprite in GetSpriteAssetsAt(origin))
                 {
-                    AssetDatabase.CreateAsset(newObject, fullPath);
-                    AssetDatabase.SaveAssets();
-                    AssetDatabase.Refresh();
+                    Frame newFrame = new();
+                    newFrame.Sprites[0] = sprite;
 
-                    Selection.activeObject = newObject;
+                    frames.Add(newFrame);
                 }
+
+                newObject.FramesContainer = frames;
+
+                AssetDatabase.CreateAsset(newObject, fullPath);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+
+                Selection.activeObject = newObject;
             }
-            else
+        }
+
+        [MenuItem("Assets/Create/InMotion/Variant (From Sprites)", true, 400)]
+        private static bool VariantFromSpritesValidation()
+        {
+            return Selection.GetFiltered<Texture2D>(SelectionMode.Assets).Length > 0;
+        }
+
+        private static List<Sprite> GetSpriteAssetsAt(string assetPath)
+        {
+            UnityEngine.Object[] loadedContent = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+    
+            List<Sprite> sprites = new();
+            foreach (var content in loadedContent)
             {
-                Debug.LogWarning("Selected object isn't a Variant");
+                if (AssetDatabase.IsSubAsset(content)) sprites.Add((Sprite)content);
             }
+
+            sprites.Sort((first, second) =>
+            {
+                int firstNumber = Convert.ToInt32(first.name[^1]);
+                int secondNumber = Convert.ToInt32(second.name[^1]);
+
+                if (firstNumber > secondNumber) return 1;
+                else if (firstNumber < secondNumber) return -1;
+                else return 0;
+            });
+
+            return sprites;
         }
     }
 }

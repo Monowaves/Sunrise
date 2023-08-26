@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 960b7ed1419c95b45b8de17bc871c40f, type: 3}
-  m_Name: SlidingStopMotion
+  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
+  m_Name: New Timeline
   m_EditorClassIdentifier: 
-  UseCustomFramerate: 0
-  Framerate: 20
-  Looping: 1
-  Variants:
-  - {fileID: 11400000, guid: 1ee1ab44bd2e343428f269dcb1a72483, type: 2}
+  m_Version: 0
+  m_Tracks: []
+  m_FixedDuration: 0
+  m_EditorSettings:
+    m_Framerate: 60
+    m_ScenePreview: 1
+  m_DurationMode: 0
+  m_MarkerTrack: {fileID: 0}

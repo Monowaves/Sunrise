@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEditor.AnimatedValues;
 using InMotion.Engine;
+using System.IO;
 
 namespace InMotion.EditorOnly.Drawers
 {
@@ -54,6 +55,36 @@ namespace InMotion.EditorOnly.Drawers
             EditorGUILayout.PropertyField(_variants);
     
             serializedObject.ApplyModifiedProperties();
+        }
+
+        [MenuItem("Assets/Create/InMotion/Motion (From Variant)", false, 401)]
+        public static void MotionFromVariantCreation()
+        {
+            string origin = AssetDatabase.GetAssetPath(Selection.activeObject);
+            string directory = Path.GetDirectoryName(origin);
+            string variantName = Path.GetFileName(origin);
+            string motionName = variantName.Replace("Variant", "Motion");
+            string fullPath = $"{directory}/{motionName}";
+
+            if (!string.IsNullOrEmpty(fullPath))
+            {
+                Engine.Motion newObject = CreateInstance<Engine.Motion>();
+
+                Variant current = Selection.activeObject as Variant;
+                newObject.Variants.Add(current);
+
+                AssetDatabase.CreateAsset(newObject, fullPath);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+
+                Selection.activeObject = newObject;
+            }
+        }
+
+        [MenuItem("Assets/Create/InMotion/Motion (From Variant)", true, 401)]
+        private static bool MotionFromVariantValidation()
+        {
+            return Selection.activeObject is Variant;
         }
     }
 }
