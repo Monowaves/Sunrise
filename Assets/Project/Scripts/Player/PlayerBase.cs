@@ -229,6 +229,8 @@ public class PlayerBase : MonoBehaviour
 
     private IEnumerator CO_Knockback(float direction)
     {
+        if ((direction == 1 && IsTouchingRightWall) || (direction == -1 && IsTouchingLeftWall)) yield break;
+        
         BlockAllInputs = true;
         Rigidbody.velocity = Vector2.zero;
 
