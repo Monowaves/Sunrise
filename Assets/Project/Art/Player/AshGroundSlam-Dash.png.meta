@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42ea21a7687ac784ba962a2894d5090f
-      internalID: -2090455740
+      spriteID: 107ca992978e6694d93b86adc93d68f0
+      internalID: 927783097
       vertices: []
       indices: 
       edges: []
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4332040ab30b2ac4ea2d6ba09e524807
-      internalID: -632553360
+      spriteID: 91ac2c0ed09033e4baf5fe16f1fecf10
+      internalID: 1183021112
       vertices: []
       indices: 
       edges: []
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ebd78dcc5426924f9371b15f0dc6115
-      internalID: -1479950600
+      spriteID: 459119ff5cddcb1468b3cb2791405005
+      internalID: 1866236054
       vertices: []
       indices: 
       edges: []
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd3331e868b7c404f822d1316374de5b
-      internalID: -229059841
+      spriteID: 6df78bead9ce2cf46abf6ba4f83991c6
+      internalID: 675730754
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AshGroundSlam-Dash_0: -2090455740
-      AshGroundSlam-Dash_1: -632553360
-      AshGroundSlam-Dash_2: -1479950600
-      AshGroundSlam-Dash_3: -229059841
+      AshGroundSlam-Dash_0: 927783097
+      AshGroundSlam-Dash_1: 1183021112
+      AshGroundSlam-Dash_2: 1866236054
+      AshGroundSlam-Dash_3: 675730754
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

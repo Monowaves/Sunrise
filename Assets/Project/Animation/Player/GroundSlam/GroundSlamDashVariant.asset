@@ -16,7 +16,7 @@ MonoBehaviour:
   FramesContainer:
   - Callback: 
     Sprites:
-    - {fileID: -2090455740, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 927783097, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -26,7 +26,7 @@ MonoBehaviour:
     - {fileID: 0}
   - Callback: 
     Sprites:
-    - {fileID: -632553360, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 1183021112, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -34,33 +34,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: -2090455740, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - Callback: 
-    Sprites:
-    - {fileID: -1479950600, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: -632553360, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: -2090455740, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 927783097, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -70,7 +44,7 @@ MonoBehaviour:
     - {fileID: 0}
   - Callback: 
     Sprites:
-    - {fileID: -229059841, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 1866236054, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -78,7 +52,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: -1479950600, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 1183021112, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -86,7 +60,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: -632553360, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 927783097, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -94,7 +68,33 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: -2090455740, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+  - Callback: 
+    Sprites:
+    - {fileID: 675730754, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 1866236054, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 1183021112, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 927783097, guid: 65e7bd73b193c5142b19968a1aa66934, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}

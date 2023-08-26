@@ -23,22 +23,19 @@ namespace InMotion.Engine
         public int VariantIndex { get; private set; }
 
         private float _updateFrametime;
-
         private bool _saveDataExisting;
-
-        private bool _proccesing;
-        private NodeScriptableObject _currentNode;
         private Motion _playThis;
-
         private bool _terminated;
+        private Queue<NodeScriptableObject> _nodesQueue = new();
+        private Queue<Motion> _motionsQueue = new();
 
+        private bool HasMotion => _playThis;
+
+        //CALLBACKS
         public Action OnMotionEnd;
         public Action OnMotionStart;
         public Action OnMotionFrame;
 
-        private bool _isFinishedMotion;
-
-        private bool HasMotion => _playThis;
         
         private void OnValidate() 
         {
@@ -61,7 +58,9 @@ namespace InMotion.Engine
 
             if (_terminated) return;
 
-            SetMotion(FindMotion(MotionTree.SavedData.RootNext));
+            ManageQueue();
+
+            SetMotion(_motionsQueue.Dequeue());
 
             _updateFrametime -= Time.deltaTime;
 
@@ -74,52 +73,38 @@ namespace InMotion.Engine
             }
         }
 
-        private Motion FindMotion(NodeScriptableObject from)
+        private void ManageQueue()
         {
-            if (_terminated) return null;
+            if (_terminated) return;
 
-            Queue<NodeScriptableObject> nodesQueue = new();
-            nodesQueue.Enqueue(from);
+            if (_nodesQueue.Count == 0) _nodesQueue.Enqueue(MotionTree.SavedData.RootNext);
 
-            if (from == null)
-            {
-                _terminated = true;
-                return null;
-            }
-
-            while (nodesQueue.Count > 0)
-            {
-                NodeScriptableObject current = nodesQueue.Dequeue();
+            while (_nodesQueue.Count > 0)
+            {   
+                NodeScriptableObject current = _nodesQueue.Dequeue();
 
                 if (current == null)
                 {
                     _terminated = true;
-                    return null;
+                    return;
                 }
-                
+
                 if (current is MotionNodeScriptableObject motionNode)
                 {
-                    if (_playThis != motionNode.TargetMotion)
-                        return motionNode.TargetMotion;
-                    else
-                        nodesQueue.Enqueue(motionNode.Next);
+                    _motionsQueue.Enqueue(motionNode.TargetMotion);
                 }
                 else if (current is BranchNodeScriptableObject branchNode)
                 {
                     if (Conditioner.StringToCondition(branchNode.Condition, MotionTree.RegisteredParameters.ToArray()))
-                        nodesQueue.Enqueue(branchNode.True);
+                        _nodesQueue.Enqueue(branchNode.True);
                     else
-                        nodesQueue.Enqueue(branchNode.False);
+                        _nodesQueue.Enqueue(branchNode.False);
                 }
             }
-
-            return null;
         }
 
         private void OnFrameUpdate()
         {
-            if (_isFinishedMotion) return;
-
             if (HasMotion)
             {
                 List<Frame> framesContainer = _playThis.Variants[VariantIndex].FramesContainer;
@@ -139,16 +124,13 @@ namespace InMotion.Engine
                 }
 
                 if (Target.sprite == framesContainer.First().Sprites[dirIdx])
-                {
                     OnMotionStart?.Invoke();
-                }
 
                 if (Target.sprite == framesContainer.Last().Sprites[dirIdx])
                 {
                     OnMotionEnd?.Invoke();
 
-                    if (!_playThis.Looping) _isFinishedMotion = true;
-                    MotionFrame = 0;
+                    if (_playThis.Looping) MotionFrame = 0;
                 }
                 else MotionFrame++;
             }
@@ -165,7 +147,7 @@ namespace InMotion.Engine
             if (_playThis == target || !target) return;
 
             _playThis = target;
-            _isFinishedMotion = false;
+
             MotionFrame = 0;
 
             MotionFramerate = target.UseCustomFramerate ? target.Framerate : Framerate;
