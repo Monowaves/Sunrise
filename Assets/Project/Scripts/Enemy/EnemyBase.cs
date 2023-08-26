@@ -33,13 +33,9 @@ public class EnemyBase : MonoBehaviour
     protected bool IsTriggered { get; private set; }
     protected float Health { get; private set; }
 
-    private GameObject _healthShard;
-
     private void Awake() 
     {
         Health = StartHealth;
-
-        _healthShard = Resources.Load<GameObject>("Pickupables/HealthShard");
     }
 
     private void Start() 
@@ -143,7 +139,7 @@ public class EnemyBase : MonoBehaviour
             if (DeathSound) DeathSound.Play(AudioOptions.HalfVolumeWithVariation);
             if (DeathEffect) DeathEffect.Spawn(transform.position);
 
-            if (ZRandom.Chance(10)) Instantiate(_healthShard, transform.position, Quaternion.identity);
+            if (ZRandom.Chance(10)) Instantiate(Defaults.HealthShard, transform.position, Quaternion.identity);
 
             //TODO: Remove this piece of garbage
             KillsCounter killsCounter = FindObjectOfType<KillsCounter>();
