@@ -158,7 +158,7 @@ MonoBehaviour:
   <TriggerZone>k__BackingField: {x: 25, y: 12}
   <StartHealth>k__BackingField: 75
   <ContactDamage>k__BackingField: 5
-  <HitSound>k__BackingField: {fileID: 8300000, guid: b0d7fae3b5e769747bd9ed0792d4c016, type: 3}
+  <HitSound>k__BackingField: {fileID: 8300000, guid: 1ab6e261de5a5f842b91d92c507e3fc9, type: 3}
   <DeathSound>k__BackingField: {fileID: 0}
   <HitEffect>k__BackingField: {fileID: 2574160162319884991, guid: 2cd9cb9c4ff2a3a46a6a0e721ea04591, type: 3}
   <DeathEffect>k__BackingField: {fileID: 0}

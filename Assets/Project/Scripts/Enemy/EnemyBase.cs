@@ -55,6 +55,14 @@ public class EnemyBase : MonoBehaviour
         SpriteRenderer.flipX = GetFlipX();
     }
 
+    private void Reset()
+    {
+        SetupEnemy();
+        
+        HitSound = Defaults.HitSound;
+        HitEffect = Defaults.Blood;
+    }
+
     private void OnValidate() 
     {
         if (Collider != null)

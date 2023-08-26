@@ -55,11 +55,10 @@ MonoBehaviour:
   <TriggerZone>k__BackingField: {x: 175, y: 30}
   <StartHealth>k__BackingField: 75
   <ContactDamage>k__BackingField: 5
-  <HitSound>k__BackingField: {fileID: 8300000, guid: b0d7fae3b5e769747bd9ed0792d4c016, type: 3}
+  <HitSound>k__BackingField: {fileID: 8300000, guid: 1ab6e261de5a5f842b91d92c507e3fc9, type: 3}
   <DeathSound>k__BackingField: {fileID: 0}
   <HitEffect>k__BackingField: {fileID: 2574160162319884991, guid: 47bec3a78b55795419609c74838dea3d, type: 3}
   <DeathEffect>k__BackingField: {fileID: 0}
-  <HealthShard>k__BackingField: {fileID: 7527119182457633663, guid: 756c18048dd872443a185b418d20e88e, type: 3}
 --- !u!50 &1533803347899123472
 Rigidbody2D:
   serializedVersion: 4
