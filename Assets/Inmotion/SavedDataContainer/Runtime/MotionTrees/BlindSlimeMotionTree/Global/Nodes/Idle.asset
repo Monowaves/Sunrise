@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e092d426fa4ed43975183c166b7476, type: 3}
+  m_Name: Idle
+  m_EditorClassIdentifier: 
+  <NodeName>k__BackingField: Idle
+  <NodeType>k__BackingField: 1
+  <TargetMotion>k__BackingField: {fileID: 11400000, guid: 4ec8fee4db8e4664f9975c57f28245ee, type: 2}
+  <Next>k__BackingField: {fileID: 11400000, guid: 2a75d19969c693746b6f1e819f0b1508, type: 2}

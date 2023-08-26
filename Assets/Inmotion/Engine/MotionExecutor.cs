@@ -37,6 +37,7 @@ namespace InMotion.Engine
         public Action OnMotionFrame;
         
         private Dictionary<string, object> _invoked = new();
+        private Dictionary<string, string> _clonedParameters;
         
         private void OnValidate() 
         {
@@ -47,9 +48,11 @@ namespace InMotion.Engine
         {
             if (!MotionTree) throw new Exception("Target motion tree is null!");
 
-            if (MotionTree.SavedData != null)
+            if (MotionTree.SavedData)
             {
                 _saveDataExisting = true;
+
+                _clonedParameters = MotionTree.Parameters.ToDictionary(entry => entry.Key, entry => entry.Value);
             }
         }
 
@@ -95,7 +98,7 @@ namespace InMotion.Engine
                 }
                 else if (current is BranchNodeScriptableObject branchNode)
                 {
-                    if (Conditioner.StringToCondition(branchNode.Condition, MotionTree.RegisteredParameters.ToArray()))
+                    if (Conditioner.StringToCondition(branchNode.Condition, MotionTree.ZipParameters(_clonedParameters)))
                         _nodesQueue.Enqueue(branchNode.True);
                     else
                         _nodesQueue.Enqueue(branchNode.False);
@@ -145,9 +148,9 @@ namespace InMotion.Engine
 
         public void SetParameter(string key, object value)
         {
-            if (!MotionTree.Parameters.ContainsKey(key)) throw new Exception($"Parameter {key} does not exist in {MotionTree.name}! Make sure you have added it to registered parameters, or have not misspeled it's name");
-            if (MotionTree.Parameters[key] != value.ToString()) 
-                MotionTree.Parameters[key] = value.ToString();
+            if (!_clonedParameters.ContainsKey(key)) throw new Exception($"Parameter {key} does not exist in {MotionTree.name}! Make sure you have added it to registered parameters, or have not misspeled it's name");
+            if (_clonedParameters[key] != value.ToString()) 
+                _clonedParameters[key] = value.ToString();
         }
 
         public void InvokeParameter(string key, object first, object after)

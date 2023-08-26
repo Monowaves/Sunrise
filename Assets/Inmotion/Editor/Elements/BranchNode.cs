@@ -50,7 +50,7 @@ namespace InMotion.EditorOnly.GraphElements
 
         private void CheckCondition()
         {
-            (string, object)[] registeredParameters = GraphView.MotionTreeWindow.CurrentMotionTree.RegisteredParameters.ToArray();
+            (string, object)[] registeredParameters = GraphView.MotionTreeWindow.CurrentMotionTree.RegisteredParameters;
 
             if (Conditioner.StringToCondition(Condition, registeredParameters))
             {

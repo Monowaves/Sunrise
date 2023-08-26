@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f86dca32b465a4fa65e09c16f94dcf, type: 3}
+  m_Name: BlindSlimeMotionTreeGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: BlindSlimeMotionTree
+  <Groups>k__BackingField: []
+  <MotionNodes>k__BackingField:
+  - <ID>k__BackingField: a180859d-5e7e-42e0-bb95-5eecee3021a1
+    <Name>k__BackingField: Land
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 399, y: 0}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 4adc272565066044f9ee2db7e226d6d7, type: 2}
+    <NextNodeID>k__BackingField: 50b5e155-7765-488f-8d5a-56b921f93100
+  - <ID>k__BackingField: 86475baf-0d36-4354-ad48-b8635be6a1d3
+    <Name>k__BackingField: Jump
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 700, y: 146}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 482788a0576a75c48b67084494df9b91, type: 2}
+    <NextNodeID>k__BackingField: 50b5e155-7765-488f-8d5a-56b921f93100
+  - <ID>k__BackingField: ee7f04b7-367c-4d1b-9a86-a0201ce561c4
+    <Name>k__BackingField: Fall
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 1000, y: 239}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 589b18e2d28848f43a091d971f01872e, type: 2}
+    <NextNodeID>k__BackingField: 50b5e155-7765-488f-8d5a-56b921f93100
+  - <ID>k__BackingField: 651263fa-cc53-4b73-9837-77a3c9d91abe
+    <Name>k__BackingField: Idle
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 1000, y: 385}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 4ec8fee4db8e4664f9975c57f28245ee, type: 2}
+    <NextNodeID>k__BackingField: 50b5e155-7765-488f-8d5a-56b921f93100
+  <BranchNodes>k__BackingField:
+  - <ID>k__BackingField: d5ad58da-b2c9-4973-a353-51643a3c2592
+    <Name>k__BackingField: JumpingCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 399, y: 146}
+    <Condition>k__BackingField: isJumping = true
+    <TrueNodeID>k__BackingField: 86475baf-0d36-4354-ad48-b8635be6a1d3
+    <FalseNodeID>k__BackingField: 9cc599a6-1703-4e18-bad0-2f2b25322a37
+  - <ID>k__BackingField: 9cc599a6-1703-4e18-bad0-2f2b25322a37
+    <Name>k__BackingField: FallingCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 700, y: 292}
+    <Condition>k__BackingField: isFalling = true
+    <TrueNodeID>k__BackingField: ee7f04b7-367c-4d1b-9a86-a0201ce561c4
+    <FalseNodeID>k__BackingField: 651263fa-cc53-4b73-9837-77a3c9d91abe
+  - <ID>k__BackingField: 56687eb3-99f5-479d-bf45-fc03f0c4d7ce
+    <Name>k__BackingField: LandingCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 99, y: 0}
+    <Condition>k__BackingField: isLanding = true
+    <TrueNodeID>k__BackingField: a180859d-5e7e-42e0-bb95-5eecee3021a1
+    <FalseNodeID>k__BackingField: d5ad58da-b2c9-4973-a353-51643a3c2592
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 50b5e155-7765-488f-8d5a-56b921f93100
+    <Name>k__BackingField: Return
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 1277, y: 0}
+  <AllNodes>k__BackingField:
+  - <ID>k__BackingField: d5ad58da-b2c9-4973-a353-51643a3c2592
+    <Name>k__BackingField: JumpingCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 399, y: 146}
+  - <ID>k__BackingField: 9cc599a6-1703-4e18-bad0-2f2b25322a37
+    <Name>k__BackingField: FallingCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 700, y: 292}
+  - <ID>k__BackingField: 56687eb3-99f5-479d-bf45-fc03f0c4d7ce
+    <Name>k__BackingField: LandingCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: 99, y: 0}
+  - <ID>k__BackingField: 50b5e155-7765-488f-8d5a-56b921f93100
+    <Name>k__BackingField: Return
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: 1277, y: 0}
+  - <ID>k__BackingField: a180859d-5e7e-42e0-bb95-5eecee3021a1
+    <Name>k__BackingField: Land
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 399, y: 0}
+  - <ID>k__BackingField: 86475baf-0d36-4354-ad48-b8635be6a1d3
+    <Name>k__BackingField: Jump
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 700, y: 146}
+  - <ID>k__BackingField: ee7f04b7-367c-4d1b-9a86-a0201ce561c4
+    <Name>k__BackingField: Fall
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 1000, y: 239}
+  - <ID>k__BackingField: 651263fa-cc53-4b73-9837-77a3c9d91abe
+    <Name>k__BackingField: Idle
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 1000, y: 385}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - JumpingCheck
+  - FallingCheck
+  - LandingCheck
+  - Return
+  - Land
+  - Jump
+  - Fall
+  - Idle
+  <OldGroupedNodeNames>k__BackingField:
+    m_keys: []
+  <RootPosition>k__BackingField: {x: 0, y: 0}
+  <RootNextID>k__BackingField: 56687eb3-99f5-479d-bf45-fc03f0c4d7ce
+  <RootNext>k__BackingField: {fileID: 11400000, guid: bde017ff0e94da143944c50f128cf97f, type: 2}

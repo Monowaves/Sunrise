@@ -129,6 +129,11 @@ namespace MonoWaves.QoL
         {
             return UnityEngine.Random.Range(minimum, maximum);
         }
+
+        public static T Or<T>(T first, T second)
+        {
+            return UnityEngine.Random.Range(0, 1) == 0 ? first : second;
+        }
     }
 
     public static class ZMath

@@ -13,20 +13,15 @@ namespace InMotion.Engine
         [field: SerializeField] public MotionTreeParameters Parameters { get; private set; }
         public MotionTreeSaveData SavedData;
 
-        public List<(string, object)> RegisteredParameters
+        public (string key, object value)[] ZipParameters(Dictionary<string, string> parameters)
         {
-            get { return RegisteredParametersNames.Zip(RegisteredParametersValues, (x, y) => ValueTuple.Create(x, y)).ToList(); }
+            var keys = parameters.Keys.ToList();
+            var values = parameters.Values.Cast<object>().ToList();
+
+            return keys.Zip(values, (x, y) => ValueTuple.Create(x, y)).ToArray();
         }
 
-        public List<string> RegisteredParametersNames
-        {
-            get { return Parameters.Keys.ToList(); }
-        }
-
-        public List<object> RegisteredParametersValues
-        {
-            get { return Parameters.Values.Cast<object>().ToList(); }
-        }
+        public (string, object)[] RegisteredParameters => ZipParameters(Parameters.ToDictionary(entry => entry.Key, entry => entry.Value));
     }
 
     [Serializable]
