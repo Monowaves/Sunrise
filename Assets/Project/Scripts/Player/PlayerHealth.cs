@@ -86,6 +86,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void Damage(float damage)
     {
+        if (Health <= 0) return;
+
         float clampedDamage = damage.ClampMinimum(0f);
 
         Health -= clampedDamage;
@@ -94,6 +96,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void Heal(float amount)
     {
+        if (Health >= _startHealth) return;
+
         float clampedAmount = amount.ClampMinimum(0f);
 
         Health += clampedAmount;

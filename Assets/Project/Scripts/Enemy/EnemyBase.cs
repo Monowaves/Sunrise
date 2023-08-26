@@ -145,6 +145,10 @@ public class EnemyBase : MonoBehaviour
 
             if (ZRandom.Chance(10)) Instantiate(_healthShard, transform.position, Quaternion.identity);
 
+            //TODO: Remove this piece of garbage
+            KillsCounter killsCounter = FindObjectOfType<KillsCounter>();
+            if (killsCounter != null) killsCounter.AddKill();
+
             Destroy(gameObject);
         }
     }
