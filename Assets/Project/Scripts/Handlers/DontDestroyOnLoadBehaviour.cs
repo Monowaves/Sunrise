@@ -6,11 +6,12 @@ public class DontDestroyOnLoadBehaviour : MonoBehaviour
 
     private void Awake() 
     {
-        if (FindObjectOfType(GetType()) != null)
+        if (FindObjectsOfType(GetType()).Length > 1)
         {
             Destroy(gameObject);
         }
 
+        DontDestroyOnLoad(gameObject);
         Initialize();
     }
 }
