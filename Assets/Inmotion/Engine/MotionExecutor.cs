@@ -172,6 +172,11 @@ namespace InMotion.Engine
 
             MotionFrame = 0;
             MotionFramerate = target.UseCustomFramerate ? target.Framerate : Framerate;
+
+            VariantIndex = 0;
         }
+
+        public void SetVariant(int index) => VariantIndex = index;
+        public void SetDirection(Vector2Int direction) => Direction = direction;
     }
 }
