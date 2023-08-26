@@ -44,6 +44,11 @@ namespace InMotion.Engine
             if (TryGetComponent(out SpriteRenderer target)) Target = target;
         }
 
+        private void Awake() 
+        {
+            _clonedParameters = MotionTree.Parameters.ToDictionary(entry => entry.Key, entry => entry.Value);
+        }
+
         private void Start() 
         {
             if (!MotionTree) throw new Exception("Target motion tree is null!");
@@ -51,8 +56,6 @@ namespace InMotion.Engine
             if (MotionTree.SavedData)
             {
                 _saveDataExisting = true;
-
-                _clonedParameters = MotionTree.Parameters.ToDictionary(entry => entry.Key, entry => entry.Value);
             }
         }
 

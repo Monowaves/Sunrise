@@ -122,17 +122,17 @@ namespace MonoWaves.QoL
     {
         public static bool Chance(int chance)
         {
-            return UnityEngine.Random.Range(0, 100) <= chance;
+            return UnityEngine.Random.Range(0, 101) <= chance;
         }
 
         public static int Range(int minimum, int maximum)
         {
-            return UnityEngine.Random.Range(minimum, maximum);
+            return UnityEngine.Random.Range(minimum, maximum + 1);
         }
 
         public static T Or<T>(T first, T second)
         {
-            return UnityEngine.Random.Range(0, 1) == 0 ? first : second;
+            return UnityEngine.Random.Range(0, 2) == 0 ? first : second;
         }
     }
 

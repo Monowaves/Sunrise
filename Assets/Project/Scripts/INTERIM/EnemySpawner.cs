@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public Vector2 minMaxX;
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefab;
 
     private void Awake() 
     {
@@ -13,6 +13,6 @@ public class EnemySpawner : MonoBehaviour
 
     void SpanEnemy()
     {
-        Instantiate(enemyPrefab, new Vector2(Random.Range(minMaxX.x, minMaxX.y), 30f), Quaternion.identity);
+        Instantiate(enemyPrefab.GetRandomValue(), new Vector2(Random.Range(minMaxX.x, minMaxX.y), 30f), Quaternion.identity);
     }
 }
