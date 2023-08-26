@@ -35,7 +35,8 @@ namespace InMotion.Engine
         public Action OnMotionEnd;
         public Action OnMotionStart;
         public Action OnMotionFrame;
-
+        
+        private Dictionary<string, object> _invoked = new();
         
         private void OnValidate() 
         {
@@ -59,7 +60,6 @@ namespace InMotion.Engine
             if (_terminated) return;
 
             ManageQueue();
-
             SetMotion(_motionsQueue.Dequeue());
 
             _updateFrametime -= Time.deltaTime;
@@ -131,6 +131,13 @@ namespace InMotion.Engine
                     OnMotionEnd?.Invoke();
 
                     if (_playThis.Looping) MotionFrame = 0;
+
+                    List<string> keys = new(_invoked.Keys);
+                    foreach(string key in keys)
+                    {
+                        SetParameter(key, _invoked[key]);
+                        _invoked.Remove(key);
+                    }
                 }
                 else MotionFrame++;
             }
@@ -138,8 +145,17 @@ namespace InMotion.Engine
 
         public void SetParameter(string key, object value)
         {
+            if (!MotionTree.Parameters.ContainsKey(key)) throw new Exception($"Parameter {key} does not exist in {MotionTree.name}! Make sure you have added it to registered parameters, or have not misspeled it's name");
             if (MotionTree.Parameters[key] != value.ToString()) 
                 MotionTree.Parameters[key] = value.ToString();
+        }
+
+        public void InvokeParameter(string key, object first, object after)
+        {
+            if (_invoked.ContainsKey(key)) return;
+            
+            SetParameter(key, first);
+            _invoked.Add(key, after);
         }
 
         public void SetMotion(Motion target)
@@ -149,7 +165,6 @@ namespace InMotion.Engine
             _playThis = target;
 
             MotionFrame = 0;
-
             MotionFramerate = target.UseCustomFramerate ? target.Framerate : Framerate;
         }
     }

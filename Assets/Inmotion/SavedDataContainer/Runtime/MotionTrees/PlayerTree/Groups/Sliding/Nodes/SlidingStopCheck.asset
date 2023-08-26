@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2966b94c894f5414ebdc2d97552a6649, type: 3}
-  m_Name: SlidingCheck
+  m_Name: SlidingStopCheck
   m_EditorClassIdentifier: 
-  <NodeName>k__BackingField: SlidingCheck
+  <NodeName>k__BackingField: SlidingStopCheck
   <NodeType>k__BackingField: 0
-  <Condition>k__BackingField: isSliding = true
-  <True>k__BackingField: {fileID: 11400000, guid: a0a400cbef7f2524b966cfebc8a56808, type: 2}
+  <Condition>k__BackingField: isSlidingStop = true
+  <True>k__BackingField: {fileID: 11400000, guid: 193d545e8389e274e99d0787c48e4331, type: 2}
   <False>k__BackingField: {fileID: 11400000, guid: 51a888be9b6e1d4408f3538c20f35a74, type: 2}

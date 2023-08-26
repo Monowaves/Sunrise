@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2966b94c894f5414ebdc2d97552a6649, type: 3}
-  m_Name: GroundSlamStandUpCheck
+  m_Name: SlidingCheck
   m_EditorClassIdentifier: 
-  <NodeName>k__BackingField: GroundSlamStandUpCheck
+  <NodeName>k__BackingField: SlidingCheck
   <NodeType>k__BackingField: 0
-  <Condition>k__BackingField: isGSStandUp = true
-  <True>k__BackingField: {fileID: 11400000, guid: e280a3f9a5db95e49ab378729cf6ce11, type: 2}
-  <False>k__BackingField: {fileID: 11400000, guid: 52a0d712b87f235419da1dd0d287af61, type: 2}
+  <Condition>k__BackingField: isSlidingSlide = true
+  <True>k__BackingField: {fileID: 11400000, guid: 86165ee3ef94ec5419b1dc96ff669c0a, type: 2}
+  <False>k__BackingField: {fileID: 11400000, guid: d34571066697bcf45b1f20ed97194e25, type: 2}

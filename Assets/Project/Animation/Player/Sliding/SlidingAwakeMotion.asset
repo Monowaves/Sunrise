@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 960b7ed1419c95b45b8de17bc871c40f, type: 3}
-  m_Name: SlidingMotion
+  m_Name: SlidingAwakeMotion
   m_EditorClassIdentifier: 
-  UseCustomFramerate: 0
-  Framerate: 20
-  Looping: 1
+  UseCustomFramerate: 1
+  Framerate: 15
+  Looping: 0
   Variants:
-  - {fileID: 11400000, guid: 408c674f71200a249a3cb1b3a6cc3579, type: 2}
+  - {fileID: 11400000, guid: c561e76f21a32a24eab35be8847bd907, type: 2}

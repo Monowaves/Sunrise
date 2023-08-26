@@ -21,8 +21,8 @@ MonoBehaviour:
     - isGSPrepare
     - isGSDash
     - isGSStandUp
-    - isSliding
-    - isSlidingStart
+    - isSlidingSlide
+    - isSlidingAwake
     - isSlidingStop
     m_values:
     - False

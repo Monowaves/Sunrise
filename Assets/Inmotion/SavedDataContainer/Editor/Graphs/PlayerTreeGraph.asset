@@ -17,6 +17,9 @@ MonoBehaviour:
   - <ID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
     <Name>k__BackingField: GroundSlam
     <Position>k__BackingField: {x: -2354, y: -569}
+  - <ID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Name>k__BackingField: Sliding
+    <Position>k__BackingField: {x: -1455, y: 7}
   <MotionNodes>k__BackingField:
   - <ID>k__BackingField: b0a517da-dce4-4fc0-8d12-3c7c4be3b845
     <Name>k__BackingField: GroundSlamPrepare
@@ -32,27 +35,6 @@ MonoBehaviour:
     <Position>k__BackingField: {x: -1730, y: -421}
     <Motion>k__BackingField: {fileID: 11400000, guid: 0687ed126d900834b8d2ae5127b00a7e, type: 2}
     <NextNodeID>k__BackingField: 2221f35a-32da-4d71-918e-2445bc2d520b
-  - <ID>k__BackingField: 3f007376-4657-4e2b-bff3-0d3279b92e6b
-    <Name>k__BackingField: Fall
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -224, y: 392}
-    <Motion>k__BackingField: {fileID: 11400000, guid: 914f4c36bc9c6144683951d07472051f, type: 2}
-    <NextNodeID>k__BackingField: 73a01a22-1bc0-4f77-aa0c-15aa7da763c8
-  - <ID>k__BackingField: fefe63c5-12d9-4619-a932-986e5a8e43fe
-    <Name>k__BackingField: Run
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: 75, y: 479}
-    <Motion>k__BackingField: {fileID: 11400000, guid: d5ef7bc8d3ace9044bbe06f4bdc0a3ee, type: 2}
-    <NextNodeID>k__BackingField: 73a01a22-1bc0-4f77-aa0c-15aa7da763c8
-  - <ID>k__BackingField: 7c8b6b30-db57-49c0-b27e-9548273875ef
-    <Name>k__BackingField: WallSlide
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -527, y: 319}
-    <Motion>k__BackingField: {fileID: 11400000, guid: 7005237dcb4786040acde99b5885f238, type: 2}
-    <NextNodeID>k__BackingField: 73a01a22-1bc0-4f77-aa0c-15aa7da763c8
   - <ID>k__BackingField: 4c25795a-d348-428a-9156-ab342b822c5b
     <Name>k__BackingField: GroundSlamStandUp
     <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
@@ -60,34 +42,62 @@ MonoBehaviour:
     <Position>k__BackingField: {x: -1425, y: -293}
     <Motion>k__BackingField: {fileID: 11400000, guid: 313c8f6c01506244ca150d62d7f1ed79, type: 2}
     <NextNodeID>k__BackingField: 2221f35a-32da-4d71-918e-2445bc2d520b
-  - <ID>k__BackingField: 0a8462f3-4e5b-4bc5-b126-751357bb0de2
-    <Name>k__BackingField: SlidingStart
+  - <ID>k__BackingField: 7c8b6b30-db57-49c0-b27e-9548273875ef
+    <Name>k__BackingField: WallSlide
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -1126, y: 10}
-    <Motion>k__BackingField: {fileID: 11400000, guid: b52e670a9ee0bc54f95cfb6505e0f710, type: 2}
-    <NextNodeID>k__BackingField: ebc8f4b5-986e-4668-af71-1bd5b44bc13b
-  - <ID>k__BackingField: ebc8f4b5-986e-4668-af71-1bd5b44bc13b
-    <Name>k__BackingField: Sliding
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -864, y: 10}
-    <Motion>k__BackingField: {fileID: 11400000, guid: fb36a8caeeffee042bcfda43fd3f2665, type: 2}
+    <Position>k__BackingField: {x: 75, y: 718}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 7005237dcb4786040acde99b5885f238, type: 2}
     <NextNodeID>k__BackingField: 73a01a22-1bc0-4f77-aa0c-15aa7da763c8
   - <ID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
     <Name>k__BackingField: Jump
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -826, y: 204}
+    <Position>k__BackingField: {x: -224, y: 603}
     <Motion>k__BackingField: {fileID: 11400000, guid: 48b7c0a9ff80b584e8cfb24d1ceafbc4, type: 2}
+    <NextNodeID>k__BackingField: 73a01a22-1bc0-4f77-aa0c-15aa7da763c8
+  - <ID>k__BackingField: 3f007376-4657-4e2b-bff3-0d3279b92e6b
+    <Name>k__BackingField: Fall
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 378, y: 791}
+    <Motion>k__BackingField: {fileID: 11400000, guid: 914f4c36bc9c6144683951d07472051f, type: 2}
+    <NextNodeID>k__BackingField: 73a01a22-1bc0-4f77-aa0c-15aa7da763c8
+  - <ID>k__BackingField: fefe63c5-12d9-4619-a932-986e5a8e43fe
+    <Name>k__BackingField: Run
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 677, y: 878}
+    <Motion>k__BackingField: {fileID: 11400000, guid: d5ef7bc8d3ace9044bbe06f4bdc0a3ee, type: 2}
     <NextNodeID>k__BackingField: 73a01a22-1bc0-4f77-aa0c-15aa7da763c8
   - <ID>k__BackingField: 15fab6dd-6c89-4fa2-b912-35ab68b56a81
     <Name>k__BackingField: Idle
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: 75, y: 655}
+    <Position>k__BackingField: {x: 677, y: 1054}
     <Motion>k__BackingField: {fileID: 11400000, guid: 89117f02e85514a4f9792104d3fe42b4, type: 2}
     <NextNodeID>k__BackingField: 73a01a22-1bc0-4f77-aa0c-15aa7da763c8
+  - <ID>k__BackingField: 0a8462f3-4e5b-4bc5-b126-751357bb0de2
+    <Name>k__BackingField: SlidingStart
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -1126, y: 66}
+    <Motion>k__BackingField: {fileID: 11400000, guid: b52e670a9ee0bc54f95cfb6505e0f710, type: 2}
+    <NextNodeID>k__BackingField: fc317ff5-2beb-4d6f-8308-1efeb7d66561
+  - <ID>k__BackingField: 4744e786-59a0-4598-91e1-3ef0b7aef777
+    <Name>k__BackingField: Sliding
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -827, y: 212}
+    <Motion>k__BackingField: {fileID: 11400000, guid: fb36a8caeeffee042bcfda43fd3f2665, type: 2}
+    <NextNodeID>k__BackingField: fc317ff5-2beb-4d6f-8308-1efeb7d66561
+  - <ID>k__BackingField: 9f63351e-b225-4009-8005-b48c8fb66f35
+    <Name>k__BackingField: SlidingStop
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -529, y: 358}
+    <Motion>k__BackingField: {fileID: 11400000, guid: b22732c1c2f773b41838be17e0fd815c, type: 2}
+    <NextNodeID>k__BackingField: fc317ff5-2beb-4d6f-8308-1efeb7d66561
   <BranchNodes>k__BackingField:
   - <ID>k__BackingField: 9a4b8b45-9c12-49e3-938b-0a853fb43bb3
     <Name>k__BackingField: GroundSlamPrepareCheck
@@ -97,22 +107,6 @@ MonoBehaviour:
     <Condition>k__BackingField: isGSPrepare = true
     <TrueNodeID>k__BackingField: b0a517da-dce4-4fc0-8d12-3c7c4be3b845
     <FalseNodeID>k__BackingField: d9a1242e-0002-47f0-9f97-5a4d34ee5be8
-  - <ID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
-    <Name>k__BackingField: JumpCheck
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -1126, y: 225}
-    <Condition>k__BackingField: isJumping = true
-    <TrueNodeID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
-    <FalseNodeID>k__BackingField: 422203c5-b03c-4d9a-bb29-d6e72db6cfff
-  - <ID>k__BackingField: 422203c5-b03c-4d9a-bb29-d6e72db6cfff
-    <Name>k__BackingField: WallSlideCheck
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -826, y: 380}
-    <Condition>k__BackingField: isWallSliding = true
-    <TrueNodeID>k__BackingField: 7c8b6b30-db57-49c0-b27e-9548273875ef
-    <FalseNodeID>k__BackingField: fca86245-7dc2-4b3a-b1b7-a46aa329fc52
   - <ID>k__BackingField: d9a1242e-0002-47f0-9f97-5a4d34ee5be8
     <Name>k__BackingField: GroundSlamDashCheck
     <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
@@ -129,19 +123,27 @@ MonoBehaviour:
     <Condition>k__BackingField: isGSStandUp = true
     <TrueNodeID>k__BackingField: 4c25795a-d348-428a-9156-ab342b822c5b
     <FalseNodeID>k__BackingField: 0b390330-28b1-45a6-ba83-925ba924f19c
-  - <ID>k__BackingField: 0b390330-28b1-45a6-ba83-925ba924f19c
-    <Name>k__BackingField: SlidingCheck
+  - <ID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
+    <Name>k__BackingField: JumpCheck
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -1425, y: 10}
-    <Condition>k__BackingField: isSliding = true
-    <TrueNodeID>k__BackingField: 0a8462f3-4e5b-4bc5-b126-751357bb0de2
-    <FalseNodeID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
+    <Position>k__BackingField: {x: -524, y: 624}
+    <Condition>k__BackingField: isJumping = true
+    <TrueNodeID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
+    <FalseNodeID>k__BackingField: 422203c5-b03c-4d9a-bb29-d6e72db6cfff
+  - <ID>k__BackingField: 422203c5-b03c-4d9a-bb29-d6e72db6cfff
+    <Name>k__BackingField: WallSlideCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -224, y: 779}
+    <Condition>k__BackingField: isWallSliding = true
+    <TrueNodeID>k__BackingField: 7c8b6b30-db57-49c0-b27e-9548273875ef
+    <FalseNodeID>k__BackingField: fca86245-7dc2-4b3a-b1b7-a46aa329fc52
   - <ID>k__BackingField: fca86245-7dc2-4b3a-b1b7-a46aa329fc52
     <Name>k__BackingField: FallCheck
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -527, y: 495}
+    <Position>k__BackingField: {x: 75, y: 894}
     <Condition>k__BackingField: isFalling = true
     <TrueNodeID>k__BackingField: 3f007376-4657-4e2b-bff3-0d3279b92e6b
     <FalseNodeID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
@@ -149,10 +151,34 @@ MonoBehaviour:
     <Name>k__BackingField: RunCheck
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -224, y: 568}
+    <Position>k__BackingField: {x: 378, y: 967}
     <Condition>k__BackingField: isRunning = true
     <TrueNodeID>k__BackingField: fefe63c5-12d9-4619-a932-986e5a8e43fe
     <FalseNodeID>k__BackingField: 15fab6dd-6c89-4fa2-b912-35ab68b56a81
+  - <ID>k__BackingField: 0b390330-28b1-45a6-ba83-925ba924f19c
+    <Name>k__BackingField: SlidingStartCheck
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -1430, y: 66}
+    <Condition>k__BackingField: isSlidingAwake = true
+    <TrueNodeID>k__BackingField: 0a8462f3-4e5b-4bc5-b126-751357bb0de2
+    <FalseNodeID>k__BackingField: 0af30e46-c945-4293-94f6-60e25dc4c04e
+  - <ID>k__BackingField: 581781d3-ea3e-4f2a-9add-b45da1a3bd9b
+    <Name>k__BackingField: SlidingStopCheck
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -827, y: 358}
+    <Condition>k__BackingField: isSlidingStop = true
+    <TrueNodeID>k__BackingField: 9f63351e-b225-4009-8005-b48c8fb66f35
+    <FalseNodeID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
+  - <ID>k__BackingField: 0af30e46-c945-4293-94f6-60e25dc4c04e
+    <Name>k__BackingField: SlidingCheck
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -1126, y: 212}
+    <Condition>k__BackingField: isSlidingSlide = true
+    <TrueNodeID>k__BackingField: 4744e786-59a0-4598-91e1-3ef0b7aef777
+    <FalseNodeID>k__BackingField: 581781d3-ea3e-4f2a-9add-b45da1a3bd9b
   <Nodes>k__BackingField:
   - <ID>k__BackingField: 2221f35a-32da-4d71-918e-2445bc2d520b
     <Name>k__BackingField: GroundSlamReturn
@@ -163,7 +189,12 @@ MonoBehaviour:
     <Name>k__BackingField: Return
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
-    <Position>k__BackingField: {x: 337, y: -7}
+    <Position>k__BackingField: {x: 952, y: 603}
+  - <ID>k__BackingField: fc317ff5-2beb-4d6f-8308-1efeb7d66561
+    <Name>k__BackingField: SlidingReturn
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: -255, y: 66}
   <AllNodes>k__BackingField:
   - <ID>k__BackingField: b0a517da-dce4-4fc0-8d12-3c7c4be3b845
     <Name>k__BackingField: GroundSlamPrepare
@@ -175,61 +206,56 @@ MonoBehaviour:
     <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
     <Type>k__BackingField: 1
     <Position>k__BackingField: {x: -1730, y: -421}
-  - <ID>k__BackingField: 3f007376-4657-4e2b-bff3-0d3279b92e6b
-    <Name>k__BackingField: Fall
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -224, y: 392}
-  - <ID>k__BackingField: fefe63c5-12d9-4619-a932-986e5a8e43fe
-    <Name>k__BackingField: Run
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: 75, y: 479}
-  - <ID>k__BackingField: 7c8b6b30-db57-49c0-b27e-9548273875ef
-    <Name>k__BackingField: WallSlide
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -527, y: 319}
   - <ID>k__BackingField: 4c25795a-d348-428a-9156-ab342b822c5b
     <Name>k__BackingField: GroundSlamStandUp
     <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
     <Type>k__BackingField: 1
     <Position>k__BackingField: {x: -1425, y: -293}
-  - <ID>k__BackingField: 0a8462f3-4e5b-4bc5-b126-751357bb0de2
-    <Name>k__BackingField: SlidingStart
+  - <ID>k__BackingField: 7c8b6b30-db57-49c0-b27e-9548273875ef
+    <Name>k__BackingField: WallSlide
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -1126, y: 10}
-  - <ID>k__BackingField: ebc8f4b5-986e-4668-af71-1bd5b44bc13b
-    <Name>k__BackingField: Sliding
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -864, y: 10}
+    <Position>k__BackingField: {x: 75, y: 718}
   - <ID>k__BackingField: 0d817178-1c8c-43fb-b85c-a74930e1ce87
     <Name>k__BackingField: Jump
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -826, y: 204}
+    <Position>k__BackingField: {x: -224, y: 603}
+  - <ID>k__BackingField: 3f007376-4657-4e2b-bff3-0d3279b92e6b
+    <Name>k__BackingField: Fall
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 378, y: 791}
+  - <ID>k__BackingField: fefe63c5-12d9-4619-a932-986e5a8e43fe
+    <Name>k__BackingField: Run
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: 677, y: 878}
   - <ID>k__BackingField: 15fab6dd-6c89-4fa2-b912-35ab68b56a81
     <Name>k__BackingField: Idle
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: 75, y: 655}
+    <Position>k__BackingField: {x: 677, y: 1054}
+  - <ID>k__BackingField: 0a8462f3-4e5b-4bc5-b126-751357bb0de2
+    <Name>k__BackingField: SlidingStart
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -1126, y: 66}
+  - <ID>k__BackingField: 4744e786-59a0-4598-91e1-3ef0b7aef777
+    <Name>k__BackingField: Sliding
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -827, y: 212}
+  - <ID>k__BackingField: 9f63351e-b225-4009-8005-b48c8fb66f35
+    <Name>k__BackingField: SlidingStop
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 1
+    <Position>k__BackingField: {x: -529, y: 358}
   - <ID>k__BackingField: 9a4b8b45-9c12-49e3-938b-0a853fb43bb3
     <Name>k__BackingField: GroundSlamPrepareCheck
     <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: -2329, y: -437}
-  - <ID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
-    <Name>k__BackingField: JumpCheck
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -1126, y: 225}
-  - <ID>k__BackingField: 422203c5-b03c-4d9a-bb29-d6e72db6cfff
-    <Name>k__BackingField: WallSlideCheck
-    <GroupID>k__BackingField: 
-    <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -826, y: 380}
   - <ID>k__BackingField: d9a1242e-0002-47f0-9f97-5a4d34ee5be8
     <Name>k__BackingField: GroundSlamDashCheck
     <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
@@ -240,21 +266,41 @@ MonoBehaviour:
     <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
     <Type>k__BackingField: 0
     <Position>k__BackingField: {x: -1730, y: -245}
-  - <ID>k__BackingField: 0b390330-28b1-45a6-ba83-925ba924f19c
-    <Name>k__BackingField: SlidingCheck
+  - <ID>k__BackingField: c61eefed-e587-4ac5-98fc-dd5bb21ec969
+    <Name>k__BackingField: JumpCheck
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -1425, y: 10}
+    <Position>k__BackingField: {x: -524, y: 624}
+  - <ID>k__BackingField: 422203c5-b03c-4d9a-bb29-d6e72db6cfff
+    <Name>k__BackingField: WallSlideCheck
+    <GroupID>k__BackingField: 
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -224, y: 779}
   - <ID>k__BackingField: fca86245-7dc2-4b3a-b1b7-a46aa329fc52
     <Name>k__BackingField: FallCheck
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -527, y: 495}
+    <Position>k__BackingField: {x: 75, y: 894}
   - <ID>k__BackingField: 084b5438-11b0-4472-9160-e2417fdc2ed0
     <Name>k__BackingField: RunCheck
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: -224, y: 568}
+    <Position>k__BackingField: {x: 378, y: 967}
+  - <ID>k__BackingField: 0b390330-28b1-45a6-ba83-925ba924f19c
+    <Name>k__BackingField: SlidingStartCheck
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -1430, y: 66}
+  - <ID>k__BackingField: 581781d3-ea3e-4f2a-9add-b45da1a3bd9b
+    <Name>k__BackingField: SlidingStopCheck
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -827, y: 358}
+  - <ID>k__BackingField: 0af30e46-c945-4293-94f6-60e25dc4c04e
+    <Name>k__BackingField: SlidingCheck
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 0
+    <Position>k__BackingField: {x: -1126, y: 212}
   - <ID>k__BackingField: 2221f35a-32da-4d71-918e-2445bc2d520b
     <Name>k__BackingField: GroundSlamReturn
     <GroupID>k__BackingField: 9a1e71ed-f698-474f-b454-b2068e7a978c
@@ -264,26 +310,30 @@ MonoBehaviour:
     <Name>k__BackingField: Return
     <GroupID>k__BackingField: 
     <Type>k__BackingField: 2
-    <Position>k__BackingField: {x: 337, y: -7}
+    <Position>k__BackingField: {x: 952, y: 603}
+  - <ID>k__BackingField: fc317ff5-2beb-4d6f-8308-1efeb7d66561
+    <Name>k__BackingField: SlidingReturn
+    <GroupID>k__BackingField: d40c341f-4c44-49e0-9430-8c7dedbd2238
+    <Type>k__BackingField: 2
+    <Position>k__BackingField: {x: -255, y: 66}
   <OldGroupNames>k__BackingField:
   - GroundSlam
+  - Sliding
   <OldUngroupedNodeNames>k__BackingField:
+  - WallSlide
+  - Jump
   - Fall
   - Run
-  - WallSlide
-  - SlidingStart
-  - Sliding
-  - Jump
   - Idle
   - JumpCheck
   - WallSlideCheck
-  - SlidingCheck
   - FallCheck
   - RunCheck
   - Return
   <OldGroupedNodeNames>k__BackingField:
     m_keys:
     - GroundSlam
+    - Sliding
   <RootPosition>k__BackingField: {x: -2465, y: -437}
   <RootNextID>k__BackingField: 9a4b8b45-9c12-49e3-938b-0a853fb43bb3
   <RootNext>k__BackingField: {fileID: 11400000, guid: 79d7aa6208197554c8a27746d6c997d9, type: 2}

@@ -1325,6 +1325,9 @@ MonoBehaviour:
   <IsGroundSlamPrepare>k__BackingField: 0
   <IsGroundSlamDash>k__BackingField: 0
   <IsGroundStandUp>k__BackingField: 0
+  <IsSlidingStart>k__BackingField: 0
+  <IsSliding>k__BackingField: 0
+  <IsSlidingStop>k__BackingField: 0
 --- !u!1 &6405075898659478475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,7 +1459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bedec495b46fe641aacfbb715e3113d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _motionExecutor: {fileID: 6112821363312748418}
+  <MotionExecutor>k__BackingField: {fileID: 6112821363312748418}
 --- !u!1 &6559481123580250971
 GameObject:
   m_ObjectHideFlags: 0

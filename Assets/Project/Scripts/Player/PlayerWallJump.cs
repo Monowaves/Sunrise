@@ -16,7 +16,6 @@ public class PlayerWallJump : MonoBehaviour
 
     private Rigidbody2D _rb => PlayerBase.Singleton.Rigidbody;
 
-    private bool _isTouchingWall => PlayerBase.Singleton.IsTouchingLeftWall || PlayerBase.Singleton.IsTouchingRightWall;
     private bool _wasOnWallLastFrame;
 
     private void Update() 
@@ -36,7 +35,7 @@ public class PlayerWallJump : MonoBehaviour
             PlayerBase.Singleton.IsJumping = false;
         }
 
-        if (_isTouchingWall)
+        if (PlayerBase.Singleton.IsTouchingWall)
         {
             if (!PlayerBase.Singleton.IsTouchingGround)
             {
@@ -71,12 +70,12 @@ public class PlayerWallJump : MonoBehaviour
             if (PlayerBase.Singleton.IsWallSliding) PlayerBase.Singleton.IsWallSliding = false;
         }
 
-        if (!_isTouchingWall && _wasOnWallLastFrame)
+        if (!PlayerBase.Singleton.IsTouchingWall && _wasOnWallLastFrame)
         {
             PlayerBase.Singleton.BlockMoveInputs = false;
         }
 
-        _wasOnWallLastFrame = _isTouchingWall;
+        _wasOnWallLastFrame = PlayerBase.Singleton.IsTouchingWall;
     }
 
     private void Jump()
