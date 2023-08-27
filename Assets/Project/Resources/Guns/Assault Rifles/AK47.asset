@@ -15,10 +15,11 @@ MonoBehaviour:
   <Type>k__BackingField: GunBase
   <Name>k__BackingField: Ak-47
   <Sprite>k__BackingField: {fileID: 21300000, guid: 336790cf25bde9840bc925589b7c5eb6, type: 3}
+  <Rarity>k__BackingField: 1
   <Damage>k__BackingField: 22
-  <MaxAmmo>k__BackingField: 30
-  <ReloadTime>k__BackingField: 1
+  <Capacity>k__BackingField: 30
   <SpreadAngle>k__BackingField: 5
+  <ReloadTime>k__BackingField: 1
   <ShotCountdown>k__BackingField: 0.1
   <AllowHolding>k__BackingField: 1
   <ShootPoint>k__BackingField: {x: 1.1, y: 0.175}

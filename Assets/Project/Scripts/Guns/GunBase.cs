@@ -25,7 +25,8 @@ public class GunBase : MonoBehaviour
         _shootPoint.SetParent(transform);
         _shootPoint.localPosition = Settings.ShootPoint;
 
-        GunPreview.Singleton.SetPreview(Settings.Sprite);
+        GunPreview.Singleton.SetPreview(Settings.Sprite, Settings.Rarity);
+        GunInfo.Singleton.SetInfo(Settings);
         
         if (DefaultValues == (0, 0))
         {
@@ -34,7 +35,7 @@ public class GunBase : MonoBehaviour
         }
 
         RemainingAmmo = DefaultValues.ammo;
-        AmmoBar.Singleton.SetMaxAmmo(Settings.MaxAmmo, DefaultValues.value);
+        AmmoBar.Singleton.SetMaxAmmo(Settings.Capacity, DefaultValues.value);
         GameCursor.SetReload(false);
     }
 
@@ -101,8 +102,8 @@ public class GunBase : MonoBehaviour
 
     private void Reload()
     {
-        RemainingAmmo = Settings.MaxAmmo;
-        AmmoBar.Singleton.SetMaxAmmo(Settings.MaxAmmo);
+        RemainingAmmo = Settings.Capacity;
+        AmmoBar.Singleton.SetMaxAmmo(Settings.Capacity);
 
         IsReloading = false;
         GameCursor.SetReload(false);

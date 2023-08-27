@@ -794,6 +794,20 @@ namespace MonoWaves.QoL
             return (T)collision.transform.GetComponent(typeof(T));
         }
     }
+
+    public static class ZColorExtensions
+    {
+        public static Color HexToColor(this string hex)
+        {
+            ColorUtility.TryParseHtmlString(hex, out Color color);
+            return color;
+        }
+
+        public static string ToHex(this Color color)
+        {
+            return ColorUtility.ToHtmlStringRGBA(color);
+        }
+    }
 }
 
 public enum MouseCode

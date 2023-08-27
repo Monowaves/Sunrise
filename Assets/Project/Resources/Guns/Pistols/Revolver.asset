@@ -15,10 +15,11 @@ MonoBehaviour:
   <Type>k__BackingField: GunBase
   <Name>k__BackingField: Revolver
   <Sprite>k__BackingField: {fileID: 21300000, guid: 0f1becca3784600498f991d5af29f260, type: 3}
+  <Rarity>k__BackingField: 0
   <Damage>k__BackingField: 100
-  <MaxAmmo>k__BackingField: 6
-  <ReloadTime>k__BackingField: 1
+  <Capacity>k__BackingField: 6
   <SpreadAngle>k__BackingField: 0
+  <ReloadTime>k__BackingField: 1
   <ShotCountdown>k__BackingField: 0.1
   <AllowHolding>k__BackingField: 0
   <ShootPoint>k__BackingField: {x: 0.8, y: 0.25}

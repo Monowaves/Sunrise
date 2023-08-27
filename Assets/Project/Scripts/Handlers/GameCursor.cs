@@ -1,6 +1,7 @@
 using InMotion.Engine;
 using MonoWaves.QoL;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GameCursor : DontDestroyOnLoadBehaviour
@@ -61,7 +62,12 @@ public class GameCursor : DontDestroyOnLoadBehaviour
     {
         if (!obj) return false;
 
-        return obj.GetComponent<Selectable>();
+        foreach (var component in obj.GetComponents<Component>())
+        {
+            if (component is IPointerEnterHandler) return true;
+        }
+
+        return false;
     }
 
     public static void PlayShoot()
