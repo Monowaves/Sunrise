@@ -203,6 +203,16 @@ namespace MonoWaves.QoL
         {
             return input.x >= min.x && input.y >= min.y && input.x <= max.x && input.y <= max.y;
         }
+
+        public static bool IsInRange(this Vector3 input, Vector3 min, Vector3 max)
+        {
+            return input.x >= min.x && input.y >= min.y && input.z >= min.z && input.x <= max.x && input.y <= max.y && input.z <= max.z;
+        }
+
+        public static bool IsInRange(this Vector3Int input, Vector3Int min, Vector3Int max)
+        {
+            return input.x >= min.x && input.y >= min.y && input.z >= min.z && input.x <= max.x && input.y <= max.y && input.z <= max.z;
+        }
     }
 
     public static class ZVector2
@@ -244,6 +254,24 @@ namespace MonoWaves.QoL
             (
                 Mathf.Abs(target.x),
                 Mathf.Abs(target.y)
+            );
+        }
+
+        public static Vector2 ClampX(this Vector2 target, float min, float max)
+        {
+            return new Vector2
+            (
+                Mathf.Clamp(target.x, min, max),
+                target.y
+            );
+        }
+
+        public static Vector2 ClampY(this Vector2 target, float min, float max)
+        {
+            return new Vector2
+            (
+                target.x,
+                Mathf.Clamp(target.y, min, max)
             );
         }
 

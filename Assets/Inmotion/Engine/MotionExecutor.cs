@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using InMotion.Utilities;
 using UnityEngine.Events;
 using InMotion.SO;
+using UnityEngine.SceneManagement;
 
 namespace InMotion.Engine
 {
@@ -36,7 +37,7 @@ namespace InMotion.Engine
         public Action OnMotionStart;
         public Action OnMotionFrame;
         
-        private Dictionary<string, object> _invoked = new();
+        private Dictionary<string, object> _invoked;
         private Dictionary<string, string> _clonedParameters;
         
         private void OnValidate() 
@@ -46,7 +47,16 @@ namespace InMotion.Engine
 
         private void Awake() 
         {
+            ResetExecutor();
+        }
+
+        private void ResetExecutor()
+        {
             _clonedParameters = MotionTree.Parameters.ToDictionary(entry => entry.Key, entry => entry.Value);
+
+            _invoked = new();
+            _nodesQueue = new();
+            _motionsQueue = new();
         }
 
         private void Start() 

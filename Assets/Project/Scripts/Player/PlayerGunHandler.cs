@@ -24,8 +24,9 @@ public class PlayerGunHandler : MonoBehaviour
         _gunSpriteRenderer = _gun.GetComponent<SpriteRenderer>();
         _registerdGuns = Resources.LoadAll<GunBaseSettings>("Guns").ToList();
 
-        _gunOrigin = _gun.localPosition;
         PickGun(_registerdGuns.GetRandomValue());
+
+        _gunOrigin = _gun.localPosition;
     }
 
     private void DropGun()
@@ -96,18 +97,8 @@ public class PlayerGunHandler : MonoBehaviour
         Vector2 targetLocalPosition = new Vector2
         (
             _gunOrigin.x + distance * 0.05f,
-            _gunOrigin.y
-        )
-            .Clamp(new Vector2
-            (
-                0, 
-                _gunOrigin.y
-            ), new Vector2
-            (
-                1, 
-                _gunOrigin.y
-            )
-        );
+            _gunOrigin.y + 0.05f - _current.ShootPoint.y
+        )   .ClampX(0, 1);
 
         _gun.SetLocalPositionAndRotation
         (

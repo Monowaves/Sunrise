@@ -41,36 +41,33 @@ public class GunBase : MonoBehaviour
     {
         bool shotRequested = Settings.AllowHolding ? Mouse.IsHolding(MouseCode.Left) : Mouse.IsPressed(MouseCode.Left);
 
-        if (shotRequested)
+        if (shotRequested && !IsCountdown && !IsReloading && !GameCursor.IsHovering)
         {
-            if (!IsCountdown && !IsReloading)
+            float randomAngle = Random.Range(transform.localRotation.z - Settings.SpreadAngle / 2, transform.localRotation.z + Settings.SpreadAngle / 2);
+            Vector2 direction = transform.right.RandomInCone(Settings.SpreadAngle) * _holder.localScale.x;
+
+            RaycastHit2D hit = Physics2D.Raycast(_shootPoint.position, direction, 1000, LayerMask.GetMask(Const.ENEMY, Const.MAP));
+
+            MakeLine(_shootPoint.position, hit.point);
+
+            if (hit.transform.TryGetComponent(out EnemyBase enemy))
             {
-                float randomAngle = Random.Range(transform.localRotation.z - Settings.SpreadAngle / 2, transform.localRotation.z + Settings.SpreadAngle / 2);
-                Vector2 direction = transform.right.RandomInCone(Settings.SpreadAngle) * _holder.localScale.x;
+                enemy.Hit(Settings.Damage);
+            }
 
-                RaycastHit2D hit = Physics2D.Raycast(_shootPoint.position, direction, 1000, LayerMask.GetMask(Const.ENEMY, Const.MAP));
+            IsCountdown = true;
+            Invoke(nameof(ResetCanShoot), Settings.ShotCountdown);
 
-                MakeLine(_shootPoint.position, hit.point);
+            ShootEffects();
 
-                if (hit.transform.TryGetComponent(out EnemyBase enemy))
-                {
-                    enemy.Hit(Settings.Damage);
-                }
+            RemainingAmmo--;
+            AmmoBar.Singleton.SetAmmoCount(RemainingAmmo);
 
-                IsCountdown = true;
-                Invoke(nameof(ResetCanShoot), Settings.ShotCountdown);
-
-                ShootEffects();
-
-                RemainingAmmo--;
-                AmmoBar.Singleton.SetAmmoCount(RemainingAmmo);
-
-                if (RemainingAmmo == 0)
-                {
-                    Settings.ReloadSound.Play(AudioOptions.HalfVolume);
-                    IsReloading = true;
-                    Invoke(nameof(Reload), Settings.ReloadTime);
-                }
+            if (RemainingAmmo == 0)
+            {
+                Settings.ReloadSound.Play(AudioOptions.HalfVolume);
+                IsReloading = true;
+                Invoke(nameof(Reload), Settings.ReloadTime);
             }
         }
 
@@ -84,6 +81,7 @@ public class GunBase : MonoBehaviour
     {
         Settings.ShootSound.Play(new() { Volume = 0.3f });
         PlayerCamera.Singleton.Shake(Settings.ShakeAmplitude);
+        GameCursor.PlayShoot();
     }
 
     private void MakeLine(Vector2 startPoint,Vector2 endPoint)

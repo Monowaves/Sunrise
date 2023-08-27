@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public static PlayerCamera Singleton { get; private set;}
+    public static PlayerCamera Singleton { get; private set; }
     public static Camera Camera { get; private set; }
 
     [SerializeField] private CinemachineVirtualCamera _vcam;
