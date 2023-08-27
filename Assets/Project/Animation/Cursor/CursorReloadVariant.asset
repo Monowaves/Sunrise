@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab108208f119fb469f0355b45c7d40a, type: 3}
+  m_Name: CursorReloadVariant
+  m_EditorClassIdentifier: 
+  Directions: 0
+  FramesContainer:
+  - Callback: 
+    Sprites:
+    - {fileID: -327900405, guid: 66af854d4c0e07345b74c66ec9dc486f, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: -459217291, guid: 66af854d4c0e07345b74c66ec9dc486f, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: -970222072, guid: 66af854d4c0e07345b74c66ec9dc486f, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: 1069979551, guid: 66af854d4c0e07345b74c66ec9dc486f, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: -1113954233, guid: 66af854d4c0e07345b74c66ec9dc486f, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Callback: 
+    Sprites:
+    - {fileID: 1182114956, guid: 66af854d4c0e07345b74c66ec9dc486f, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}

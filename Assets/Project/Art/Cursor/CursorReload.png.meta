@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6ee6061e90c54ce43bdf06eb15656bdf
+guid: 66af854d4c0e07345b74c66ec9dc486f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 32
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CursorHover_0
+      name: CursorReload_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fdd9c6619cc9094b8a7901e8c29ce6a
-      internalID: 390993323
+      spriteID: 9ed75db87ed9a76438e91e53e7add69b
+      internalID: -327900405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CursorHover_1
+      name: CursorReload_1
       rect:
         serializedVersion: 2
         x: 9
@@ -145,8 +145,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 390ce4eec6ace824fa30ca0bb83b7c8a
-      internalID: 457322939
+      spriteID: 467681943aa803b43bb61a10d6017d72
+      internalID: -459217291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CursorReload_2
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d15fb88a6aa2416498aee35da10648d2
+      internalID: -970222072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CursorReload_3
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 0
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6d7d9cb795d2314fb8c34d8960d553c
+      internalID: 1069979551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CursorReload_4
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 0
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d7e9fadd895bf049a2d7abdfb11a5d7
+      internalID: -1113954233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CursorReload_5
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 0
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db792f250dc7b4429ee6f1e13333cee
+      internalID: 1182114956
       vertices: []
       indices: 
       edges: []
@@ -162,8 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CursorHover_0: 390993323
-      CursorHover_1: 457322939
+      CursorReload_0: -327900405
+      CursorReload_1: -459217291
+      CursorReload_2: -970222072
+      CursorReload_3: 1069979551
+      CursorReload_4: -1113954233
+      CursorReload_5: 1182114956
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

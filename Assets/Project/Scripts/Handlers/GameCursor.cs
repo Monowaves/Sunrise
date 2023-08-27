@@ -68,4 +68,9 @@ public class GameCursor : DontDestroyOnLoadBehaviour
     {
         Singleton._motionExecutor.InvokeParameter("isShooting", true, false);
     }
+
+    public static void SetReload(bool value)
+    {
+        Singleton._motionExecutor.SetParameter("isReloading", value);
+    }
 }

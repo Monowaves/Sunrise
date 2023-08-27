@@ -16,7 +16,7 @@ MonoBehaviour:
   FramesContainer:
   - Callback: 
     Sprites:
-    - {fileID: -610432590, guid: 6ee6061e90c54ce43bdf06eb15656bdf, type: 3}
+    - {fileID: -1480195993, guid: 2e8bd0ca1ed20ef4aa18149fc76870c7, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}

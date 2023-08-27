@@ -115,8 +115,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 7
-        height: 7
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fd1fbd50e088d4459c817f8ab962d2d
-      internalID: 1016089467
+      spriteID: 1d954f59c3c5fd64aad3e120e876592c
+      internalID: 405639637
       vertices: []
       indices: 
       edges: []
@@ -134,10 +134,10 @@ TextureImporter:
       name: CursorShoot_1
       rect:
         serializedVersion: 2
-        x: 7
+        x: 9
         y: 0
-        width: 7
-        height: 7
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4876935c54fe81f479020fe72613cfb1
-      internalID: -48329920
+      spriteID: 7d2a40b9f9b28674893726e2ba78cdab
+      internalID: -1480195993
       vertices: []
       indices: 
       edges: []
@@ -162,8 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CursorShoot_0: 1016089467
-      CursorShoot_1: -48329920
+      CursorShoot_0: 405639637
+      CursorShoot_1: -1480195993
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

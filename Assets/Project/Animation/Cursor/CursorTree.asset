@@ -16,7 +16,9 @@ MonoBehaviour:
     m_keys:
     - isHovering
     - isShooting
+    - isReloading
     m_values:
+    - false
     - false
     - false
   SavedData: {fileID: 11400000, guid: 18e5a52458d9d1a429aa58195472456d, type: 2}

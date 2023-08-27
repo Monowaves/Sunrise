@@ -35,6 +35,7 @@ public class GunBase : MonoBehaviour
 
         RemainingAmmo = DefaultValues.ammo;
         AmmoBar.Singleton.SetMaxAmmo(Settings.MaxAmmo, DefaultValues.value);
+        GameCursor.SetReload(false);
     }
 
     private void Update() 
@@ -66,7 +67,10 @@ public class GunBase : MonoBehaviour
             if (RemainingAmmo == 0)
             {
                 Settings.ReloadSound.Play(AudioOptions.HalfVolume);
+
                 IsReloading = true;
+                GameCursor.SetReload(true);
+
                 Invoke(nameof(Reload), Settings.ReloadTime);
             }
         }
@@ -101,5 +105,6 @@ public class GunBase : MonoBehaviour
         AmmoBar.Singleton.SetMaxAmmo(Settings.MaxAmmo);
 
         IsReloading = false;
+        GameCursor.SetReload(false);
     }
 }
