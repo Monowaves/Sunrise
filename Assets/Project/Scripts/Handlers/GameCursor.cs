@@ -2,7 +2,7 @@ using InMotion.Engine;
 using MonoWaves.QoL;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameCursor : DontDestroyOnLoadBehaviour
 {
@@ -19,6 +19,11 @@ public class GameCursor : DontDestroyOnLoadBehaviour
         Application.focusChanged += (bool arg) => Cursor.visible = false;
 
         InvokeRepeating(nameof(ApplyPosition), 0, 0.002f);
+    }
+
+    protected override void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        SetReload(false);
     }
 
     private void OnValidate() 
