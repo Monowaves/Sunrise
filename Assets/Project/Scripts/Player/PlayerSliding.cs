@@ -18,7 +18,7 @@ public class PlayerSliding : MonoBehaviour
 
     private void Update() 
     {
-        if (PlayerBase.Singleton.ShiftPressed && PlayerBase.Singleton.IsTouchingGround) 
+        if (PlayerBase.Singleton.ShiftPressed && PlayerBase.Singleton.IsTouchingGround && !IsSliding) 
         {
             StartedSlidingOnGround = true;
             PlayerSprite.Singleton.MotionExecutor.InvokeParameter("isSlidingAwake", true, false);
@@ -33,18 +33,21 @@ public class PlayerSliding : MonoBehaviour
 
                 PlayerBase.Singleton.BlockMoveInputs = true;
                 PlayerBase.Singleton.BlockJumpInputs = true;
-    
-                if (Momentum > _endMomentum) Momentum -= Time.deltaTime * _momentumLose;
             }
 
-            if (PlayerBase.Singleton.IsTouchingWall && IsSliding)
+            if (PlayerBase.Singleton.IsTouchingWall && IsSliding && !PlayerBase.Singleton.IsTouchingCeil)
             {
                 StopSliding();
             }
         }
-        else if (IsSliding)
+        else if (IsSliding && !PlayerBase.Singleton.IsTouchingCeil)
         {
             StopSliding();
+        }
+
+        if (IsSliding)
+        {
+            if (Momentum > _endMomentum) Momentum -= Time.deltaTime * _momentumLose;
         }
 
         if (!IsSliding && Momentum < _startMomentum) Momentum += Time.deltaTime * _momentumGain;
@@ -55,7 +58,7 @@ public class PlayerSliding : MonoBehaviour
     private void StopSliding()
     {
         PlayerSprite.Singleton.MotionExecutor.InvokeParameter("isSlidingStop", true, false);
-        PlayerBase.Singleton.SetNormalSlize();
+        PlayerBase.Singleton.SetNormalSize();
 
         StartedSlidingOnGround = false;
         IsSliding = false;

@@ -2601,7 +2601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startMomentum: 112.5
-  _endMomentum: 3.25
+  _endMomentum: 7.25
   _momentumGain: 52.75
   _momentumLose: 85.25
   <IsSliding>k__BackingField: 0
@@ -2624,12 +2624,12 @@ MonoBehaviour:
   _slamDamage: 80
   _blazeConsume: 50
   _slamChecker:
-    <Offset>k__BackingField: {x: 0, y: -0.25}
-    <Size>k__BackingField: {x: 12, y: 1.5}
-    <Mask>k__BackingField:
+    Offset: {x: 0, y: 0}
+    Size: {x: 0, y: 0}
+    Mask:
       serializedVersion: 2
-      m_Bits: 64
-    <GizmosColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+      m_Bits: 0
+    GizmosColor: {r: 1, g: 1, b: 1, a: 1}
   <IsDashing>k__BackingField: 0
 --- !u!114 &9150626410376197866
 MonoBehaviour:
@@ -2719,43 +2719,28 @@ MonoBehaviour:
   <FrictionAmount>k__BackingField: 0.23
   _maxSlopeAngle: 45
   _material: {fileID: 6200000, guid: f98348faf63af4748b619391e0041bb7, type: 2}
+  _ceilChecker:
+    Offset: {x: 0, y: 0}
+    Size: {x: 0.9, y: 0.5}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 128
+    GizmosColor: {r: 1, g: 0, b: 0, a: 1}
   _groundChecker:
-    <Offset>k__BackingField: {x: 0, y: -1}
-    <Size>k__BackingField: {x: 0.85, y: 0.1}
-    <Mask>k__BackingField:
-      serializedVersion: 2
-      m_Bits: 128
-    <GizmosColor>k__BackingField: {r: 1, g: 0, b: 0.11541796, a: 1}
-  _wallLeftChecker:
-    <Offset>k__BackingField: {x: -0.45, y: 0}
-    <Size>k__BackingField: {x: 0.1, y: 1.5}
-    <Mask>k__BackingField:
-      serializedVersion: 2
-      m_Bits: 128
-    <GizmosColor>k__BackingField: {r: 0, g: 0.91298866, b: 1, a: 1}
-  _wallRightChecker:
-    <Offset>k__BackingField: {x: 0.45, y: 0}
-    <Size>k__BackingField: {x: 0.1, y: 1.5}
-    <Mask>k__BackingField:
-      serializedVersion: 2
-      m_Bits: 128
-    <GizmosColor>k__BackingField: {r: 0, g: 0.9137255, b: 1, a: 1}
-  _leftSlopeChecker:
-    Offset: {x: -0.45, y: -1}
-    Direction: {x: 0, y: -1}
-    Distance: 1.5
+    Offset: {x: 0, y: -1}
+    Size: {x: 0.8, y: 0.25}
     Mask:
       serializedVersion: 2
       m_Bits: 128
-    Color: {r: 1, g: 0.5641355, b: 0, a: 1}
-  _rightSlopeChecker:
-    Offset: {x: 0.45, y: -1}
+    GizmosColor: {r: 1, g: 0.6544963, b: 0, a: 1}
+  _slopeChecker:
+    Offset: {x: 0, y: -0.54}
     Direction: {x: 0, y: -1}
-    Distance: 1.5
+    Distance: 1
     Mask:
       serializedVersion: 2
-      m_Bits: 128
-    Color: {r: 1, g: 0.5641355, b: 0, a: 1}
+      m_Bits: 0
+    GizmosColor: {r: 0.021979094, g: 1, b: 0, a: 1}
   <Rigidbody>k__BackingField: {fileID: 4260715390502580223}
   <BoxCollider>k__BackingField: {fileID: 1646909664939616426}
   <Footsteps>k__BackingField:
@@ -2774,6 +2759,7 @@ MonoBehaviour:
   <SlamEffect>k__BackingField: {fileID: 157749718575219723, guid: 9ff40c6795b2a424b8b7a21385ff42d4, type: 3}
   <BlockGravity>k__BackingField: 0
   <IsTouchingGround>k__BackingField: 0
+  <IsTouchingCeil>k__BackingField: 0
   <IsTouchingLeftWall>k__BackingField: 0
   <IsTouchingRightWall>k__BackingField: 0
   <SlopeNormal>k__BackingField: {x: 0, y: 0}

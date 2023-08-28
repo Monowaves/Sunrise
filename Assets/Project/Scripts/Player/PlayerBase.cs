@@ -17,11 +17,9 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D _material;
 
     [Header("Checkers")]
+    [SerializeField] private BoxChecker _ceilChecker = new();
     [SerializeField] private BoxChecker _groundChecker = new();
-    [SerializeField] private BoxChecker _wallLeftChecker = new();
-    [SerializeField] private BoxChecker _wallRightChecker = new();
-    [SerializeField] private RayChecker _leftSlopeChecker = new();
-    [SerializeField] private RayChecker _rightSlopeChecker = new();
+    [SerializeField] private RayChecker _slopeChecker = new();
 
     [field: Header("Components")]
     [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
@@ -42,6 +40,8 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool BlockGravity { get; set; }
 
     [field: SerializeField, ReadOnly] public bool IsTouchingGround { get; private set; }
+    [field: SerializeField, ReadOnly] public bool IsTouchingCeil { get; private set; }
+
     [field: SerializeField, ReadOnly] public bool IsTouchingLeftWall { get; private set; }
     [field: SerializeField, ReadOnly] public bool IsTouchingRightWall { get; private set; }
     [field: SerializeField, ReadOnly] public Vector2 SlopeNormal { get; set; }
@@ -70,11 +70,61 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool BlockAllInputs { get; set; }
 
     public bool IsTouchingWall => IsTouchingLeftWall || IsTouchingRightWall;
+    private Vector2 PlayerCeil => Vector2.up * ((BoxCollider.size.y / 2) + BoxCollider.offset.y);
+    
+    private BoxChecker _leftWallChecker;
+    private BoxChecker _rightWallChecker;
+
+    private RayChecker _leftSlopeChecker;
+    private RayChecker _rightSlopeChecker;
 
     private void Awake()
     {
-        SetNormalSlize();
+        RayChecker leftSlopeChecker = _slopeChecker.Clone();
+        leftSlopeChecker.Offset.x = -(BoxCollider.size.x / 2);
+        RayChecker rightSlopeChecker = _slopeChecker.Clone();
+        rightSlopeChecker.Offset.x = BoxCollider.size.x / 2;
+
+        _leftSlopeChecker = leftSlopeChecker;
+        _rightSlopeChecker = rightSlopeChecker;
+
+        SetNormalSize();
         Singleton = this;
+    }
+
+    public void SetHalfSize()
+    {
+        BoxCollider.offset = Vector2.up * -0.5f;
+        BoxCollider.size = new Vector2(0.9f, 1f);
+
+        RegenerateWallCheckers();
+    }
+
+    public void SetNormalSize()
+    {
+        BoxCollider.offset = Vector2.up * -0.075f;
+        BoxCollider.size = new Vector2(0.9f, 1.85f);
+
+        RegenerateWallCheckers();
+    }
+
+    public void RegenerateWallCheckers()
+    {
+        _leftWallChecker = new()
+        {
+            Offset = new Vector2(-BoxCollider.size.x / 2, BoxCollider.offset.y),
+            Size = new Vector2(0.1f, BoxCollider.size.y - 0.25f),
+            Mask = ZLayerExtensions.MapLayerMask(),
+            GizmosColor = "#0398fc".HexToColor()
+        };
+
+        _rightWallChecker = new()
+        {
+            Offset = new Vector2(BoxCollider.size.x / 2, BoxCollider.offset.y),
+            Size = new Vector2(0.1f, BoxCollider.size.y - 0.25f),
+            Mask = ZLayerExtensions.MapLayerMask(),
+            GizmosColor = "#0398fc".HexToColor()
+        };
     }
 
     private void OnValidate() 
@@ -103,26 +153,15 @@ public class PlayerBase : MonoBehaviour
         Checking();
     }
 
-    public void SetHalfSize()
-    {
-        BoxCollider.offset = Vector2.up * -0.5f;
-        BoxCollider.size = new Vector2(0.9f, 1f);
-    }
-
-    public void SetNormalSlize()
-    {
-        BoxCollider.offset = Vector2.up * -0.075f;
-        BoxCollider.size = new Vector2(0.9f, 1.85f);
-    }
-
     private void Checking()
     {
         Vector2 position = transform.position;
 
         IsTouchingGround = Physics2D.OverlapBox(position + _groundChecker.Offset, _groundChecker.Size, 0f, _groundChecker.Mask);
+        IsTouchingCeil = Physics2D.OverlapBox(position + PlayerCeil, _ceilChecker.Size, 0f, _ceilChecker.Mask);
 
-        IsTouchingLeftWall = Physics2D.OverlapBox(position + _wallLeftChecker.Offset, _wallLeftChecker.Size, 0f, _wallLeftChecker.Mask);
-        IsTouchingRightWall = Physics2D.OverlapBox(position + _wallRightChecker.Offset, _wallRightChecker.Size, 0f, _wallRightChecker.Mask);
+        IsTouchingLeftWall = Physics2D.OverlapBox(position + _leftWallChecker.Offset, _leftWallChecker.Size, 0f, _leftWallChecker.Mask);
+        IsTouchingRightWall = Physics2D.OverlapBox(position + _rightWallChecker.Offset, _rightWallChecker.Size, 0f, _rightWallChecker.Mask);
 
         if (IsTouchingLeftWall) WallDirection = -1;
         else if (IsTouchingRightWall) WallDirection = 1;
@@ -232,18 +271,24 @@ public class PlayerBase : MonoBehaviour
 
         Gizmos.color = _groundChecker.GizmosColor;
         Gizmos.DrawWireCube(position + _groundChecker.Offset, _groundChecker.Size);
+        Gizmos.color = _ceilChecker.GizmosColor;
+        Gizmos.DrawWireCube(position + PlayerCeil, _ceilChecker.Size);
 
-        Gizmos.color = _wallLeftChecker.GizmosColor;
-        Gizmos.DrawWireCube(position + _wallLeftChecker.Offset, _wallLeftChecker.Size);
 
-        Gizmos.color = _wallRightChecker.GizmosColor;
-        Gizmos.DrawWireCube(position + _wallRightChecker.Offset, _wallRightChecker.Size);;
+        Gizmos.color = _slopeChecker.GizmosColor;
+        Gizmos.DrawLine(position + _slopeChecker.Offset, _slopeChecker.Direction * _slopeChecker.Distance + position + _slopeChecker.Offset);
 
-        Gizmos.color = _leftSlopeChecker.Color;
-        Gizmos.DrawLine(position + _leftSlopeChecker.Offset, _leftSlopeChecker.Direction * _leftSlopeChecker.Distance + position + _leftSlopeChecker.Offset);
+        if (_leftWallChecker != null)
+        {
+            Gizmos.color = _leftWallChecker.GizmosColor;
+            Gizmos.DrawWireCube(position + _leftWallChecker.Offset, _leftWallChecker.Size);
+        }
 
-        Gizmos.color = _rightSlopeChecker.Color;
-        Gizmos.DrawLine(position + _rightSlopeChecker.Offset, _rightSlopeChecker.Direction * _rightSlopeChecker.Distance + position + _rightSlopeChecker.Offset);
+        if (_rightWallChecker != null)
+        {
+            Gizmos.color = _rightWallChecker.GizmosColor;
+            Gizmos.DrawWireCube(position + _rightWallChecker.Offset, _rightWallChecker.Size);
+        }
     }
 
     public void Knockback(float direction)
@@ -278,11 +323,11 @@ public class PlayerBase : MonoBehaviour
 
 [Serializable]
 public class BoxChecker
-{
-    [field: SerializeField] public Vector2 Offset { get; private set; }
-    [field: SerializeField] public Vector2 Size { get; private set; }
-    [field: SerializeField] public LayerMask Mask { get; private set; }
-    [field: SerializeField] public Color GizmosColor { get; private set; } = Color.white;
+{   
+    public Vector2 Offset;
+    public Vector2 Size;
+    public LayerMask Mask;
+    public Color GizmosColor = Color.white;
 }
 
 [Serializable]
@@ -292,7 +337,7 @@ public class RayChecker
     public Vector2 Direction;
     public float Distance;
     public LayerMask Mask;
-    public Color Color = Color.white;
+    public Color GizmosColor = Color.white;
 }
 
 public enum PlayerFacing

@@ -440,8 +440,8 @@ Transform:
   m_GameObject: {fileID: 120015992}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 37.8034, y: 12.34, z: 0}
-  m_LocalScale: {x: 5.606944, y: 5.3202953, z: 1}
+  m_LocalPosition: {x: 37.8034, y: 11.9942, z: 0}
+  m_LocalScale: {x: 5.606944, y: 4.628657, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1719093068}
@@ -3601,8 +3601,8 @@ Transform:
   m_GameObject: {fileID: 1026730849}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27, y: 7.2055, z: 0}
-  m_LocalScale: {x: 26, y: 6.0866942, z: 1}
+  m_LocalPosition: {x: 27, y: 8.0199, z: 0}
+  m_LocalScale: {x: 26, y: 4.457895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1719093068}
@@ -5391,13 +5391,13 @@ CompositeCollider2D:
   - m_Collider: {fileID: 1940592330}
     m_ColliderPaths:
     - - X: 140000000
-        Y: 72055256
+        Y: 80199848
       - X: 30000000
-        Y: 72055256
+        Y: 80199848
       - X: 30000000
-        Y: 41618744
+        Y: 57908144
       - X: 140000000
-        Y: 41618744
+        Y: 57908144
   - m_Collider: {fileID: 381762753}
     m_ColliderPaths:
     - - X: 290000000
@@ -5681,23 +5681,23 @@ CompositeCollider2D:
   - m_Collider: {fileID: 120015993}
     m_ColliderPaths:
     - - X: 406068672
-        Y: 150001472
+        Y: 143085280
       - X: 349999264
-        Y: 150001472
+        Y: 143085280
       - X: 349999264
-        Y: 96798528
+        Y: 96798712
       - X: 406068672
-        Y: 96798528
+        Y: 96798712
   - m_Collider: {fileID: 1026730850}
     m_ColliderPaths:
     - - X: 400000000
-        Y: 102488472
+        Y: 102488480
       - X: 140000000
-        Y: 102488472
+        Y: 102488480
       - X: 140000000
-        Y: 41621532
+        Y: 57909528
       - X: 400000000
-        Y: 41621532
+        Y: 57909528
   - m_Collider: {fileID: 391049135}
     m_ColliderPaths:
     - - X: -400000768
@@ -5778,10 +5778,7 @@ CompositeCollider2D:
       - {x: 60.000095, y: 93.00079}
       - {x: 60.00013, y: 14.999173}
       - {x: 65.0002, y: 14.999145}
-    - - {x: 3, y: 4.161904}
-      - {x: 40.000008, y: 4.1621747}
-      - {x: 40.00022, y: 4.162983}
-      - {x: 49.9998, y: 4.163012}
+    - - {x: 49.999775, y: 4.162983}
       - {x: 49.999832, y: 14.999173}
       - {x: 55.000153, y: 14.999202}
       - {x: 55.000122, y: 93.000824}
@@ -5819,12 +5816,15 @@ CompositeCollider2D:
       - {x: -5.0002003, y: 25.000147}
       - {x: -5.000171, y: 36.4998}
       - {x: 40.0002, y: 36.499775}
-      - {x: 40.00017, y: 15.000148}
-      - {x: 34.999928, y: 15.000118}
-      - {x: 34.999897, y: 10.248847}
-      - {x: 14, y: 10.248817}
-      - {x: 13.999971, y: 7.205526}
-      - {x: 3, y: 7.2054963}
+      - {x: 40.00017, y: 14.308528}
+      - {x: 34.999928, y: 14.308499}
+      - {x: 34.999897, y: 10.248848}
+      - {x: 14, y: 10.248818}
+      - {x: 13.999971, y: 8.019985}
+      - {x: 3, y: 8.019956}
+      - {x: 3.0000293, y: 5.7908144}
+      - {x: 40, y: 5.790923}
+      - {x: 40.00023, y: 4.162983}
     - - {x: 16.745766, y: 74.9987}
       - {x: 16.747116, y: 75}
       - {x: 16.75038, y: 75.00003}
@@ -7185,8 +7185,8 @@ Transform:
   m_GameObject: {fileID: 1940592329}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.5, y: 5.6837, z: 0}
-  m_LocalScale: {x: 11, y: 3.0436516, z: 1}
+  m_LocalPosition: {x: 8.5, y: 6.9054, z: 0}
+  m_LocalScale: {x: 11, y: 2.2291703, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1719093068}
