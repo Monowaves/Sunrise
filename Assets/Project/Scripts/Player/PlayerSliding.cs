@@ -54,6 +54,7 @@ public class PlayerSliding : MonoBehaviour
         if (!IsSliding && Momentum < _startMomentum) Momentum += Time.deltaTime * _momentumGain;
 
         PlayerBase.Singleton.IsSliding = IsSliding;
+        PlayerBase.Singleton.SlidingMomentum = IsSliding ? Momentum : 0;
         WasSlidingLastFrame = IsSliding;
     }
 
@@ -77,6 +78,16 @@ public class PlayerSliding : MonoBehaviour
             Vector2 moveDirection = PlayerBase.Singleton.IsSloped() ? ZVector2Math.ProjectOnPlane(Vector2.right, PlayerBase.Singleton.SlopeNormal) : Vector2.right;
         
             _rb.AddForce(Mathf.Clamp(Momentum, _endMomentum, _startMomentum) * 5 * direction * moveDirection);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if (other.TryGetComponent(out EnemyBase enemy) && IsSliding)    
+        {
+            enemy.Hit(10, transform.position, Vector2.up * PlayerBase.Singleton.SlidingMomentum / 15);
+            Momentum += 15;
+            PlayerCamera.Singleton.Shake(1f);
         }
     }
 }

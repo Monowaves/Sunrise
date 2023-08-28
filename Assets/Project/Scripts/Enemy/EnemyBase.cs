@@ -16,6 +16,7 @@ public class EnemyBase : MonoBehaviour
     [field: SerializeField] public Vector2 TriggerZone { get; private set; } = new Vector2(25f, 12f);
     [field: SerializeField] public float StartHealth { get; private set; } = 75f;
     [field: SerializeField] public float ContactDamage { get; private set; } = 5f;
+    [field: SerializeField] public Vector2 KnockbackForce { get; private set; } = new Vector2(3, 4);
     
     [field: Header("Audio")]
     [field: SerializeField] public AudioClip HitSound { get; private set; }
@@ -121,7 +122,7 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    public void Hit(float damage)
+    public void Hit(float damage, Vector3 source, Vector2 force)
     {
         float clampedDamage = damage.ClampMinimum(0f);
         Health -= clampedDamage;
@@ -129,7 +130,32 @@ public class EnemyBase : MonoBehaviour
         if (HitSound) HitSound.Play(AudioOptions.HalfVolumeWithVariation);
         if (HitEffect) HitEffect.Spawn(transform.position);
 
+        float direction = (transform.position - source).x < 0 ? -1 : 1;
+        Knockback(new Vector2(direction * force.x, force.y));
+
         OnHealthChanged();
+    }
+
+    public void Knockback(Vector2 direction)
+    {
+        StartCoroutine(nameof(CO_Knockback), direction);
+    }
+
+    private IEnumerator CO_Knockback(Vector2 direction)
+    {
+        Rigidbody.velocity = Vector2.zero;
+
+        Rigidbody.AddForce(direction.y * KnockbackForce.y * Vector2.up, ForceMode2D.Impulse);
+
+        float remain = 1f;
+        while (remain > 0)
+        {
+            remain -= Time.deltaTime * 3;
+
+            Rigidbody.AddForce(60f * remain * Time.deltaTime * new Vector2(KnockbackForce.x * direction.x, 0), ForceMode2D.Impulse);
+
+            yield return null;
+        }
     }
 
     public void Heal(float amount)

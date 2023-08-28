@@ -59,7 +59,7 @@ public class PlayerGroundSlam : MonoBehaviour
         {
             if (other.TryGetComponent(out EnemyBase enemy))
             {
-                enemy.Hit(_slamDamage);
+                enemy.Hit(_slamDamage, transform.position, Vector2.one * 2);
             }
         }
 

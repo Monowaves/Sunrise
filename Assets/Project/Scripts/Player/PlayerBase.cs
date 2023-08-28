@@ -64,6 +64,7 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool IsGroundSlamDash { get; set; }
     [field: SerializeField, ReadOnly] public bool IsGroundStandUp { get; set; }
     [field: SerializeField, ReadOnly] public bool IsSliding { get; set; }
+    [field: SerializeField, ReadOnly] public float SlidingMomentum { get; set; }
 
     [field: SerializeField, ReadOnly] public bool BlockMoveInputs { get; set; }
     [field: SerializeField, ReadOnly] public bool BlockJumpInputs { get; set; }
@@ -310,7 +311,7 @@ public class PlayerBase : MonoBehaviour
         {
             remain -= Time.deltaTime * 3;
 
-            Rigidbody.AddForce(new Vector2(_knockbackForce.x * direction, 0) * remain * Time.deltaTime * 60f, ForceMode2D.Impulse);
+            Rigidbody.AddForce(60f * remain * Time.deltaTime * new Vector2(_knockbackForce.x * direction, 0), ForceMode2D.Impulse);
 
             yield return null;
         }

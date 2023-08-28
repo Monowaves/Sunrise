@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Hit(float damage, Vector3 source)
     {
-        if (Invincible) return;
+        if (Invincible || PlayerBase.Singleton.SlidingMomentum > 45) return;
 
         float direction = (transform.position - source).x < 0 ? -1 : 1;
         PlayerBase.Singleton.Knockback(direction);

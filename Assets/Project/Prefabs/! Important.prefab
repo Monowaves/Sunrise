@@ -2607,6 +2607,7 @@ MonoBehaviour:
   <IsSliding>k__BackingField: 0
   <Momentum>k__BackingField: 112.5
   <StartedSlidingOnGround>k__BackingField: 0
+  <WasSlidingLastFrame>k__BackingField: 0
 --- !u!114 &2529903349206478951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2621,14 +2622,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _airTime: 0.25
   _dashSpeed: 55.75
-  _slamDamage: 80
+  _slamDamage: 110
   _blazeConsume: 50
   _slamChecker:
-    Offset: {x: 0, y: 0}
-    Size: {x: 0, y: 0}
+    Offset: {x: 0, y: -0.05}
+    Size: {x: 12, y: 1.9}
     Mask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 64
     GizmosColor: {r: 1, g: 1, b: 1, a: 1}
   <IsDashing>k__BackingField: 0
 --- !u!114 &9150626410376197866
@@ -2780,6 +2781,7 @@ MonoBehaviour:
   <IsGroundSlamDash>k__BackingField: 0
   <IsGroundStandUp>k__BackingField: 0
   <IsSliding>k__BackingField: 0
+  <SlidingMomentum>k__BackingField: 0
   <BlockMoveInputs>k__BackingField: 0
   <BlockJumpInputs>k__BackingField: 0
   <BlockAllInputs>k__BackingField: 0

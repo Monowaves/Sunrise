@@ -54,7 +54,7 @@ public class GunBase : MonoBehaviour
 
             if (hit.transform.TryGetComponent(out EnemyBase enemy))
             {
-                enemy.Hit(Settings.Damage);
+                enemy.Hit(Settings.Damage, hit.point, Vector2.one * 0.5f);
             }
 
             IsCountdown = true;
