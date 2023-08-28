@@ -48,19 +48,13 @@ public class GunBase : MonoBehaviour
             float randomAngle = Random.Range(transform.localRotation.z - Settings.SpreadAngle / 2, transform.localRotation.z + Settings.SpreadAngle / 2);
             Vector2 direction = transform.right.RandomInCone(Settings.SpreadAngle) * _holder.localScale.x;
 
-            RaycastHit2D hit = Physics2D.Raycast(_shootPoint.position, direction, 1000, LayerMask.GetMask(Const.ENEMY, Const.MAP));
-
-            MakeLine(_shootPoint.position, hit.point);
-
-            if (hit.transform.TryGetComponent(out EnemyBase enemy))
-            {
-                enemy.Hit(Settings.Damage, hit.point, Vector2.one * 0.5f);
-            }
+            RaycastHit2D hit = Physics2D.Raycast(_shootPoint.position, direction, 750, LayerMask.GetMask(Const.ENEMY, Const.MAP));
+            Vector2 hitPoint = !hit ? direction * 200 + transform.position.ToVector2() : hit.point;
 
             IsCountdown = true;
             Invoke(nameof(ResetCanShoot), Settings.ShotCountdown);
 
-            ShootEffects();
+            ShootEffects(hitPoint);
 
             RemainingAmmo--;
             AmmoBar.Singleton.SetAmmoCount(RemainingAmmo);
@@ -74,6 +68,13 @@ public class GunBase : MonoBehaviour
 
                 Invoke(nameof(Reload), Settings.ReloadTime);
             }
+
+            if (!hit) return;
+
+            if (hit.transform.TryGetComponent(out EnemyBase enemy))
+            {
+                enemy.Hit(Settings.Damage, hit.point, Vector2.one * 0.5f);
+            }
         }
 
         if (Mouse.IsPressed(MouseCode.Left) && IsReloading)
@@ -82,8 +83,9 @@ public class GunBase : MonoBehaviour
         }
     }
 
-    private void ShootEffects()
+    private void ShootEffects(Vector2 hitPoint)
     {
+        MakeLine(_shootPoint.position, hitPoint);
         Settings.ShootSound.Play(new() { Volume = 0.3f });
         PlayerCamera.Singleton.Shake(Settings.ShakeAmplitude);
         GameCursor.PlayShoot();

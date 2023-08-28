@@ -1,15 +1,13 @@
+using MonoWaves.QoL;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public void StartParkour()
-    {
-        SceneManager.LoadScene("Parkour");
-    }
+    [SerializeField] private SceneField _startingScene;
 
-    public void StartFighting()
+    public void StartGame()
     {
-        SceneManager.LoadScene("Fighting");
+        SceneManager.LoadScene(_startingScene.SceneName);
     }
 }
