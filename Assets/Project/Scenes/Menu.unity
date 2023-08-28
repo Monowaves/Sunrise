@@ -446,7 +446,6 @@ GameObject:
   m_Component:
   - component: {fileID: 960163304}
   - component: {fileID: 960163303}
-  - component: {fileID: 960163302}
   - component: {fileID: 960163305}
   m_Layer: 0
   m_Name: Main Camera
@@ -455,14 +454,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &960163302
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960163301}
-  m_Enabled: 1
 --- !u!20 &960163303
 Camera:
   m_ObjectHideFlags: 0
@@ -635,7 +626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1529496543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,12 +913,14 @@ MonoBehaviour:
   _startingScene:
     m_SceneAsset: {fileID: 102900000, guid: 6eb3024b7ab8950419beb1aa7c421f12, type: 3}
     m_SceneName: TestingScene1
+  _eventSystem: {fileID: 1529496543}
+  _camera: {fileID: 960163301}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 960163304}
   - {fileID: 1941443882}
+  - {fileID: 960163304}
   - {fileID: 1529496544}
   - {fileID: 1005494817}
   - {fileID: 144171273}
