@@ -22,6 +22,7 @@ public class PlayerSliding : MonoBehaviour
         {
             StartedSlidingOnGround = true;
             PlayerSprite.Singleton.MotionExecutor.InvokeParameter("isSlidingAwake", true, false);
+            PlayerBase.Singleton.SetHalfSize();
         }
         
         if (PlayerBase.Singleton.IsShifting)
@@ -54,6 +55,7 @@ public class PlayerSliding : MonoBehaviour
     private void StopSliding()
     {
         PlayerSprite.Singleton.MotionExecutor.InvokeParameter("isSlidingStop", true, false);
+        PlayerBase.Singleton.SetNormalSlize();
 
         StartedSlidingOnGround = false;
         IsSliding = false;

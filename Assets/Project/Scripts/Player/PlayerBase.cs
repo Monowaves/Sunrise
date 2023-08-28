@@ -71,7 +71,11 @@ public class PlayerBase : MonoBehaviour
 
     public bool IsTouchingWall => IsTouchingLeftWall || IsTouchingRightWall;
 
-    private void Awake() => Singleton = this;
+    private void Awake()
+    {
+        SetNormalSlize();
+        Singleton = this;
+    }
 
     private void OnValidate() 
     {
@@ -89,8 +93,6 @@ public class PlayerBase : MonoBehaviour
             BoxCollider = bc;
             BoxCollider.isTrigger = false;
             BoxCollider.sharedMaterial = _material;
-            BoxCollider.offset = Vector2.up * -0.075f;
-            BoxCollider.size = new Vector2(0.9f, 1.85f);
             BoxCollider.edgeRadius = 0f;
         }
     }
@@ -99,6 +101,18 @@ public class PlayerBase : MonoBehaviour
     {
         Inputs();
         Checking();
+    }
+
+    public void SetHalfSize()
+    {
+        BoxCollider.offset = Vector2.up * -0.5f;
+        BoxCollider.size = new Vector2(0.9f, 1f);
+    }
+
+    public void SetNormalSlize()
+    {
+        BoxCollider.offset = Vector2.up * -0.075f;
+        BoxCollider.size = new Vector2(0.9f, 1.85f);
     }
 
     private void Checking()
