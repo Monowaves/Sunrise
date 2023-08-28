@@ -26,6 +26,9 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float _hitVolumeReduce = 7f;
 
     private CinemachineBasicMultiChannelPerlin _noiser;
+    private CinemachineFramingTransposer _transposer;
+
+    private float _originalDamping;
 
     private void Awake() 
     {
@@ -33,7 +36,11 @@ public class PlayerCamera : MonoBehaviour
         Camera = _camera;
         
         _noiser = _vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        _transposer = _vcam.GetCinemachineComponent<CinemachineFramingTransposer>();
+
         _lowPassFilter.cutoffFrequency = _lowPassDeactivated;
+
+        _originalDamping = _transposer.m_XDamping;
     }
 
     public void HitVolume(float duration = 0.4f)
@@ -113,5 +120,19 @@ public class PlayerCamera : MonoBehaviour
         yield return new WaitForSeconds(settings.Duration);
 
         _noiser.m_AmplitudeGain = 0;
+    }
+
+    public void TeleportCamera()
+    {
+        StartCoroutine(nameof(CO_SetCameraPos));
+    }
+
+    private IEnumerator CO_SetCameraPos()
+    {
+        _transposer.m_XDamping = 0f;
+
+        yield return null;
+
+        _transposer.m_XDamping = _originalDamping;
     }
 }

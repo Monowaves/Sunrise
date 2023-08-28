@@ -20,8 +20,10 @@ public class PlayerPassageHandler : MonoBehaviour
     {
         if (WorldRoom.Singleton == null) return;
 
-        Passage exit = Array.Find(WorldRoom.Singleton.Passages, passage => passage.Link == _lastEntered);
-        transform.position = exit.ExitPosition;
+        Passage passage = Array.Find(WorldRoom.Singleton.Passages, passage => passage.Link == _lastEntered);
+        transform.position = passage.ExitPosition;
+
+        PlayerCamera.Singleton.TeleportCamera();
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
