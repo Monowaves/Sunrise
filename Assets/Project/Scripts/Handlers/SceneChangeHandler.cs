@@ -19,4 +19,9 @@ public class SceneChangeHandler : DontDestroyOnLoadBehaviour
             if (Important.Singleton != null) Important.Singleton.Finish();
         }
     }
+
+    protected override void OnSceneDeload(Scene scene)
+    {
+        WorldRoom.Singleton = null;
+    }
 }
