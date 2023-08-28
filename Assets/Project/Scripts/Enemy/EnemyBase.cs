@@ -173,7 +173,7 @@ public class EnemyBase : MonoBehaviour
             if (DeathSound) DeathSound.Play(AudioOptions.HalfVolumeWithVariation);
             if (DeathEffect) DeathEffect.Spawn(transform.position);
 
-            if (ZRandom.Chance(10)) Instantiate(Defaults.HealthShard, transform.position, Quaternion.identity);
+            if (ZRandom.Chance(10)) Defaults.HealthShard.Spawn(transform.position);
 
             //TODO: Remove this piece of garbage
             KillsCounter killsCounter = FindObjectOfType<KillsCounter>();

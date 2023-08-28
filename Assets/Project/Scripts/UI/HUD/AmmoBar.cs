@@ -43,7 +43,7 @@ public class AmmoBar : MonoBehaviour
 
         for (int i = 0; i < count - 1; i++)
         {
-            Instantiate(Seperator, AmmoSeperators);
+            Seperator.Spawn(AmmoSeperators);
         }
 
         AmmoSlider.value = defaultValue ?? 1f;

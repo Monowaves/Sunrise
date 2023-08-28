@@ -5,6 +5,8 @@ public class DontDestroyOnLoadBehaviour : MonoBehaviour
 {
     protected virtual void Initialize() { }
     protected virtual void OnSceneLoad(Scene scene, LoadSceneMode mode) { }
+    protected virtual void OnSceneDeload(Scene scene) { }
+    protected virtual void OnFinish() { }
 
     private void Awake() 
     {
@@ -17,6 +19,14 @@ public class DontDestroyOnLoadBehaviour : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoad;
+        SceneManager.sceneUnloaded += OnSceneDeload;
+
         Initialize();
+    }
+
+    public void Finish()
+    {
+        OnFinish();
+        Destroy(gameObject);
     }
 }
