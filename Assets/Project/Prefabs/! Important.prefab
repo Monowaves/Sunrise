@@ -2721,7 +2721,7 @@ MonoBehaviour:
   _material: {fileID: 6200000, guid: f98348faf63af4748b619391e0041bb7, type: 2}
   _ceilChecker:
     Offset: {x: 0, y: 0}
-    Size: {x: 0.9, y: 0.5}
+    Size: {x: 0.85, y: 0.5}
     Mask:
       serializedVersion: 2
       m_Bits: 128
