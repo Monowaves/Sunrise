@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 3330579434228394158}
   - component: {fileID: 384912622285071115}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: '` Camera'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1282,7 +1282,7 @@ GameObject:
   - component: {fileID: 7323893295984731942}
   - component: {fileID: 807827135753298912}
   m_Layer: 0
-  m_Name: Important
+  m_Name: '! Important'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2457,7 +2457,7 @@ GameObject:
   - component: {fileID: 8330681717165026738}
   - component: {fileID: 1603966391413592599}
   m_Layer: 3
-  m_Name: Player
+  m_Name: '` Player'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4327,7 +4327,7 @@ GameObject:
   - component: {fileID: 4495520139544729827}
   - component: {fileID: 7952255645896664102}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: '` Canvas'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
