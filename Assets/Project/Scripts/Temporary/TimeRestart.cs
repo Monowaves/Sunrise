@@ -6,6 +6,6 @@ public class TimeRestart : MonoBehaviour
 {
     private void OnTriggerExit2D(Collider2D other) 
     {
-        FindObjectOfType<TimeMeasure>().ActivateTimer();
+        FindObjectOfType<TimeMeasure>()?.ActivateTimer();
     }
 }

@@ -13,6 +13,7 @@ public class PlayerSliding : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool IsSliding { get; private set; }
     [field: SerializeField, ReadOnly] public float Momentum { get; private set; }
     [field: SerializeField, ReadOnly] public bool StartedSlidingOnGround { get; private set; }
+    [field: SerializeField, ReadOnly] public bool WasSlidingLastFrame { get; private set; }
 
     private Rigidbody2D _rb => PlayerBase.Singleton.Rigidbody;
 
@@ -35,7 +36,7 @@ public class PlayerSliding : MonoBehaviour
                 PlayerBase.Singleton.BlockJumpInputs = true;
             }
 
-            if (PlayerBase.Singleton.IsTouchingWall && IsSliding && !PlayerBase.Singleton.IsTouchingCeil)
+            if (PlayerBase.Singleton.IsTouchingWall && IsSliding && !PlayerBase.Singleton.IsTouchingCeil && WasSlidingLastFrame)
             {
                 StopSliding();
             }
@@ -53,6 +54,7 @@ public class PlayerSliding : MonoBehaviour
         if (!IsSliding && Momentum < _startMomentum) Momentum += Time.deltaTime * _momentumGain;
 
         PlayerBase.Singleton.IsSliding = IsSliding;
+        WasSlidingLastFrame = IsSliding;
     }
 
     private void StopSliding()
