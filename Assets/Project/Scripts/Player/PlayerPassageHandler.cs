@@ -18,12 +18,16 @@ public class PlayerPassageHandler : MonoBehaviour
 
     private void SceneChanged(Scene scene, LoadSceneMode mode)
     {
-        if (WorldRoom.Singleton == null) return;
+        if (!WorldRoom.Singleton || !_lastEntered) return;
 
         Passage passage = Array.Find(WorldRoom.Singleton.Passages, passage => passage.Link == _lastEntered);
         transform.position = passage.ExitPosition;
 
         PlayerCamera.Singleton.TeleportCamera();
+        Transition.Singleton.FadeOut();
+
+        float direction = transform.position.x > passage.transform.position.x ? 1 : -1;
+        PlayerBase.Singleton.Move(0.5f, direction);
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
@@ -32,8 +36,13 @@ public class PlayerPassageHandler : MonoBehaviour
         {
             _lastEntered = passage.Link;
 
+            //PlayerBase.Singleton.Rigidbody.velocity = Vector2.zero;
+
+            PlayerBase.Singleton.DontWriteMoveInputs = true;
+            PlayerBase.Singleton.BlockJumpInputs = true;
+            
             string targetSceneName = Array.Find(_lastEntered.Linked, scene => scene.SceneName != SceneManager.GetActiveScene().name);
-            SceneManager.LoadScene(targetSceneName);
+            Transition.Singleton.FadeIn(() => SceneManager.LoadScene(targetSceneName));
         }
     }
 }

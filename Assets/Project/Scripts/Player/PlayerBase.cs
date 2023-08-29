@@ -70,6 +70,8 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool BlockJumpInputs { get; set; }
     [field: SerializeField, ReadOnly] public bool BlockAllInputs { get; set; }
 
+    [field: SerializeField, ReadOnly] public bool DontWriteMoveInputs { get; set; }
+
     public bool IsTouchingWall => IsTouchingLeftWall || IsTouchingRightWall;
     private Vector2 PlayerCeil => Vector2.up * ((BoxCollider.size.y / 2) + BoxCollider.offset.y);
     
@@ -207,7 +209,7 @@ public class PlayerBase : MonoBehaviour
             return;
         }
 
-        HorizontalAxis = BlockMoveInputs ? 0 : Keyboard.AxisFrom(KeyCode.A, KeyCode.D);
+        if (!DontWriteMoveInputs) HorizontalAxis = BlockMoveInputs ? 0 : Keyboard.AxisFrom(KeyCode.A, KeyCode.D);
 
         IsMoving = HorizontalAxis != 0;
         
@@ -289,6 +291,42 @@ public class PlayerBase : MonoBehaviour
         {
             Gizmos.color = _rightWallChecker.GizmosColor;
             Gizmos.DrawWireCube(position + _rightWallChecker.Offset, _rightWallChecker.Size);
+        }
+    }
+
+    public void Move(float duration, float directionX = 0, bool doJump = false)
+    {
+        StopCoroutine(nameof(CO_Move));
+        StartCoroutine(nameof(CO_Move), new MoveSettings(duration, directionX, doJump));
+    }
+
+    private struct MoveSettings
+    {
+        public float Duration;
+        public float XDirection;
+        public bool DoJump;
+
+        public MoveSettings(float duration, float x, bool jump)
+        {
+            Duration = duration;
+            XDirection = x;
+            DoJump = jump;
+        }
+    }
+
+    private IEnumerator CO_Move(MoveSettings settings)
+    {
+        if (settings.XDirection != 0)
+        {
+            BlockJumpInputs = true;
+            DontWriteMoveInputs = true;
+
+            HorizontalAxis = settings.XDirection;
+
+            yield return new WaitForSeconds(settings.Duration);
+
+            BlockJumpInputs = false;
+            DontWriteMoveInputs = false;
         }
     }
 

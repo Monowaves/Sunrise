@@ -2811,6 +2811,7 @@ MonoBehaviour:
   <BlockMoveInputs>k__BackingField: 0
   <BlockJumpInputs>k__BackingField: 0
   <BlockAllInputs>k__BackingField: 0
+  <DontWriteMoveInputs>k__BackingField: 0
 --- !u!1 &6405075898659478475
 GameObject:
   m_ObjectHideFlags: 0
