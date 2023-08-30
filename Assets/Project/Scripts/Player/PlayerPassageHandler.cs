@@ -22,6 +22,8 @@ public class PlayerPassageHandler : MonoBehaviour
         if (!WorldRoom.Singleton || !_lastEntered) return;
 
         Passage passage = Array.Find(WorldRoom.Singleton.Passages, passage => passage.Link == _lastEntered);
+
+        if (!passage) throw new Exception($"Cannot find passage with needed link in {SceneManager.GetActiveScene().name}");
         transform.position = passage.ExitPosition;
 
         PlayerCamera.Singleton.EnableFollow();
@@ -58,6 +60,8 @@ public class PlayerPassageHandler : MonoBehaviour
         if (other.TryGetComponent(out Passage passage) && !_alreadyEntering)
         {
             _lastEntered = passage.Link;
+
+            if (!_lastEntered) throw new Exception($"Passage {passage.name} isn't connected to any passage link! Make sure you assinged passage link in inspector");
 
             PlayerBase.Singleton.DontWriteMoveInputs = true;
             PlayerBase.Singleton.BlockWallChecker = true;
