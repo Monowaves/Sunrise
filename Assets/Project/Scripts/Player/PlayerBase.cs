@@ -54,7 +54,7 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public bool JumpReleased { get; private set; }
     [field: SerializeField, ReadOnly] public bool IsShifting { get; private set; }
     [field: SerializeField, ReadOnly] public bool ShiftPressed { get; private set; }
-    [field: SerializeField, ReadOnly] public bool CtrlPressed { get; private set; }
+    [field: SerializeField, ReadOnly] public bool WantToSlam { get; private set; }
 
     [field: SerializeField, ReadOnly] public bool IsRunning { get; set; }
     [field: SerializeField, ReadOnly] public bool IsFalling { get; set; }
@@ -68,9 +68,17 @@ public class PlayerBase : MonoBehaviour
 
     [field: SerializeField, ReadOnly] public bool BlockMoveInputs { get; set; }
     [field: SerializeField, ReadOnly] public bool BlockJumpInputs { get; set; }
+    [field: SerializeField, ReadOnly] public bool BlockSlamInputs { get; set; }
     [field: SerializeField, ReadOnly] public bool BlockAllInputs { get; set; }
 
     [field: SerializeField, ReadOnly] public bool DontWriteMoveInputs { get; set; }
+    [field: SerializeField, ReadOnly] public bool DontWriteJumpInputs { get; set; }
+    [field: SerializeField, ReadOnly] public bool DontWriteAllInputs { get; set; }
+    
+    [field: SerializeField, ReadOnly] public bool BlockWallChecker { get; set; }
+
+    [field: SerializeField, ReadOnly] public bool DontWriteGroundChecker { get; set; }
+    [field: SerializeField, ReadOnly] public bool DontWriteCheckers { get; set; }
 
     public bool IsTouchingWall => IsTouchingLeftWall || IsTouchingRightWall;
     private Vector2 PlayerCeil => Vector2.up * ((BoxCollider.size.y / 2) + BoxCollider.offset.y);
@@ -158,13 +166,15 @@ public class PlayerBase : MonoBehaviour
 
     private void Checking()
     {
+        if (DontWriteCheckers) return;
+
         Vector2 position = transform.position;
 
-        IsTouchingGround = Physics2D.OverlapBox(position + _groundChecker.Offset, _groundChecker.Size, 0f, _groundChecker.Mask);
+        if (!DontWriteGroundChecker) IsTouchingGround = Physics2D.OverlapBox(position + _groundChecker.Offset, _groundChecker.Size, 0f, _groundChecker.Mask);
         IsTouchingCeil = Physics2D.OverlapBox(position + PlayerCeil, _ceilChecker.Size, 0f, _ceilChecker.Mask);
 
-        IsTouchingLeftWall = Physics2D.OverlapBox(position + _leftWallChecker.Offset, _leftWallChecker.Size, 0f, _leftWallChecker.Mask);
-        IsTouchingRightWall = Physics2D.OverlapBox(position + _rightWallChecker.Offset, _rightWallChecker.Size, 0f, _rightWallChecker.Mask);
+        IsTouchingLeftWall = BlockWallChecker ? false : Physics2D.OverlapBox(position + _leftWallChecker.Offset, _leftWallChecker.Size, 0f, _leftWallChecker.Mask);
+        IsTouchingRightWall = BlockWallChecker ? false : Physics2D.OverlapBox(position + _rightWallChecker.Offset, _rightWallChecker.Size, 0f, _rightWallChecker.Mask);
 
         if (IsTouchingLeftWall) WallDirection = -1;
         else if (IsTouchingRightWall) WallDirection = 1;
@@ -196,6 +206,8 @@ public class PlayerBase : MonoBehaviour
 
     private void Inputs()
     {
+        if (DontWriteAllInputs) return;
+
         if (BlockAllInputs)
         {
             HorizontalAxis = 0;
@@ -204,7 +216,7 @@ public class PlayerBase : MonoBehaviour
             JumpReleased = false;
             IsShifting = false;
             ShiftPressed = false;
-            CtrlPressed = false;
+            WantToSlam = false;
 
             return;
         }
@@ -218,21 +230,24 @@ public class PlayerBase : MonoBehaviour
         else if (HorizontalAxis > 0)
             Facing = PlayerFacing.Right;   
 
-        if (BlockJumpInputs)
+        if (!DontWriteJumpInputs)
         {
-            WantToJump = false;
-            JumpReleased = false;
-        }
-        else
-        {
-            WantToJump = Keyboard.IsPressed(KeyCode.Space);
-            JumpReleased = Keyboard.IsReleased(KeyCode.Space);
+            if (BlockJumpInputs)
+            {
+                WantToJump = false;
+                JumpReleased = false;
+            }
+            else
+            {
+                WantToJump = Keyboard.IsPressed(KeyCode.Space);
+                JumpReleased = Keyboard.IsReleased(KeyCode.Space);
+            }
         }
 
         IsShifting = Keyboard.IsHolding(KeyCode.LeftShift);
         ShiftPressed = Keyboard.IsPressed(KeyCode.LeftShift);
 
-        CtrlPressed = Keyboard.IsPressed(KeyCode.LeftControl);
+        WantToSlam = BlockSlamInputs ? false : Keyboard.IsPressed(KeyCode.LeftControl);
     }
 
     private void FixedUpdate()
@@ -277,7 +292,6 @@ public class PlayerBase : MonoBehaviour
         Gizmos.color = _ceilChecker.GizmosColor;
         Gizmos.DrawWireCube(position + PlayerCeil, _ceilChecker.Size);
 
-
         Gizmos.color = _slopeChecker.GizmosColor;
         Gizmos.DrawLine(position + _slopeChecker.Offset, _slopeChecker.Direction * _slopeChecker.Distance + position + _slopeChecker.Offset);
 
@@ -294,40 +308,66 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    public void Move(float duration, float directionX = 0, bool doJump = false)
+    public void Move(float duration, float direction = 0)
     {
         StopCoroutine(nameof(CO_Move));
-        StartCoroutine(nameof(CO_Move), new MoveSettings(duration, directionX, doJump));
+        StartCoroutine(nameof(CO_Move), new MoveSettings(duration, direction));
     }
 
     private struct MoveSettings
     {
         public float Duration;
-        public float XDirection;
-        public bool DoJump;
+        public float Direction;
 
-        public MoveSettings(float duration, float x, bool jump)
+        public MoveSettings(float duration, float direction)
         {
             Duration = duration;
-            XDirection = x;
-            DoJump = jump;
+            Direction = direction;
         }
     }
 
     private IEnumerator CO_Move(MoveSettings settings)
     {
-        if (settings.XDirection != 0)
+        if (settings.Direction != 0)
         {
-            BlockJumpInputs = true;
             DontWriteMoveInputs = true;
+            BlockJumpInputs = true;
+            HorizontalAxis = settings.Direction;
 
-            HorizontalAxis = settings.XDirection;
+            float elapsed = 0f;
+            while (elapsed < settings.Duration)
+            {
+                if (IsTouchingWall) break;
 
-            yield return new WaitForSeconds(settings.Duration);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
 
-            BlockJumpInputs = false;
             DontWriteMoveInputs = false;
+            BlockJumpInputs = false;
         }
+    }
+
+    public void Jump()
+    {
+        StopCoroutine(nameof(CO_Jump));
+        StartCoroutine(nameof(CO_Jump));
+    }
+
+    private IEnumerator CO_Jump()
+    {
+        DontWriteJumpInputs = true;
+        DontWriteGroundChecker = true;
+        
+        IsTouchingGround = true;
+        BlockJumpInputs = false;
+
+        WantToJump = true;
+        
+        yield return null;
+
+        DontWriteJumpInputs = false;
+        DontWriteGroundChecker = false;
     }
 
     public void Knockback(float direction)

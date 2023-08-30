@@ -122,12 +122,15 @@ public class PlayerCamera : MonoBehaviour
         _noiser.m_AmplitudeGain = 0;
     }
 
+    public void DisableFollow() => _vcam.enabled = false;
+    public void EnableFollow() => _vcam.enabled = true;
+
     public void TeleportCamera()
     {
-        StartCoroutine(nameof(CO_SetCameraPos));
+        StartCoroutine(nameof(CO_Teleport));
     }
 
-    private IEnumerator CO_SetCameraPos()
+    private IEnumerator CO_Teleport()
     {
         _transposer.m_XDamping = 0f;
 

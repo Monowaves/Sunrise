@@ -8,6 +8,7 @@ public class Passage : MonoBehaviour
 
     [field: Space(9)]
     [field: SerializeField] public Vector2 SpawnOffset { get; private set; }
+    [field: SerializeField] public bool IsVertical { get; private set; }
 
     public Vector2 ExitPosition => transform.position.ToVector2() + SpawnOffset;
 

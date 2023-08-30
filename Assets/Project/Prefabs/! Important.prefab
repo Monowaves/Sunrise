@@ -2766,7 +2766,7 @@ MonoBehaviour:
     Distance: 1
     Mask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 128
     GizmosColor: {r: 0.021979094, g: 1, b: 0, a: 1}
   <Rigidbody>k__BackingField: {fileID: 4260715390502580223}
   <BoxCollider>k__BackingField: {fileID: 1646909664939616426}
@@ -2812,6 +2812,9 @@ MonoBehaviour:
   <BlockJumpInputs>k__BackingField: 0
   <BlockAllInputs>k__BackingField: 0
   <DontWriteMoveInputs>k__BackingField: 0
+  <DontWriteJumpInputs>k__BackingField: 0
+  <DontWriteAllInputs>k__BackingField: 0
+  <DontWriteCheckers>k__BackingField: 0
 --- !u!1 &6405075898659478475
 GameObject:
   m_ObjectHideFlags: 0

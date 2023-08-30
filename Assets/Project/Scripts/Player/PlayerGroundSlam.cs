@@ -20,7 +20,7 @@ public class PlayerGroundSlam : MonoBehaviour
     {
         bool isInAir = !PlayerBase.Singleton.IsTouchingGround && !PlayerBase.Singleton.IsTouchingRightWall && !PlayerBase.Singleton.IsTouchingLeftWall;
 
-        if (PlayerBase.Singleton.CtrlPressed && isInAir && !IsDashing)
+        if (PlayerBase.Singleton.WantToSlam && isInAir && !IsDashing)
             StartCoroutine(GroundSlam());
     }
 
