@@ -2742,6 +2742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gravityScale: 3
   _fallGravityScale: 4
+  _maxGravityAcceleration: 35
   _knockbackForce: {x: 10, y: 13}
   <FrictionAmount>k__BackingField: 0.23
   _maxSlopeAngle: 45

@@ -11,6 +11,7 @@ public class PlayerBase : MonoBehaviour
     [Header("Physics")]
     [SerializeField, Min(0)] private float _gravityScale = 1f;
     [SerializeField, Min(0)] private float _fallGravityScale = 1f;
+    [SerializeField, Min(0)] private float _maxGravityAcceleration = 50f;
     [SerializeField, Min(0)] private Vector2 _knockbackForce;
     [field: SerializeField, Min(0)] public float FrictionAmount { get; private set;}
     [SerializeField, Min(0)] private float _maxSlopeAngle = 45f;
@@ -273,6 +274,11 @@ public class PlayerBase : MonoBehaviour
                 Rigidbody.gravityScale = _fallGravityScale;
             else
                 Rigidbody.gravityScale = _gravityScale;
+        }
+
+        if (Rigidbody.velocity.y < -_maxGravityAcceleration && !IsGroundSlamDash)
+        {
+            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, -_maxGravityAcceleration);
         }
     }
 
