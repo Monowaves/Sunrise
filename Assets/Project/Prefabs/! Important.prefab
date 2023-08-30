@@ -2798,7 +2798,7 @@ MonoBehaviour:
   <JumpReleased>k__BackingField: 0
   <IsShifting>k__BackingField: 0
   <ShiftPressed>k__BackingField: 0
-  <CtrlPressed>k__BackingField: 0
+  <WantToSlam>k__BackingField: 0
   <IsRunning>k__BackingField: 0
   <IsFalling>k__BackingField: 0
   <IsJumping>k__BackingField: 0
@@ -2810,10 +2810,13 @@ MonoBehaviour:
   <SlidingMomentum>k__BackingField: 0
   <BlockMoveInputs>k__BackingField: 0
   <BlockJumpInputs>k__BackingField: 0
+  <BlockSlamInputs>k__BackingField: 0
   <BlockAllInputs>k__BackingField: 0
   <DontWriteMoveInputs>k__BackingField: 0
   <DontWriteJumpInputs>k__BackingField: 0
   <DontWriteAllInputs>k__BackingField: 0
+  <BlockWallChecker>k__BackingField: 0
+  <DontWriteGroundChecker>k__BackingField: 0
   <DontWriteCheckers>k__BackingField: 0
 --- !u!1 &6405075898659478475
 GameObject:

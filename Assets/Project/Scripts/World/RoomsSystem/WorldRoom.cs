@@ -1,4 +1,6 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WorldRoom : MonoBehaviour
 {
@@ -12,5 +14,6 @@ public class WorldRoom : MonoBehaviour
     public void DetectPassages()
     {   
         Passages = FindObjectsOfType<Passage>(true);
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
     }
 }
