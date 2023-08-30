@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
+    [field: SerializeField] public bool EnableBehaviour { get; private set; } = true;
+
     [field: Header("Components")]
     [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
     [field: SerializeField] public BoxCollider2D Collider { get; private set; }
@@ -54,6 +56,9 @@ public class EnemyBase : MonoBehaviour
         IsTriggered = Physics2D.OverlapBox(position, TriggerZone, 0f, ZLayerExtensions.PlayerLayerMask());
         
         SpriteRenderer.flipX = GetFlipX();
+
+        if (!EnableBehaviour)
+            StopCoroutine(nameof(EnemyBehaviour));
     }
 
     private void Reset()
