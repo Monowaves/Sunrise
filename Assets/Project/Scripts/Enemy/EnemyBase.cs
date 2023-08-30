@@ -60,8 +60,8 @@ public class EnemyBase : MonoBehaviour
     {
         SetupEnemy();
         
-        HitSound = Defaults.HitSound;
-        HitEffect = Defaults.Blood;
+        HitSound = Defaults.Get<AudioClip>("Defaults/DefaultHit");
+        HitEffect = Defaults.Get<GameObject>("Defaults/Blood");;
     }
 
     private void OnValidate() 
@@ -174,10 +174,6 @@ public class EnemyBase : MonoBehaviour
             if (DeathEffect) DeathEffect.Spawn(transform.position);
 
             if (ZRandom.Chance(10)) Defaults.HealthShard.Spawn(transform.position);
-
-            //TODO: Remove this piece of garbage
-            KillsCounter killsCounter = FindObjectOfType<KillsCounter>();
-            if (killsCounter != null) killsCounter.AddKill();
 
             Destroy(gameObject);
         }

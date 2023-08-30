@@ -6,12 +6,7 @@ public class Defaults : DontDestroyOnLoadBehaviour
     public static GameObject HealthShard { get; private set; }
     public static AudioClip HitSound { get; private set; }
     public static GameObject Blood { get; private set; }
-
-    private void OnValidate() 
-    {
-        GetDefaults();
-    }
-
+    
     protected override void Initialize()
     {
         GetDefaults();
