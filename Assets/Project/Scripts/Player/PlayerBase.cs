@@ -35,6 +35,7 @@ public class PlayerBase : MonoBehaviour
 
     [field: Header("Particles")]
     [field: SerializeField] public GameObject FootstepDust { get; private set; }
+    [field: SerializeField] public GameObject[] SlidingParticles { get; private set; }
     [field: SerializeField] public GameObject SlamEffect { get; private set; }
 
     [field: Header("Info")]

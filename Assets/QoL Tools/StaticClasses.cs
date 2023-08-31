@@ -130,9 +130,9 @@ namespace MonoWaves.QoL
             return UnityEngine.Random.Range(minimum, maximum + 1);
         }
 
-        public static T Or<T>(T first, T second)
+        public static T Between<T>(params T[] objects)
         {
-            return UnityEngine.Random.Range(0, 2) == 0 ? first : second;
+            return objects.GetRandomValue();
         }
     }
 

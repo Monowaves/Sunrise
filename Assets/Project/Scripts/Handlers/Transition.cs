@@ -11,6 +11,8 @@ public class Transition : DontDestroyOnLoadBehaviour
     [SerializeField] private Image _transitionGraphic;
     [SerializeField] private float _duration;
 
+    public bool IsTransitioning { get; private set; }
+
     protected override void Initialize()
     {
         Singleton = this;
@@ -28,6 +30,12 @@ public class Transition : DontDestroyOnLoadBehaviour
         StartCoroutine(nameof(CO_Fade), new Settings(0, onEnd));
     }
 
+    public void Abort()
+    {
+        StopCoroutine(nameof(CO_Fade));
+        _transitionGraphic.color = new Color(1, 1, 1, 0);
+    }
+
     private struct Settings
     {
         public float EndValue;
@@ -42,6 +50,8 @@ public class Transition : DontDestroyOnLoadBehaviour
 
     private IEnumerator CO_Fade(Settings settings)
     {
+        IsTransitioning = true;
+
         Color startColor = new(0, 0, 0, 1 - settings.EndValue);
         Color endColor = new(0, 0, 0, settings.EndValue);
 
@@ -56,5 +66,7 @@ public class Transition : DontDestroyOnLoadBehaviour
 
         _transitionGraphic.color = endColor;
         settings.Callback?.Invoke();
+
+        IsTransitioning = false;
     }
 }

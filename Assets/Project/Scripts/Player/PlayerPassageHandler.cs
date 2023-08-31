@@ -16,6 +16,7 @@ public class PlayerPassageHandler : MonoBehaviour
     private void OnDestroy() 
     {
         SceneManager.sceneLoaded -= SceneChanged;
+        if (Transition.Singleton) Transition.Singleton.Abort();
     }
 
     private void Start() 
@@ -109,7 +110,7 @@ public class PlayerPassageHandler : MonoBehaviour
         {
             if (passage.ExitPosition.y < passage.transform.position.y)
             {
-                rb.velocity = new Vector2(rb.velocity.x, lastVelocity.y);
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(10, lastVelocity.y));
             }
 
             yield return null;

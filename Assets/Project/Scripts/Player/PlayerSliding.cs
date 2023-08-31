@@ -17,6 +17,28 @@ public class PlayerSliding : MonoBehaviour
 
     private Rigidbody2D _rb => PlayerBase.Singleton.Rigidbody;
 
+    private void Awake() 
+    {
+        InvokeRepeating(nameof(HandleParticles), 0f, 0.05f);
+    }
+
+    private void HandleParticles()
+    {
+        if (IsSliding)
+        {
+            if (Momentum > 35)
+            {
+                Vector2 position = new
+                (
+                    transform.position.x, 
+                    transform.position.y - PlayerInformation.ColliderHalfSize.y / 2 + PlayerInformation.ColliderHalfOffset.y
+                );
+    
+                ZGameObjectExtensions.Spawn(PlayerBase.Singleton.SlidingParticles.GetRandomValue(), position);
+            }
+        }
+    }
+
     private void Update() 
     {
         if (PlayerBase.Singleton.ShiftPressed && PlayerBase.Singleton.IsTouchingGround && !IsSliding) 

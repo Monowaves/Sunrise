@@ -13,7 +13,7 @@ public class BlindSlime : EnemyBase
             yield return new WaitForSeconds(0.5f);
 
             if (IsTouchingGround)
-                Rigidbody.AddForce(20 * ZRandom.Or(-1, 1) * Vector2.right + Vector2.up * 25, ForceMode2D.Impulse);
+                Rigidbody.AddForce(20 * ZRandom.Between(-1, 1) * Vector2.right + Vector2.up * 25, ForceMode2D.Impulse);
         }
     }
 

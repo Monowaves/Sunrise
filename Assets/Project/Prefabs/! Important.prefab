@@ -2785,6 +2785,9 @@ MonoBehaviour:
   <GroundSlamSound>k__BackingField: {fileID: 8300000, guid: e4981a4ede087cf41bde1ee00f27da6e, type: 3}
   <DamageSound>k__BackingField: {fileID: 8300000, guid: 395ba093a3e1bf94e80defe672c21b1a, type: 3}
   <FootstepDust>k__BackingField: {fileID: 7756309084100531237, guid: 99c0baa20f6550e4192a2f50fcafaf17, type: 3}
+  <SlidingParticles>k__BackingField:
+  - {fileID: 8625269724647200828, guid: b8effeec0d1048441b39d8eb1a715eff, type: 3}
+  - {fileID: 8625269724647200828, guid: c40ae652faf004045aa3b124e274c568, type: 3}
   <SlamEffect>k__BackingField: {fileID: 157749718575219723, guid: 9ff40c6795b2a424b8b7a21385ff42d4, type: 3}
   <BlockGravity>k__BackingField: 0
   <IsTouchingGround>k__BackingField: 0
@@ -3720,7 +3723,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 0}
+  m_BackGroundColor: {r: 0.22352941, g: 0.2901961, b: 0.3137255, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
