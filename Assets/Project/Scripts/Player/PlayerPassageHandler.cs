@@ -21,6 +21,8 @@ public class PlayerPassageHandler : MonoBehaviour
     {
         if (!WorldRoom.Singleton || !_lastEntered) return;
 
+        PlayerCamera.Singleton.SetBounds(WorldRoom.Singleton.Bounds);
+
         Passage passage = Array.Find(WorldRoom.Singleton.Passages, passage => passage.Link == _lastEntered);
 
         if (!passage) throw new Exception($"Cannot find passage with needed link in {SceneManager.GetActiveScene().name}");
@@ -48,8 +50,9 @@ public class PlayerPassageHandler : MonoBehaviour
         {
             if (transform.position.y > passage.transform.position.y)
             {
-                PlayerBase.Singleton.Jump();
-                PlayerBase.Singleton.Move(1f, PlayerBase.Singleton.Facing == PlayerFacing.Left ? -1 : 1);
+                PlayerBase.Singleton.Rigidbody.velocity = Vector2.zero;
+                PlayerBase.Singleton.Rigidbody.AddForce(Vector2.up * 20, ForceMode2D.Impulse);
+                PlayerBase.Singleton.Move(1f, PlayerBase.Singleton.Facing == PlayerFacing.Left ? -1 : 1, true);
             }
             else PlayerBase.Singleton.DontWriteMoveInputs = false;
         }

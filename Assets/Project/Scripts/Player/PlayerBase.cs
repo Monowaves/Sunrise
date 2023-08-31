@@ -320,21 +320,23 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    public void Move(float duration, float direction = 0)
+    public void Move(float duration, float direction = 0, bool stopOnceGrounded = false)
     {
         StopCoroutine(nameof(CO_Move));
-        StartCoroutine(nameof(CO_Move), new MoveSettings(duration, direction));
+        StartCoroutine(nameof(CO_Move), new MoveSettings(duration, direction, stopOnceGrounded));
     }
 
     private struct MoveSettings
     {
         public float Duration;
         public float Direction;
+        public bool StopOnceGrounded;
 
-        public MoveSettings(float duration, float direction)
+        public MoveSettings(float duration, float direction, bool stop)
         {
             Duration = duration;
             Direction = direction;
+            StopOnceGrounded = stop;
         }
     }
 
@@ -349,7 +351,7 @@ public class PlayerBase : MonoBehaviour
             float elapsed = 0f;
             while (elapsed < settings.Duration)
             {
-                if (IsTouchingWall) break;
+                if (IsTouchingWall || (settings.StopOnceGrounded && IsTouchingGround)) break;
 
                 elapsed += Time.deltaTime;
                 yield return null;
@@ -358,28 +360,6 @@ public class PlayerBase : MonoBehaviour
             DontWriteMoveInputs = false;
             BlockJumpInputs = false;
         }
-    }
-
-    public void Jump()
-    {
-        StopCoroutine(nameof(CO_Jump));
-        StartCoroutine(nameof(CO_Jump));
-    }
-
-    private IEnumerator CO_Jump()
-    {
-        DontWriteJumpInputs = true;
-        DontWriteGroundChecker = true;
-        
-        IsTouchingGround = true;
-        BlockJumpInputs = false;
-
-        WantToJump = true;
-        
-        yield return null;
-
-        DontWriteJumpInputs = false;
-        DontWriteGroundChecker = false;
     }
 
     public void Knockback(float direction)

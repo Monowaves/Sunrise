@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vcam: {fileID: 8591335378647614477}
+  _confiner: {fileID: 3851180537278096846}
   _camera: {fileID: 2583981283992065120}
   _lowPassFilter: {fileID: 237610816710677684}
   _hitVolume: {fileID: 1408789545356028643}
@@ -3406,6 +3407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1769335829089344622}
   - component: {fileID: 8591335378647614477}
+  - component: {fileID: 3851180537278096846}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -3468,6 +3470,21 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 6434425604797424951}
+--- !u!114 &3851180537278096846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8236267990995959334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoundingShape2D: {fileID: 0}
+  m_Damping: 0.5
+  m_MaxWindowSize: -1
 --- !u!1 &8306422312946403970
 GameObject:
   m_ObjectHideFlags: 0

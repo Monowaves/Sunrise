@@ -10,6 +10,7 @@ public class PlayerCamera : MonoBehaviour
     public static Camera Camera { get; private set; }
 
     [SerializeField] private CinemachineVirtualCamera _vcam;
+    [SerializeField] private CinemachineConfiner2D _confiner;
     [SerializeField] private Camera _camera;
     [SerializeField] private AudioLowPassFilter _lowPassFilter;
     [SerializeField] private Volume _hitVolume;
@@ -128,6 +129,11 @@ public class PlayerCamera : MonoBehaviour
     public void TeleportCamera()
     {
         StartCoroutine(nameof(CO_Teleport));
+    }
+
+    public void SetBounds(PolygonCollider2D bounds)
+    {
+        _confiner.m_BoundingShape2D = bounds;
     }
 
     private IEnumerator CO_Teleport()
