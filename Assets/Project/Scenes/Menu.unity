@@ -1103,8 +1103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingScene:
-    m_SceneAsset: {fileID: 102900000, guid: 6eb3024b7ab8950419beb1aa7c421f12, type: 3}
-    m_SceneName: TestingScene1
+    m_SceneAsset: {fileID: 102900000, guid: bcc7c7b6194f371469af478c0df4e228, type: 3}
+    m_SceneName: Tutorial
   _eventSystem: {fileID: 1529496543}
   _camera: {fileID: 960163301}
 --- !u!1660057539 &9223372036854775807

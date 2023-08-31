@@ -60,6 +60,7 @@ public class WorldRoom : MonoBehaviour
         TilemapCollider2D tilemapCollider = tilemapGameObject.AddComponent<TilemapCollider2D>();
         tilemapCollider.usedByComposite = true;
         tilemapCollider.useDelaunayMesh = true;
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
     }
 
     [ContextMenu("Auto bounds")]
@@ -83,5 +84,6 @@ public class WorldRoom : MonoBehaviour
         };
 
         Bounds.points = newBounds.ToArray();
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
     }
 }

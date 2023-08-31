@@ -54,8 +54,8 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField, ReadOnly] public PlayerFacing Facing { get; private set; }
     [field: SerializeField, ReadOnly] public bool WantToJump { get; private set; }
     [field: SerializeField, ReadOnly] public bool JumpReleased { get; private set; }
-    [field: SerializeField, ReadOnly] public bool IsShifting { get; private set; }
-    [field: SerializeField, ReadOnly] public bool ShiftPressed { get; private set; }
+    [field: SerializeField, ReadOnly] public bool WantToSlide { get; private set; }
+    [field: SerializeField, ReadOnly] public bool SlidePressed { get; private set; }
     [field: SerializeField, ReadOnly] public bool WantToSlam { get; private set; }
 
     [field: SerializeField, ReadOnly] public bool IsRunning { get; set; }
@@ -91,6 +91,8 @@ public class PlayerBase : MonoBehaviour
 
     private RayChecker _leftSlopeChecker;
     private RayChecker _rightSlopeChecker;
+
+    private float _slideTimer;
 
     private void Awake()
     {
@@ -215,8 +217,8 @@ public class PlayerBase : MonoBehaviour
             IsMoving = false;
             WantToJump = false;
             JumpReleased = false;
-            IsShifting = false;
-            ShiftPressed = false;
+            WantToSlide = false;
+            SlidePressed = false;
             WantToSlam = false;
 
             return;
@@ -245,8 +247,11 @@ public class PlayerBase : MonoBehaviour
             }
         }
 
-        IsShifting = Keyboard.IsHolding(KeyCode.LeftShift);
-        ShiftPressed = Keyboard.IsPressed(KeyCode.LeftShift);
+        WantToSlide = _slideTimer > 0 || Keyboard.IsHolding(KeyCode.LeftShift);
+        SlidePressed = Keyboard.IsPressed(KeyCode.LeftShift);
+
+        if (SlidePressed) _slideTimer = 0.1f;
+        else _slideTimer -= Time.deltaTime;
 
         WantToSlam = !BlockSlamInputs && Keyboard.IsPressed(KeyCode.LeftControl);
     }

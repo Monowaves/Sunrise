@@ -2527,7 +2527,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06, y: -0.15499997}
+  m_Offset: {x: -0.060000002, y: -0.435}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2538,7 +2538,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.69, y: 1.375}
+  m_Size: {x: 0.69, y: 0.8}
   m_EdgeRadius: 0
 --- !u!50 &4260715390502580223
 Rigidbody2D:
@@ -2750,7 +2750,7 @@ MonoBehaviour:
   _material: {fileID: 6200000, guid: f98348faf63af4748b619391e0041bb7, type: 2}
   _ceilChecker:
     Offset: {x: 0, y: 0}
-    Size: {x: 0.675, y: 0.5}
+    Size: {x: 2, y: 1}
     Mask:
       serializedVersion: 2
       m_Bits: 128
@@ -2801,8 +2801,8 @@ MonoBehaviour:
   <Facing>k__BackingField: 0
   <WantToJump>k__BackingField: 0
   <JumpReleased>k__BackingField: 0
-  <IsShifting>k__BackingField: 0
-  <ShiftPressed>k__BackingField: 0
+  <WantToSlide>k__BackingField: 0
+  <SlidePressed>k__BackingField: 0
   <WantToSlam>k__BackingField: 0
   <IsRunning>k__BackingField: 0
   <IsFalling>k__BackingField: 0

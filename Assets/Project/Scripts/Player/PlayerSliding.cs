@@ -41,14 +41,14 @@ public class PlayerSliding : MonoBehaviour
 
     private void Update() 
     {
-        if (PlayerBase.Singleton.ShiftPressed && PlayerBase.Singleton.IsTouchingGround && !IsSliding) 
+        if (PlayerBase.Singleton.SlidePressed && PlayerBase.Singleton.IsTouchingGround && !IsSliding) 
         {
             StartedSlidingOnGround = true;
             PlayerSprite.Singleton.MotionExecutor.InvokeParameter("isSlidingAwake", true, false);
             PlayerBase.Singleton.SetHalfSize();
         }
         
-        if (PlayerBase.Singleton.IsShifting)
+        if (PlayerBase.Singleton.WantToSlide)
         {
             if (StartedSlidingOnGround)
             {
@@ -58,7 +58,7 @@ public class PlayerSliding : MonoBehaviour
                 PlayerBase.Singleton.BlockJumpInputs = true;
             }
 
-            if (PlayerBase.Singleton.IsTouchingWall && IsSliding && !PlayerBase.Singleton.IsTouchingCeil && WasSlidingLastFrame)
+            if (PlayerBase.Singleton.IsTouchingWall && IsSliding && WasSlidingLastFrame)
             {
                 StopSliding();
             }
