@@ -42,9 +42,11 @@ public class PlayerRun : MonoBehaviour
     {
         if (PlayerBase.Singleton.IsTouchingGround && PlayerBase.Singleton.IsMoving)
         {
-            float applyAmount = Mathf.Min(Mathf.Abs(_rb.velocity.x), PlayerBase.Singleton.FrictionAmount);
-            applyAmount *= Mathf.Sign(_rb.velocity.x);
-            _rb.AddForce(_moveDirection * -applyAmount, ForceMode2D.Impulse);
+            float forwardSpeed = _rb.velocity.x;
+
+            float applyAmount = Mathf.Min(Mathf.Abs(forwardSpeed), PlayerBase.Singleton.FrictionAmount);
+            applyAmount *= Mathf.Sign(forwardSpeed);
+            _rb.AddForce(-_moveDirection * applyAmount, ForceMode2D.Impulse);
         }
     }
 

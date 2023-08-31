@@ -29,6 +29,6 @@ public class Passage : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireCube(ExitPosition, new Vector2(1, 2));
+        Gizmos.DrawWireCube(ExitPosition + PlayerInformation.ColliderFullOffset, PlayerInformation.ColliderFullSize);
     }
 }

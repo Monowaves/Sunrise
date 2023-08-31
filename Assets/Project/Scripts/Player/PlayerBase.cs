@@ -83,6 +83,7 @@ public class PlayerBase : MonoBehaviour
 
     public bool IsTouchingWall => IsTouchingLeftWall || IsTouchingRightWall;
     private Vector2 PlayerCeil => Vector2.up * ((BoxCollider.size.y / 2) + BoxCollider.offset.y);
+    private Vector2 Position => transform.position.ToVector2() + Vector2.right * BoxCollider.offset.x;
     
     private BoxChecker _leftWallChecker;
     private BoxChecker _rightWallChecker;
@@ -93,29 +94,29 @@ public class PlayerBase : MonoBehaviour
     private void Awake()
     {
         RayChecker leftSlopeChecker = _slopeChecker.Clone();
-        leftSlopeChecker.Offset.x = -(BoxCollider.size.x / 2);
+        leftSlopeChecker.Offset.x = -(BoxCollider.size.x / 2) + 0.05f;
         RayChecker rightSlopeChecker = _slopeChecker.Clone();
-        rightSlopeChecker.Offset.x = BoxCollider.size.x / 2;
+        rightSlopeChecker.Offset.x = BoxCollider.size.x / 2 - 0.05f;
 
         _leftSlopeChecker = leftSlopeChecker;
         _rightSlopeChecker = rightSlopeChecker;
 
-        SetNormalSize();
+        SetFullSize();
         Singleton = this;
     }
 
     public void SetHalfSize()
     {
-        BoxCollider.offset = Vector2.up * -0.5f;
-        BoxCollider.size = new Vector2(0.9f, 1f);
+        BoxCollider.offset = PlayerInformation.ColliderHalfOffset;
+        BoxCollider.size = PlayerInformation.ColliderHalfSize;
 
         RegenerateWallCheckers();
     }
 
-    public void SetNormalSize()
+    public void SetFullSize()
     {
-        BoxCollider.offset = Vector2.up * -0.075f;
-        BoxCollider.size = new Vector2(0.9f, 1.85f);
+        BoxCollider.offset = PlayerInformation.ColliderFullOffset;
+        BoxCollider.size = PlayerInformation.ColliderFullSize;
 
         RegenerateWallCheckers();
     }
@@ -169,13 +170,11 @@ public class PlayerBase : MonoBehaviour
     {
         if (DontWriteCheckers) return;
 
-        Vector2 position = transform.position;
+        if (!DontWriteGroundChecker) IsTouchingGround = Physics2D.OverlapBox(Position + _groundChecker.Offset, _groundChecker.Size, 0f, _groundChecker.Mask);
+        IsTouchingCeil = Physics2D.OverlapBox(Position + PlayerCeil, _ceilChecker.Size, 0f, _ceilChecker.Mask);
 
-        if (!DontWriteGroundChecker) IsTouchingGround = Physics2D.OverlapBox(position + _groundChecker.Offset, _groundChecker.Size, 0f, _groundChecker.Mask);
-        IsTouchingCeil = Physics2D.OverlapBox(position + PlayerCeil, _ceilChecker.Size, 0f, _ceilChecker.Mask);
-
-        IsTouchingLeftWall = BlockWallChecker ? false : Physics2D.OverlapBox(position + _leftWallChecker.Offset, _leftWallChecker.Size, 0f, _leftWallChecker.Mask);
-        IsTouchingRightWall = BlockWallChecker ? false : Physics2D.OverlapBox(position + _rightWallChecker.Offset, _rightWallChecker.Size, 0f, _rightWallChecker.Mask);
+        IsTouchingLeftWall = !BlockWallChecker && Physics2D.OverlapBox(Position + _leftWallChecker.Offset, _leftWallChecker.Size, 0f, _leftWallChecker.Mask);
+        IsTouchingRightWall = !BlockWallChecker && Physics2D.OverlapBox(Position + _rightWallChecker.Offset, _rightWallChecker.Size, 0f, _rightWallChecker.Mask);
 
         if (IsTouchingLeftWall) WallDirection = -1;
         else if (IsTouchingRightWall) WallDirection = 1;
@@ -183,7 +182,7 @@ public class PlayerBase : MonoBehaviour
 
         RaycastHit2D leftHitInfo = Physics2D.Raycast
         (
-            origin: position + _leftSlopeChecker.Offset, 
+            origin: Position + _leftSlopeChecker.Offset, 
             direction: _leftSlopeChecker.Direction,  
             _leftSlopeChecker.Distance, 
             _leftSlopeChecker.Mask
@@ -191,7 +190,7 @@ public class PlayerBase : MonoBehaviour
 
         RaycastHit2D rightHitInfo = Physics2D.Raycast
         (
-            origin: position + _rightSlopeChecker.Offset, 
+            origin: Position + _rightSlopeChecker.Offset, 
             direction: _rightSlopeChecker.Direction,  
             _rightSlopeChecker.Distance, 
             _rightSlopeChecker.Mask
@@ -248,7 +247,7 @@ public class PlayerBase : MonoBehaviour
         IsShifting = Keyboard.IsHolding(KeyCode.LeftShift);
         ShiftPressed = Keyboard.IsPressed(KeyCode.LeftShift);
 
-        WantToSlam = BlockSlamInputs ? false : Keyboard.IsPressed(KeyCode.LeftControl);
+        WantToSlam = !BlockSlamInputs && Keyboard.IsPressed(KeyCode.LeftControl);
     }
 
     private void FixedUpdate()
@@ -291,26 +290,33 @@ public class PlayerBase : MonoBehaviour
 
     private void OnDrawGizmosSelected() 
     {
-        Vector2 position = transform.position;
-
         Gizmos.color = _groundChecker.GizmosColor;
-        Gizmos.DrawWireCube(position + _groundChecker.Offset, _groundChecker.Size);
+        Gizmos.DrawWireCube(Position + _groundChecker.Offset, _groundChecker.Size);
         Gizmos.color = _ceilChecker.GizmosColor;
-        Gizmos.DrawWireCube(position + PlayerCeil, _ceilChecker.Size);
+        Gizmos.DrawWireCube(Position + PlayerCeil, _ceilChecker.Size);
 
-        Gizmos.color = _slopeChecker.GizmosColor;
-        Gizmos.DrawLine(position + _slopeChecker.Offset, _slopeChecker.Direction * _slopeChecker.Distance + position + _slopeChecker.Offset);
+        if (_leftSlopeChecker != null)
+        {
+            Gizmos.color = _leftSlopeChecker.GizmosColor;
+            Gizmos.DrawLine(Position + _leftSlopeChecker.Offset, _leftSlopeChecker.Direction * _leftSlopeChecker.Distance + Position + _leftSlopeChecker.Offset);
+        }
+
+        if (_rightSlopeChecker != null)
+        {
+            Gizmos.color = _rightSlopeChecker.GizmosColor;
+            Gizmos.DrawLine(Position + _rightSlopeChecker.Offset, _rightSlopeChecker.Direction * _rightSlopeChecker.Distance + Position + _rightSlopeChecker.Offset);
+        }
 
         if (_leftWallChecker != null)
         {
             Gizmos.color = _leftWallChecker.GizmosColor;
-            Gizmos.DrawWireCube(position + _leftWallChecker.Offset, _leftWallChecker.Size);
+            Gizmos.DrawWireCube(Position + _leftWallChecker.Offset, _leftWallChecker.Size);
         }
 
         if (_rightWallChecker != null)
         {
             Gizmos.color = _rightWallChecker.GizmosColor;
-            Gizmos.DrawWireCube(position + _rightWallChecker.Offset, _rightWallChecker.Size);
+            Gizmos.DrawWireCube(Position + _rightWallChecker.Offset, _rightWallChecker.Size);
         }
     }
 

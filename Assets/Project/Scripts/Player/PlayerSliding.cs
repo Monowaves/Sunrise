@@ -61,7 +61,7 @@ public class PlayerSliding : MonoBehaviour
     private void StopSliding()
     {
         PlayerSprite.Singleton.MotionExecutor.InvokeParameter("isSlidingStop", true, false);
-        PlayerBase.Singleton.SetNormalSize();
+        PlayerBase.Singleton.SetFullSize();
 
         StartedSlidingOnGround = false;
         IsSliding = false;

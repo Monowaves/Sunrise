@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Link>k__BackingField: {fileID: 11400000, guid: 5f4caeb0cf57fcb4b8fe0fde2c5925df, type: 2}
-  <SpawnOffset>k__BackingField: {x: 1.05, y: -4}
+  <SpawnOffset>k__BackingField: {x: 1.05, y: -4.12}
   <IsVertical>k__BackingField: 0
 --- !u!61 &1422846444
 BoxCollider2D:

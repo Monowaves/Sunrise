@@ -1568,7 +1568,7 @@ Transform:
   m_GameObject: {fileID: 5127238859584278984}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.433, y: -0.072, z: 0}
+  m_LocalPosition: {x: 0.325, y: -0.072, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1615,7 +1615,7 @@ SpriteRenderer:
   m_SortingLayerID: 1036829643
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 336790cf25bde9840bc925589b7c5eb6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1623,7 +1623,7 @@ SpriteRenderer:
   m_Size: {x: 0.962963, y: 0.7407407}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5137450184671471206
@@ -2526,7 +2526,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0, y: -0.075}
+  m_Offset: {x: -0.06, y: -0.15499997}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2537,7 +2537,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 1.85}
+  m_Size: {x: 0.69, y: 1.375}
   m_EdgeRadius: 0
 --- !u!50 &4260715390502580223
 Rigidbody2D:
@@ -2658,8 +2658,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3717102d6817e4494fb8a265df7542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallJumpUpForce: 17.75
-  _wallJumpForwardForce: 35.75
+  _wallJumpUpForce: 17.25
+  _wallJumpForwardForce: 29.5
   _wallSlidingSpeed: 0.875
   _jumpCutMultiplier: 0.15
   _jumpBufferTime: 0.1
@@ -2745,24 +2745,24 @@ MonoBehaviour:
   _maxGravityAcceleration: 35
   _knockbackForce: {x: 10, y: 13}
   <FrictionAmount>k__BackingField: 0.23
-  _maxSlopeAngle: 45
+  _maxSlopeAngle: 46
   _material: {fileID: 6200000, guid: f98348faf63af4748b619391e0041bb7, type: 2}
   _ceilChecker:
     Offset: {x: 0, y: 0}
-    Size: {x: 0.85, y: 0.5}
+    Size: {x: 0.675, y: 0.5}
     Mask:
       serializedVersion: 2
       m_Bits: 128
     GizmosColor: {r: 1, g: 0, b: 0, a: 1}
   _groundChecker:
-    Offset: {x: 0, y: -1}
-    Size: {x: 0.8, y: 0.25}
+    Offset: {x: 0, y: -0.85}
+    Size: {x: 0.67, y: 0.05}
     Mask:
       serializedVersion: 2
       m_Bits: 128
     GizmosColor: {r: 1, g: 0.6544963, b: 0, a: 1}
   _slopeChecker:
-    Offset: {x: 0, y: -0.54}
+    Offset: {x: 0, y: -0.8}
     Direction: {x: 0, y: -1}
     Distance: 1
     Mask:
@@ -3451,7 +3451,7 @@ MonoBehaviour:
   m_Follow: {fileID: 7057469746122314136}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 10.25
+    OrthographicSize: 8.25
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -3728,7 +3728,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10.25
+  orthographic size: 8.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
