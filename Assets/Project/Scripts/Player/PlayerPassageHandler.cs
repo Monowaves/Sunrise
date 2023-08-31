@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerPassageHandler : MonoBehaviour
 {
@@ -15,6 +16,13 @@ public class PlayerPassageHandler : MonoBehaviour
     private void OnDestroy() 
     {
         SceneManager.sceneLoaded -= SceneChanged;
+    }
+
+    private void Start() 
+    {
+        if (!WorldRoom.Singleton) return;
+
+        PlayerCamera.Singleton.SetBounds(WorldRoom.Singleton.Bounds);
     }
 
     private void SceneChanged(Scene scene, LoadSceneMode mode)
@@ -37,8 +45,6 @@ public class PlayerPassageHandler : MonoBehaviour
         PlayerBase.Singleton.BlockJumpInputs = false;
         PlayerBase.Singleton.BlockWallChecker = false;
 
-        PlayerBase.Singleton.Rigidbody.velocity = Vector2.zero;
-
         _alreadyEntering = false;
 
         if (!passage.IsVertical)
@@ -50,8 +56,7 @@ public class PlayerPassageHandler : MonoBehaviour
         {
             if (transform.position.y > passage.transform.position.y)
             {
-                PlayerBase.Singleton.Rigidbody.velocity = Vector2.zero;
-                PlayerBase.Singleton.Rigidbody.AddForce(Vector2.up * 20, ForceMode2D.Impulse);
+                Jump();
                 PlayerBase.Singleton.Move(1f, PlayerBase.Singleton.Facing == PlayerFacing.Left ? -1 : 1, true);
             }
             else PlayerBase.Singleton.DontWriteMoveInputs = false;
@@ -75,9 +80,45 @@ public class PlayerPassageHandler : MonoBehaviour
             PlayerCamera.Singleton.DisableFollow();
             
             string targetSceneName = Array.Find(_lastEntered.Linked, scene => scene.SceneName != SceneManager.GetActiveScene().name);
-            Transition.Singleton.FadeIn(() => SceneManager.LoadScene(targetSceneName));
+            Transition.Singleton.FadeIn(() => 
+            {
+                StopCoroutine(nameof(PassageEnter));
+                SceneManager.LoadScene(targetSceneName);
+            });
 
             _alreadyEntering = true;
+
+            StartCoroutine(nameof(PassageEnter), passage);
         }
+    }
+
+    private IEnumerator PassageEnter(Passage passage)
+    {
+        Rigidbody2D rb = PlayerBase.Singleton.Rigidbody;
+        Vector2 lastVelocity = rb.velocity;
+
+        if (!passage.IsVertical)
+        {
+            float direction = transform.position.x > passage.transform.position.x ? -1 : 1;
+            PlayerBase.Singleton.Move(1f, direction);
+            
+            yield break;
+        }
+
+        while (true)
+        {
+            if (passage.ExitPosition.y < passage.transform.position.y)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, lastVelocity.y);
+            }
+
+            yield return null;
+        }
+    }
+
+    private void Jump()
+    {
+        PlayerBase.Singleton.Rigidbody.velocity = Vector2.zero;
+        PlayerBase.Singleton.Rigidbody.AddForce(Vector2.up * 18.5f, ForceMode2D.Impulse);
     }
 }
