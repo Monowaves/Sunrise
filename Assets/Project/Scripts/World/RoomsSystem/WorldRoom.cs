@@ -12,6 +12,7 @@ public class WorldRoom : MonoBehaviour
     public PolygonCollider2D Bounds { get; private set; }
 
     [field: SerializeField] public CompositeCollider2D Collider { get; private set; }
+    [field: SerializeField] public GameObject Tilemap { get; private set; }
     [field: SerializeField] public Passage[] Passages { get; private set; }
 
     [Header("Bounds Creation")]
@@ -43,21 +44,21 @@ public class WorldRoom : MonoBehaviour
         gridGameObject.transform.SetParent(transform);
         gridGameObject.AddComponent<Grid>();
 
-        GameObject tilemapGameObject = new("Tilemap")
+        Tilemap = new("Tilemap")
         {
             layer = LayerMask.NameToLayer(Const.MAP)
         };
-        tilemapGameObject.transform.SetParent(gridGameObject.transform);
-        tilemapGameObject.AddComponent<Tilemap>();
-        TilemapRenderer tilemapRenderer = tilemapGameObject.AddComponent<TilemapRenderer>();
+        Tilemap.transform.SetParent(gridGameObject.transform);
+        Tilemap.AddComponent<Tilemap>();
+        TilemapRenderer tilemapRenderer = Tilemap.AddComponent<TilemapRenderer>();
         tilemapRenderer.sortingLayerName = Const.MAP;
 
-        Rigidbody2D rigidbody = tilemapGameObject.AddComponent<Rigidbody2D>();
+        Rigidbody2D rigidbody = Tilemap.AddComponent<Rigidbody2D>();
         rigidbody.bodyType = RigidbodyType2D.Static;
 
-        Collider = tilemapGameObject.AddComponent<CompositeCollider2D>();
+        Collider = Tilemap.AddComponent<CompositeCollider2D>();
     
-        TilemapCollider2D tilemapCollider = tilemapGameObject.AddComponent<TilemapCollider2D>();
+        TilemapCollider2D tilemapCollider = Tilemap.AddComponent<TilemapCollider2D>();
         tilemapCollider.usedByComposite = true;
         tilemapCollider.useDelaunayMesh = true;
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene());

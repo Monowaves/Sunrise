@@ -61,6 +61,11 @@ public class PlayerGroundSlam : MonoBehaviour
             {
                 enemy.Hit(_slamDamage, transform.position, Vector2.one * 2);
             }
+
+            if (other.TryGetComponent(out Destructable destructable))
+            {
+                if (destructable.DestructMode == DestructMode.GroundSlam) destructable.Destruct();
+            }
         }
 
         PlayerBase.Singleton.SlamEffect.Spawn(transform.position + Vector3.down, Quaternion.identity);

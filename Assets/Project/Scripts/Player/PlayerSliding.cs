@@ -117,5 +117,12 @@ public class PlayerSliding : MonoBehaviour
             Momentum += 15;
             PlayerCamera.Singleton.Shake(1f);
         }
+
+        if (other.TryGetComponent(out Destructable destructable) && destructable.DestructMode == DestructMode.Slide && PlayerBase.Singleton.SlidingMomentum > 40)    
+        {
+            destructable.Destruct();
+            Momentum += 15;
+            PlayerCamera.Singleton.Shake(1f);
+        }
     }
 }

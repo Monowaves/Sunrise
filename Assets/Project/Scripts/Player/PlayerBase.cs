@@ -32,6 +32,7 @@ public class PlayerBase : MonoBehaviour
     [field: SerializeField] public AudioClip JumpSound { get; private set; }
     [field: SerializeField] public AudioClip GroundSlamSound { get; private set; }
     [field: SerializeField] public AudioClip DamageSound { get; private set; }
+    [field: SerializeField] public AudioSource FallNoise { get; private set; }
 
     [field: Header("Particles")]
     [field: SerializeField] public GameObject FootstepDust { get; private set; }
@@ -93,6 +94,7 @@ public class PlayerBase : MonoBehaviour
     private RayChecker _rightSlopeChecker;
 
     private float _slideTimer;
+    private float _fallTimer;
 
     private void Awake()
     {
@@ -167,6 +169,16 @@ public class PlayerBase : MonoBehaviour
     {
         Inputs();
         Checking();
+
+        if (IsFalling)
+            _fallTimer += Time.deltaTime;
+        else
+            _fallTimer = 0f;
+
+        if (_fallTimer > 1.5f)
+            FallNoise.volume = (_fallTimer - 1.5f) / 15;
+        else
+            FallNoise.volume = 0f;
     }
 
     private void Checking()

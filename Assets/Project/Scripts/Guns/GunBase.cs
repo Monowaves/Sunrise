@@ -75,6 +75,11 @@ public class GunBase : MonoBehaviour
             {
                 enemy.Hit(Settings.Damage, hit.point, Vector2.one * 0.5f);
             }
+
+            if (hit.transform.TryGetComponent(out Destructable destructable) && destructable.DestructMode == DestructMode.Attack)
+            {
+                destructable.Destruct();
+            }
         }
 
         if (Mouse.IsPressed(MouseCode.Left) && IsReloading)
@@ -91,7 +96,7 @@ public class GunBase : MonoBehaviour
         GameCursor.PlayShoot();
     }
 
-    private void MakeLine(Vector2 startPoint,Vector2 endPoint)
+    private void MakeLine(Vector2 startPoint, Vector2 endPoint)
     {
         (Vector2, Color) start = (startPoint, new Color32(255, 239, 127, 255));
         (Vector2, Color) end = (endPoint, new Color32(255, 62, 0, 0));
