@@ -174,6 +174,13 @@ namespace InMotion.Engine
             _invoked.Add(key, after);
         }
 
+        public void AbortParameter(string key)
+        {
+            if (!_invoked.ContainsKey(key)) return;
+
+            SetParameter(key, _invoked[key]);
+        }
+
         public void SetMotion(Motion target)
         {
             if (_playThis == target || !target) return;
