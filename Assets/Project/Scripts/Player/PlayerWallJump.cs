@@ -47,7 +47,7 @@ public class PlayerWallJump : MonoBehaviour
         }
 
         SetJumping(false);
-        _direction = PlayerBase.Singleton.Facing == PlayerFacing.Left ? 1 : -1;
+        _direction = PlayerBase.Singleton.IsTouchingLeftWall ? 1 : -1;
 
         _jumpTimer = _jumpTime;
 
