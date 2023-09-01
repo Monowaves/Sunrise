@@ -2659,13 +2659,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3717102d6817e4494fb8a265df7542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallJumpUpForce: 17.25
-  _wallJumpForwardForce: 29.5
-  _wallSlidingSpeed: 0.875
-  _jumpCutMultiplier: 0.15
-  _jumpBufferTime: 0.1
+  _jumpForce: {x: 35.5, y: 17}
+  _jumpDuration: 0.4
+  _jumpTime: 0.2
+  _slidingSpeed: 2
+  <IsSliding>k__BackingField: 0
   <IsJumping>k__BackingField: 0
-  <LastJumpTime>k__BackingField: 0
 --- !u!114 &3870091876982950935
 MonoBehaviour:
   m_ObjectHideFlags: 0

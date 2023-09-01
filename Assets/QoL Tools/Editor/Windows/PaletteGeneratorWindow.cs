@@ -37,7 +37,7 @@ public class PaletteGeneratorWindow : EditorWindow
             GUIStyle textStyle = new(EditorStyles.label);
             textStyle.normal.textColor = Color.green;
 
-            EditorGUILayout.LabelField($"Pallete {_loadedPalleteName} loaded!", textStyle);
+            EditorGUILayout.LabelField($"Palette {_loadedPalleteName} loaded!", textStyle);
         }
         else
             EditorGUILayout.LabelField("No pallete loaded.");

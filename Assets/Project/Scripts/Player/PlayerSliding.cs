@@ -63,7 +63,7 @@ public class PlayerSliding : MonoBehaviour
                 StopSliding();
             }
         }
-        else if (IsSliding && !PlayerBase.Singleton.IsTouchingCeil)
+        else if (IsSliding && (!PlayerBase.Singleton.IsTouchingCeil || PlayerBase.Singleton.IsTouchingWall))
         {
             StopSliding();
         }
@@ -77,6 +77,7 @@ public class PlayerSliding : MonoBehaviour
 
         PlayerBase.Singleton.IsSliding = IsSliding;
         PlayerBase.Singleton.SlidingMomentum = IsSliding ? Momentum : 0;
+
         WasSlidingLastFrame = IsSliding;
     }
 
