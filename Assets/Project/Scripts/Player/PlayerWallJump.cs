@@ -23,8 +23,6 @@ public class PlayerWallJump : MonoBehaviour
     {
         WallSlide();
         WallJump();
-
-        PlayerBase.Singleton.BlockMoveInputs = IsSliding;
     }
 
     private void WallSlide()
@@ -71,6 +69,7 @@ public class PlayerWallJump : MonoBehaviour
     {
         if (IsSliding == value) return;
 
+        PlayerBase.Singleton.BlockMoveInputs = value;
         PlayerBase.Singleton.IsWallSliding = value;
         IsSliding = value;
     }
