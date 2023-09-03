@@ -75,8 +75,6 @@ public class PaletteGeneratorWindow : EditorWindow
                 string[] rgbhex = line.Split();
                 Color color = $"#{rgbhex.Last()}".HexToColor();
 
-                Debug.Log(rgbhex.Last());
-
                 colors.Add(color);
             }
         }
